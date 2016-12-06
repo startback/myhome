@@ -1,0 +1,22 @@
+<div class="article_right">
+    <div class="three_news">
+        <p><span class="mous_on">点击排行</span><span class="new_arc">最新文章</span><span>作者推荐</span></p>
+        <div class="news_tit">
+            <ul>
+                <volist name="right_list.read" id="vo">
+                    <li><i></i><a href="__ROOT__/article/article_detail/article_id/{$vo.article_id}">{$vo.article_title}</a></li>
+                </volist>
+            </ul>
+            <ul>
+                <volist name="right_list.new" id="vo">
+                    <li><i></i><a href="__ROOT__/article/article_detail/article_id/{$vo.article_id}">{$vo.article_title}</a></li>
+                </volist>
+            </ul>
+            <ul>
+                <volist name="right_list.top" id="vo">
+                    <li><i></i><a href="__ROOT__/article/article_detail/article_id/{$vo.article_id}">{$vo.article_title}</a></li>
+                </volist>
+            </ul>
+        </div>
+    </div>
+</div>

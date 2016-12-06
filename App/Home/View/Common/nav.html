@@ -1,0 +1,15 @@
+
+    <!--nav start-->
+    <div class="nav">
+        <div class="nav_t"></div>
+        <div class="nav_c">
+            <ul>
+                <li><a href="__ROOT__" <if condition="$article_type eq 'index'">class="on"</if> >首页</a></li>
+                <volist name="article_nav" id="vo">
+                    <li><a <if condition="$article_type eq $vo['type_id']">class="on"</if> href="__ROOT__/article/article_list/type/{$vo.type_id}">{$vo.type_name}</a></li>
+                </volist>
+                <li><a href="__ROOT__/index/time">追踪时光</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--nav end-->

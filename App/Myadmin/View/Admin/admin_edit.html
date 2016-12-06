@@ -1,0 +1,109 @@
+<include file='Common:top'/>
+
+<body>
+<div class="panel admin-panel">
+    <div class="panel-head" id="add"><strong><span class="icon-key"></span> 修改管理员</strong></div>
+    <div class="body-content">
+        <form method="post" class="form-x" action="">
+            <input type="hidden" name="admin_id" value="{$admin_info.admin_id}" />
+
+            <div class="form-group">
+                <div class="label">
+                    <label>帐号：</label>
+                </div>
+                <div class="field">
+                    <input type="text" disabled class="input w50" value="{$admin_info.admin_account}" name="admin_account" />
+                    <div class="tips"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label">
+                    <label>别名：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$admin_info.admin_name}" name="admin_name" />
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>性别：</label>
+                </div>
+                <div class="field" style="padding-top:8px;">
+                    <foreach name="sex_state" item="vo" key="key" >
+                        {$vo}&nbsp;<input name="admin_sex" <if condition="$admin_info['admin_sex'] eq $key">checked</if> value="{$key}" type="radio"/>&nbsp;&nbsp;&nbsp;
+                    </foreach>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label">
+                    <label>角色：</label>
+                </div>
+                <div class="field">
+                    <select name="admin_role_id" class="input w50">
+                        <foreach name="roles" item="vo" key="key" >
+                            <option <if condition="$admin_info['admin_role_id'] eq $key">selected</if> value="{$key}">{$vo}</option>
+                        </foreach>
+                    </select>
+                    <div class="tips"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label">
+                    <label>电话：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$admin_info.admin_phone}" name="admin_phone" />
+                    <div class="tips"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label">
+                    <label>邮箱：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$admin_info.admin_email}" name="admin_email" />
+                    <div class="tips"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label">
+                    <label>生日：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$admin_info.admin_birthday}" name="admin_birthday" />
+                    <div class="tips"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label">
+                    <label>签名：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$admin_info.admin_tag}" name="admin_tag" />
+                    <div class="tips"></div>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="label">
+                    <label></label>
+                </div>
+                <div class="field">
+                    <button class="button bg-main icon-check-square-o" type="submit"> 修改</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

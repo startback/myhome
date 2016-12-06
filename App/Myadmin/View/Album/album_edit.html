@@ -1,0 +1,124 @@
+<include file='Common:top'/>
+
+<body>
+<div class="panel admin-panel">
+    <div class="panel-head" id="add"><strong><span class="icon-picture-o"></span> 修改相片</strong></div>
+    <div class="body-content">
+        <form method="post" class="form-x" action="" enctype="multipart/form-data">
+            <input type="hidden" name="album_id" value="{$album.album_id}" />
+
+            <div class="form-group">
+                <div class="label">
+                    <label>名字：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$album.album_name}" name="album_name" data-validate="required:请输入相片名"/>
+                    <div class="tips"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label">
+                    <label>类别：</label>
+                </div>
+                <div class="field">
+                    <select name="type_id" class="input w50" data-validate="required:请选择类别">
+                        <option value="">请选择类别</option>
+                        <volist name="types" id="vo">
+                            <option <if condition="$album['type_id'] eq $vo['type_id']">selected='selected'</if> value="{$vo.type_id}">{$vo.type_name}</option>
+                        </volist>
+                    </select>
+                    <div class="tips"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label">
+                    <label>描述：</label>
+                </div>
+                <div class="field">
+                    <textarea class="input" name="album_desc" style=" height:90px;">{$album.album_desc}</textarea>
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>原图：</label>
+                </div>
+                <div class="field">
+                    <img src="__ROOT__{$album.album_origin_url}" style="max-width: 90%;" />
+                    <div class="tips"></div>
+                </div>
+            </div>
+
+            <div class="clear"></div>
+            <div class="form-group">
+                <div class="label">
+                    <label>标签：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input" name="album_tag" value="{$album.album_tag}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>展示：</label>
+                </div>
+                <div class="field" style="padding-top:8px;">
+                    否 <input name="is_show" <if condition="$album['is_show'] eq 0">checked</if> value="0" type="radio"/>
+                    是 <input name="is_show" <if condition="$album['is_show'] eq 1">checked</if> value="1" type="radio"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>置顶：</label>
+                </div>
+                <div class="field" style="padding-top:8px;">
+                    否 <input name="is_top" <if condition="$album['is_top'] eq 0">checked</if> value="0" type="radio"/>
+                    是 <input name="is_top" <if condition="$album['is_top'] eq 1">checked</if> value="1" type="radio"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>热门：</label>
+                </div>
+                <div class="field" style="padding-top:8px;">
+                    否 <input name="is_hot" <if condition="$album['is_hot'] eq 0">checked</if> value="0" type="radio"/>
+                    是 <input name="is_hot" <if condition="$album['is_hot'] eq 1">checked</if> value="1" type="radio"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>推荐：</label>
+                </div>
+                <div class="field" style="padding-top:8px;">
+                    否 <input name="is_recommend" <if condition="$album['is_recommend'] eq 0">checked</if> value="0" type="radio"/>
+                    是 <input name="is_recommend" <if condition="$album['is_recommend'] eq 1">checked</if> value="1" type="radio"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label">
+                    <label>排序：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" name="top_order" value="{$album['top_order']}" data-validate="number:排序必须为数字"/>
+                    <div class="tips"></div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="label">
+                    <label></label>
+                </div>
+                <div class="field">
+                    <button class="button bg-main icon-check-square-o"  type="submit"> 修改</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

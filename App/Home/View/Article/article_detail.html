@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+
+<include file='Common:header'/>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/Home/css/article_dedail.css"/>
+
+<body>
+
+<include file='Common:top'/>
+
+<!--con start-->
+<div class="con">
+
+    <include file='Common:nav'/>
+
+    <!--articla start-->
+    <div class="article_con">
+        <h2>{$article_detail.article_title}</h2>
+        <p class="writer">发布时间：{$article_detail.article_time}<i></i>编辑：<a href="#">{$article_detail.admin_account}</a><i></i>阅读({$article_detail.read_num})</p>
+        <p class="article_all">{$article_detail.article_content}
+        </p>
+
+
+        <!--<p class="article_two_tit">-->
+            <!--上一篇：<a href="#">想要有一个自己的博客吗？</a><br/>-->
+            <!--下一篇：<a href="#">我的未来不是梦</a>-->
+        <!--</p>-->
+
+    </div>
+    <!--article end-->
+
+    <include file='Common:article_nav'/>
+
+    <div style="clear:both;"></div>
+</div>
+<div class="return_top"><a href="javascript:void(0)"></a></div>
+
+<include file='Common:footer'/>
+
+<!--con end-->
+
+<include file='Common:bottom'/>
+
+</body>
+</html>
