@@ -9,7 +9,7 @@ class IndexController extends CommonController {
         $page['limit'] = D('article')->get_limit($page['page']);
         $where  = 'is_recommend=1';
         $article_list = D('article')->get_article_list($page['limit'],$where);
-        $page_info = D('article')->get_page_list($page,$where,'index/index');
+        $page_info = D('article')->get_page_list($page,$where,'index.php?');
 
         $this->assign('article_list',$article_list);
         $this->assign('page_info',$page_info);

@@ -159,7 +159,7 @@ class AlbumController extends CommonController {
 
             if($all_data) {
                 if (M('album')->addAll($all_data)) {
-                    $this->success('发表成功', __ROOT__ . '/Myadmin/album/album_list');
+                    $this->success('发表成功', __ROOT__ . '/index.php?m=myadmin&c=album&a=album_list');
                 } else {
                     $this->error('发表失败');
                 }

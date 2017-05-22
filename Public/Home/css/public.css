@@ -11,7 +11,7 @@ a{text-decoration:none;}
 .top .top_con .top_con_right p{position:absolute;opacity:0;color:#404040;}
 .top .top_con .top_con_right p.pinf{left:0px;top:-5px;}
 .top .top_con .top_con_right p.jiaz{right:200px;top:64px;}
-.top .top_con .top_con_right p.bulang{right:300px;top:105px;color:#c91b46;}
+.top .top_con .top_con_right p.bulang{right:275px;top:105px;color:#c91b46;}
 .top .top_con .top_con_right b{display:block;float:right;padding:0px 10px 20px;background:#fff;border-radius:3px;box-shadow:0 0 15px #ffff80;margin-right:15px;}
 .top .top_con .top_con_right img{display:block;}
 /*top end*/

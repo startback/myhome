@@ -7,6 +7,9 @@
     </div>
     <div class="padding border-bottom">
         <form action="" method="get">
+            <input type="hidden" name="m" value="myadmin" />
+            <input type="hidden" name="c" value="album" />
+            <input type="hidden" name="a" value="album_list" />
             <ul class="search" style="padding-left:10px;">
                 <li>展示
                     <select name="is_show" class="input" style="width:60px; line-height:17px; display:inline-block">
@@ -87,7 +90,7 @@
                     <td>{$vo.album_time}</td>
                     <td>
                         <div class="button-group">
-                            <a class="button border-main" href="__ROOT__/Myadmin/album/album_edit/id/{$vo.album_id}"><span class="icon-edit"></span> 修改</a>
+                            <a class="button border-main" href="__ROOT__/index.php?m=myadmin&c=album&a=album_edit&id={$vo.album_id}"><span class="icon-edit"></span> 修改</a>
                             <a class="button border-red" href="javascript:void(0)" onclick="del({$vo.album_id})">
                                 <span class="icon-trash-o"></span> 删除
                             </a>
@@ -126,7 +129,7 @@
         if(confirm("您确定要删除吗?")) {
             $.ajax({
                 type: 'post',
-                url: '__ROOT__/Myadmin/album/album_del',
+                url: '__ROOT__/index.php?m=myadmin&c=album&a=album_del',
                 data: {ids: id},
                 dataType: 'text',
                 success: function(data){
@@ -173,7 +176,7 @@
 
             $.ajax({
                 type: 'post',
-                url: '__ROOT__/Myadmin/album/album_del',
+                url: '__ROOT__/index.php?m=myadmin&c=album&a=album_del',
                 data: {ids: ids},
                 dataType: 'text',
                 success: function(data){

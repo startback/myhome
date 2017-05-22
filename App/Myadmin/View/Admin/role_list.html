@@ -6,7 +6,7 @@
         <div class="panel-head"><strong class="icon-reorder"> 角色列表</strong></div>
         <div class="padding border-bottom">
             <ul class="search" style="padding-left:10px;">
-                <li><a class="button border-main icon-plus-square-o" href="__ROOT__/Myadmin/admin/role_add"> 增加角色</a>
+                <li><a class="button border-main icon-plus-square-o" href="__ROOT__/index.php?m=myadmin&c=admin&a=role_add"> 增加角色</a>
                 </li>
             </ul>
         </div>
@@ -26,7 +26,7 @@
                         <td>{$vo.role_desc}</td>
                         <td>
                             <div class="button-group">
-                                <a class="button border-main" href="__ROOT__/Myadmin/admin/role_edit/id/{$vo.role_id}"><span class="icon-edit"></span> 修改</a>
+                                <a class="button border-main" href="__ROOT__/index.php?m=myadmin&c=admin&a=role_edit&id={$vo.role_id}"><span class="icon-edit"></span> 修改</a>
                                 <a class="button border-red" href="javascript:void(0)" onclick="del({$vo.role_id})">
                                     <span class="icon-trash-o"></span> 删除
                                 </a>
@@ -53,7 +53,7 @@
         if(confirm("您确定要删除吗?")) {
             $.ajax({
                 type: 'post',
-                url: '__ROOT__/Myadmin/admin/role_del',
+                url: '__ROOT__/index.php?m=myadmin&c=admin&a=role_del',
                 data: {ids: id},
                 dataType: 'text',
                 success: function(data){

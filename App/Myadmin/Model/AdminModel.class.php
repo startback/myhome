@@ -66,7 +66,7 @@ class AdminModel extends Model {
         $next_page = $cur_page + 1;
         if($next_page > $total_page) $next_page = $total_page;
 
-        $purl = __ROOT__.'/Myadmin/admin/admin_list/p/';
+        $purl = __ROOT__.'/index.php?m=myadmin&c=admin&a=admin_list&p=';
 
         $page_info = '<a href="'.$purl.'1">首页</a>';
         $page_info .= '<a href="'.$purl.$pre_page.'">上一页</a>';

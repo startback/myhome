@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+<include file='Common:header'/>
+
+<link href="__PUBLIC__/Home/css/picture.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/Home/js/jquery.js"></script>
+
+<body style="background:#101010;">
+<div class="pic-head">
+<div class="picHeard-title">
+<span class="spanleftpic l"></span><a href="/">{$album.type.type_name}</a><font>（<i id="viewNum">1</i>/{$album.count}）</font><span class="spanrightpic r"><a href="index.php?m=home&c=album&a=album_type_list&type=album">返回影踪</a></span>
+</div>
+</div>
+<div class="indexBody">
+  <div class="btn-float"><a class="maxBtn-l" href="javascript:void(0);"></a><a class="maxBtn-r" href="javascript:void(0);"></a></div>
+  <div class="indexbody-main">
+    <div class="indexbody-left"></div>
+    <div class="indexbody-right"></div>
+  </div>
+  <div class="demo w990">
+    <div class="maxPic-box">
+      <div class="maxPic">
+        <div class="maxPicBox"><span></span><img style="max-width:800px;max-height:600px;" id="mainPic" src="__ROOT__{$album.list.0.album_origin_url}"/></div>
+      </div>
+    </div>
+    <div class="Pic-pageln">
+        <span class="l">可用“<font>←</font>”或“<font>→</font>”方向键快速翻页</span>
+        <span class="pic-r-span r">
+            <a href="javascript:void(0);"  class="ico01" id="stop-on"><i class="ins1"></i>已暂停</a>
+			<a id="showOriginal" target="_blank" href="__ROOT__{$album.list.0.album_origin_url}" class="ico02"><i></i>查看原图</a>
+            <a href="index.php?m=home&c=album&a=album_type_list&type=album" class="ico05"><i></i>返回影踪</a>
+        </span>
+    </div>    
+    <div id="tplist" class="w-width clearfix">
+      <div class="Up-tuzu">
+          <!--<a class="outpic" href="/" id="prevUrl"><span></span><img src="images/prev.jpg" /></a>
+          <a class="inpic" href="/">上一组</a><span class="prevspan"></span>-->
+      </div>
+      
+      <div class="bottom-lists l">
+        <div class="PicBtn-a PicBtn-a-l"><a class="PicBtn-left" href="javascript:void(0);"></a></div>
+        <div class="minPic l">
+          <ul class="gallery_demo_unstyled">
+			<if condition="$album['list']">
+				<volist name="album.list" key="key" id="vo">				
+					<li id="tu_{$key}"><span></span><a href="javascript:void(0);"><img src="__ROOT__{$vo.album_thumb_url}" style="max-width:100%;max-height:100%;" /></a></li>
+				</volist>
+			</if>
+          </ul>
+        </div>
+        <div class="PicBtn-a PicBtn-a-r"><a class="PicBtn-right" href="javascript:void(0);"></a></div>
+      </div>
+      
+      <div class="Next-tuzu">
+      <!--<a class="outpic" href="/" id="nextUrl"><span></span><img src="images/next.jpg"></a>
+          <a class="inpic" href="/">下一组</a>
+          <span class="nextspan"></span>-->
+       </div>
+    </div>
+  </div>
+</div>
+
+<div class="bottom-footer">
+  <div class="bfooteroDiv w990">
+    <p class="bf-p">你可能喜欢的</p>
+    <div class="bfooteroDiv-img">
+      <ul>
+	  
+        <li>
+          <div class="bf-oDiv">
+          	<a target="_blank" href="javascript:void(0);"><img alt="杨雅熙车模美女性感写真" src="__PUBLIC__/Home/images/bottom.jpg" /></a><span></span><a href="javascript:void(0);" class="bf-alink">杨雅熙车模美女性感写真</a>
+          </div>
+        </li>
+		
+		
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+$(function(){
+	var prevDiv = $(".Up-tuzu");
+	var nextDiv = $(".Next-tuzu");
+	if(prevDiv.find("a").length<1){
+		 prevDiv.html("<p style='line-height:120px;color:#666;'><a href='' id='prevUrl'>没有了</a></p>");
+		}
+	if(nextDiv.find("a").length<1){
+	 nextDiv.html("<p style='line-height:120px;color:#666;'><a href='' id='nextUrl'>没有了</a></p>");
+	}
+});
+
+var selectKey = "1";
+<?php 
+	$str = '';
+	if($album['list']){
+		foreach($album['list'] as $val){
+			if($str){
+				$str .= ',{"bigPic": "__ROOT__'.$val['album_origin_url'].'","thumbPic": "__ROOT__'.$val['album_thumb_url'].'"}';
+			}else{
+				$str = '{"bigPic": "__ROOT__'.$val['album_origin_url'].'","thumbPic": "__ROOT__'.$val['album_thumb_url'].'"}';
+			}
+		}	
+	}
+?>
+var picList = [<?php echo $str;?>];
+
+</script> 
+<script type="text/javascript" src="__PUBLIC__/Home/js/picture.js"></script> 
+</body>
+</html>

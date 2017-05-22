@@ -19,9 +19,9 @@ class ArticleModel extends Model {
         return M('article')->field(C('DB_PREFIX').'article.*,'.C('DB_PREFIX').'admin.admin_account')->join(C('DB_PREFIX').'admin ON '.C('DB_PREFIX').'article.author_id = '.C('DB_PREFIX').'admin.admin_id')->where($where)->limit($limit)->order('top_order desc,is_top desc,article_id desc')->select();
     }
 
-
+	
     //获得页数
-    public function get_page_list($page,$where,$method='article/article_list'){
+    public function get_page_list($page,$where,$method='index.php?m=home&c=article&a=article_list'){
         $total_num = M('article')->where($where)->count();
         $total_page = ceil($total_num/$this->per_page);
         $cur_page = $page['page'];
@@ -30,7 +30,7 @@ class ArticleModel extends Model {
         $next_page = $cur_page + 1;
         if($next_page > $total_page) $next_page = $total_page;
 
-        $base_purl = __ROOT__.'/'.$method.'/type/'.$page['type'].'/p/';
+        $base_purl = __ROOT__.'/'.$method.'&type='.$page['type'].'&p=';
 
         $page_info  = '<li><a href="'.$base_purl.'1">首页</a></li>';
         $page_info .= '<li><a href="'.$base_purl.$pre_page.'">上一页</a></li>';

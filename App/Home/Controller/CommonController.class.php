@@ -24,7 +24,7 @@ class CommonController extends Controller {
     public function right_article_list(){
         $right_list['read'] = M('article')->order('read_num desc,article_id desc')->limit(6)->select();
         $right_list['new'] = M('article')->order('article_id desc')->limit(6)->select();
-        $right_list['top'] = M('article')->where('is_top=1')->order('top_order desc,article_id desc')->limit(6)->select();
+        $right_list['top'] = M('article')->where('is_recommend=1')->order('top_order desc,article_id desc')->limit(6)->select();
         $this->assign('right_list',$right_list);
     }
 

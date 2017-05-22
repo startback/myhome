@@ -6,7 +6,7 @@
         <div class="panel-head"><strong class="icon-reorder"> 文章类型列表</strong></div>
         <div class="padding border-bottom">
             <ul class="search" style="padding-left:10px;">
-                <li><a class="button border-main icon-plus-square-o" href="__ROOT__/Myadmin/article/add_type"> 添加类型</a>
+                <li><a class="button border-main icon-plus-square-o" href="__ROOT__/index.php?m=myadmin&c=article&a=add_type"> 添加类型</a>
                 </li>
             </ul>
         </div>
@@ -31,7 +31,7 @@
                         <td>{$type_state[$vo['is_show']]}</td>
                         <td>
                             <div class="button-group">
-                                <a class="button border-main" href="__ROOT__/Myadmin/article/edit_type/id/{$vo.type_id}"><span class="icon-edit"></span> 修改</a>
+                                <a class="button border-main" href="__ROOT__/index.php?m=myadmin&c=article&a=edit_type&id={$vo.type_id}"><span class="icon-edit"></span> 修改</a>
                                 <a class="button border-red" href="javascript:void(0)" onclick="del({$vo.type_id})">
                                     <span class="icon-trash-o"></span> 删除
                                 </a>
@@ -71,7 +71,7 @@
         if(confirm("您确定要删除吗?")) {
             $.ajax({
                 type: 'post',
-                url: '__ROOT__/Myadmin/article/del_type',
+                url: '__ROOT__/index.php?m=myadmin&c=article&a=del_type',
                 data: {ids: id},
                 dataType: 'text',
                 success: function(data){
@@ -118,7 +118,7 @@
 
             $.ajax({
                 type: 'post',
-                url: '__ROOT__/Myadmin/article/del_type',
+                url: '__ROOT__/index.php?m=myadmin&c=article&a=del_type',
                 data: {ids: ids},
                 dataType: 'text',
                 success: function(data){

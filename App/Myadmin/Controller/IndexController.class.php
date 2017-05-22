@@ -49,7 +49,7 @@ class IndexController extends CommonController {
 
 
             if(D('admin')->login($admin_account,$admin_pass)){
-                $this->redirect('myadmin/index/index');
+				header('Location: index.php?m=myadmin&c=index&a=index');
             }else{
                 $this->error('帐号或密码错误');
             }
@@ -63,7 +63,7 @@ class IndexController extends CommonController {
     //登出
     public function logout(){
         unset($_SESSION['admin']['info']);
-        $this->redirect('myadmin/index/login');
+		header('Location: index.php?m=myadmin&c=index&a=login');
     }
 
 

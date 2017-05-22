@@ -6,7 +6,7 @@
         <div class="panel-head"><strong class="icon-reorder"> 管理员列表</strong></div>
         <div class="padding border-bottom">
             <ul class="search" style="padding-left:10px;">
-                <li><a class="button border-main icon-plus-square-o" href="__ROOT__/Myadmin/admin/admin_add"> 添加管理员</a>
+                <li><a class="button border-main icon-plus-square-o" href="__ROOT__/index.php?m=myadmin&c=admin&a=admin_add"> 添加管理员</a>
                 </li>
             </ul>
         </div>
@@ -34,7 +34,7 @@
                         <td>{$vo.admin_register_time}</td>
                         <td>
                             <div class="button-group">
-                                <a class="button border-main" href="__ROOT__/Myadmin/admin/admin_edit/id/{$vo.admin_id}"><span class="icon-edit"></span> 修改</a>
+                                <a class="button border-main" href="__ROOT__/index.php?m=myadmin&c=admin&a=admin_edit&id={$vo.admin_id}"><span class="icon-edit"></span> 修改</a>
                                 <a class="button border-red" href="javascript:void(0)" onclick="del({$vo.admin_id})">
                                     <span class="icon-trash-o"></span> 删除
                                 </a>
@@ -74,7 +74,7 @@
         if(confirm("您确定要删除吗?")) {
             $.ajax({
                 type: 'post',
-                url: '__ROOT__/Myadmin/admin/admin_del',
+                url: '__ROOT__/index.php?m=myadmin&c=admin&a=admin_del',
                 data: {ids: id},
                 dataType: 'text',
                 success: function(data){
@@ -123,7 +123,7 @@
 
             $.ajax({
                 type: 'post',
-                url: '__ROOT__/Myadmin/admin/admin_del',
+                url: '__ROOT__/index.php?m=myadmin&c=admin&a=admin_del',
                 data: {ids: ids},
                 dataType: 'text',
                 success: function(data){

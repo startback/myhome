@@ -47,7 +47,7 @@ class AlbumModel extends Model {
         $next_page = $cur_page + 1;
         if($next_page > $total_page) $next_page = $total_page;
 
-        $purl = __ROOT__.'/Myadmin/album/atype/p/';
+        $purl = __ROOT__.'/index.php?m=myadmin&c=album&a=atype&p=';
 
         $page_info = '<a href="'.$purl.'1">首页</a>';
         $page_info .= '<a href="'.$purl.$pre_page.'">上一页</a>';
@@ -76,12 +76,12 @@ class AlbumModel extends Model {
         $next_page = $cur_page + 1;
         if($next_page > $total_page) $next_page = $total_page;
 
-        $base_purl = __ROOT__.'/Myadmin/album/album_list/is_show/'.$page['is_show'].'/is_hot/'.$page['is_hot'].'/is_top/'.$page['is_top'].'/is_recommend/'.$page['is_recommend'].'/type_id/'.$page['type_id'];
+        $base_purl = __ROOT__.'/index.php?m=myadmin&c=album&a=album_list&is_show='.$page['is_show'].'&is_hot='.$page['is_hot'].'&is_top='.$page['is_top'].'&is_recommend='.$page['is_recommend'].'&type_id='.$page['type_id'];
 
         if($page['keywords']){
-            $purl = $base_purl.'/keywords/'.$page['keywords'].'/p/';
+            $purl = $base_purl.'&keywords='.$page['keywords'].'&p=';
         }else{
-            $purl = $base_purl.'/p/';
+            $purl = $base_purl.'&p=';
         }
 
         $page_info = '<a href="'.$purl.'1">首页</a>';

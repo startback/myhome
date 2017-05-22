@@ -17,7 +17,7 @@ return array(
     'DB_RW_SEPARATE'        =>  false,        // 数据库读写是否分离 主从式有效
     'DB_MASTER_NUM'         =>  1,            // 读写分离后 主服务器数量
     'DB_SLAVE_NO'           =>  '',           // 指定从服务器序号
-    'URL_MODEL'             =>  2,            // url info模式
+    'URL_MODEL'             =>  0,            // url模式 0普通 1PATHINFO 2REWRITE 3兼容
     'MODULE_ALLOW_LIST'     =>  array('Home','Myadmin'),   // 允许访问的模块
     'DEFAULT_MODULE'        =>  'Home',                    // 默认模块
 );

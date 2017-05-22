@@ -155,7 +155,7 @@ class ArticleController extends CommonController {
 
 
             if(M('article')->add($data)){
-                $this->success('发表成功',__ROOT__.'/Myadmin/article/article_list');
+                $this->success('发表成功',__ROOT__.'/index.php?m=myadmin&c=article&a=article_list');
             }else{
                 $this->error('发表失败');
             }
@@ -183,13 +183,13 @@ class ArticleController extends CommonController {
             $data['is_show'] = $_POST['is_show'];
             $data['is_recommend'] = $_POST['is_recommend'];
             $data['top_order'] = $_POST['top_order'];
-            if($_FILES){
+            if($_FILES && $_FILES['image']['name'][0]){
                 $images = com_save_file($_FILES,'/Upload/article');
                 $data['article_img'] = $images[0];
             }
 
             if(M('article')->where('article_id='.$article_id)->save($data)){
-                $this->success('编辑成功',__ROOT__.'/Myadmin/article/article_list');
+                $this->success('编辑成功',__ROOT__.'/index.php?m=myadmin&c=article&a=article_list');
             }else{
                 $this->error('编辑失败');
             }

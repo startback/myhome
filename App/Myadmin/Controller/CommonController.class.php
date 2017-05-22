@@ -23,11 +23,22 @@ class CommonController extends Controller {
      * 返回path_info
      */
     public function get_pathinfo(){
-        $paths = split('/',$_SERVER['PATH_INFO']);
-        $first_paths = $paths[0]?$paths[0]:'index';
-        $second_paths = $paths[1]?$paths[1]:'index';
+        $paths = split('&',$_SERVER['QUERY_STRING']);
+		if($paths[1]){
+			$first = str_replace('c=','',$paths[1]);
+			$first_paths = $first?$first:'index';
+		}else{
+			$first_paths = 'index';
+		}
+		
+		if($paths[2]){
+			$second = str_replace('a=','',$paths[2]);
+			$second_paths = $second?$second:'index';
+		}else{
+			$second_paths = 'index';
+		}		
+		
         $path_info = strtolower($first_paths).'/'.strtolower($second_paths);
-
         return $path_info;
     }
 
@@ -38,8 +49,8 @@ class CommonController extends Controller {
     public function no_login($path_info){
         if(!in_array($path_info,C('NO_LOGIN'))){
             if(empty($_SESSION['admin']['info'])) {
-                $this->redirect('myadmin/index/login');
-                exit;
+				header('Location: index.php?m=myadmin&c=index&a=login');
+				exit;
             }
         }
     }
