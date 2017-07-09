@@ -5,7 +5,9 @@ class IndexController extends CommonController {
 
     public function index(){
 	
-		echo 'zhibo index';
+		// var_dump(M('action')->select());
+	
+		$this->display();
     }
 
 }

@@ -1,0 +1,75 @@
+@charset"utf-8";
+
+
+.module {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.module  .head {    
+	height: 31px;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid #d5d5d5;
+    background: #F7F7F7;
+}
+
+.module  .head h2 {
+    font-size: 1em;
+    font-weight: normal;
+    display: inline-block;
+    text-align: center;
+    float: left;
+    width: auto;
+    padding: 0 10px 0 20px;
+    height: 31px;
+    line-height: 31px;
+}
+
+
+.module  table {
+    width: 100%;
+    word-break: break-all;
+	display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: grey;
+}
+
+.module  tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+.module  td {
+    text-align: center;
+    padding: 5px 0;
+    color: #000;
+    font-size: 0.9em;
+	border-bottom: 1px solid #f2f2f2;
+	box-shadow: 0 1px 1px #fff;
+}
+
+.module .s_name {
+    font-size: 0.825em;
+}
+
+.module .s_keyword {
+    color: #888;
+    max-height: 30px;
+    overflow: hidden;
+    font-size: 0.825em;
+    margin-top: 5px;
+    line-height: 15px;
+}
+
+.module table img {
+    width: 40px;
+    height: 40px;
+}
+
+.module .remind img {
+    width: 25px;
+    height: 25px;
+}
