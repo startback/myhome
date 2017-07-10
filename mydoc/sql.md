@@ -2,7 +2,7 @@
 
 
 * 1、 [api_users(用户表)](#1)
-* 2、 [api_home(家园表)](#2)
+* 2、 [api_homes(家园表)](#2)
 * 3、 [api_region(区域表)](#3)
 * 4、 [api_user_home(用户家园关系表)](#4)
 * 5、 [api_home_level(家园等级分值表 后台定)](#5)
@@ -44,7 +44,7 @@
 
 
 <span id="2"/>
-##### 2、 api_home(家园表)
+##### 2、 api_homes(家园表)
 
 | 字段名 | 类型 | 默认 | 主键 | 备注 |
 |-------|------|------|-----|------|
@@ -98,7 +98,6 @@
 | status | tinyint | 0 | - | 状态 0正常 1禁言 2禁止进入 |
 | score | int | 0 | - | 在当前家园分值 总值|
 | use_score | int | 0 | - | 在当前家园分值 可用|
-
 
 
 
@@ -167,7 +166,8 @@
 | message_title | varchar(60) | - | - | 信息头 |
 | message_content | text | - | - | 信息内容 |
 | message_time | int | - | - | 信息时间 |
-| message_send_id | int | - | - | 信息发送人 |
+| message_send_id | int | - | - | 信息发送人(0为系统发的信息不能回复) |
+| message_admin_id | smallint | 0 | - | 如是系统发记录是哪一位发的 |
 | message_get_id | int | - | - | 信息接收人 |
 | message_status | tinyint | 0 | - | 信息状态 0未读 1已读 |
 
@@ -191,8 +191,6 @@
 
 
 
-
-
 <span id="10"/>
 ##### 10、 api_suggest(建议表)
 
@@ -205,7 +203,6 @@
 | suggest_status | tinyint | 0 | - | 建议状态 0未读 1未处理 2已处理未回复 3已处理已回复 4已处理不需回复 |
 | admin_id | smallint | 0 | - | 管理员ID |
 | admin_time | int | 0 | - | 管理员处理时间 |
-
 
 
 
@@ -222,7 +219,6 @@
 | comment_content | text | - | - | 评论内容 |
 | comment_status | tinyint | 0 | - | 评论状态 0正常 1隐藏 |
 | comment_is_delete | tinyint | 0 | - | 是否删除 0否 1是 |
-
 
 
 

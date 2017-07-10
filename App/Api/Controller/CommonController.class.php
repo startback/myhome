@@ -11,7 +11,7 @@ class CommonController extends Controller {
 
     // 没有些方法 跳转404
     public function _empty(){
-        echo 'home no this way run common api';
+        echo 'api no this way run common';
     }
 
 }
