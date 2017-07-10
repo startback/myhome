@@ -95,9 +95,21 @@
     height: 25px;
 }
 
+.content .td_1{
+	width:15%;
+}
 
+.content .td_2{
+	width:25%;
+}
 
+.content .td_3{
+	width:40%;
+}
 
+.content .td_4{
+	width:20%;
+}
 
 	
 	

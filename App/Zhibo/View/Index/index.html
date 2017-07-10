@@ -30,19 +30,19 @@
 				<table>
 					<volist name="item.data" k="k" id="vo">	
 						<tr>
-							<td>{$vo.time}</td>
-							<td>
+							<td class="td_1" >{$vo.time}</td>
+							<td class="td_2" >
 								<div>
 									<img src="__ROOT__{$vo.act_head_url}" alt="主播头像" style="display: inline;">
 								</div>
 								<div><b>{$vo.act_name}</b></div>
 							</td>
-							<td>
+							<td class="td_3" >
 								<div class="s_name" ><b>{$vo.act_platform}</b></div>
 								<div class="s_keyword" ><b>{$vo.act_desc}</b></div>
 							</td>
 
-							<td>
+							<td class="td_4">
 								<div class="remind">
 								<if condition="$vo.is_start eq 1">
 									第2节<br>结束
