@@ -62,7 +62,7 @@ class ActionModel extends Model {
 
     //获取直播列表
     public function get_action_list($limit,$where){
-        return M('action')->field(C('DB_PREFIX').'action.*,'.C('DB_PREFIX').'admin.admin_account')->join(C('DB_PREFIX').'admin ON '.C('DB_PREFIX').'action.admin_id = '.C('DB_PREFIX').'admin.admin_id')->where($where)->limit($limit)->order('act_id desc')->select();
+        return M('action')->field(C('DB_PREFIX').'action.*,'.C('DB_PREFIX').'admin.admin_account')->join('left join '.C('DB_PREFIX').'admin ON '.C('DB_PREFIX').'action.admin_id = '.C('DB_PREFIX').'admin.admin_id')->where($where)->limit($limit)->order('act_id desc')->select();
     }
 
 
@@ -77,7 +77,7 @@ class ActionModel extends Model {
         $next_page = $cur_page + 1;
         if($next_page > $total_page) $next_page = $total_page;
 
-        $base_purl = __ROOT__.'/index.php?m=zadmin&c=action&a=action_list&is_show='.$page['is_show'].'&is_hot='.$page['is_hot'].'&is_top='.$page['is_top'].'&is_recommend='.$page['is_recommend'].'&type_id='.$page['type_id'];
+        $base_purl = __ROOT__.'/index.php?m=zadmin&c=action&a=action_list&is_show='.$page['is_show'].'&is_hot='.$page['is_hot'].'&is_good='.$page['is_good'].'&is_over='.$page['is_over'].'&type_id='.$page['type_id'];
 
         if($page['keywords']){
             $purl = $base_purl.'&keywords='.$page['keywords'].'&p=';

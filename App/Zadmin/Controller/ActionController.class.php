@@ -135,22 +135,22 @@ class ActionController extends CommonController {
     //发布直播
     public function action_add(){
         if($_POST){
-            $data['action_title'] = $_POST['action_title'];
+            $data['act_name'] = $_POST['act_name'];
             $data['type_id'] = $_POST['type_id'];
-            $data['action_desc'] = $_POST['action_desc'];
-            $data['action_content'] = $_POST['action_content'];
-            $data['action_tag'] = $_POST['action_tag'];
-            $data['is_top'] = $_POST['is_top'];
+            $data['act_desc'] = $_POST['act_desc'];
+            $data['act_platform'] = $_POST['act_platform'];
+            $data['act_time'] = $_POST['act_time'];
+            $data['is_good'] = $_POST['is_good'];
             $data['is_hot'] = $_POST['is_hot'];
             $data['is_show'] = $_POST['is_show'];
-            $data['is_recommend'] = $_POST['is_recommend'];
-            $data['top_order'] = $_POST['top_order'];
-            $data['action_time'] = date('Y-m-d H:i:s',time());
-            $data['author_id'] = $_SESSION['admin']['info']['admin_id'];
+            $data['is_over'] = $_POST['is_over'];
+            $data['act_player_url'] = $_POST['act_player_url'];
+            $data['add_time'] = date('Y-m-d H:i:s',time());
+            $data['admin_id'] = $_SESSION['zadmin']['info']['admin_id'];
 
             if($_FILES){
-                $images = com_save_file($_FILES,'/Upload/action');
-                $data['action_img'] = $images[0];
+                $images = com_save_file($_FILES,'/Upload/zhibo');
+                $data['act_head_url'] = $images[0];
             }
 
 
@@ -171,24 +171,24 @@ class ActionController extends CommonController {
     //编辑直播
     public function action_edit(){
         if($_POST){
-            $action_id = $_POST['action_id'];
+            $act_id = $_POST['act_id'];
 
-            $data['action_title'] = $_POST['action_title'];
+            $data['act_name'] = $_POST['act_name'];
             $data['type_id'] = $_POST['type_id'];
-            $data['action_desc'] = $_POST['action_desc'];
-            $data['action_content'] = $_POST['action_content'];
-            $data['action_tag'] = $_POST['action_tag'];
-            $data['is_top'] = $_POST['is_top'];
+            $data['act_desc'] = $_POST['act_desc'];
+            $data['act_platform'] = $_POST['act_platform'];
+            $data['act_time'] = $_POST['act_time'];
+            $data['is_good'] = $_POST['is_good'];
             $data['is_hot'] = $_POST['is_hot'];
             $data['is_show'] = $_POST['is_show'];
-            $data['is_recommend'] = $_POST['is_recommend'];
-            $data['top_order'] = $_POST['top_order'];
+            $data['is_over'] = $_POST['is_over'];
+            $data['act_player_url'] = $_POST['act_player_url'];
             if($_FILES && $_FILES['image']['name'][0]){
-                $images = com_save_file($_FILES,'/Upload/action');
-                $data['action_img'] = $images[0];
+                $images = com_save_file($_FILES,'/Upload/zhibo');
+                $data['act_head_url'] = $images[0];
             }
 
-            if(M('action')->where('action_id='.$action_id)->save($data)){
+            if(M('action')->where('act_id='.$act_id)->save($data)){
                 $this->success('编辑成功',__ROOT__.'/index.php?m=zadmin&c=action&a=action_list');
             }else{
                 $this->error('编辑失败');
@@ -202,7 +202,7 @@ class ActionController extends CommonController {
                 exit;
             }
 
-            $action = M('action')->where('action_id='.$action_id)->find();
+            $action = M('action')->where('act_id='.$action_id)->find();
 
             $types_arr = array();
             $types = M('action_type')->where('is_show=1')->select();
@@ -224,7 +224,7 @@ class ActionController extends CommonController {
     public function action_del(){
         $ids = isset($_POST['ids'])?$_POST['ids']:'';
         if($ids){
-            if(M('action')->where('action_id in ('.$ids.')')->delete()){
+            if(M('action')->where('act_id in ('.$ids.')')->delete()){
                 echo 1;
             }
         }

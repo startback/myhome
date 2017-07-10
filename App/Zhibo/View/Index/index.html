@@ -56,33 +56,7 @@
 								<div class="hidentime" style="display:none;">{$vo.act_time}</div>
 							</td>
 						</tr>			
-					</volist>		
-						
-					<tr>
-						<td>15:30</td>
-						<td>
-							<div>
-								<img src="__PUBLIC__/Zhibo/images/shandongluneng.png" alt="主播头像" style="display: inline;">
-							</div>
-							<div><b>你是谁？</b></div>
-						</td>
-						<td>
-							<div class="s_name" ><b>某某平台</b></div>
-							<div class="s_keyword" ><b>主播描述</b></div>
-						</td>
-						<td>
-							<div class="remind">
-								<if condition="$vo.is_start eq 1">
-									第2节<br>结束
-								<else /> 
-									<a href="{$vo.act_player_url}" target="_blank">
-										<img src="__PUBLIC__/Zhibo/images/clock1.png">
-									</a>
-								</if>
-							</div>
-							<div class="hidentime" style="display:none;">2017-07-09 15:30</div>
-						</td>				
-					</tr>				
+					</volist>					
 				</table>		
 			</div><!--end content-->
 		</volist>

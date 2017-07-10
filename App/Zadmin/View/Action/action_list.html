@@ -78,7 +78,7 @@
         <if condition="$action_list">
             <volist name="action_list" id="vo">
                 <tr>
-                    <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="{$vo.action_id}"/>{$vo.act_id}</td>
+                    <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="{$vo.act_id}"/>{$vo.act_id}</td>
                     <td>{$vo.act_name}</td>
 					<td><img src="__ROOT__{$vo.act_head_url}" width="50" height="50" /></td>
 					<td>{$vo.act_time}</td>

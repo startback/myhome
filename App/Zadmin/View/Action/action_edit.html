@@ -1,25 +1,53 @@
 <include file='Common:top'/>
 
-<script charset="utf-8" src="__PUBLIC__/Ueditor/ueditor.config.js"></script>
-<script charset="utf-8" src="__PUBLIC__/Ueditor/ueditor.all.min.js"></script>
-<script charset="utf-8" src="__PUBLIC__/Ueditor/lang/zh-cn/zh-cn.js"></script>
-
 <body>
 <div class="panel admin-panel">
-    <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span> 修改文章</strong></div>
+    <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span> 修改直播</strong></div>
     <div class="body-content">
         <form method="post" class="form-x" action="" enctype="multipart/form-data">
-            <input type="hidden" name="action_id" value="{$action.action_id}" />
+            <input type="hidden" name="act_id" value="{$action.act_id}" />
 
             <div class="form-group">
                 <div class="label">
-                    <label>标题：</label>
+                    <label>主播名：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input w50" value="{$action.action_title}" name="action_title" data-validate="required:请输入标题"/>
+                    <input type="text" class="input w50" value="{$action.act_name}" name="act_name" data-validate="required:请输入名称"/>
                     <div class="tips"></div>
                 </div>
             </div>
+			
+			<div class="form-group">
+                <div class="label">
+                    <label>主播头像：</label>
+                </div>
+                <div class="field">
+                    <div style="width:90px;height: 90px;margin-right: 35px;float: left;position: relative;">
+                        <img <if condition="$action['act_head_url']">src="__ROOT__{$action.act_head_url}"<else />src="__PUBLIC__/Zadmin/images/add.png"</if> style="width: 100%;height: 100%;" />
+                        <input type="file" onchange="change_img(this)" style="width:90px;height: 90px;opacity: 0;position: absolute;top:0;left: 0;" name="image[]">
+                    </div>
+                </div>
+            </div>
+			
+            <div class="form-group">
+                <div class="label">
+                    <label>主播平台：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$action.act_platform}" name="act_platform" data-validate="required:请输入平台"/>
+                    <div class="tips"></div>
+                </div>
+            </div>		
+
+            <div class="form-group">
+                <div class="label">
+                    <label>主播时间：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$action.act_time}" name="act_time" data-validate="required:请输入时间"/>
+                    <div class="tips"></div>
+                </div>
+            </div>				
 
             <div class="form-group">
                 <div class="label">
@@ -38,45 +66,25 @@
 
             <div class="form-group">
                 <div class="label">
-                    <label>图片：</label>
+                    <label>主播地址：</label>
                 </div>
                 <div class="field">
-                    <div style="width:90px;height: 90px;margin-right: 35px;float: left;position: relative;">
-                        <img <if condition="$action['action_img']">src="__ROOT__{$action.action_img}"<else />src="__PUBLIC__/Zadmin/images/add.png"</if> style="width: 100%;height: 100%;" />
-                        <input type="file" onchange="change_img(this)" style="width:90px;height: 90px;opacity: 0;position: absolute;top:0;left: 0;" name="image[]">
-                    </div>
+                    <input type="text" class="input" value="{$action.act_player_url}" name="act_player_url" data-validate="required:请输入主播地址"/>
+                    <div class="tips"></div>
                 </div>
-            </div>
+            </div>	
 
             <div class="form-group">
                 <div class="label">
                     <label>描述：</label>
                 </div>
                 <div class="field">
-                    <textarea class="input" name="action_desc" style=" height:90px;">{$action.action_desc}</textarea>
-                    <div class="tips"></div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="label">
-                    <label>内容：</label>
-                </div>
-                <div class="field">
-                    <input name="action_content" id="action_content" type="hidden" value=""/>
-                    <script id="editor" type="text/plain" style="height:450px;width:100%;">{$action.action_content}</script>
+                    <textarea class="input" name="act_desc" style=" height:90px;">{$action.act_desc}</textarea>
                     <div class="tips"></div>
                 </div>
             </div>
 
             <div class="clear"></div>
-            <div class="form-group">
-                <div class="label">
-                    <label>标签：</label>
-                </div>
-                <div class="field">
-                    <input type="text" class="input" name="action_tag" value="{$action.action_tag}"/>
-                </div>
-            </div>
             <div class="form-group">
                 <div class="label">
                     <label>展示：</label>
@@ -88,11 +96,11 @@
             </div>
             <div class="form-group">
                 <div class="label">
-                    <label>置顶：</label>
+                    <label>精华：</label>
                 </div>
                 <div class="field" style="padding-top:8px;">
-                    否 <input name="is_top" <if condition="$action['is_top'] eq 0">checked</if> value="0" type="radio"/>
-                    是 <input name="is_top" <if condition="$action['is_top'] eq 1">checked</if> value="1" type="radio"/>
+                    否 <input name="is_good" <if condition="$action['is_good'] eq 0">checked</if> value="0" type="radio"/>
+                    是 <input name="is_good" <if condition="$action['is_good'] eq 1">checked</if> value="1" type="radio"/>
                 </div>
             </div>
             <div class="form-group">
@@ -106,31 +114,20 @@
             </div>
             <div class="form-group">
                 <div class="label">
-                    <label>推荐：</label>
+                    <label>结束：</label>
                 </div>
                 <div class="field" style="padding-top:8px;">
-                    否 <input name="is_recommend" <if condition="$action['is_recommend'] eq 0">checked</if> value="0" type="radio"/>
-                    是 <input name="is_recommend" <if condition="$action['is_recommend'] eq 1">checked</if> value="1" type="radio"/>
+                    否 <input name="is_over" <if condition="$action['is_over'] eq 0">checked</if> value="0" type="radio"/>
+                    是 <input name="is_over" <if condition="$action['is_over'] eq 1">checked</if> value="1" type="radio"/>
                 </div>
             </div>
-
-            <div class="form-group">
-                <div class="label">
-                    <label>排序：</label>
-                </div>
-                <div class="field">
-                    <input type="text" class="input w50" name="top_order" value="{$action['top_order']}" data-validate="number:排序必须为数字"/>
-                    <div class="tips"></div>
-                </div>
-            </div>
-
 
             <div class="form-group">
                 <div class="label">
                     <label></label>
                 </div>
                 <div class="field">
-                    <button class="button bg-main icon-check-square-o" onclick="return set_action_content();" type="submit"> 修改</button>
+                    <button class="button bg-main icon-check-square-o" type="submit"> 修改</button>
                 </div>
             </div>
         </form>
@@ -138,14 +135,6 @@
 </div>
 
 <script>
-    var ue = UE.getEditor('editor');
-
-    function set_action_content(){
-        var html_str = UE.getEditor('editor').getContent();
-        $('#action_content').val(html_str);
-
-        return true;
-    }
 
     function change_img(obj){
         var files = obj.files;

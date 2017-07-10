@@ -62,7 +62,7 @@ class ArticleModel extends Model {
 
     //获取文章列表
     public function get_article_list($limit,$where){
-        return M('article')->field(C('DB_PREFIX').'article.*,'.C('DB_PREFIX').'admin.admin_account')->join(C('DB_PREFIX').'admin ON '.C('DB_PREFIX').'article.author_id = '.C('DB_PREFIX').'admin.admin_id')->where($where)->limit($limit)->order('article_id desc')->select();
+        return M('article')->field(C('DB_PREFIX').'article.*,'.C('DB_PREFIX').'admin.admin_account')->join('left join '.C('DB_PREFIX').'admin ON '.C('DB_PREFIX').'article.author_id = '.C('DB_PREFIX').'admin.admin_id')->where($where)->limit($limit)->order('article_id desc')->select();
     }
 
 

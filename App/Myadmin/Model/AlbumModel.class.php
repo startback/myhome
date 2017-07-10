@@ -61,7 +61,7 @@ class AlbumModel extends Model {
 
     //获取相册列表
     public function get_album_list($limit,$where){
-        return M('album')->field(C('DB_PREFIX').'album.*,'.C('DB_PREFIX').'admin.admin_account')->join(C('DB_PREFIX').'admin ON '.C('DB_PREFIX').'album.author_id = '.C('DB_PREFIX').'admin.admin_id')->where($where)->limit($limit)->order('album_id desc')->select();
+        return M('album')->field(C('DB_PREFIX').'album.*,'.C('DB_PREFIX').'admin.admin_account')->join('left join '.C('DB_PREFIX').'admin ON '.C('DB_PREFIX').'album.author_id = '.C('DB_PREFIX').'admin.admin_id')->where($where)->limit($limit)->order('album_id desc')->select();
     }
 
 
