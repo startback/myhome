@@ -4,7 +4,7 @@ use Think\Controller;
 class ActionController extends CommonController {
 
 
-    //文章分类列表
+    //直播分类列表
     public function atype(){
         $page = isset($_GET['p'])?$_GET['p']:1;
         $limit = D('action')->get_limit($page);
@@ -21,7 +21,7 @@ class ActionController extends CommonController {
     }
 
 
-    //添加文章分类
+    //添加直播分类
     public function add_type(){
         if($_POST){
             $data['type_name'] = trim($_POST['type_name']);
@@ -38,7 +38,7 @@ class ActionController extends CommonController {
     }
 
 
-    //修改文章分类
+    //修改直播分类
     public function edit_type(){
         if($_POST){
 
@@ -66,7 +66,7 @@ class ActionController extends CommonController {
     }
 
 
-    //删除文章分类
+    //删除直播分类
     public function del_type(){
         $ids = isset($_POST['ids'])?$_POST['ids']:'';
         if($ids){
@@ -81,24 +81,24 @@ class ActionController extends CommonController {
     //直播列表
     public function action_list(){
         $is_show = isset($_GET['is_show'])?$_GET['is_show']:'-1';
-        $is_top = isset($_GET['is_top'])?$_GET['is_top']:'-1';
+        $is_good = isset($_GET['is_good'])?$_GET['is_good']:'-1';
         $is_hot = isset($_GET['is_hot'])?$_GET['is_hot']:'-1';
-        $is_recommend = isset($_GET['is_recommend'])?$_GET['is_recommend']:'-1';
+        $is_over = isset($_GET['is_over'])?$_GET['is_over']:'-1';
         $type_id = isset($_GET['type_id'])?$_GET['type_id']:'-1';
         $keywords = isset($_GET['keywords'])?$_GET['keywords']:'';
 
         $where = '1=1';
         if($is_show != '-1') $where .= ' and is_show='.$is_show;
-        if($is_top != '-1') $where .= ' and is_top='.$is_top;
+        if($is_good != '-1') $where .= ' and is_good='.$is_good;
         if($is_hot != '-1') $where .= ' and is_hot='.$is_hot;
-        if($is_recommend != '-1') $where .= ' and is_recommend='.$is_recommend;
+        if($is_over != '-1') $where .= ' and is_over='.$is_over;
         if($type_id != '-1') $where .= ' and type_id='.$type_id;
-        if($keywords) $where .= " and action_title like '%".$keywords."%'";
+        if($keywords) $where .= " and act_name like '%".$keywords."%'";
 
         $search_state['is_show'] = $is_show;
-        $search_state['is_top'] = $is_top;
+        $search_state['is_good'] = $is_good;
         $search_state['is_hot'] = $is_hot;
-        $search_state['is_recommend'] = $is_recommend;
+        $search_state['is_over'] = $is_over;
         $search_state['type_id'] = $type_id;
         $search_state['keywords'] = $keywords;
 
@@ -132,7 +132,7 @@ class ActionController extends CommonController {
     }
 
 
-    //发布文章
+    //发布直播
     public function action_add(){
         if($_POST){
             $data['action_title'] = $_POST['action_title'];
@@ -168,7 +168,7 @@ class ActionController extends CommonController {
 
 
 
-    //编辑文章
+    //编辑直播
     public function action_edit(){
         if($_POST){
             $action_id = $_POST['action_id'];
@@ -198,7 +198,7 @@ class ActionController extends CommonController {
         }else{
             $action_id = $_GET['id'] ? $_GET['id'] : '';
             if (empty($action_id)) {
-                $this->error('没有此文章');
+                $this->error('没有此直播');
                 exit;
             }
 
@@ -220,7 +220,7 @@ class ActionController extends CommonController {
     }
 
 
-    //删除文章
+    //删除直播
     public function action_del(){
         $ids = isset($_POST['ids'])?$_POST['ids']:'';
         if($ids){

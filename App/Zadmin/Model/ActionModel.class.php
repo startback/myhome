@@ -6,7 +6,7 @@ class ActionModel extends Model {
 
     var $per_page = 10;
 
-    //增加文章类型
+    //增加直播类型
 	public function add_type($data){
         if(M('action_type')->add($data)){
             return true;
@@ -15,7 +15,7 @@ class ActionModel extends Model {
         }
     }
 
-    //修改文章类型
+    //修改直播类型
     public function edit_type($type_id,$data){
         if(M('action_type')->where('type_id='.$type_id)->save($data)){
             return true;
@@ -60,9 +60,9 @@ class ActionModel extends Model {
     }
 
 
-    //获取文章列表
+    //获取直播列表
     public function get_action_list($limit,$where){
-        return M('action')->field(C('DB_PREFIX').'action.*,'.C('DB_PREFIX').'admin.admin_account')->join(C('DB_PREFIX').'admin ON '.C('DB_PREFIX').'action.author_id = '.C('DB_PREFIX').'admin.admin_id')->where($where)->limit($limit)->order('action_id desc')->select();
+        return M('action')->field(C('DB_PREFIX').'action.*,'.C('DB_PREFIX').'admin.admin_account')->join(C('DB_PREFIX').'admin ON '.C('DB_PREFIX').'action.admin_id = '.C('DB_PREFIX').'admin.admin_id')->where($where)->limit($limit)->order('act_id desc')->select();
     }
 
 

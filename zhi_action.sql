@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
-Source Server Version : 50617
+Source Server Version : 50714
 Source Host           : localhost:3306
 Source Database       : myhome
 
 Target Server Type    : MYSQL
-Target Server Version : 50617
+Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2017-07-10 01:27:52
+Date: 2017-07-10 14:56:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -26,6 +26,7 @@ CREATE TABLE `zhi_action` (
   `act_time` datetime DEFAULT NULL,
   `act_desc` text,
   `act_platform` varchar(60) DEFAULT NULL COMMENT '平台名称',
+  `act_player_url` varchar(255) DEFAULT NULL COMMENT '平台播放地址',
   `add_time` datetime DEFAULT NULL COMMENT '添加时间',
   `admin_id` int(6) DEFAULT NULL,
   `type_id` smallint(6) DEFAULT NULL,
@@ -35,12 +36,13 @@ CREATE TABLE `zhi_action` (
   `is_good` tinyint(4) DEFAULT '0' COMMENT '是否精华',
   `is_del` tinyint(4) DEFAULT '0' COMMENT '软删除',
   PRIMARY KEY (`act_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of zhi_action
 -- ----------------------------
-INSERT INTO `zhi_action` VALUES ('1', '2', '212', '0000-00-00 00:00:00', '3', '33', '0000-00-00 00:00:00', '3', null, '33', '3', '3', '33', '3');
+INSERT INTO `zhi_action` VALUES ('1', '啊打', '/Upload/zhibo/123.png', '2017-07-10 11:40:22', '啊打主播呀', '传媒播放平台', null, '0000-00-00 00:00:00', '3', '8', '1', '0', '0', '0', '0');
+INSERT INTO `zhi_action` VALUES ('2', '张三', '/Upload/zhibo/456.png', '2017-08-01 11:44:36', '张三唱吧', '三吧平台', null, '2017-07-10 11:45:07', '2', '9', '1', '0', '0', '0', '0');
 
 -- ----------------------------
 -- Table structure for zhi_action_type

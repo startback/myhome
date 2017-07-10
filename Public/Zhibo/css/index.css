@@ -1,5 +1,19 @@
 @charset"utf-8";
 
+.top{
+	width:100%;
+	height:42px;
+	background: #74B5F7;
+	
+}
+
+.top .title{
+	height:42px;
+	color:#fafafa;
+	font-size:1.5em;
+	line-height:42px;
+	margin-left:2%;
+}
 
 .module {
     width: 100%;
@@ -69,7 +83,22 @@
     height: 40px;
 }
 
+.module .remind  {
+    display: inline-block;
+    width: 50px;
+    color: #E04E4C;
+    font-size: 0.9em;
+}
+
 .module .remind img {
     width: 25px;
     height: 25px;
 }
+
+
+
+
+
+	
+	
+	

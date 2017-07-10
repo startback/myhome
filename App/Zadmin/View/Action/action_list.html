@@ -3,7 +3,7 @@
 <body>
 
 <div class="panel admin-panel">
-    <div class="panel-head"><strong class="icon-reorder"> 文章列表</strong>
+    <div class="panel-head"><strong class="icon-reorder"> 直播列表</strong>
     </div>
     <div class="padding border-bottom">
         <form action="" method="get">
@@ -18,18 +18,18 @@
                         <option <if condition="$search_state['is_show'] eq 0">selected='selected'</if> value="0">否</option>
                     </select>
                     &nbsp;&nbsp;
-                    推荐
+                    结束
                     <select name="is_recommend" class="input" style="width:60px; line-height:17px;display:inline-block">
                         <option value="-1">选择</option>
-                        <option <if condition="$search_state['is_recommend'] eq 1">selected='selected'</if> value="1">是</option>
-                        <option <if condition="$search_state['is_recommend'] eq 0">selected='selected'</if> value="0">否</option>
+                        <option <if condition="$search_state['is_over'] eq 1">selected='selected'</if> value="1">是</option>
+                        <option <if condition="$search_state['is_over'] eq 0">selected='selected'</if> value="0">否</option>
                     </select>
                     &nbsp;&nbsp;
-                    置顶
+                    精华
                     <select name="is_top" class="input" style="width:60px; line-height:17px;display:inline-block">
                         <option value="-1">选择</option>
-                        <option <if condition="$search_state['is_top'] eq 1">selected='selected'</if> value="1">是</option>
-                        <option <if condition="$search_state['is_top'] eq 0">selected='selected'</if> value="0">否</option>
+                        <option <if condition="$search_state['is_good'] eq 1">selected='selected'</if> value="1">是</option>
+                        <option <if condition="$search_state['is_good'] eq 0">selected='selected'</if> value="0">否</option>
                     </select>
                     &nbsp;&nbsp;
                     热门
@@ -49,7 +49,7 @@
                 </li>
 
                 <li>
-                    <input type="text" placeholder="请输入标题关键字" value="{$search_state.keywords}" name="keywords" class="input"
+                    <input type="text" placeholder="请输入主播关键字" value="{$search_state.keywords}" name="keywords" class="input"
                            style="width:250px; line-height:17px;display:inline-block"/>
                     <input type="submit" class="button border-main icon-search" value="搜索"/>
                 </li>
@@ -59,39 +59,43 @@
     <table class="table table-hover text-center">
         <tr>
             <th width="100" style="text-align:left; padding-left:20px;">ID</th>
-            <th>标题</th>
-            <th>类别</th>
-            <th>图片</th>
+            <th>直播名</th>
+            <th>直播头像</th>
+            <th>直播时间</th>
+            <th>直播描述</th>
+            <th>直播平台</th>
+            <th>直播地址</th>
+            <th>添加时间</th>
+            <th>添加人</th>
+            <th>类型</th>
             <th>展示</th>
-            <th>置顶</th>
+            <th>结束</th>
             <th>热门</th>
-            <th>推荐</th>
-            <th>作者</th>
-            <th>阅读</th>
-            <th>排序</th>
-            <th>时间</th>
+            <th>精华</th>
             <th width="310">操作</th>
         </tr>
 
         <if condition="$action_list">
             <volist name="action_list" id="vo">
                 <tr>
-                    <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="{$vo.action_id}"/>{$vo.action_id}</td>
-                    <td>{$vo.action_title}</td>
-                    <td>{$types[$vo['type_id']]['type_name']}</td>
-                    <td><img src="__ROOT__{$vo.action_img}" width="50" height="50" /></td>
+                    <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="{$vo.action_id}"/>{$vo.act_id}</td>
+                    <td>{$vo.act_name}</td>
+					<td><img src="__ROOT__{$vo.act_head_url}" width="50" height="50" /></td>
+					<td>{$vo.act_time}</td>
+					<td>{$vo.act_desc}</td>
+					<td>{$vo.act_platform}</td>
+					<td>{$vo.act_player_url}</td>
+					<td>{$vo.add_time}</td>
+					<td>{$vo.admin_account}</td>
+                    <td>{$types[$vo['type_id']]['type_name']}</td>         
                     <td>{$state[$vo['is_show']]}</td>
-                    <td>{$state[$vo['is_top']]}</td>
+                    <td>{$state[$vo['is_over']]}</td>
                     <td>{$state[$vo['is_hot']]}</td>
-                    <td>{$state[$vo['is_recommend']]}</td>
-                    <td>{$vo.admin_account}</td>
-                    <td>{$vo.read_num}</td>
-                    <td>{$vo.top_order}</td>
-                    <td>{$vo.action_time}</td>
+                    <td>{$state[$vo['is_good']]}</td>
                     <td>
                         <div class="button-group">
-                            <a class="button border-main" href="__ROOT__/index.php?m=zadmin&c=action&a=action_edit&id={$vo.action_id}"><span class="icon-edit"></span> 修改</a>
-                            <a class="button border-red" href="javascript:void(0)" onclick="del({$vo.action_id})">
+                            <a class="button border-main" href="__ROOT__/index.php?m=zadmin&c=action&a=action_edit&id={$vo.act_id}"><span class="icon-edit"></span> 修改</a>
+                            <a class="button border-red" href="javascript:void(0)" onclick="del({$vo.act_id})">
                                 <span class="icon-trash-o"></span> 删除
                             </a>
                         </div>
@@ -102,7 +106,7 @@
                 <td style="text-align:left; padding:19px 0;padding-left:20px;"><input type="checkbox" id="checkall"/>
                     全选
                 </td>
-                <td colspan="12" style="text-align:left;padding-left:20px;">
+                <td colspan="14" style="text-align:left;padding-left:20px;">
                     <a href="javascript:void(0)" class="button border-red icon-trash-o" style="padding:5px 15px;"
                        onclick="DelSelect()"> 删除</a>
                 </td>
