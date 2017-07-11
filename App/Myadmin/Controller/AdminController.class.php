@@ -176,12 +176,15 @@ class AdminController extends CommonController {
             $admin_info = M('admin')->where('admin_id='.$admin_id)->find();
             $roles_arr = M('role')->field('role_id,role_name')->select();
             $roles = array();
-            $roles[0] = '超级管理员';
-            if($roles_arr){
-                foreach($roles_arr as $val){
-                    $roles[$val['role_id']] = $val['role_name'];
-                }
-            }
+			if($admin_info['admin_account'] == 'admin'){
+				$roles[0] = '超级管理员';
+			}else{
+				if($roles_arr){
+					foreach($roles_arr as $val){
+						$roles[$val['role_id']] = $val['role_name'];
+					}
+				}			
+			}
 
             $sex_state = array(
                 '0' => '未知',

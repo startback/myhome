@@ -71,6 +71,45 @@ return array(
         )
     ),
 
+	
+	//左则显示栏
+	'ADMIN_LEVEL_MENU'   =>   array(
+		"index" => array(
+			"name" =>  "基本设置",
+			"l_icon" =>  "icon-user",
+			"data" =>  array(
+				"web_set" => array("网站设置","index.php?m=myadmin&c=index&a=info"),
+				"pass" => array("修改密码","index.php?m=myadmin&c=index&a=pass")
+			),
+		),
+		"article" => array(
+			"name" =>  "文章管理",
+			"l_icon" =>  "icon-pencil-square-o",
+			"data" =>  array(
+				"atype" => array("文章分类","index.php?m=myadmin&c=article&a=atype"),
+				"article_list" => array("文章列表","index.php?m=myadmin&c=article&a=article_list"),
+				"article_add" => array("发布文章","index.php?m=myadmin&c=article&a=article_add")
+			)
+		),
+		"album" => array(
+			"name" =>  "相册管理",
+			"l_icon" =>  "icon-picture-o",
+			"data" =>  array(
+				"atype" => array("相册列表","index.php?m=myadmin&c=album&a=atype"),
+				"article_list" => array("相片列表","index.php?m=myadmin&c=album&a=album_list"),
+				"article_add" => array("发布相片","index.php?m=myadmin&c=album&a=album_add")
+			)
+		),		
+		"admin" => array(
+			"name" =>  "权限管理",
+			"l_icon" =>  "icon-key",
+			"data" =>  array(
+				"role_list" => array("角色权限","index.php?m=myadmin&c=admin&a=role_list"),
+				"admin_list" => array("管理员列表","index.php?m=myadmin&c=admin&a=admin_list")
+			)
+		),	
+	),		
+	
 
     //允许访问的IP
     'IP_ALLOW'      =>   array(

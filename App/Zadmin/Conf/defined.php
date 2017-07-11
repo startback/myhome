@@ -57,6 +57,36 @@ return array(
         )
     ),
 
+	
+	//左则显示栏
+	'ADMIN_LEVEL_MENU'   =>   array(
+		"index" => array(
+			"name" =>  "基本设置",
+			"l_icon" =>  "icon-user",
+			"data" =>  array(
+				"web_set" => array("网站设置","index.php?m=zadmin&c=index&a=info"),
+				"pass" => array("修改密码","index.php?m=zadmin&c=index&a=pass")
+			),
+		),
+		"action" => array(
+			"name" =>  "直播管理",
+			"l_icon" =>  "icon-pencil-square-o",
+			"data" =>  array(
+				"atype" => array("直播分类","index.php?m=zadmin&c=action&a=atype"),
+				"action_list" => array("直播列表","index.php?m=zadmin&c=action&a=action_list"),
+				"action_add" => array("发布直播","index.php?m=zadmin&c=action&a=action_add")
+			)
+		),
+		"admin" => array(
+			"name" =>  "权限管理",
+			"l_icon" =>  "icon-key",
+			"data" =>  array(
+				"role_list" => array("角色权限","index.php?m=zadmin&c=admin&a=role_list"),
+				"admin_list" => array("管理员列表","index.php?m=zadmin&c=admin&a=admin_list")
+			)
+		),	
+	),	
+	
 
     //允许访问的IP
     'IP_ALLOW'      =>   array(

@@ -15,7 +15,7 @@
 <body>
 
 <div class="top"> 
-	<div class="title">直播吧</div>
+	<div class="title">王者直播</div>
 </div>
 
 <div class="module">
@@ -44,16 +44,18 @@
 
 							<td class="td_4">
 								<div class="remind">
-								<if condition="$vo.is_start eq 1">
-									第2节<br>结束
+								<if condition="$vo.is_start eq 1 and $vo.is_over eq 0">
+									直播中
+								<elseif condition="$vo.is_over eq 1"/>
+									已结束	
 								<else /> 
 									<a href="{$vo.act_player_url}" target="_blank">
 										<img src="__PUBLIC__/Zhibo/images/clock1.png">
 									</a>
 								</if>
 								</div>
-								
 								<div class="hidentime" style="display:none;">{$vo.act_time}</div>
+								<div class="isover" style="display:none;">{$vo.is_over}</div>
 							</td>
 						</tr>			
 					</volist>					
@@ -75,9 +77,14 @@
 		$(".hidentime").each(function(){
 			var get_time = Date.parse(new Date(($(this).html().trim())));
 			get_time = get_time / 1000;
-
+			var is_over = parseInt($(this).siblings('.isover').html());
+	
 			if(server_time >= get_time){
-				$(this).siblings('.remind').html('第N场<br>已结束');
+				if(is_over == 1){
+					$(this).siblings('.remind').html('已结束');
+				}else{
+					$(this).siblings('.remind').html('直播中');
+				}
 			}
 		});
 	

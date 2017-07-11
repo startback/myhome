@@ -1,5 +1,6 @@
 <include file='Common:top'/>
 
+<script type="text/javascript" src="__PUBLIC__/jeDate/jedate.js"></script>
 <body>
 <div class="panel admin-panel">
     <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span> 修改直播</strong></div>
@@ -44,7 +45,7 @@
                     <label>主播时间：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input w50" value="{$action.act_time}" name="act_time" data-validate="required:请输入时间"/>
+                    <input type="text" class="input w50" id="datebut" onClick="jeDate({dateCell:'#datebut',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})" value="{$action.act_time}" name="act_time" data-validate="required:请输入时间"/>
                     <div class="tips"></div>
                 </div>
             </div>				
