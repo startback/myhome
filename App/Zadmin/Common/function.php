@@ -8,7 +8,7 @@
  * $path 保存路径
  */
 function com_save_file($file,$path='/Upload/test'){
-    $com_path = str_replace('/App/Zadmin/Common','',__DIR__);
+    $com_path = str_replace('\\App\\Zadmin\\Common','',str_replace('/App/Zadmin/Common','',__DIR__));
     $make_path = $com_path.$path;
 
     $images = array();
@@ -59,7 +59,7 @@ function com_save_file($file,$path='/Upload/test'){
  * $path     缩略图保存目录
  */
 function com_make_thumb($img_url,$path='Upload/thumb',$width=180,$height=180){
-    $com_path = str_replace('/App/Zadmin/Common','',__DIR__);
+	$com_path = str_replace('\\App\\Zadmin\\Common','',str_replace('/App/Zadmin/Common','',__DIR__));
     $make_path = $com_path.$path;
     if(!file_exists($make_path)) mkdir($make_path,0777,true);
 
