@@ -86,6 +86,12 @@ class CommonController extends Controller {
 			}
 		}
 		
+		foreach($all_show as $key=>$value){
+			if(empty($value['data'])){
+				unset($all_show[$key]);
+			}			
+		}		
+		
 		return $all_show;
 	}
 	

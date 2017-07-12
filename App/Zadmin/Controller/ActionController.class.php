@@ -47,6 +47,7 @@ class ActionController extends CommonController {
             $data['type_desc'] = trim($_POST['type_desc']);
             $data['is_show'] = $_POST['is_show'];
             if(D('action')->edit_type($type_id,$data)){
+				D('admin_log')->admin_log('修改直播分类');
                 $this->success('修改成功!',U('action/atype'));
             }else{
                 $this->error('修改失败');
@@ -80,6 +81,7 @@ class ActionController extends CommonController {
 
     //直播列表
     public function action_list(){
+		
         $is_show = isset($_GET['is_show'])?$_GET['is_show']:'-1';
         $is_good = isset($_GET['is_good'])?$_GET['is_good']:'-1';
         $is_hot = isset($_GET['is_hot'])?$_GET['is_hot']:'-1';
@@ -155,6 +157,7 @@ class ActionController extends CommonController {
 
 
             if(M('action')->add($data)){
+				D('admin_log')->admin_log('发布直播');
                 $this->success('发表成功',__ROOT__.'/index.php?m=zadmin&c=action&a=action_list');
             }else{
                 $this->error('发表失败');
@@ -189,6 +192,7 @@ class ActionController extends CommonController {
             }
 
             if(M('action')->where('act_id='.$act_id)->save($data)){
+				D('admin_log')->admin_log('编辑直播');
                 $this->success('编辑成功',__ROOT__.'/index.php?m=zadmin&c=action&a=action_list');
             }else{
                 $this->error('编辑失败');

@@ -48,7 +48,7 @@ class IndexController extends CommonController {
             }
 
 
-            if(D('admin')->login($admin_account,$admin_pass)){
+            if(D('admin')->login($admin_account,$admin_pass,com_get_ip())){
 				header('Location: index.php?m=zadmin&c=index&a=index');
             }else{
                 $this->error('帐号或密码错误');
