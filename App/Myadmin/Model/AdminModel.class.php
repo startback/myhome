@@ -6,12 +6,16 @@ class AdminModel extends Model {
     var $per_page = 10;
 
 	//登录
-	public function login($name,$pass){
+	public function login($name,$pass,$ip_add=''){
         $info = M('admin')->where("admin_account='".$name."'")->find();
 
         if($info){
             if(strtolower(md5($pass)) == strtolower(bin2hex($info['admin_pass']))){
+				$info['ip_address'] = $ip_add;
                 $_SESSION['admin']['info'] = $info;
+				$data['ip_address'] = $ip_add;
+				$data['admin_login_time'] = date('Y-m-d H:i:s',time());
+				M('admin')->where('admin_id='.$info['admin_id'])->save($data);				
                 return true;
             }
         }

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2017-07-10 11:02:32
+Date: 2017-07-12 17:05:58
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -30,10 +30,6 @@ CREATE TABLE `api_comment` (
   `comment_is_delete` tinyint(4) DEFAULT '0' COMMENT '是否删除 0否 1是',
   PRIMARY KEY (`comment_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of api_comment
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for api_home_article
@@ -62,10 +58,6 @@ CREATE TABLE `api_home_article` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of api_home_article
--- ----------------------------
-
--- ----------------------------
 -- Table structure for api_home_level
 -- ----------------------------
 DROP TABLE IF EXISTS `api_home_level`;
@@ -77,10 +69,6 @@ CREATE TABLE `api_home_level` (
   `level_is_used` tinyint(4) DEFAULT '1' COMMENT '是否启用 0否 1是',
   PRIMARY KEY (`level_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of api_home_level
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for api_home_notice
@@ -98,10 +86,6 @@ CREATE TABLE `api_home_notice` (
   `notice_is_delete` tinyint(4) DEFAULT '0' COMMENT '删除 0否 1是',
   PRIMARY KEY (`notice_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of api_home_notice
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for api_homes
@@ -133,10 +117,6 @@ CREATE TABLE `api_homes` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of api_homes
--- ----------------------------
-
--- ----------------------------
 -- Table structure for api_message
 -- ----------------------------
 DROP TABLE IF EXISTS `api_message`;
@@ -153,10 +133,6 @@ CREATE TABLE `api_message` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of api_message
--- ----------------------------
-
--- ----------------------------
 -- Table structure for api_region
 -- ----------------------------
 DROP TABLE IF EXISTS `api_region`;
@@ -168,10 +144,6 @@ CREATE TABLE `api_region` (
   `region_is_close` tinyint(4) DEFAULT '0' COMMENT '是否屏蔽 0公开 1屏蔽',
   PRIMARY KEY (`region_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of api_region
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for api_report
@@ -192,10 +164,6 @@ CREATE TABLE `api_report` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of api_report
--- ----------------------------
-
--- ----------------------------
 -- Table structure for api_report_type
 -- ----------------------------
 DROP TABLE IF EXISTS `api_report_type`;
@@ -207,10 +175,6 @@ CREATE TABLE `api_report_type` (
   `type_admin_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`type_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of api_report_type
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for api_suggest
@@ -228,10 +192,6 @@ CREATE TABLE `api_suggest` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of api_suggest
--- ----------------------------
-
--- ----------------------------
 -- Table structure for api_user_home
 -- ----------------------------
 DROP TABLE IF EXISTS `api_user_home`;
@@ -246,10 +206,6 @@ CREATE TABLE `api_user_home` (
   `use_score` int(11) DEFAULT '0',
   PRIMARY KEY (`user_id`,`home_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of api_user_home
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for api_users
@@ -278,7 +234,3 @@ CREATE TABLE `api_users` (
   `user_status` tinyint(4) DEFAULT '0' COMMENT '用户状态 0正常 1禁言 2禁止登录',
   PRIMARY KEY (`user_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of api_users
--- ----------------------------

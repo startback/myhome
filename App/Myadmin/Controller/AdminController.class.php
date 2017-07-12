@@ -221,6 +221,62 @@ class AdminController extends CommonController {
         }
     }
 
+	
+	//管理员日志列表
+    public function admin_log_list(){
+
+        $admin_id = isset($_GET['admin_id'])?intval($_GET['admin_id']):'-1';
+        $start_time = isset($_GET['start_time'])?trim($_GET['start_time']):'';
+        $end_time = isset($_GET['end_time'])?trim($_GET['end_time']):'';
+        $ip_address = isset($_GET['ip_address'])?trim($_GET['ip_address']):'-1';
+
+        $where = '1=1';
+        if($admin_id != '-1') $where .= ' and '.C('DB_PREFIX').'admin_log.admin_id='.$admin_id;
+        if($start_time) $where .= " and ".C('DB_PREFIX')."admin_log.log_time>='".$start_time."'";
+        if($end_time) $where .= " and ".C('DB_PREFIX')."admin_log.log_time<'".$end_time."'";
+        if($ip_address != '-1') $where .= " and ".C('DB_PREFIX')."admin_log.ip_address='".$ip_address."'";
+ 
+        $search_state['admin_id'] = $admin_id;
+        $search_state['start_time'] = $start_time;
+        $search_state['end_time'] = $end_time;
+        $search_state['ip_address'] = $ip_address;
+		
+        $page = isset($_GET['p'])?$_GET['p']:1;
+        $search_state['page'] = $page;
+        $limit = D('admin_log')->get_limit($page);
+        $page_info = D('admin_log')->get_admin_log_page($search_state,$where);
+        $admin_log_list = D('admin_log')->get_admin_log_list($limit,$where);
+
+        $this->assign('state',$state);
+        $this->assign('page_info',$page_info);
+        $this->assign('admin_log_list',$admin_log_list);
+        $this->assign('search_state',$search_state);
+
+		$admins = M('admin')->field('admin_id,admin_account')->order('admin_id desc')->select();
+		if($admins){
+			foreach($admins as $key=>$value){
+				$admins[$key]['select'] = '';
+				if($value['admin_id'] == $search_state['admin_id']){
+					$admins[$key]['select'] = 'selected';
+				}
+			}
+		}
+		$this->assign('admins',$admins);
+		$ip_adds = M('admin_log')->field('ip_address')->group('ip_address')->select();
+		if($ip_adds){
+			foreach($ip_adds as $key=>$value){
+				$ip_adds[$key]['select'] = '';
+				if($value['ip_address'] == $search_state['ip_address']){
+					$ip_adds[$key]['select'] = 'selected';
+				}
+			}
+		}		
+		$this->assign('ip_adds',$ip_adds);		
+		
+        $this->display();
+    }
+		
+	
 
 
 }

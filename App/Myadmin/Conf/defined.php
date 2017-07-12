@@ -66,6 +66,7 @@ return array(
                 array('title'=>'admin_add', 'name' => '管理员添加'),
                 array('title'=>'admin_edit','name' => '管理员修改'),
                 array('title'=>'admin_del', 'name' => '管理员删除'),
+				array('title'=>'admin_log_list', 'name' => '管理员日志'),
 
             )
         )
@@ -105,7 +106,8 @@ return array(
 			"l_icon" =>  "icon-key",
 			"data" =>  array(
 				"role_list" => array("角色权限","index.php?m=myadmin&c=admin&a=role_list"),
-				"admin_list" => array("管理员列表","index.php?m=myadmin&c=admin&a=admin_list")
+				"admin_list" => array("管理员列表","index.php?m=myadmin&c=admin&a=admin_list"),
+				"admin_log_list" => array("管理员日志","index.php?m=myadmin&c=admin&a=admin_log_list"),
 			)
 		),	
 	),		
