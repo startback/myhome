@@ -47,7 +47,6 @@ class ActionController extends CommonController {
             $data['type_desc'] = trim($_POST['type_desc']);
             $data['is_show'] = $_POST['is_show'];
             if(D('action')->edit_type($type_id,$data)){
-				D('admin_log')->admin_log('修改直播分类');
                 $this->success('修改成功!',U('action/atype'));
             }else{
                 $this->error('修改失败');
@@ -71,9 +70,9 @@ class ActionController extends CommonController {
     public function del_type(){
         $ids = isset($_POST['ids'])?$_POST['ids']:'';
         if($ids){
-            if(M('action_type')->where('type_id in ('.$ids.')')->delete()){
-                echo 1;
-            }
+			if(D('action')->del_type($ids)){
+				echo 1;
+			}
         }
     }
 
@@ -156,8 +155,7 @@ class ActionController extends CommonController {
             }
 
 
-            if(M('action')->add($data)){
-				D('admin_log')->admin_log('发布直播');
+            if(D('action')->action_add($data)){
                 $this->success('发表成功',__ROOT__.'/index.php?m=zadmin&c=action&a=action_list');
             }else{
                 $this->error('发表失败');
@@ -191,8 +189,7 @@ class ActionController extends CommonController {
                 $data['act_head_url'] = $images[0];
             }
 
-            if(M('action')->where('act_id='.$act_id)->save($data)){
-				D('admin_log')->admin_log('编辑直播');
+            if(D('action')->action_edit($act_id,$data)){
                 $this->success('编辑成功',__ROOT__.'/index.php?m=zadmin&c=action&a=action_list');
             }else{
                 $this->error('编辑失败');
@@ -228,7 +225,7 @@ class ActionController extends CommonController {
     public function action_del(){
         $ids = isset($_POST['ids'])?$_POST['ids']:'';
         if($ids){
-            if(M('action')->where('act_id in ('.$ids.')')->delete()){
+            if(D('action')->action_del($ids)){
                 echo 1;
             }
         }

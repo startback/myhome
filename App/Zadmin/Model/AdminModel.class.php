@@ -16,13 +16,87 @@ class AdminModel extends Model {
 				$data['ip_address'] = $ip_add;
 				$data['admin_login_time'] = date('Y-m-d H:i:s',time());
 				M('admin')->where('admin_id='.$info['admin_id'])->save($data);
+				D('admin_log')->admin_log($info['admin_account'].' 登录系统');
                 return true;
             }
         }
         return false;
 	}
 	
+	//修改密码
+	public function mod_admin_pass($admin_id,$data){
+		if(M('admin')->where('admin_id='.$admin_id)->save($data)){
+			D('admin_log')->admin_log('修改密码，ID为'.$admin_id);
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
 
+	//添加角色
+	public function add_role($data){
+		$in_id = M('role')->add($data);
+        if($in_id){
+			D('admin_log')->admin_log('增加权限角色，编号为:'.$in_id);
+            return true;
+        }else{
+            return false;
+        }		
+	}
+
+    //修改角色权限
+    public function edit_role($role_id,$data){
+        if(M('role')->where('role_id='.$role_id)->save($data)){
+			D('admin_log')->admin_log('修改权限角色，编号为:'.$role_id);
+            return true;
+        }else{
+            return false;
+        }
+    }	
+	
+    //删除角色
+    public function del_role($ids){
+		if(M('role')->where('role_id in ('.$ids.')')->delete()){
+			D('admin_log')->admin_log('删除权限角色，编号为:'.$ids);
+            return true;   
+        }else{
+			return false;
+		}
+    }		
+	
+
+	//添加管理员
+	public function add_admin($data){
+		$in_id = M('admin')->add($data);
+        if($in_id){
+			D('admin_log')->admin_log('增加管理员，编号为:'.$in_id);
+            return true;
+        }else{
+            return false;
+        }		
+	}	
+	
+    //编辑管理员
+    public function edit_admin($admin_id,$data){
+        if(M('admin')->where('admin_id='.$admin_id)->save($data)){
+			D('admin_log')->admin_log('修改管理员，编号为:'.$admin_id);
+            return true;
+        }else{
+            return false;
+        }
+    }		
+	
+    //删除管理员
+    public function del_admin($ids){
+		if(M('admin')->where('admin_id in ('.$ids.')')->delete()){
+			D('admin_log')->admin_log('删除管理员，编号为:'.$ids);
+            return true;   
+        }else{
+			return false;
+		}
+    }		
+	
 
 	/*
 	 * 注册

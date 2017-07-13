@@ -8,7 +8,9 @@ class ActionModel extends Model {
 
     //增加直播类型
 	public function add_type($data){
-        if(M('action_type')->add($data)){
+		$in_id = M('action_type')->add($data);
+        if($in_id){
+			D('admin_log')->admin_log('增加直播分类，编号为:'.$in_id);
             return true;
         }else{
             return false;
@@ -18,11 +20,55 @@ class ActionModel extends Model {
     //修改直播类型
     public function edit_type($type_id,$data){
         if(M('action_type')->where('type_id='.$type_id)->save($data)){
+			D('admin_log')->admin_log('修改直播分类，编号为:'.$type_id);
             return true;
         }else{
             return false;
         }
     }
+	
+    //删除直播类型
+    public function del_type($ids){
+		if(M('action_type')->where('type_id in ('.$ids.')')->delete()){
+			D('admin_log')->admin_log('删除直播分类，编号为:'.$ids);
+            return true;   
+        }else{
+			return false;
+		}
+    }	
+	
+	
+    //增加直播
+	public function action_add($data){
+		$in_id = M('action')->add($data);
+        if($in_id){
+			D('admin_log')->admin_log('增加直播，编号为:'.$in_id);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    //修改直播类型
+    public function action_edit($act_id,$data){
+        if(M('action')->where('act_id='.$act_id)->save($data)){
+			D('admin_log')->admin_log('修改直播，编号为:'.$act_id);
+            return true;
+        }else{
+            return false;
+        }
+    }
+	
+    //删除直播类型
+    public function action_del($ids){
+		if(M('action')->where('act_id in ('.$ids.')')->delete()){
+			D('admin_log')->admin_log('删除直播，编号为:'.$ids);
+            return true;   
+        }else{
+			return false;
+		}
+    }	
+	
 
     //获取limit
     public function get_limit($page){

@@ -19,7 +19,7 @@ class IndexController extends CommonController {
             $new_pass = $_POST['new_pass'];
             if(strtolower(md5($pass)) == strtolower(bin2hex($_SESSION['zadmin']['info']['admin_pass']))){
                 $data['admin_pass'] = hex2bin(md5($new_pass));
-                if(M('admin')->where('admin_id='.$_SESSION['zadmin']['info']['admin_id'])->save($data)){
+                if(D('admin')->mod_admin_pass($_SESSION['zadmin']['info']['admin_id'],$data)){
                     $_SESSION['zadmin']['info']['admin_pass'] = $data['admin_pass'];
                     $this->success('修改成功');
                 }else{

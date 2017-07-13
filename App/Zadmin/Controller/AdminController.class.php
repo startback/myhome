@@ -28,7 +28,7 @@ class AdminController extends CommonController {
                 }
             }
 
-            if(M('role')->add($data)){
+            if(D('admin')->add_role($data)){
                 $this->success('添加成功!',U('admin/role_list'));
             }else{
                 $this->error('添加失败');
@@ -57,7 +57,7 @@ class AdminController extends CommonController {
                     }
                 }
             }
-            if(M('role')->where('role_id='.$role_id)->save($data)){
+            if(D('admin')->edit_role($role_id,$data)){
                 $this->success('修改成功!',U('admin/role_list'));
             }else{
                 $this->error('修改失败');
@@ -89,7 +89,7 @@ class AdminController extends CommonController {
     public function role_del(){
         $ids = isset($_POST['ids'])?$_POST['ids']:'';
         if($ids){
-            if(M('role')->where('role_id in ('.$ids.')')->delete()){
+            if(D('admin')->del_role($ids)){
                 echo 1;
             }
         }
@@ -134,7 +134,7 @@ class AdminController extends CommonController {
             $data['admin_role_id'] = $_POST['admin_role_id'];
             $data['admin_register_time'] = date('Y-m-d H:i:s');
 
-            if(M('admin')->add($data)){
+            if(D('admin')->add_admin($data)){
                 $this->success('添加成功!',U('admin/admin_list'));
             }else{
                 $this->error('添加失败');
@@ -161,7 +161,7 @@ class AdminController extends CommonController {
             $data['admin_birthday'] = $_POST['admin_birthday'];
             $data['admin_tag'] = trim($_POST['admin_tag']);
 
-            if(M('admin')->where('admin_id='.$admin_id)->save($data)){
+            if(D('admin')->edit_admin($admin_id,$data)){
                 $this->success('修改成功!',U('admin/admin_list'));
             }else{
                 $this->error('修改失败');
@@ -216,7 +216,7 @@ class AdminController extends CommonController {
                 exit;
             }
 
-            if(M('admin')->where('admin_id in ('.$ids.')')->delete()){
+            if(D('admin')->del_admin($ids)){
                 echo 1;
             }
         }
