@@ -40,6 +40,11 @@ class IndexController extends CommonController {
 			ksort($act_list);
 		}
 	
+		//记录统计信息
+		$data['ip_address'] = com_get_ip();
+		$data['add_time'] = date('Y-m-d H:i:s',time());
+		M('statistics')->add($data);
+	
 		$this->assign('now_time',$now_time);
 		$this->assign('act_list',$act_list);
 		$this->display();

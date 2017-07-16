@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
-Source Server Version : 50714
+Source Server Version : 50617
 Source Host           : localhost:3306
 Source Database       : myhome
 
 Target Server Type    : MYSQL
-Target Server Version : 50714
+Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-07-12 17:06:29
+Date: 2017-07-15 13:39:07
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -130,3 +130,21 @@ CREATE TABLE `zhi_role` (
 -- ----------------------------
 INSERT INTO `zhi_role` VALUES ('2', '你是谁', '没有人会想你的', 'index/web_set,index/pass,action/atype,action/add_type,action/edit_type,action/del_type,action/action_edit,action/action_del');
 INSERT INTO `zhi_role` VALUES ('3', 'test', 'test', 'index/web_set,index/pass,admin/role_add,admin/role_edit,admin/role_del,admin/admin_add,admin/admin_edit,admin/admin_del');
+
+-- ----------------------------
+-- Table structure for zhi_statistics
+-- ----------------------------
+DROP TABLE IF EXISTS `zhi_statistics`;
+CREATE TABLE `zhi_statistics` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ip_address` varchar(15) DEFAULT NULL,
+  `add_time` datetime DEFAULT NULL,
+  `type` tinyint(4) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of zhi_statistics
+-- ----------------------------
+INSERT INTO `zhi_statistics` VALUES ('1', '::1', '2017-07-15 13:37:45', '0');
+INSERT INTO `zhi_statistics` VALUES ('2', '::1', '2017-07-15 13:37:54', '0');
