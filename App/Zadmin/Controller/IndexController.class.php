@@ -40,7 +40,12 @@ class IndexController extends CommonController {
 		foreach($nums as $value){
 			if($value['pv_num'] > $max_num) $max_num = $value['pv_num'];
 		}
-		$max_num = intval($max_num * 1.1);
+		if($max_num > 20){
+			$max_num = intval($max_num * 1.1);
+		}else{
+			$max_num += 2;
+		}
+		
 		
 		$this->assign('max_num',$max_num);
 		$this->assign('days',$days);
