@@ -9,7 +9,39 @@ class IndexController extends CommonController {
 
     //网站设置页
     public function info(){
-        $this->display();
+		
+		if($_POST){
+			$data['web_title'] = isset($_POST['web_title'])?trim($_POST['web_title']):'';
+			$data['web_key'] = isset($_POST['web_key'])?trim($_POST['web_key']):'';
+			$data['web_desc'] = isset($_POST['web_desc'])?trim($_POST['web_desc']):'';
+			$data['web_onwer'] = isset($_POST['web_onwer'])?trim($_POST['web_onwer']):'';
+			$data['web_phone'] = isset($_POST['web_phone'])?trim($_POST['web_phone']):'';
+			$data['web_tel'] = isset($_POST['web_tel'])?trim($_POST['web_tel']):'';
+			$data['web_chuang'] = isset($_POST['web_chuang'])?trim($_POST['web_chuang']):'';
+			$data['web_qq'] = isset($_POST['web_qq'])?trim($_POST['web_qq']):'';
+			$data['web_email'] = isset($_POST['web_email'])?trim($_POST['web_email']):'';
+			$data['web_add'] = isset($_POST['web_add'])?trim($_POST['web_add']):'';
+			$data['web_bottom'] = isset($_POST['web_bottom'])?trim($_POST['web_bottom']):'';
+			$data['web_host'] = isset($_POST['web_host'])?trim($_POST['web_host']):'';
+			$data['web_top_title'] = isset($_POST['web_top_title'])?trim($_POST['web_top_title']):'';
+
+			if(D('admin')->mod_web_config($data)){
+				$this->success('修改成功');
+			}else{
+				$this->error('修改失败');
+			}
+		}else{
+			$infos = array();
+			$web_info = M('web_config')->select();
+			if($web_info){
+				foreach($web_info as $value){
+					$infos[$value['key_name']] = $value['key_value'];
+				}
+			}
+
+			$this->assign('infos',$infos);
+			$this->display();			
+		}
     }
 
 	

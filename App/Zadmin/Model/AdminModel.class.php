@@ -155,7 +155,23 @@ class AdminModel extends Model {
         return $page_info;
     }
 
-	
+	//修改网站配置
+	public function mod_web_config($data){
+		if($data){
+			foreach($data as $key=>$value){
+				if(M('web_config')->where("key_name='".$key."'")->find()){
+					$data_config['key_value'] = $value;
+					M('web_config')->where("key_name='".$key."'")->save($data_config);
+				}else{
+					$data_config['key_name'] = $key;
+					M('web_config')->add($data_config);
+				}
+			}
+		}
+		
+		D('admin_log')->admin_log('修改网站配置信息');
+		return true;
+	}
 
 	
 }

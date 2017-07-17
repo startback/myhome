@@ -40,6 +40,15 @@ class IndexController extends CommonController {
 			ksort($act_list);
 		}
 	
+		$infos = array();
+		$web_info = M('web_config')->select();
+		if($web_info){
+			foreach($web_info as $value){
+				$infos[$value['key_name']] = $value['key_value'];
+			}
+		}
+		$this->assign('infos',$infos);
+	
 		//记录统计信息
 		$data['ip_address'] = com_get_ip();
 		$data['add_time'] = date('Y-m-d H:i:s',time());
