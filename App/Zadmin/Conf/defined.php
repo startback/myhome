@@ -24,6 +24,7 @@ return array(
             'child'  =>  array(
                 array('title'=>'web_set',    'name' => '网站设置'),
                 array('title'=>'pass',       'name' => '修改密码'),
+                array('title'=>'statistics',       'name' => '统计信息'),
             )
         ),
         array(
@@ -65,7 +66,8 @@ return array(
 			"l_icon" =>  "icon-user",
 			"data" =>  array(
 				"web_set" => array("网站设置","index.php?m=zadmin&c=index&a=info"),
-				"pass" => array("修改密码","index.php?m=zadmin&c=index&a=pass")
+				"pass" => array("修改密码","index.php?m=zadmin&c=index&a=pass"),
+				"statistics" => array("统计信息","index.php?m=zadmin&c=index&a=statistics"),
 			),
 		),
 		"action" => array(
