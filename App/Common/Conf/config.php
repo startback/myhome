@@ -18,6 +18,6 @@ return array(
     'DB_MASTER_NUM'         =>  1,            // 读写分离后 主服务器数量
     'DB_SLAVE_NO'           =>  '',           // 指定从服务器序号
     'URL_MODEL'             =>  0,            // url模式 0普通 1PATHINFO 2REWRITE 3兼容
-    'MODULE_ALLOW_LIST'     =>  array('Home','Myadmin','Api','Zhibo','Hadmin'),   // 允许访问的模块
+    'MODULE_ALLOW_LIST'     =>  array('Home','Myadmin','Api','Zhibo','Hadmin','Game'),   // 允许访问的模块
     'DEFAULT_MODULE'        =>  'Home',                    // 默认模块
 );

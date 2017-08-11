@@ -78,8 +78,6 @@ function com_make_thumb($img_url,$path='Upload/thumb',$width=180,$height=180){
 
 /*
  * 获取真实IP
- * $img_url  原图路径
- * $path     缩略图保存目录
  */
 function com_get_ip(){ 
 	if (getenv('HTTP_CLIENT_IP')){ 
