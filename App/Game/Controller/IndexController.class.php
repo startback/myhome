@@ -9,11 +9,12 @@ class IndexController extends CommonController {
 		$content = $this->get_web_content();
 		$res_num = $this->get_data_num($content);
 		$personals = $this->get_personal_msg();
-		
-		var_dump($res_num);
-		var_dump($personals);
-		
-        // $this->display();
+		$act_log = $this->get_betting_log();
+
+		$this->assign('res_num',$res_num);
+		$this->assign('personals',$personals);
+		$this->assign('act_log',$act_log);
+        $this->display();
     }
 	
 	//获取登录信息
@@ -103,7 +104,12 @@ class IndexController extends CommonController {
 				$matches_res[$key] = str_replace("class='mh m","",str_replace("'></i></td>","",$value));
 			}
 		}
-		$res['ress'] = $matches_res[0];		
+		$res['ress'] = $matches_res[0];	
+
+		foreach($res['ress'] as $value){
+			$res_ress .= $value." - ";
+		}
+		$res['ress_all'] = $res_ress;	
 		
 		//下一期
 		$regex_next_qishu = "/var curNo = '\d{7,9}'/i";
@@ -120,24 +126,35 @@ class IndexController extends CommonController {
 		$res['next_time'] = $next_time;
 		
 		//下期预测
-		$res['next_hope_num'] = '';  //调用方法生成
+		$res['next_hope_num'] = $this->get_next_hope_num($res['ress']);  //调用方法生成
 		
 		//本期数
-		$res['this_qishu'] = $next_qishu - 1;
+		$res['this_qishu'] = $res['qishus'][0];
 		$res['this_qi_result'] = $res['ress'][0];
-		
+		$res['this_qi_time'] = $res['times'][0];
+	
 		//本期预测结果
-		if($_SESSION['next_hope_num']){
+		if(isset($_SESSION['next_hope_num'])){
 			$res['this_hope_num'] = $_SESSION['next_hope_num'];  //查找本期预测 或 再次预测
-			if(in_array($res['this_qi_result'],$res['this_hope_num'])){
+			$res_this_hope_num = explode(',',$res['this_hope_num']);
+			if(in_array($res['this_qi_result'],$res_this_hope_num)){
 				$res['this_hope_result'] = '对';		
 			}else{
 				$res['this_hope_result'] = '错';
 			}	
 			
 			//插入到数据库里
+			if(!M('action_log')->where('number='.$res['this_qishu'])->find()){
+				$save_data['number'] = $res['this_qishu'];
+				$save_data['date_time'] = date('Y',time())."-".$res['this_qi_time'];
+				$save_data['res_num'] = $res['this_qi_result'];
+				$save_data['add_time'] = date('Y-m-d H:i:s',time());
+				$save_data['hope_num'] = $res['this_hope_num'];
+				$save_data['hope_res'] = $res['this_hope_result'];
+				$save_data['tag'] = '急速11';			
+				M('action_log')->add($save_data);				
+			}
 		}
-
 		$_SESSION['next_hope_num'] = $res['next_hope_num'];
 		
 		return $res;
@@ -178,6 +195,25 @@ class IndexController extends CommonController {
 		return $res;
 	}
 	
+	
+	//获取历史记录11
+	public function get_betting_log(){
+		return M('action_log')->order('number desc')->limit(10)->select();
+	}	
+	
+	
+	//11预测
+	public function get_next_hope_num($data){
+		$res = '';
+		if($data){
+			$res_data = array_unique($data);
+			asort($res_data);
+			foreach($res_data as $value){
+				$res .= $value.",";
+			}
+		}
+		return $res;
+	}
 	
 	
 	

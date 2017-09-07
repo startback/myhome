@@ -7,10 +7,60 @@
     <meta name="Keywords" content="游戏专栏,游戏专栏,游戏专栏"/>
     <meta name="description" content="游戏专栏"/>
     <link rel="shortcut icon" href="favicon.ico">
+	<script type="text/javascript" src="__PUBLIC__/Game/js/jquery.js"></script>
 </head>
 
 <body>
+	<div id="content">
+		<p>当前豆币：{$personals.ipoints}</p>
+		<p>下一期：{$res_num.next_qishu}</p>
+		<p>下期预测：{$res_num.next_hope_num}</p>
+		<p>前16期结果：{$res_num.ress_all}</p>
+		<p>下期开奖倒计时：<span id="next_time">{$res_num.next_time}</span></p>
+	
+		<table cellpadding=2 cellspacing=2 border=1>
+			<tr>
+				<th>期号</th>
+				<th>时间</th>
+				<th>结果</th>
+				<th>预测数值</th>
+				<th>预测结果</th>
+				<th>标签</th>
+			</tr>	
+			<if condition="$act_log neq false">	
+				<volist name="act_log" id="vo">
+					<tr>
+						<td>{$vo.number}</td>
+						<td>{$vo.date_time}</td>
+						<td>{$vo.res_num}</td>
+						<td>{$vo.hope_num}</td>
+						<td>{$vo.hope_res}</td>
+						<td>{$vo.tag}</td>
 
-aaaa
+					</tr>	
+				</volist>
+			</if>		
+		</table>
+	</div>
+
+	<script>
+		var next_time = '{$res_num.next_time}';
+		var p = '';
+		function run(){
+			next_time--;
+			if(next_time <= 0){
+				clearInterval(p);
+				window.location.reload();
+			}else{
+				$("#next_time").html(next_time);
+			}
+		}
+		
+		p = setInterval("run()",1000);
+	</script>
+	
 </body>
 </html>
+
+
+
