@@ -78,6 +78,20 @@ class IndexController extends CommonController {
 		$matches_res = array();
 		preg_match_all($regex_res, $content, $matches_res);	
 		
+		$regex_buy = "/\d{1,9}\/\d{1,9}<\/span>/i";
+		$matches_buy = array();
+		preg_match_all($regex_buy, $content, $matches_buy);	
+
+		//买入值
+		if($matches_buy[0]){
+			foreach($matches_buy[0] as $key=>$value){
+				if($key > 3){
+					$buys[] = str_replace('</span>','',$value);
+				}
+			}
+		}
+		$res['buys'] = $buys;	
+
 		//期数集合
 		if($matches_qishu[0]){
 			foreach($matches_qishu[0] as $key=>$value){
@@ -132,6 +146,7 @@ class IndexController extends CommonController {
 		$res['this_qishu'] = $res['qishus'][0];
 		$res['this_qi_result'] = $res['ress'][0];
 		$res['this_qi_time'] = $res['times'][0];
+		$res['this_qi_buy'] = $res['buys'][0];
 	
 		//本期预测结果
 		if(isset($_SESSION['next_hope_num'])){
@@ -151,32 +166,67 @@ class IndexController extends CommonController {
 				$save_data['add_time'] = date('Y-m-d H:i:s',time());
 				$save_data['hope_num'] = $res['this_hope_num'];
 				$save_data['hope_res'] = $res['this_hope_result'];
+				$save_data['score'] = $res['this_qi_buy'];
 				$save_data['tag'] = '急速11';			
-				M('action_log')->add($save_data);				
+				M('action_log')->add($save_data);	
+
+				//下期买进
+				//期数  数值金额  总额
+				// $this->set_data_num($res['next_hope_num'],$next_qishu);
+				
 			}
+			
 		}
 		$_SESSION['next_hope_num'] = $res['next_hope_num'];
-		
+
 		return $res;
 	}
 	
 	
 	//下注 买进11
-	public function set_data_num($data_nmu=array()){
+	public function set_data_num($hope_nmus,$next_qishu){
 		$buy_url = "http://www.hsqkzj.com/sgameservice.php?t=".rand(1000000000,9999999999);
 		
+		$data_nmu[2] = 0;
+		$data_nmu[3] = 0;
+		$data_nmu[4] = 0;
+		$data_nmu[5] = 0;
+		$data_nmu[6] = 0;
+		$data_nmu[7] = 0;
+		$data_nmu[8] = 0;
+		$data_nmu[9] = 0;
+		$data_nmu[10] = 0;
+		$data_nmu[11] = 0;
+		$data_nmu[12] = 0;
+		
+		$hope_num_arr = explode(',',$hope_nmus);
+		
+		foreach($hope_num_arr as $value){
+			if($value==2) $data_nmu[$value] = 10;
+			if($value==3) $data_nmu[$value] = 20;
+			if($value==4) $data_nmu[$value] = 30;
+			if($value==5) $data_nmu[$value] = 40;
+			if($value==6) $data_nmu[$value] = 50;
+			if($value==7) $data_nmu[$value] = 60;
+			if($value==8) $data_nmu[$value] = 50;
+			if($value==9) $data_nmu[$value] = 40;
+			if($value==10) $data_nmu[$value] = 30;
+			if($value==11) $data_nmu[$value] = 20;
+			if($value==12) $data_nmu[$value] = 10;
+		}
+		
 		$num_str = '';
-		if($data_nmu){
-			foreach($data_nmu as $value){
-				$num_str .= $value.",";
-			}
+		$total_num = 0;
+		foreach($data_nmu as $value){
+			$num_str .= $value.",";
+			$total_num += $value;
 		}
 		
 		$data['act'] = "savepress";  
-		$data['gtype'] = 2;             //下注类型  急速11
-		$data['no'] = 1148267;          //下注期数
-		$data['press'] = $num_str;      //下注号及金额 
-		$data['total'] = 180;                                    //下注总额
+		$data['gtype'] = 2;                  //下注类型  急速11
+		$data['no'] = $next_qishu;           //下注期数
+		$data['press'] = $num_str;           //下注号及金额 
+		$data['total'] = $total_num;         //下注总额
 		$result = com_curl_get_content($buy_url,$data);
 		
 		return $result;
