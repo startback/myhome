@@ -7,8 +7,8 @@ class IndexController extends CommonController {
     public function index(){
 		
 		$content = $this->get_web_content();
-		$res_num = $this->get_data_num($content);
 		$personals = $this->get_personal_msg();
+		$res_num = $this->get_data_num($content,$personals['ipoints']);
 		$act_log = $this->get_betting_log();
 
 		$this->assign('res_num',$res_num);
@@ -64,7 +64,7 @@ class IndexController extends CommonController {
 	}
 	
 	//获取历史记录11 中奖信息
-	public function get_data_num($content){
+	public function get_data_num($content,$total_scores=0){
 		
 		$regex_qishu = '/<td>\d{7,9}<\/td>/i';
 		$matches_qishu = array();
@@ -170,9 +170,22 @@ class IndexController extends CommonController {
 				$save_data['tag'] = '急速11';			
 				M('action_log')->add($save_data);	
 
+				if(!isset($_SESSION['max_need_num'])){
+					$_SESSION['max_need_num'] = 1;
+				}
+				
+				if($res['this_hope_result'] == '错'){
+					$_SESSION['max_need_num'] *= 2;
+					if($_SESSION['max_need_num'] > 4) $_SESSION['max_need_num'] = 1;
+				}else{
+					$_SESSION['max_need_num'] = 1;
+				}
+				
 				//下期买进
 				//期数  数值金额  总额
-				// $this->set_data_num($res['next_hope_num'],$next_qishu);
+				if($total_scores > 360){
+					$this->set_data_num($res['next_hope_num'],$next_qishu,$_SESSION['max_need_num']);
+				}
 				
 			}
 			
@@ -184,7 +197,10 @@ class IndexController extends CommonController {
 	
 	
 	//下注 买进11
-	public function set_data_num($hope_nmus,$next_qishu){
+	/*
+	*	单倍 全包360
+	*/
+	public function set_data_num($hope_nmus,$next_qishu,$num=1){
 		$buy_url = "http://www.hsqkzj.com/sgameservice.php?t=".rand(1000000000,9999999999);
 		
 		$data_nmu[2] = 0;
@@ -202,17 +218,17 @@ class IndexController extends CommonController {
 		$hope_num_arr = explode(',',$hope_nmus);
 		
 		foreach($hope_num_arr as $value){
-			if($value==2) $data_nmu[$value] = 10;
-			if($value==3) $data_nmu[$value] = 20;
-			if($value==4) $data_nmu[$value] = 30;
-			if($value==5) $data_nmu[$value] = 40;
-			if($value==6) $data_nmu[$value] = 50;
-			if($value==7) $data_nmu[$value] = 60;
-			if($value==8) $data_nmu[$value] = 50;
-			if($value==9) $data_nmu[$value] = 40;
-			if($value==10) $data_nmu[$value] = 30;
-			if($value==11) $data_nmu[$value] = 20;
-			if($value==12) $data_nmu[$value] = 10;
+			if($value==2) $data_nmu[$value] = 10*$num;
+			if($value==3) $data_nmu[$value] = 20*$num;
+			if($value==4) $data_nmu[$value] = 30*$num;
+			if($value==5) $data_nmu[$value] = 40*$num;
+			if($value==6) $data_nmu[$value] = 50*$num;
+			if($value==7) $data_nmu[$value] = 60*$num;
+			if($value==8) $data_nmu[$value] = 50*$num;
+			if($value==9) $data_nmu[$value] = 40*$num;
+			if($value==10) $data_nmu[$value] = 30*$num;
+			if($value==11) $data_nmu[$value] = 20*$num;
+			if($value==12) $data_nmu[$value] = 10*$num;
 		}
 		
 		$num_str = '';
@@ -256,11 +272,62 @@ class IndexController extends CommonController {
 	public function get_next_hope_num($data){
 		$res = '';
 		if($data){
-			$res_data = array_unique($data);
+			$num0 = 0;
+			$num1 = 0;
+			$num2 = 0;
+			$num_d = 0;
+			$num_s = 0;
+			foreach($data as $value){
+				if($value%3 == 0) $num0++;
+				if($value%3 == 1) $num1++;
+				if($value%3 == 2) $num2++;
+				if($value%2 == 0){
+					$num_s++;
+				}else{
+					$num_d++;
+				}
+			}
+			
+			if($num0>=$num1 && $num2>=$num1){
+				$res_data[] = 4;
+				$res_data[] = 7;
+				$res_data[] = 10;
+			}
+			
+			if($num0>=$num2 && $num1>=$num2){
+				$res_data[] = 2;
+				$res_data[] = 5;
+				$res_data[] = 8;
+				$res_data[] = 11;
+			}
+
+			if($num1>=$num0 && $num2>=$num0){
+				$res_data[] = 3;
+				$res_data[] = 6;
+				$res_data[] = 9;
+				$res_data[] = 12;
+			}			
+			
+			if($num_d >= $num_s){
+				$res_data[] = 3;
+				$res_data[] = 5;
+				$res_data[] = 7;
+				$res_data[] = 9;
+				$res_data[] = 11;
+			}else{
+				$res_data[] = 2;
+				$res_data[] = 4;
+				$res_data[] = 6;
+				$res_data[] = 8;
+				$res_data[] = 10;				
+				$res_data[] = 12;				
+			}
+			$res_data = array_unique($res_data);
 			asort($res_data);
 			foreach($res_data as $value){
 				$res .= $value.",";
-			}
+			} 			
+			
 		}
 		return $res;
 	}
