@@ -14,6 +14,7 @@ class IndexController extends CommonController {
 		$this->assign('res_num',$res_num);
 		$this->assign('personals',$personals);
 		$this->assign('act_log',$act_log);
+		$this->assign('session',$_SESSION['game']);
         $this->display();
     }
 	
@@ -149,15 +150,56 @@ class IndexController extends CommonController {
 		$res['this_qi_buy'] = $res['buys'][0];
 	
 		//本期预测结果
-		if(isset($_SESSION['next_hope_num'])){
-			$res['this_hope_num'] = $_SESSION['next_hope_num'];  //查找本期预测 或 再次预测
+		if(isset($_SESSION['game']['next_hope_num'])){
+			$res['this_hope_num'] = $_SESSION['game']['next_hope_num'];  //查找本期预测 或 再次预测
 			$res_this_hope_num = explode(',',$res['this_hope_num']);
 			if(in_array($res['this_qi_result'],$res_this_hope_num)){
 				$res['this_hope_result'] = '对';		
+				
+				if(isset($_SESSION['game']['all_right_num'])){
+					$_SESSION['game']['all_right_num']++;
+				}else{
+					$_SESSION['game']['all_right_num'] = 1;
+				}				
+				
+				if(isset($_SESSION['game']['keep_right_num'])){
+					$_SESSION['game']['keep_right_num']++;
+				}else{
+					$_SESSION['game']['keep_right_num'] = 1;
+				}
+				
+				if($_SESSION['game']['keep_wrong_num'] >= 3){
+					if(isset($_SESSION['game']['die_num'])){
+						$_SESSION['game']['die_num']++;
+					}else{
+						$_SESSION['game']['die_num'] = 1;
+					}					
+				}
+				$_SESSION['game']['keep_wrong_num'] = 0;
+				
+			
 			}else{
 				$res['this_hope_result'] = '错';
+				if(isset($_SESSION['game']['all_wrong_num'])){
+					$_SESSION['game']['all_wrong_num']++;
+				}else{
+					$_SESSION['game']['all_wrong_num'] = 1;
+				}		
+
+				if(isset($_SESSION['game']['keep_wrong_num'])){
+					$_SESSION['game']['keep_wrong_num']++;
+				}else{
+					$_SESSION['game']['keep_wrong_num'] = 1;
+				}
+				$_SESSION['game']['keep_right_num'] = 0;				
 			}	
 			
+			if(isset($_SESSION['game']['all_num'])){
+				$_SESSION['game']['all_num']++;
+			}else{
+				$_SESSION['game']['all_num'] = 1;
+			}
+					
 			//插入到数据库里
 			if(!M('action_log')->where('number='.$res['this_qishu'])->find()){
 				$save_data['number'] = $res['this_qishu'];
@@ -170,27 +212,27 @@ class IndexController extends CommonController {
 				$save_data['tag'] = '急速11';			
 				M('action_log')->add($save_data);	
 
-				if(!isset($_SESSION['max_need_num'])){
-					$_SESSION['max_need_num'] = 1;
+				if(!isset($_SESSION['game']['max_need_num'])){
+					$_SESSION['game']['max_need_num'] = 1;
 				}
 				
 				if($res['this_hope_result'] == '错'){
-					$_SESSION['max_need_num'] *= 2;
-					if($_SESSION['max_need_num'] > 4) $_SESSION['max_need_num'] = 1;
+					$_SESSION['game']['max_need_num'] *= 2;
+					if($_SESSION['game']['max_need_num'] > 4) $_SESSION['game']['max_need_num'] = 1;
 				}else{
-					$_SESSION['max_need_num'] = 1;
+					$_SESSION['game']['max_need_num'] = 1;
 				}
 				
 				//下期买进
 				//期数  数值金额  总额
 				if($total_scores > 360){
-					$this->set_data_num($res['next_hope_num'],$next_qishu,$_SESSION['max_need_num']);
+					$this->set_data_num($res['next_hope_num'],$next_qishu,$_SESSION['game']['max_need_num']);
 				}
 				
 			}
 			
 		}
-		$_SESSION['next_hope_num'] = $res['next_hope_num'];
+		$_SESSION['game']['next_hope_num'] = $res['next_hope_num'];
 
 		return $res;
 	}
