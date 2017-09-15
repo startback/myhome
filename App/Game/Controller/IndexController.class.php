@@ -168,7 +168,7 @@ class IndexController extends CommonController {
 					$_SESSION['game']['keep_right_num'] = 1;
 				}
 				
-				if($_SESSION['game']['keep_wrong_num'] >= 3){
+				if($_SESSION['game']['keep_wrong_num'] >= 6){
 					if(isset($_SESSION['game']['die_num'])){
 						$_SESSION['game']['die_num']++;
 					}else{
@@ -218,14 +218,14 @@ class IndexController extends CommonController {
 				
 				if($res['this_hope_result'] == '错'){
 					$_SESSION['game']['max_need_num'] *= 2;
-					if($_SESSION['game']['max_need_num'] > 4) $_SESSION['game']['max_need_num'] = 1;
+					if($_SESSION['game']['max_need_num'] > 32) $_SESSION['game']['max_need_num'] = 1;
 				}else{
 					$_SESSION['game']['max_need_num'] = 1;
 				}
 				
 				//下期买进
 				//期数  数值金额  总额
-				if($total_scores > 360){
+				if($total_scores > 5000){
 					$this->set_data_num($res['next_hope_num'],$next_qishu,$_SESSION['game']['max_need_num']);
 				}
 				
@@ -313,64 +313,49 @@ class IndexController extends CommonController {
 	//11预测
 	public function get_next_hope_num($data){
 		$res = '';
+		
 		if($data){
-			$num0 = 0;
-			$num1 = 0;
-			$num2 = 0;
-			$num_d = 0;
-			$num_s = 0;
-			foreach($data as $value){
-				if($value%3 == 0) $num0++;
-				if($value%3 == 1) $num1++;
-				if($value%3 == 2) $num2++;
-				if($value%2 == 0){
-					$num_s++;
-				}else{
-					$num_d++;
+			$num_data[2] = 0;
+			$num_data[3] = 0;
+			$num_data[4] = 0;
+			$num_data[5] = 0;
+			$num_data[6] = 0;
+			$num_data[7] = 0;
+			$num_data[8] = 0;
+			$num_data[9] = 0;
+			$num_data[10] = 0;
+			$num_data[11] = 0;
+			$num_data[12] = 0;
+			
+			$data_arr = array();
+			
+			foreach($data as $value){				
+				foreach($num_data as $k=>$v){
+					if($k == $value){
+						$data_arr[$k] = $num_data[$k];
+						unset($num_data[$k]);
+					}else{
+						$num_data[$k]++;
+					}
 				}
 			}
 			
-			if($num0>=$num1 && $num2>=$num1){
-				$res_data[] = 4;
-				$res_data[] = 7;
-				$res_data[] = 10;
+			if($num_data){
+				foreach($num_data as $key=>$value){
+					$data_arr[$key] = $value;
+				}
 			}
 			
-			if($num0>=$num2 && $num1>=$num2){
-				$res_data[] = 2;
-				$res_data[] = 5;
-				$res_data[] = 8;
-				$res_data[] = 11;
+			asort($data_arr);
+			foreach($data_arr as $key=>$value){
+				$res_data[] = $key;
 			}
-
-			if($num1>=$num0 && $num2>=$num0){
-				$res_data[] = 3;
-				$res_data[] = 6;
-				$res_data[] = 9;
-				$res_data[] = 12;
-			}			
-			
-			if($num_d >= $num_s){
-				$res_data[] = 3;
-				$res_data[] = 5;
-				$res_data[] = 7;
-				$res_data[] = 9;
-				$res_data[] = 11;
-			}else{
-				$res_data[] = 2;
-				$res_data[] = 4;
-				$res_data[] = 6;
-				$res_data[] = 8;
-				$res_data[] = 10;				
-				$res_data[] = 12;				
-			}
-			$res_data = array_unique($res_data);
-			asort($res_data);
-			foreach($res_data as $value){
-				$res .= $value.",";
-			} 			
-			
+			$num1 = rand(0,3);
+			$num2 = rand(4,7);
+			$res = $res_data[$num1].",".$res_data[$num2].",".$res_data[8].",".$res_data[9].",".$res_data[10].",";
 		}
+		
+		
 		return $res;
 	}
 	
