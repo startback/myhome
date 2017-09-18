@@ -20,7 +20,7 @@ class IndexController extends CommonController {
 	
 	//获取登录信息
     public function login(){
-		
+		unset($_SESSION['game']);
 		$login_url = "http://www.hsqkzj.com/login.php";
 		$verify_code_url = "http://www.hsqkzj.com/vcode.php?t=".rand(1000000000,9999999999);
 		com_curl_get_cookie($login_url,$verify_code_url);
@@ -152,47 +152,57 @@ class IndexController extends CommonController {
 		//本期预测结果
 		if(isset($_SESSION['game']['next_hope_num'])){
 			$res['this_hope_num'] = $_SESSION['game']['next_hope_num'];  //查找本期预测 或 再次预测
-			$res_this_hope_num = explode(',',$res['this_hope_num']);
-			if(in_array($res['this_qi_result'],$res_this_hope_num)){
-				$res['this_hope_result'] = '对';		
-				
-				if(isset($_SESSION['game']['all_right_num'])){
-					$_SESSION['game']['all_right_num']++;
-				}else{
-					$_SESSION['game']['all_right_num'] = 1;
-				}				
-				
-				if(isset($_SESSION['game']['keep_right_num'])){
-					$_SESSION['game']['keep_right_num']++;
-				}else{
-					$_SESSION['game']['keep_right_num'] = 1;
-				}
-				
-				if($_SESSION['game']['keep_wrong_num'] >= 6){
-					if(isset($_SESSION['game']['die_num'])){
-						$_SESSION['game']['die_num']++;
-					}else{
-						$_SESSION['game']['die_num'] = 1;
-					}					
-				}
-				$_SESSION['game']['keep_wrong_num'] = 0;
-				
 			
-			}else{
-				$res['this_hope_result'] = '错';
-				if(isset($_SESSION['game']['all_wrong_num'])){
-					$_SESSION['game']['all_wrong_num']++;
+			if($res['this_hope_num']){
+				$res_this_hope_num = explode(',',$res['this_hope_num']);
+				if(in_array($res['this_qi_result'],$res_this_hope_num)){
+					$res['this_hope_result'] = '对';		
+					
+					if(isset($_SESSION['game']['all_right_num'])){
+						$_SESSION['game']['all_right_num']++;
+					}else{
+						$_SESSION['game']['all_right_num'] = 1;
+					}				
+					
+					if(isset($_SESSION['game']['keep_right_num'])){
+						$_SESSION['game']['keep_right_num']++;
+					}else{
+						$_SESSION['game']['keep_right_num'] = 1;
+					}
+					
+					if($_SESSION['game']['keep_wrong_num'] >= 6){
+						if(isset($_SESSION['game']['die_num'])){
+							$_SESSION['game']['die_num']++;
+						}else{
+							$_SESSION['game']['die_num'] = 1;
+						}					
+					}
+					$_SESSION['game']['keep_wrong_num'] = 0;
+					
+				
 				}else{
-					$_SESSION['game']['all_wrong_num'] = 1;
-				}		
+					$res['this_hope_result'] = '错';
+					if(isset($_SESSION['game']['all_wrong_num'])){
+						$_SESSION['game']['all_wrong_num']++;
+					}else{
+						$_SESSION['game']['all_wrong_num'] = 1;
+					}		
 
-				if(isset($_SESSION['game']['keep_wrong_num'])){
-					$_SESSION['game']['keep_wrong_num']++;
+					if(isset($_SESSION['game']['keep_wrong_num'])){
+						$_SESSION['game']['keep_wrong_num']++;
+					}else{
+						$_SESSION['game']['keep_wrong_num'] = 1;
+					}
+					$_SESSION['game']['keep_right_num'] = 0;				
+				}	
+			}else{
+				$res['this_hope_result'] = '无下注';
+				if(isset($_SESSION['game']['null_num'])){
+					$_SESSION['game']['null_num']++;
 				}else{
-					$_SESSION['game']['keep_wrong_num'] = 1;
+					$_SESSION['game']['null_num'] = 1;
 				}
-				$_SESSION['game']['keep_right_num'] = 0;				
-			}	
+			}
 			
 			if(isset($_SESSION['game']['all_num'])){
 				$_SESSION['game']['all_num']++;
@@ -225,7 +235,7 @@ class IndexController extends CommonController {
 				
 				//下期买进
 				//期数  数值金额  总额
-				if($total_scores > 5000){
+				if($total_scores > 5000 && $res['next_hope_num']){
 					$this->set_data_num($res['next_hope_num'],$next_qishu,$_SESSION['game']['max_need_num']);
 				}
 				
@@ -313,46 +323,51 @@ class IndexController extends CommonController {
 	//11预测
 	public function get_next_hope_num($data){
 		$res = '';
+		$num_d = 0;
+		$num_s = 0;
+		$num_kd = 0;
+		$num_ks = 0;
+		$total_num = 0;
 		
+		$dan = 0;
+		$shang = 0;
+
 		if($data){
-			$num_data[2] = 0;
-			$num_data[3] = 0;
-			$num_data[4] = 0;
-			$num_data[5] = 0;
-			$num_data[6] = 0;
-			$num_data[7] = 0;
-			$num_data[8] = 0;
-			$num_data[9] = 0;
-			$num_data[10] = 0;
-			$num_data[11] = 0;
-			$num_data[12] = 0;
-			
-			$data_arr = array();
-			
-			foreach($data as $value){				
-				foreach($num_data as $k=>$v){
-					if($k == $value){
-						$data_arr[$k] = $num_data[$k];
-						unset($num_data[$k]);
+			foreach($data as $key=>$value){
+				if($value%2 == 0){
+					$num_s++;
+					if($key == 0){
+						$num_ks++;
 					}else{
-						$num_data[$k]++;
+						if($num_ks > 0 && $num_kd ==0){
+							$num_ks++;
+						}
 					}
+				}else{
+					$num_d++;
+					if($key == 0){
+						$num_kd++;
+					}else{
+						if($num_kd > 0 && $num_ks ==0){
+							$num_kd++;
+						}
+					}					
 				}
+				$total_num += $value;
 			}
 			
-			if($num_data){
-				foreach($num_data as $key=>$value){
-					$data_arr[$key] = $value;
-				}
+			if($num_d > $num_s) $dan++;
+			if($num_d < $num_s) $shang++;
+			if($num_kd >=2) $shang++;
+			if($num_ks >=2) $dan++;
+			if($total_num%2==0){
+				$dan++;
+			}else{
+				$shang++;
 			}
 			
-			asort($data_arr);
-			foreach($data_arr as $key=>$value){
-				$res_data[] = $key;
-			}
-			$num1 = rand(0,3);
-			$num2 = rand(4,7);
-			$res = $res_data[$num1].",".$res_data[$num2].",".$res_data[8].",".$res_data[9].",".$res_data[10].",";
+			if($dan > $shang) $res = '3,5,7,9,11,';
+			if($dan < $shang) $res = '2,4,6,8,10,12,';
 		}
 		
 		
