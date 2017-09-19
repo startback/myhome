@@ -361,9 +361,9 @@ class IndexController extends CommonController {
 			if($num_kd >=2) $shang++;
 			if($num_ks >=2) $dan++;
 			if($total_num%2==0){
-				$dan++;
-			}else{
 				$shang++;
+			}else{
+				$dan++;
 			}
 			
 			if($dan > $shang) $res = '3,5,7,9,11,';
