@@ -31,8 +31,8 @@
 | user_birthday | date | - | - | 生日 |
 | user_address | varchar(255) | - | - | 户籍地址 |
 | user_now_address | varchar(255) | - | - | 现居地址 |
-| user_reg_time | int | - | - | 注册时间 |
-| user_login_time | int | - | - | 登录时间 |
+| user_reg_time | datetime | - | - | 注册时间 |
+| user_login_time | datetime | - | - | 登录时间 |
 | user_money | decimal(10,2) | - | - | 可用资金 |
 | user_frozen_money | decimal(10,2) | - | - | 冻结资金 |
 | user_qq_id | varchar(32) | - | - | QQ登录身份ID |
@@ -52,10 +52,10 @@
 | home_name | varchar(36) | - | - | 家园名可改（间隔一个月以上） |
 | home_desc | text | - | - | 家园描述 |
 | home_builder_id | int | 0 | - | 创建者名字(一个用户只能建一个家园 暂时) |
-| home_build_time | int | - | - | 建立时间 |
+| home_build_time | datetime | - | - | 建立时间 |
 | home_logo | varchar(255) | - | - | 家园LOGO |
 | home_background | varchar(255) | - | - | 家园背景图 |
-| home_mod_time | int | - | - | 名字修改时间（初次为注册时间） |
+| home_mod_time | datetime | - | - | 名字修改时间（初次为注册时间） |
 | home_country | smallint | 0 | - | 国ID |
 | home_province | smallint | 0 | - | 省ID |
 | home_city | smallint | 0 | - | 市ID |
@@ -94,7 +94,7 @@
 | home_id | int | - | key | 家园ID |
 | role_id | tinyint | 0 | - | 扮演的角色ID |
 | nick_name | varchar(36) | - | - | 用户别名 |
-| add_time | int | - | - | 加入时间 |
+| add_time | datetime | - | - | 加入时间 |
 | status | tinyint | 0 | - | 状态 0正常 1禁言 2禁止进入 |
 | score | int | 0 | - | 在当前家园分值 总值|
 | use_score | int | 0 | - | 在当前家园分值 可用|
@@ -123,7 +123,7 @@
 | article_home_id | int | 0 | - | 家园ID |
 | article_title | varchar(128) | - | - | 文章题目 |
 | article_content | mediutext | - | - | 文章内容 |
-| article_time | int | - | - | 文章发布时间 |
+| article_time | datetime | - | - | 文章发布时间 |
 | article_user_id | int | - | - | 文章发布人 |
 | article_type | tinyint | 0 | - | 文章类别 |
 | article_is_open | tinyint | 1 | - | 文章是否公开 0否 1是 |
@@ -149,7 +149,7 @@
 | notice_home_id | int | 0 | - | 家园ID |
 | notice_title | varchar(128) | - | - | 公告头 |
 | notice_content | text | - | - | 公告内容 |
-| notice_time | int | - | - | 公告时间 |
+| notice_time | datetime | - | - | 公告时间 |
 | notice_author | int | - | - | 公告人 |
 | notice_type | tinyint | 0 | - | 公告类型 紧急... |
 | notice_is_top | tinyint | 0 | - | 置顶 0否 1是 |
@@ -165,7 +165,7 @@
 | message_id | int | 0 | key auto | 信息ID |
 | message_title | varchar(60) | - | - | 信息头 |
 | message_content | text | - | - | 信息内容 |
-| message_time | int | - | - | 信息时间 |
+| message_time | datetime | - | - | 信息时间 |
 | message_send_id | int | - | - | 信息发送人(0为系统发的信息不能回复) |
 | message_admin_id | smallint | 0 | - | 如是系统发记录是哪一位发的 |
 | message_get_id | int | - | - | 信息接收人 |
@@ -182,12 +182,12 @@
 | report_user_id | int | 0 | - | 举报人ID |
 | user_id | int | 0 | - | 被举报人ID |
 | article_id | int | 0 | - | 被举报文章ID |
-| report_time | int | 0 | - | 举报时间 |
+| report_time | datetime | 0 | - | 举报时间 |
 | report_type | tinyint | 0 | - | 举报类型 |
 | report_content | varchar(255) | - | - | 举报内容 |
 | report_status | tinyint | 0 | - | 举报状态 0未读 1未处理 2已处理 3暂缓处理 4已删除 5已封号 |
 | admin_id | smallint | 0 | - | 管理员ID |
-| admin_time | int | 0 | - | 管理员处理时间 |
+| admin_time | datetime | 0 | - | 管理员处理时间 |
 
 
 
@@ -198,11 +198,11 @@
 |-------|------|------|-----|------|
 | suggest_id | int | 0 | key auto | 建议ID |
 | suggest_user_id | int | 0 | - | 建议人ID |
-| suggest_time | int | 0 | - | 建议时间 |
+| suggest_time | datetime | 0 | - | 建议时间 |
 | suggest_content | text | - | - | 建议内容 |
 | suggest_status | tinyint | 0 | - | 建议状态 0未读 1未处理 2已处理未回复 3已处理已回复 4已处理不需回复 |
 | admin_id | smallint | 0 | - | 管理员ID |
-| admin_time | int | 0 | - | 管理员处理时间 |
+| admin_time | datetime | 0 | - | 管理员处理时间 |
 
 
 
@@ -215,7 +215,7 @@
 | comment_article_id | int | 0 | - | 文章ID |
 | comment_home_id | int | 0 | - | 家园ID |
 | comment_user_id | int | 0 | - | 评论人ID |
-| comment_time | int | 0 | - | 评论时间 |
+| comment_time | datetime | 0 | - | 评论时间 |
 | comment_content | text | - | - | 评论内容 |
 | comment_status | tinyint | 0 | - | 评论状态 0正常 1隐藏 |
 | comment_is_delete | tinyint | 0 | - | 是否删除 0否 1是 |
@@ -230,5 +230,5 @@
 | type_id | tinyint | 0 | key auto | 类型ID |
 | type_name | varchar(36) | - | - | 类型名 |
 | type_is_used | tinyint | 1 | - | 类型是否启用 0否 1是 |
-| type_add_time | int | - | - | 添加时间 |
+| type_add_time | datetime | - | - | 添加时间 |
 | type_admin_id | smallint | - | - | 添加管理员ID |

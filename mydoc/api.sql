@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2017-07-12 17:05:58
+Date: 2017-09-22 16:46:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -24,7 +24,7 @@ CREATE TABLE `api_comment` (
   `comment_article_id` int(11) DEFAULT NULL,
   `comment_home_id` int(11) DEFAULT NULL,
   `comment_user_id` int(11) DEFAULT NULL,
-  `comment_time` int(11) DEFAULT NULL,
+  `comment_time` datetime DEFAULT NULL,
   `comment_content` text,
   `comment_status` tinyint(4) DEFAULT '0' COMMENT '评论状态 0正常 1隐藏',
   `comment_is_delete` tinyint(4) DEFAULT '0' COMMENT '是否删除 0否 1是',
@@ -40,7 +40,7 @@ CREATE TABLE `api_home_article` (
   `article_home_id` int(11) DEFAULT NULL,
   `article_title` varchar(128) DEFAULT NULL,
   `article_content` mediumtext,
-  `article_time` int(11) DEFAULT NULL,
+  `article_time` datetime DEFAULT NULL,
   `article_user_id` int(11) DEFAULT NULL,
   `article_type` tinyint(4) DEFAULT NULL,
   `article_is_open` tinyint(4) DEFAULT '1' COMMENT '文章是否公开 0否 1是',
@@ -79,7 +79,7 @@ CREATE TABLE `api_home_notice` (
   `notice_home_id` int(11) DEFAULT '0',
   `notice_title` varchar(128) DEFAULT NULL,
   `notice_content` text,
-  `notice_time` int(11) DEFAULT NULL,
+  `notice_time` datetime DEFAULT NULL,
   `notice_author` int(11) DEFAULT NULL,
   `notice_type` tinyint(4) DEFAULT '0',
   `notice_is_top` tinyint(4) DEFAULT '0' COMMENT '置顶 0否 1是',
@@ -96,10 +96,10 @@ CREATE TABLE `api_homes` (
   `home_name` varchar(36) DEFAULT NULL,
   `home_desc` text,
   `home_builder_id` int(11) DEFAULT '0',
-  `home_builder_time` int(11) DEFAULT '0',
+  `home_builder_time` datetime DEFAULT NULL,
   `home_logo` varchar(255) DEFAULT NULL,
   `home_background` varchar(255) DEFAULT NULL,
-  `home_mod_time` int(11) DEFAULT '0',
+  `home_mod_time` datetime DEFAULT NULL,
   `home_country` smallint(6) DEFAULT NULL,
   `home_province` smallint(6) DEFAULT NULL,
   `home_city` smallint(6) DEFAULT NULL,
@@ -124,7 +124,7 @@ CREATE TABLE `api_message` (
   `message_id` int(11) NOT NULL AUTO_INCREMENT,
   `message_name` varchar(60) DEFAULT NULL,
   `message_content` text,
-  `message_time` int(11) DEFAULT NULL,
+  `message_time` datetime DEFAULT NULL,
   `message_send_id` int(11) DEFAULT '0' COMMENT '信息发送人(0为系统发的信息不能回复)',
   `message_admin_id` smallint(6) DEFAULT '0' COMMENT '如是系统发记录是哪一位发的',
   `message_get_id` int(11) DEFAULT NULL,
@@ -154,12 +154,12 @@ CREATE TABLE `api_report` (
   `report_user_id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `article_id` int(11) DEFAULT NULL,
-  `report_time` int(11) DEFAULT NULL,
+  `report_time` datetime DEFAULT NULL,
   `report_type` tinyint(4) DEFAULT NULL,
   `report_content` varchar(255) DEFAULT NULL,
   `report_status` tinyint(4) DEFAULT '0' COMMENT '举报状态 0未读 1未处理 2已处理 3暂缓处理 4已删除 5已封号',
   `admin_id` smallint(6) DEFAULT NULL,
-  `admin_time` int(11) DEFAULT NULL,
+  `admin_time` datetime DEFAULT NULL,
   PRIMARY KEY (`report_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -171,7 +171,7 @@ CREATE TABLE `api_report_type` (
   `type_id` tinyint(4) NOT NULL AUTO_INCREMENT,
   `type_name` varchar(36) DEFAULT NULL,
   `type_is_used` tinyint(4) DEFAULT '1' COMMENT '类型是否启用 0否 1是',
-  `type_add_time` int(11) DEFAULT NULL,
+  `type_add_time` datetime DEFAULT NULL,
   `type_admin_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`type_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -183,11 +183,11 @@ DROP TABLE IF EXISTS `api_suggest`;
 CREATE TABLE `api_suggest` (
   `suggest_id` int(11) NOT NULL AUTO_INCREMENT,
   `suggest_user_id` int(11) DEFAULT NULL,
-  `suggest_time` int(11) DEFAULT NULL,
+  `suggest_time` datetime DEFAULT NULL,
   `suggest_content` text,
   `suggest_status` tinyint(4) DEFAULT '0' COMMENT '建议状态 0未读 1未处理 2已处理未回复 3已处理已回复 4已处理不需回复',
   `admin_id` smallint(6) DEFAULT NULL,
-  `admin_time` int(11) DEFAULT NULL,
+  `admin_time` datetime DEFAULT NULL,
   PRIMARY KEY (`suggest_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -200,7 +200,7 @@ CREATE TABLE `api_user_home` (
   `home_id` int(11) NOT NULL,
   `role_id` tinyint(4) DEFAULT '0',
   `nick_name` varchar(36) DEFAULT NULL,
-  `add_time` int(11) DEFAULT NULL,
+  `add_time` datetime DEFAULT NULL,
   `status` tinyint(4) DEFAULT '0' COMMENT '状态 0正常 1禁言 2禁止进入',
   `score` int(11) DEFAULT '0',
   `use_score` int(11) DEFAULT '0',
@@ -223,8 +223,8 @@ CREATE TABLE `api_users` (
   `user_birthday` date DEFAULT NULL,
   `user_address` varchar(255) DEFAULT NULL COMMENT '户籍地址',
   `user_now_address` varchar(255) DEFAULT NULL COMMENT '现居地址',
-  `user_reg_time` int(11) DEFAULT NULL COMMENT '注册时间',
-  `user_login_time` int(11) DEFAULT NULL,
+  `user_reg_time` datetime DEFAULT NULL COMMENT '注册时间',
+  `user_login_time` datetime DEFAULT NULL,
   `user_money` decimal(10,2) DEFAULT '0.00',
   `user_frozen_money` decimal(10,2) DEFAULT '0.00',
   `user_qq_id` varchar(32) DEFAULT NULL,

@@ -470,7 +470,7 @@ vertical-align:1px;
 <body>
 <h2 id="sql-">sql文档</h2>
 <ul>
-<li>1、 <a href="#1">api_users(用户表)</a></li><li>2、 <a href="#2">api_home(家园表)</a></li><li>3、 <a href="#3">api_region(区域表)</a></li><li>4、 <a href="#4">api_user_home(用户家园关系表)</a></li><li>5、 <a href="#5">api_home_level(家园等级分值表 后台定)</a></li><li>6、 <a href="#6">api_home_article(家园文章表)</a></li><li>7、 <a href="#7">api_home_notice(家园公告表)</a></li><li>8、 <a href="#8">api_message(个人信息表)</a></li><li>9、 <a href="#9">api_report(举报投诉表)</a></li><li>10、 <a href="#10">api_suggest(建议表)</a></li><li>11、 <a href="#11">api_comment(文章评论表)</a></li><li>12、 <a href="#12">api_report_type(举报类型表)</a></li></ul>
+<li>1、 <a href="#1">api_users(用户表)</a></li><li>2、 <a href="#2">api_homes(家园表)</a></li><li>3、 <a href="#3">api_region(区域表)</a></li><li>4、 <a href="#4">api_user_home(用户家园关系表)</a></li><li>5、 <a href="#5">api_home_level(家园等级分值表 后台定)</a></li><li>6、 <a href="#6">api_home_article(家园文章表)</a></li><li>7、 <a href="#7">api_home_notice(家园公告表)</a></li><li>8、 <a href="#8">api_message(个人信息表)</a></li><li>9、 <a href="#9">api_report(举报投诉表)</a></li><li>10、 <a href="#10">api_suggest(建议表)</a></li><li>11、 <a href="#11">api_comment(文章评论表)</a></li><li>12、 <a href="#12">api_report_type(举报类型表)</a></li></ul>
 <hr>
 <p><span id="1"/></p>
 <h5 id="1-api_users-">1、 api_users(用户表)</h5>
@@ -564,14 +564,14 @@ vertical-align:1px;
 </tr>
 <tr>
 <td>user_reg_time</td>
-<td>int</td>
+<td>datetime</td>
 <td>-</td>
 <td>-</td>
 <td>注册时间</td>
 </tr>
 <tr>
 <td>user_login_time</td>
-<td>int</td>
+<td>datetime</td>
 <td>-</td>
 <td>-</td>
 <td>登录时间</td>
@@ -628,7 +628,7 @@ vertical-align:1px;
 </tbody>
 </table>
 <p><span id="2"/></p>
-<h5 id="2-api_home-">2、 api_home(家园表)</h5>
+<h5 id="2-api_homes-">2、 api_homes(家园表)</h5>
 <table>
 <thead>
 <tr>
@@ -670,7 +670,7 @@ vertical-align:1px;
 </tr>
 <tr>
 <td>home_build_time</td>
-<td>int</td>
+<td>datetime</td>
 <td>-</td>
 <td>-</td>
 <td>建立时间</td>
@@ -691,7 +691,7 @@ vertical-align:1px;
 </tr>
 <tr>
 <td>home_mod_time</td>
-<td>int</td>
+<td>datetime</td>
 <td>-</td>
 <td>-</td>
 <td>名字修改时间（初次为注册时间）</td>
@@ -882,7 +882,7 @@ vertical-align:1px;
 </tr>
 <tr>
 <td>add_time</td>
-<td>int</td>
+<td>datetime</td>
 <td>-</td>
 <td>-</td>
 <td>加入时间</td>
@@ -1003,7 +1003,7 @@ vertical-align:1px;
 </tr>
 <tr>
 <td>article_time</td>
-<td>int</td>
+<td>datetime</td>
 <td>-</td>
 <td>-</td>
 <td>文章发布时间</td>
@@ -1144,7 +1144,7 @@ vertical-align:1px;
 </tr>
 <tr>
 <td>notice_time</td>
-<td>int</td>
+<td>datetime</td>
 <td>-</td>
 <td>-</td>
 <td>公告时间</td>
@@ -1215,7 +1215,7 @@ vertical-align:1px;
 </tr>
 <tr>
 <td>message_time</td>
-<td>int</td>
+<td>datetime</td>
 <td>-</td>
 <td>-</td>
 <td>信息时间</td>
@@ -1293,7 +1293,7 @@ vertical-align:1px;
 </tr>
 <tr>
 <td>report_time</td>
-<td>int</td>
+<td>datetime</td>
 <td>0</td>
 <td>-</td>
 <td>举报时间</td>
@@ -1328,7 +1328,7 @@ vertical-align:1px;
 </tr>
 <tr>
 <td>admin_time</td>
-<td>int</td>
+<td>datetime</td>
 <td>0</td>
 <td>-</td>
 <td>管理员处理时间</td>
@@ -1364,7 +1364,7 @@ vertical-align:1px;
 </tr>
 <tr>
 <td>suggest_time</td>
-<td>int</td>
+<td>datetime</td>
 <td>0</td>
 <td>-</td>
 <td>建议时间</td>
@@ -1392,7 +1392,7 @@ vertical-align:1px;
 </tr>
 <tr>
 <td>admin_time</td>
-<td>int</td>
+<td>datetime</td>
 <td>0</td>
 <td>-</td>
 <td>管理员处理时间</td>
@@ -1442,7 +1442,7 @@ vertical-align:1px;
 </tr>
 <tr>
 <td>comment_time</td>
-<td>int</td>
+<td>datetime</td>
 <td>0</td>
 <td>-</td>
 <td>评论时间</td>
@@ -1506,7 +1506,7 @@ vertical-align:1px;
 </tr>
 <tr>
 <td>type_add_time</td>
-<td>int</td>
+<td>datetime</td>
 <td>-</td>
 <td>-</td>
 <td>添加时间</td>
