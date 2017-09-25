@@ -79,7 +79,7 @@ class IndexController extends CommonController {
 		$matches_res = array();
 		preg_match_all($regex_res, $content, $matches_res);	
 		
-		$regex_buy = "/\d{1,9}\/\d{1,9}<\/span>/i";
+		$regex_buy = "/d+(\,\d+)?\/d+(\,\d+)?<\/span>/i";
 		$matches_buy = array();
 		preg_match_all($regex_buy, $content, $matches_buy);	
 
@@ -305,7 +305,7 @@ class IndexController extends CommonController {
 	public function get_personal_msg(){
 		$url = "http://www.hsqkzj.com/";
 		$result = com_curl_get_content($url);
-		$regex = "/<i id=\"iPoints\" class=\"coin\">\d{1,11}<\/i>/i";
+		$regex = "/<i id=\"iPoints\" class=\"coin\">\d+(\,\d+)?<\/i>/i";
 		$matches = array();
 		preg_match_all($regex, $result, $matches);			
 		$res['ipoints'] = str_replace("</i>","",str_replace("<i id=\"iPoints\" class=\"coin\">","",$matches[0][0]));
@@ -323,59 +323,54 @@ class IndexController extends CommonController {
 	//11预测
 	public function get_next_hope_num($data){
 		$res = '';
-		$num_d = 0;
-		$num_s = 0;
-		$num_kd = 0;
-		$num_ks = 0;
-		$total_num = 0;
+		$arr = array();
+		$res_arr = array();
+		$end_arr = array();
 		
-		$dan = 0;
-		$shang = 0;
+		$res_data[2] = 0;
+		$res_data[3] = 0;
+		$res_data[4] = 0;
+		$res_data[5] = 0;
+		$res_data[6] = 0;
+		$res_data[7] = 0;
+		$res_data[8] = 0;
+		$res_data[9] = 0;
+		$res_data[10] = 0;
+		$res_data[11] = 0;
+		$res_data[12] = 0;
 
-		if($data){
-			foreach($data as $key=>$value){
-				if($value%2 == 0){
-					$num_s++;
-					if($key == 0){
-						$num_ks++;
+		if($data){		
+			foreach($res_data as $key=>$value){			
+				foreach($data as $val){
+					if($val == $key){
+						break;
 					}else{
-						if($num_ks > 0 && $num_kd ==0){
-							$num_ks++;
-						}
+						$res_data[$key]++;
 					}
-				}else{
-					$num_d++;
-					if($key == 0){
-						$num_kd++;
-					}else{
-						if($num_kd > 0 && $num_ks ==0){
-							$num_kd++;
-						}
-					}					
-				}
-				$total_num += $value;
+				}										
+			}
+			asort($res_data);
+			foreach($res_data as $key=>$value){
+				$arr[] = $key;
+			}			
+			$res_arr[] = $arr[8];
+			$res_arr[] = $arr[9];
+			$res_arr[] = $arr[10];
+			$res_arr[] = 6;
+			$res_arr[] = 8;
+			
+			$end_arr = array_unique($res_arr);
+			asort($end_arr);
+			foreach($end_arr as $value){
+				$res .= $value.",";
 			}
 			
-			if($num_d > $num_s) $dan++;
-			if($num_d < $num_s) $shang++;
-			if($num_kd >=2) $shang++;
-			if($num_ks >=2) $dan++;
-			if($total_num%2==0){
-				$shang++;
-			}else{
-				$dan++;
-			}
-			
-			if($dan > $shang) $res = '3,5,7,9,11,';
-			if($dan < $shang) $res = '2,4,6,8,10,12,';
 		}
-		
 		
 		return $res;
 	}
 	
-	
-	
+
 }
 
 
