@@ -8,10 +8,16 @@ class IndexController extends CommonController {
        $this->display();
     }
 	
+	//塔内
+	public function ttf_inside(){
+		$this->display();
+	}
+	
 	//登录页面
 	public function login(){
 		$this->display();
 	}
+	
 	//登录操作
 	public function act_login(){
 		

@@ -1,44 +1,40 @@
 ## api文档
 
 
-* 1、 [我-我的](#1)
-* 2、 [我-兑奖](#2)
+* 1、 [注册](#1)
+* 2、 [登录](#2)
 
-<span id="1"/>
-### 1, 我-我的
 -----------------
-<span id="1.1"/>
-##### 我的
+<span id="1"/>
+##### 1，注册
 
-```get /user/get_user_all```
+```post /user/register```
 
 | 参数名 | 类型 | 是否必须 | 说明 |
 |-------|------|---------|-------|
-| user_id | int | yes | - |
+| username | str | yes | - |
+| userpass | str | yes | - |
 
 返回：
 
 ```
 {
   "code": 0,
+  "msg":"返回信息",
   "data": {
-    "prize_num": 0,            # 兑换奖品数量
-    "gold": 1000000,           # 金币值
-    "moment_num": 20,          # 动态数量
-    "gift_num": 0,             # 领取礼物数量
-    "is_authed": false,        # 是否认证
-    "photo_num": 30,           # 私照数量
-    "charm_level": 1,          # 魅力值
-    "wealth_level": 1,         # 财气值
-    "strength": 1212567,       # 体力值
-    "gender": 1,               # 性别
-    "age": 33,                 # 年龄
-    "avatar": null,            # 头像url
-    "vip_level": 1,            # vip等级
-    "charm_wealth_next": 500,  # 距离下一魅力或财气等级需要体力值
-    "charm_wealth_whole": 1000,  # 距离下一魅力或财气等级需要的全部体力值
-    "nickname": "from_id",      # 昵称
-    "status": "online"   # 在线状态
+    "user_id": 0,                   # 用户ID
+    "user_name": "xiaoming",        # 用户名称
+    "user_phone": "158118",         # 用户手机
+    "user_sex": 0,             	    # 性别 0未知 1男 2女
+    "user_head": "http://xxx",      # 头像
+    "user_birthday": "2017-11-10",  # 生日
+    "user_reg_time": "2017-11-...", # 注册时间
+    "user_login_time": "2017-...",  # 登录时间
+    "user_status": 0,               # 状态 0正常 1禁止登录
+    "user_ttbi": 100,               # 塔币
+    "user_gold": 33,                # 金币
+    "user_vip": 0,                  # VIP等级
+    "user_role_id": 1,              # 默认出战角色
   }
 }
 
