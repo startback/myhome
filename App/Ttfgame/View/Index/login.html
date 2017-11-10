@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>塔塔峰-登录页</title>
+    <meta name="keywords" content="塔塔峰游戏">
+    <meta name="Description" content="塔塔峰游戏，玩到要发疯">
+	<link rel="shortcut icon" href="zhi_favicon.ico">
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/Ttfgame/css/common.css"/>
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/Ttfgame/css/login.css"/>
+    <script src="__PUBLIC__/Ttfgame/js/jquery-3.2.1.min.js"></script>
+</head>
+<body id="body">
+
+	<form id="login" action="index.php?m=ttfgame&c=index&a=act_login" method="post">
+		<input type="text" id="username" name="username" value="" placeholder="用户名" />
+		<input type="text" id="userpass" name="userpass" value="" placeholder="密码" />
+	
+		<button onclick="return chekc_form();$('#login').submit();">登录</button>
+		&nbsp;
+		<a href="index.php?m=ttfgame&c=index&a=register">注册</a>
+	</form>
+
+	<script>
+		function chekc_form(){
+			var username = $('#username').val().trim();
+			var userpass = $('#userpass').val().trim();
+
+			if(username == ''){
+				alert('请填写用户名');
+				return false;
+			}
+			
+			if(userpass == ''){
+				alert('请填写密码');
+				return false;
+			}			
+			return true;
+		}
+	</script>	
+	
+</body>
+</html>

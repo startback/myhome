@@ -1,0 +1,43 @@
+@charset"utf-8";
+
+
+
+	
+#top{
+	width:100%;
+	position:fixed;
+	top:0;
+}
+#top .one{
+	width:28%;
+	float:left;
+}
+#top img{
+	width:80%;
+	padding:10%;
+}
+#top .two{
+	width:70%;
+	float:right;
+}
+#top div p{
+	height:30px;
+	line-height:30px;
+	margin:10px 0 0 0;
+}
+#top div span{
+	width:10%;
+	height:0;
+	padding-bottom:10%;
+	background:red;
+	position:absolute;
+	top:0;
+	right:0;
+}
+
+#bottom{
+	width:100%;
+	height:60px;
+	position:fixed;
+	bottom:0;
+}

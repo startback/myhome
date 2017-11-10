@@ -79,7 +79,7 @@ class IndexController extends CommonController {
 		$matches_res = array();
 		preg_match_all($regex_res, $content, $matches_res);	
 		
-		$regex_buy = "/d+(\,\d+)?\/d+(\,\d+)?<\/span>/i";
+		$regex_buy = "/\d{1,11}\/\d{1,11}<\/span>/i";
 		$matches_buy = array();
 		preg_match_all($regex_buy, $content, $matches_buy);	
 
@@ -148,6 +148,11 @@ class IndexController extends CommonController {
 		$res['this_qi_result'] = $res['ress'][0];
 		$res['this_qi_time'] = $res['times'][0];
 		$res['this_qi_buy'] = $res['buys'][0];
+		
+		//下注倍数及连挂错数
+		$game_max_num = 5;      //错5及以上记
+		$game_max_bei = 16;     //倍数大于16即回1
+		
 	
 		//本期预测结果
 		if(isset($_SESSION['game']['next_hope_num'])){
@@ -170,7 +175,7 @@ class IndexController extends CommonController {
 						$_SESSION['game']['keep_right_num'] = 1;
 					}
 					
-					if($_SESSION['game']['keep_wrong_num'] >= 6){
+					if($_SESSION['game']['keep_wrong_num'] >= $game_max_num){
 						if(isset($_SESSION['game']['die_num'])){
 							$_SESSION['game']['die_num']++;
 						}else{
@@ -228,14 +233,15 @@ class IndexController extends CommonController {
 				
 				if($res['this_hope_result'] == '错'){
 					$_SESSION['game']['max_need_num'] *= 2;
-					if($_SESSION['game']['max_need_num'] > 32) $_SESSION['game']['max_need_num'] = 1;
+					if($_SESSION['game']['max_need_num'] > $game_max_bei) $_SESSION['game']['max_need_num'] = 1;
 				}else{
 					$_SESSION['game']['max_need_num'] = 1;
 				}
 				
 				//下期买进
 				//期数  数值金额  总额
-				if($total_scores > 5000 && $res['next_hope_num']){
+				$total_scores = str_replace(',','',$total_scores);
+				if($total_scores > 360 && $res['next_hope_num']){
 					$this->set_data_num($res['next_hope_num'],$next_qishu,$_SESSION['game']['max_need_num']);
 				}
 				
@@ -353,7 +359,8 @@ class IndexController extends CommonController {
 			foreach($res_data as $key=>$value){
 				$arr[] = $key;
 			}			
-			$res_arr[] = $arr[8];
+			$res_arr[] = $arr[0];
+			$res_arr[] = $arr[1];
 			$res_arr[] = $arr[9];
 			$res_arr[] = $arr[10];
 			$res_arr[] = 6;
