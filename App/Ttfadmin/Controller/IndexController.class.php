@@ -1,8 +1,90 @@
 <?php
 namespace Ttfadmin\Controller;
 use Think\Controller;
-class IndexController extends Controller {
+class IndexController extends CommonController {
+
     public function index(){
-        $this->show('<style type="text/css">*{ padding: 0; margin: 0; } div{ padding: 4px 48px;} body{ background: #fff; font-family: "微软雅黑"; color: #333;font-size:24px} h1{ font-size: 100px; font-weight: normal; margin-bottom: 12px; } p{ line-height: 1.8em; font-size: 36px } a,a:hover{color:blue;}</style><div style="padding: 24px 48px;"> <h1>:)</h1><p>欢迎使用 <b>ThinkPHP</b>！</p><br/>版本 V{$Think.version}</div><script type="text/javascript" src="http://ad.topthink.com/Public/static/client.js"></script><thinkad id="ad_55e75dfae343f5a1"></thinkad><script type="text/javascript" src="http://tajs.qq.com/stats?sId=9347272" charset="UTF-8"></script>','utf-8');
+        $this->display();
     }
+
+    //登录页
+    public function info(){
+		$this->display();			
+    }
+
+	
+    //修改密码
+    public function pass(){
+        if($_POST){
+            $pass = $_POST['m_pass'];
+            $new_pass = $_POST['new_pass'];
+            if(strtolower(md5($pass)) == strtolower(bin2hex($_SESSION['ttfadmin']['info']['admin_pass']))){
+                $data['admin_pass'] = hex2bin(md5($new_pass));
+                if(D('admin')->mod_admin_pass($_SESSION['ttfadmin']['info']['admin_id'],$data)){
+                    $_SESSION['ttfadmin']['info']['admin_pass'] = $data['admin_pass'];
+                    $this->success('修改成功');
+                }else{
+                    $this->error('修改失败');
+                }
+            }else{
+                $this->error('密码错误');
+            }
+        }else{
+            $this->display();
+        }
+    }
+
+    //登录
+    public function login(){
+
+        if($_POST){
+
+            $code = $_POST['code'];
+            $admin_account = $_POST['admin_account'];
+            $admin_pass = $_POST['admin_pass'];
+
+            if(!$code || !$this->check_code($code)){
+                $this->error('验证码错误');
+                exit;
+            }
+
+
+            if(D('admin')->login($admin_account,$admin_pass,com_get_ip())){
+				header('Location: index.php?m=ttfadmin&c=index&a=index');
+            }else{
+                $this->error('帐号或密码错误');
+            }
+
+        }else{
+            $this->display();
+        }
+    }
+
+
+    //登出
+    public function logout(){
+        unset($_SESSION['ttfadmin']['info']);
+		header('Location: index.php?m=ttfadmin&c=index&a=login');
+    }
+
+
+    //获取验证码
+    public function get_code(){
+        $config =    array(
+            'fontSize'    =>    30,    // 验证码字体大小
+            'length'      =>    4,     // 验证码位数
+            'useNoise'    =>    false, // 关闭验证码杂点
+        );
+        $Verify =     new \Think\Verify($config);
+        $Verify->codeSet = '0123456789';
+        $Verify->entry();
+    }
+
+    //检测验证码
+    public function check_code($code,$id=''){
+        $verify = new \Think\Verify();
+        return $verify->check($code, $id);
+    }
+	
+
 }

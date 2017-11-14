@@ -16,6 +16,9 @@
 * 13、 [ttf_user_goods(用户物品)](#13)
 * 14、 [ttf_maze_monster_goods(迷宫怪物及物品设置)](#14)
 * 15、 [ttf_role_maze_record(人物迷宫记录)](#15)
+* a、 [ttf_admin(后台管理员)](#a)
+* b、 [ttf_admin_log(后台管理员操作记录)](#b)
+* c、 [ttf_admin_role(后台管理员角色)](#c)
 
 
 -----------------
@@ -262,6 +265,7 @@
 <span id="15"/>
 ##### 15、 ttf_role_maze_record(人物迷宫记录)
 | 字段名 | 类型 | 默认 | 主键 | 备注 |
+|-------|------|------|-----|------|
 | id | int | - | key auto | 自增ID |
 | user_id | int | - | - | 用户ID |
 | maze_id | smallint | - | - | 迷宫ID |
@@ -271,3 +275,43 @@
 | begin_time | datetime | - | - | 迷宫开始时间 |
 | maze_now_is_over | tinyint | - | - | 是否已结束 0未 1是 |
 | max_height_floor | smallint | - | - | 最高层 |
+
+
+<span id="a"/>
+##### a、 ttf_admin(后台管理员)
+| 字段名 | 类型 | 默认 | 主键 | 备注 |
+|-------|------|------|-----|------|
+| admin_id | smallint | - | key auto | 自增ID |
+| admin_account | varchar(32) | - | - | 用户账号 |
+| admin_pass | binary(16) | - | - | 密码 |
+| admin_role_id | smallint | - | - | 角色ID |
+| admin_name | varchar(32) | - | - | 别名 |
+| admin_phone | char(11) | - | - | 手机 |
+| admin_email | varchar(64) | - | - | 邮箱 |
+| admin_sex | tinyint | - | - | 性别 0未知 1男 2女 |
+| admin_birthday | date | - | - | 生日 |
+| admin_register_time | datetime | - | - | 注册时间 |
+| admin_login_time | datetime | - | - | 登录时间 |
+| admin_tag | varchar(64) | - | - | tag |
+| ip_address | varchar(15) | - | - | ip |
+
+
+<span id="b"/>
+##### b、 ttf_admin_log(后台管理员操作记录)
+| 字段名 | 类型 | 默认 | 主键 | 备注 |
+|-------|------|------|-----|------|
+| log_id | int | - | key auto | 自增ID |
+| log_time | datetime | - | - | 时间 |
+| log_info | varchar(255) | - | - | 操作描述 |
+| admin_id | smallint | - | - | 操作员 |
+| ip_address | varchar(15) | - | - | ip |
+
+
+<span id="c"/>
+##### c、 ttf_admin_role(后台管理员角色)
+| 字段名 | 类型 | 默认 | 主键 | 备注 |
+|-------|------|------|-----|------|
+| role_id | smallint | - | key auto | 自增ID |
+| role_name | varchar(32) | - | - | 角色名 |
+| role_desc | varchar(255) | - | - | 角色描述 |
+| role_power | text | - | - | 角色权限 |
