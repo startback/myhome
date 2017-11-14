@@ -15,9 +15,9 @@
 <body id="body">
 
 	<form id="register" action="index.php?m=ttfgame&c=index&a=act_register" method="post">
-		<input type="text" id="username" name="username" value="" placeholder="用户名" />
-		<input type="password" id="userpass" name="userpass" value="" placeholder="密码" />
-		<input type="password" id="userpass_check" name="userpass_check" value="" placeholder="确认密码" />
+		<input type="text" id="user_phone" name="user_phone" value="" placeholder="手机" />
+		<input type="password" id="user_pass" name="user_pass" value="" placeholder="密码" />
+		<input type="password" id="user_pass_check" name="user_pass_check" value="" placeholder="确认密码" />
 		<button onclick="return chekc_form();$('#login').submit();">注册</button>
 		&nbsp;
 		<a href="index.php?m=ttfgame&c=index&a=login">登录</a>
@@ -25,21 +25,21 @@
 
 	<script>
 		function chekc_form(){
-			var username = $('#username').val().trim();
-			var userpass = $('#userpass').val().trim();
-			var userpass_check = $('#userpass_check').val().trim();
+			var user_phone = $('#user_phone').val().trim();
+			var user_pass = $('#user_pass').val().trim();
+			var user_pass_check = $('#user_pass_check').val().trim();
 
-			if(username == ''){
-				alert('请填写用户名');
+			if(user_phone == ''){
+				alert('手机不能为空');
 				return false;
 			}
 			
-			if(userpass == ''){
-				alert('请填写密码');
+			if(user_pass == ''){
+				alert('密码不能为空');
 				return false;
 			}			
 			
-			if(userpass != userpass_check){
+			if(user_pass != user_pass_check){
 				alert('两次密码不一');
 				return false;
 			}	

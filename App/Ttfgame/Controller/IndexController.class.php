@@ -22,10 +22,10 @@ class IndexController extends CommonController {
 	public function act_login(){
 		
 		if($_POST){
-			$username = isset($_POST['username'])?trim($_POST['username']):'';
-			$userpass = isset($_POST['userpass'])?trim($_POST['userpass']):'';
+			$user_phone = isset($_POST['user_phone'])?trim($_POST['user_phone']):'';
+			$user_pass = isset($_POST['user_pass'])?trim($_POST['user_pass']):'';
 			
-			if(empty($username) || empty($userpass)){
+			if(empty($user_phone) || empty($user_pass)){
 				$msg_action = "请写用户名或密码";
 			}else{
 				//查询  登录接口
