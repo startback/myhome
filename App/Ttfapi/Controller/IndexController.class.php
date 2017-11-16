@@ -28,7 +28,8 @@ class IndexController extends CommonController {
 			if($user_info){
 				if(bin2hex($user_info['user_pass']) == strtolower(md5($user_pass))){
 					$user_info_too = M('user_info')->where('user_id='.$user_info['user_id'])->find();
-					$user_role_info = M('user_role')->where('user_role_id='.$user_info_too['user_role_id'])->find();;
+					$user_role_info = M('user_role')->where('user_role_id='.$user_info_too['user_role_id'])->find();   //用户出战角色
+					$role_info = M('role')->where('role_id='.$user_role_info['role_id'])->find();     //角色描述
 					
 					//更新登录时间
 					$up_data['user_login_time'] = date('Y-m-d H:i:s',time());
@@ -50,16 +51,22 @@ class IndexController extends CommonController {
 					$get_data['user_vip'] = $user_info_too['user_vip'];
 					$get_data['user_role_id'] = $user_info_too['user_role_id'];
 					
-					$get_data['attack'] = $user_role_info['attack'];
-					$get_data['magic'] = $user_role_info['magic'];
-					$get_data['hp'] = $user_role_info['hp'];
-					$get_data['mp'] = $user_role_info['mp'];
-					$get_data['attack_defense'] = $user_role_info['attack_defense'];
-					$get_data['magic_defense'] = $user_role_info['magic_defense'];
-					$get_data['dodge'] = $user_role_info['dodge'];
-					$get_data['direct'] = $user_role_info['direct'];
-					$get_data['crit'] = $user_role_info['crit'];
-					$get_data['skill_ids'] = $user_role_info['skill_ids'];
+					$get_data['role_id'] = $role_info['role_id'];
+					$get_data['role_type'] = $role_info['role_type'];
+					$get_data['role_name'] = $role_info['role_name'];
+					$get_data['role_logo'] = $role_info['role_logo'];
+					$get_data['role_desc'] = $role_info['role_desc'];
+					
+					// $get_data['attack'] = $user_role_info['attack'];
+					// $get_data['magic'] = $user_role_info['magic'];
+					// $get_data['hp'] = $user_role_info['hp'];
+					// $get_data['mp'] = $user_role_info['mp'];
+					// $get_data['attack_defense'] = $user_role_info['attack_defense'];
+					// $get_data['magic_defense'] = $user_role_info['magic_defense'];
+					// $get_data['dodge'] = $user_role_info['dodge'];
+					// $get_data['direct'] = $user_role_info['direct'];
+					// $get_data['crit'] = $user_role_info['crit'];
+					// $get_data['skill_ids'] = $user_role_info['skill_ids'];
 
 					$res['code'] = 0;
 					$res['msg'] = "登录成功";

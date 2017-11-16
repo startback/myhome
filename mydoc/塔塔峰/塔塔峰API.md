@@ -35,6 +35,11 @@
     "user_gold": 33,                # 金币
     "user_vip": 0,                  # VIP等级
     "user_role_id": 1,              # 默认出战角色
+	"role_id": 1,                   # 角色ID
+	"role_type": 1,                 # 角色类型
+	"role_name": "xxx",             # 角色名
+	"role_logo": "http://",         # 角色图像
+    "user_desc": "xxx",             # 角色描述
   }
 }
 

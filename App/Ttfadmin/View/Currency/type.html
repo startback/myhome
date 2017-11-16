@@ -1,0 +1,113 @@
+<include file='Common:top'/>
+
+<body>
+<form method="post" action="" id="listform">
+    <div class="panel admin-panel">
+        <div class="panel-head"><strong class="icon-reorder"> 类型列表</strong></div>
+        <div class="padding border-bottom">
+            <ul class="search" style="padding-left:10px;">
+                <li><a class="button border-main icon-plus-square-o" href="__ROOT__/index.php?m=ttfadmin&c=currency&a=type_add"> 增加类型</a>
+                </li>
+            </ul>
+        </div>
+        <table class="table table-hover text-center">
+            <tr>
+                <th>类型ID</th>
+                <th>类型名字</th>
+                <th>类型logo</th>
+                <th>类型描述</th>
+                <th width="310">操作</th>
+            </tr>
+
+            <if condition="$return_types">
+                <volist name="return_types" id="vo">
+                    <tr>
+                        <td><span class="icon-certificate"></span> {$vo.type_id}</td>
+                        <td>{$vo.type_name}</td>
+                        <td><img width="40" height="40" src="__ROOT__{$vo.type_logo}"/></td>
+                        <td>{$vo.type_desc}</td>
+                        <td>
+                            <div class="button-group">
+                                <a class="button border-main" href="__ROOT__/index.php?m=ttfadmin&c=currency&a=type_edit&id={$vo.type_id}"><span class="icon-edit"></span> 修改</a>
+                                <a class="button border-red" href="javascript:void(0)" onclick="del({$vo.type_id})">
+                                    <span class="icon-trash-o"></span> 删除
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+					<if condition="$vo.type_child">
+						<volist name="vo.type_child" id="item">
+							<tr>
+								<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="icon-certificate"></span> {$item.type_id}</td>
+								<td>{$item.type_name}</td>
+								<td><img width="40" height="40" src="__ROOT__{$item.type_logo}"/></td>
+								<td>{$item.type_desc}</td>
+								<td>
+									<div class="button-group">
+										<a class="button border-main" href="__ROOT__/index.php?m=ttfadmin&c=currency&a=type_edit&id={$item.type_id}"><span class="icon-edit"></span> 修改</a>
+										<a class="button border-red" href="javascript:void(0)" onclick="del({$item.type_id})">
+											<span class="icon-trash-o"></span> 删除
+										</a>
+									</div>
+								</td>
+							</tr>	
+
+							<if condition="$item.type_child">
+								<volist name="item.type_child" id="child">
+									<tr>
+										<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="icon-certificate"></span> {$child.type_id}</td>
+										<td>{$child.type_name}</td>
+										<td><img width="40" height="40" src="__ROOT__{$child.type_logo}"/></td>
+										<td>{$child.type_desc}</td>
+										<td>
+											<div class="button-group">
+												<a class="button border-main" href="__ROOT__/index.php?m=ttfadmin&c=currency&a=type_edit&id={$child.type_id}"><span class="icon-edit"></span> 修改</a>
+												<a class="button border-red" href="javascript:void(0)" onclick="del({$child.type_id})">
+													<span class="icon-trash-o"></span> 删除
+												</a>
+											</div>
+										</td>
+									</tr>						
+								</volist>
+							</if>
+					
+						</volist>
+					</if>
+					
+                </volist>
+                <else/>
+                <tr>
+                    <td colspan="5" style="height: 80px;line-height: 80px;font-size: 20px;">
+                        没有数据
+                    </td>
+                </tr>
+            </if>
+
+        </table>
+    </div>
+</form>
+<script type="text/javascript">
+
+    //单个删除
+    function del(id) {
+        if(confirm("您确定要删除吗?")) {
+            $.ajax({
+                type: 'post',
+                url: '__ROOT__/index.php?m=ttfadmin&c=currency&a=type_del',
+                data: {ids: id},
+                dataType: 'text',
+                success: function(data){
+                    if(data == 1){
+                        alert('删除成功');
+                        location.reload();
+                    }else{
+                        alert('删除失败');
+                    }
+                }
+            });
+        }
+    }
+
+</script>
+</body>
+</html>
