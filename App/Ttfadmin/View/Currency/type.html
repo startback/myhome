@@ -22,7 +22,7 @@
             <if condition="$return_types">
                 <volist name="return_types" id="vo">
                     <tr>
-                        <td><span class="icon-certificate"></span> {$vo.type_id}</td>
+                        <td><span class="icon-stop"></span></td>
                         <td>{$vo.type_name}</td>
                         <td><img width="40" height="40" src="__ROOT__{$vo.type_logo}"/></td>
                         <td>{$vo.type_desc}</td>
@@ -38,7 +38,7 @@
 					<if condition="$vo.type_child">
 						<volist name="vo.type_child" id="item">
 							<tr>
-								<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="icon-certificate"></span> {$item.type_id}</td>
+								<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="icon-play"></span></td>
 								<td>{$item.type_name}</td>
 								<td><img width="40" height="40" src="__ROOT__{$item.type_logo}"/></td>
 								<td>{$item.type_desc}</td>
@@ -55,7 +55,7 @@
 							<if condition="$item.type_child">
 								<volist name="item.type_child" id="child">
 									<tr>
-										<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="icon-certificate"></span> {$child.type_id}</td>
+										<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="icon-forward"></span></td>
 										<td>{$child.type_name}</td>
 										<td><img width="40" height="40" src="__ROOT__{$child.type_logo}"/></td>
 										<td>{$child.type_desc}</td>

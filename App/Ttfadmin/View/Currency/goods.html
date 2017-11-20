@@ -17,10 +17,10 @@
 					<input type="text" id="goods_name" class="input" style="width:160px; line-height:17px; display:inline-block" value="{$search_state.goods_name}" name="goods_name" />
 					&nbsp;&nbsp;
 					开始时间
-					<input type="text" id="start_datebut" class="input" style="width:160px; line-height:17px; display:inline-block" value="{$search_state.start_time}" onClick="jeDate({dateCell:'#start_datebut',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})" name="start_time" />
+					<input type="text" id="start_datebut" autocomplete="off" class="input" style="width:160px; line-height:17px; display:inline-block" value="{$search_state.start_time}" onClick="jeDate({dateCell:'#start_datebut',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})" name="start_time" />
 					&nbsp;&nbsp;
 					结束时间
-					<input type="text" id="end_datebut" class="input" style="width:160px; line-height:17px; display:inline-block" value="{$search_state.end_time}" onClick="jeDate({dateCell:'#end_datebut',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})" name="end_time" />
+					<input type="text" id="end_datebut" autocomplete="off" class="input" style="width:160px; line-height:17px; display:inline-block" value="{$search_state.end_time}" onClick="jeDate({dateCell:'#end_datebut',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})" name="end_time" />
 					&nbsp;&nbsp;
 					类型
 					<select name="search_id" class="input" onchange="chose_type(this.value)" style="width:135px; line-height:17px;display:inline-block">
@@ -30,7 +30,7 @@
 						</volist>
 					</select>						
 											
-					<select id="select_id_2" name="search_id_2" class="input" onchange="chose_type_2(this.value)" style="width:135px; line-height:17px;display:<?php if($search_state['search_id_2'] > 0){echo 'inline-block';}else{echo 'none';}?>">
+					<select id="select_id_2" name="search_id_2" class="input" onchange="chose_type_2(this.value)" style="width:135px; line-height:17px;display:<?php if($search_state['search_id'] > 0 && $search_state['search_id_2'] > 0){echo 'inline-block';}else{echo 'none';}?>">
 						<if condition="$search_state.search_id_2">
 							<option value="0">上一级</option>
 							<volist name="s_types.two" id="vo">
@@ -39,7 +39,7 @@
 						</if>	
 					</select>
 								
-					<select id="select_id_3" name="search_id_3" class="input" onchange="chose_type_3(this.value)" style="width:135px; line-height:17px;display:<?php if($search_state['search_id_3'] > 0){echo 'inline-block';}else{echo 'none';}?>">
+					<select id="select_id_3" name="search_id_3" class="input" onchange="chose_type_3(this.value)" style="width:135px; line-height:17px;display:<?php if($search_state['search_id'] > 0 && $search_state['search_id_2'] > 0 && $search_state['search_id_3'] > 0){echo 'inline-block';}else{echo 'none';}?>">
 						<if condition="$search_state.search_id_3">
 							<option value="0">上一级</option>
 							<volist name="s_types.three" id="vo">
@@ -151,6 +151,7 @@
 	function chose_type(id){
 		if(id>0){
 			$('#select_id_2').css('display','inline-block');
+			$('#select_id_3').val(0);
 			$('#select_id_3').css('display','none');
 			$.ajax({
 				type: 'post',
@@ -163,6 +164,8 @@
 			});
 				
 		}else{
+			$('#select_id_2').val(0);
+			$('#select_id_3').val(0);		
 			$('#select_id_2').css('display','none');
 			$('#select_id_3').css('display','none');
 		}
@@ -181,13 +184,17 @@
 			});
 				
 		}else{
+			$('#select_id_2').val(0);
+			$('#select_id_3').val(0);			
 			$('#select_id_2').css('display','none');
 			$('#select_id_3').css('display','none');
+		
 		}
 	}	
 	function chose_type_3(id){
 		if(id==0){
-			$('#select_id_3').css('display','none');
+			$('#select_id_3').val(0);
+			$('#select_id_3').css('display','none');	
 		}
 	}	
 </script>

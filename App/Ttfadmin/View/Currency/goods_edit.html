@@ -23,11 +23,25 @@
                     <select name="goods_type" class="input w50" onchange="chose_type(this.value)">
                         <option value="0">请选择</option>					
                         <foreach name="types" item="vo" key="key" >
-                            <option value="{$vo.type_id}">{$vo.type_name}</option>
+                            <option <?php if($vo['type_id']==$type_ids['one']) echo 'selected';?> value="{$vo.type_id}">{$vo.type_name}</option>
                         </foreach>
                     </select>					
-                    <select id="type_chose_2" name="goods_type_2" onchange="chose_type_2(this.value)" class="input w50" style="display:none;"></select>			
-                    <select id="type_chose_3" name="goods_type_3" onchange="chose_type_3(this.value)" class="input w50" style="display:none;"></select>			
+                    <select id="type_chose_2" name="goods_type_2" onchange="chose_type_2(this.value)" class="input w50" style="display:<if condition="$type_ids.two gt 0">block<else/>none</if>;">
+						<if condition="$type_ids.two gt 0">
+							<option value="0">上一级</option>
+							<foreach name="types_two" item="vo" key="key" >
+								<option <?php if($vo['type_id'] == $type_ids['two']) echo 'selected';?> value="{$vo.type_id}">{$vo.type_name}</option>
+							</foreach>						
+						</if>					
+					</select>			
+                    <select id="type_chose_3" name="goods_type_3" onchange="chose_type_3(this.value)" class="input w50" style="display:<if condition="$type_ids.three gt 0">block<else/>none</if>;">
+						<if condition="$type_ids.three gt 0">
+							<option value="0">上一级</option>
+							<foreach name="types_three" item="vo" key="key" >
+								<option <?php if($vo['type_id'] == $type_ids['three']) echo 'selected';?> value="{$vo.type_id}">{$vo.type_name}</option>
+							</foreach>						
+						</if>					
+					</select>			
 					<div class="tips"></div>					
                 </div>
             </div>			
@@ -178,7 +192,7 @@
 				}
 			});
 				
-		}else{
+		}else{	
 			$('#type_chose_2').css('display','none');
 			$('#type_chose_3').css('display','none');
 		}
@@ -199,6 +213,7 @@
 		}else{
 			$('#type_chose_2').css('display','none');
 			$('#type_chose_3').css('display','none');
+
 		}
 	}	
 	function chose_type_3(id){

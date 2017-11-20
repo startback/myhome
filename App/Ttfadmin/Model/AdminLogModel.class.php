@@ -33,7 +33,8 @@ class AdminLogModel extends Model {
 
         $purl = $base_purl.'&p=';
 
-        $page_info = '<a href="'.$purl.'1">首页</a>';
+        $page_info .= '<span class="current">共'.$total_num.'记录--'.$total_page.'页</span>';		
+        $page_info .= '<a href="'.$purl.'1">首页</a>';
         $page_info .= '<a href="'.$purl.$pre_page.'">上一页</a>';
         $page_info .= '<span class="current">'.$cur_page.'</span>';
         $page_info .= '<a href="'.$purl.$next_page.'">下一页</a>';

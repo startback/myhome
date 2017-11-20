@@ -20,14 +20,15 @@
                     <label>类别：</label>
                 </div>
                 <div class="field">
-                    <select name="type_pid" class="input w50" onchange="chose_type(this.value)">
+                    <select name="type_pid" class="input w50" onchange="chose_type(this.value,{$type_info.type_id})">
                         <option value="0">顶级</option>					
                         <foreach name="types" item="vo" key="key" >
                             <option <?php if($vo['type_id'] == $top_pid) echo 'selected';?> value="{$vo.type_id}">{$vo.type_name}</option>
                         </foreach>
                     </select>					
-                    <select id="type_chose" name="type_pid_2" onchange="chose_type_2(this.value)" class="input w50" style="display:<if condition="$sub_pid gt 0">block<else/>none</if>;">
+                    <select id="type_chose" name="type_pid_2" onchange="chose_type_2(this.value,{$type_info.type_id})" class="input w50" style="display:<if condition="$sub_pid gt 0">block<else/>none</if>;">
 						<if condition="$sub_pid gt 0">
+							<option value="0">上一级</option>
 							<foreach name="sub_types" item="vo" key="key" >
 								<option <?php if($vo['type_id'] == $sub_pid) echo 'selected';?> value="{$vo.type_id}">{$vo.type_name}</option>
 							</foreach>						
@@ -87,7 +88,11 @@
 		}
 	}
 	
-	function chose_type(id){
+	function chose_type(id,type_id){
+		if(id == type_id){
+			return false;
+		}
+	
 		if(id>0){
 			$('#type_chose').css('display','block');
 			$.ajax({
@@ -104,7 +109,11 @@
 			$('#type_chose').css('display','none');
 		}
 	}
-	function chose_type_2(id){
+	function chose_type_2(id,type_id){
+		if(id == type_id){
+			return false;
+		}
+		
 		if(id==0){
 			$('#type_chose').css('display','none');
 		}
