@@ -39,6 +39,28 @@ class RoleSkillModel extends Model {
         return $page_info;
     }
 			
+    //获得页数 选择页面
+    public function select_role_skill_page($page,$where){		
+        $total_num = M('role_skill')->where($where)->count();
+        $total_page = ceil($total_num/$this->per_page);
+        $cur_page = $page['page'];
+        $pre_page = $cur_page - 1;
+        if($pre_page < 1) $pre_page = 1;
+        $next_page = $cur_page + 1;
+        if($next_page > $total_page) $next_page = $total_page;
+
+        $base_purl = __ROOT__.'/index.php?m=ttfadmin&c=select&a=select_role_skill&role_skill_name='.$page['role_skill_name'].'&start_time='.$page['start_time'].'&end_time='.$page['end_time'];
+        $purl = $base_purl.'&id_name='.$page['id_name']."&p=";
+
+        $page_info .= '<span class="current">共'.$total_num.'记录--'.$total_page.'页</span>';
+        $page_info .= '<a href="'.$purl.'1">首页</a>';
+        $page_info .= '<a href="'.$purl.$pre_page.'">上一页</a>';
+        $page_info .= '<span class="current">'.$cur_page.'</span>';
+        $page_info .= '<a href="'.$purl.$next_page.'">下一页</a>';
+        $page_info .= '<a href="'.$purl.$total_page.'">尾页</a>';
+
+        return $page_info;
+    }			
 	
     //删除天赋技能
     public function role_skill_del($ids){
@@ -77,6 +99,11 @@ class RoleSkillModel extends Model {
 	}	
 	
 	
+	//获得天赋技能名字
+	public function get_name($id){
+		$role_skill_name = M('role_skill')->field('role_skill_name')->where('role_skill_id='.$id)->find();
+		return $role_skill_name['role_skill_name'];
+	}
 	
 	
 	

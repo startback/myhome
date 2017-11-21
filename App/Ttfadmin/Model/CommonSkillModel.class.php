@@ -39,6 +39,29 @@ class CommonSkillModel extends Model {
         return $page_info;
     }
 			
+    //获得页数  选择页面
+    public function select_common_skill_page($page,$where){		
+        $total_num = M('common_skill')->where($where)->count();
+        $total_page = ceil($total_num/$this->per_page);
+        $cur_page = $page['page'];
+        $pre_page = $cur_page - 1;
+        if($pre_page < 1) $pre_page = 1;
+        $next_page = $cur_page + 1;
+        if($next_page > $total_page) $next_page = $total_page;
+
+        $base_purl = __ROOT__.'/index.php?m=ttfadmin&c=select&a=select_common_skill&common_skill_name='.$page['common_skill_name'].'&start_time='.$page['start_time'].'&end_time='.$page['end_time'];
+		$purl = $base_purl.'&id_name='.$page['id_name']."&p=";
+
+        $page_info .= '<span class="current">共'.$total_num.'记录--'.$total_page.'页</span>';
+        $page_info .= '<a href="'.$purl.'1">首页</a>';
+        $page_info .= '<a href="'.$purl.$pre_page.'">上一页</a>';
+        $page_info .= '<span class="current">'.$cur_page.'</span>';
+        $page_info .= '<a href="'.$purl.$next_page.'">下一页</a>';
+        $page_info .= '<a href="'.$purl.$total_page.'">尾页</a>';
+
+        return $page_info;
+    }			
+			
 	
     //删除通用技能
     public function common_skill_del($ids){
@@ -77,7 +100,11 @@ class CommonSkillModel extends Model {
 	}	
 	
 	
-	
+	//获得通用技能名字
+	public function get_name($id){
+		$common_skill_name = M('common_skill')->field('common_skill_name')->where('common_skill_id='.$id)->find();
+		return $common_skill_name['common_skill_name'];
+	}	
 	
 	
 	

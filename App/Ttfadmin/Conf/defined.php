@@ -14,6 +14,8 @@ return array(
         'index/info',
         'index/logout',
         'index/get_code',
+        'select/select_role_skill',
+        'select/select_common_skill',
     ),
 
     //权限

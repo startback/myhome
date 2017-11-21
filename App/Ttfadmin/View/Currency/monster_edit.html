@@ -1,0 +1,305 @@
+<include file='Common:top'/>
+
+<body>
+<div class="panel admin-panel">
+    <div class="panel-head" id="add"><strong><span class="icon-key"></span> 修改怪物</strong></div>
+    <div class="body-content">
+        <form method="post" class="form-x" action="" enctype="multipart/form-data">
+            <div class="form-group">
+                <div class="label">
+                    <label>名称：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$monster_info.monster_name}" name="monster_name" data-validate="required:请输入怪物名"/>
+                    <div class="tips"></div>
+                </div>
+            </div>
+			
+            <div class="form-group">
+                <div class="label">
+                    <label>类别：</label>
+                </div>
+                <div class="field">
+                    <select name="monster_type" class="input w50" onchange="chose_type(this.value)">
+                        <option value="0">请选择</option>					
+                        <foreach name="types" item="vo" key="key" >
+                            <option <?php if($vo['type_id']==$type_ids['one']) echo 'selected';?> value="{$vo.type_id}">{$vo.type_name}</option>
+                        </foreach>
+                    </select>					
+                    <select id="type_chose_2" name="monster_type_2" onchange="chose_type_2(this.value)" class="input w50" style="display:<if condition="$type_ids.two gt 0">block<else/>none</if>;">
+						<if condition="$type_ids.two gt 0">
+							<option value="0">上一级</option>
+							<foreach name="types_two" item="vo" key="key" >
+								<option <?php if($vo['type_id'] == $type_ids['two']) echo 'selected';?> value="{$vo.type_id}">{$vo.type_name}</option>
+							</foreach>						
+						</if>					
+					</select>			
+                    <select id="type_chose_3" name="monster_type_3" onchange="chose_type_3(this.value)" class="input w50" style="display:<if condition="$type_ids.three gt 0">block<else/>none</if>;">
+						<if condition="$type_ids.three gt 0">
+							<option value="0">上一级</option>
+							<foreach name="types_three" item="vo" key="key" >
+								<option <?php if($vo['type_id'] == $type_ids['three']) echo 'selected';?> value="{$vo.type_id}">{$vo.type_name}</option>
+							</foreach>						
+						</if>					
+					</select>			
+					<div class="tips"></div>					
+                </div>
+            </div>			
+
+            <div class="form-group">
+                <div class="label">
+                    <label>图片：</label>
+                </div>
+                <div class="field" id="img">
+                    <div style="width:90px;height: 90px;margin-right: 35px;float: left;position: relative;">
+						<img <if condition="$monster_info['monster_logo']">src="__ROOT__{$monster_info.monster_logo}"<else/>src="__PUBLIC__/Ttfadmin/images/add.png"</if> style="width: 100%;height: 100%;" />
+                        <input type="file" en="no" onchange="change_img(this)" style="width:90px;height: 90px;opacity: 0;position: absolute;top:0;left: 0;" name="image[]">
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>			
+			
+            <div class="form-group">
+                <div class="label">
+                    <label>描述：</label>
+                </div>
+                <div class="field">
+                    <textarea class="input" name="monster_desc" style=" height:90px;">{$monster_info.monster_desc}</textarea>
+                    <div class="tips"></div>
+                </div>
+            </div>
+			
+            <div class="form-group">
+                <div class="label">
+                    <label>物攻：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$monster_info.monster_attack}" name="monster_attack" data-validate="required:请输入物攻值"/>
+                    <div class="tips"></div>
+                </div>
+            </div>			
+            <div class="form-group">
+                <div class="label">
+                    <label>魔攻：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$monster_info.monster_magic}" name="monster_magic" data-validate="required:请输入魔攻值"/>
+                    <div class="tips"></div>
+                </div>
+            </div>	
+            <div class="form-group">
+                <div class="label">
+                    <label>生命：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$monster_info.monster_hp}" name="monster_hp" data-validate="required:请输入生命值"/>
+                    <div class="tips"></div>
+                </div>
+            </div>			
+            <div class="form-group">
+                <div class="label">
+                    <label>魔法：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$monster_info.monster_mp}" name="monster_mp" data-validate="required:请输入魔法值"/>
+                    <div class="tips"></div>
+                </div>
+            </div>			
+            <div class="form-group">
+                <div class="label">
+                    <label>物防：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$monster_info.monster_attack_defense}" name="monster_attack_defense" data-validate="required:请输入物防值"/>
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>魔防：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$monster_info.monster_magic_defense}" name="monster_magic_defense" data-validate="required:请输入魔防值"/>
+                    <div class="tips"></div>
+                </div>
+            </div>			
+            <div class="form-group">
+                <div class="label">
+                    <label>闪避：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$monster_info.monster_dodge}" name="monster_dodge" data-validate="required:请输入闪避值"/>
+                    <div class="tips"></div>
+                </div>
+            </div>			
+            <div class="form-group">
+                <div class="label">
+                    <label>命中：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$monster_info.monster_direct}" name="monster_direct" data-validate="required:请输入命中值"/>
+                    <div class="tips"></div>
+                </div>
+            </div>			
+            <div class="form-group">
+                <div class="label">
+                    <label>暴击：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$monster_info.monster_crit}" name="monster_crit" data-validate="required:请输入暴击值"/>
+                    <div class="tips"></div>
+                </div>
+            </div>			
+			
+            <div class="form-group">
+                <div class="label">
+                    <label>天赋技能：</label>
+                </div>
+                <div class="field">
+					<div class="float-left margin-right">
+						<input id="monster_role_skill_id" name="monster_role_skill_id" value="{$monster_info.monster_role_skill_id}" type="hidden" />
+						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_role_skill&id_name=monster_role_skill_id','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$monster_info.monster_role_skill_name}</button>
+					</div>					
+					<div class="tips"></div> 
+                </div>				
+            </div>	
+            <div class="form-group">
+                <div class="label">
+                    <label>通用技能：</label>
+                </div>
+                <div class="field">
+					<div class="float-left margin-right">
+						<input id="monster_common_skill_id_1" name="monster_common_skill_id_1" value="{$monster_info.monster_common_skill_ids_arr.1.skill}" type="hidden" />
+						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_common_skill&id_name=monster_common_skill_id_1','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$monster_info.monster_common_skill_ids_arr.1.skill_name}</button>
+					</div>		
+					<div class="float-left margin-right">
+						<input id="monster_common_skill_id_2" name="monster_common_skill_id_2" value="{$monster_info.monster_common_skill_ids_arr.2.skill}" type="hidden" />
+						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_common_skill&id_name=monster_common_skill_id_2','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$monster_info.monster_common_skill_ids_arr.2.skill_name}</button>
+					</div>
+					<div class="float-left margin-right">
+						<input id="monster_common_skill_id_3" name="monster_common_skill_id_3" value="{$monster_info.monster_common_skill_ids_arr.3.skill}" type="hidden" />
+						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_common_skill&id_name=monster_common_skill_id_3','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$monster_info.monster_common_skill_ids_arr.3.skill_name}</button>
+					</div>	
+					<div class="float-left margin-right">
+						<input id="monster_common_skill_id_4" name="monster_common_skill_id_4" value="{$monster_info.monster_common_skill_ids_arr.4.skill}" type="hidden" />
+						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_common_skill&id_name=monster_common_skill_id_4','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$monster_info.monster_common_skill_ids_arr.4.skill_name}</button>
+					</div>						
+					<div class="tips"></div> 
+                </div>				
+            </div>			
+			
+            <div class="form-group">
+                <div class="label">
+                    <label>物品及暴率：</label>
+                </div>
+                <div class="field">
+					<div class="float-left margin-big-right">
+						<input id="monster_goods_1" name="monster_goods_1" value="{$monster_info.monster_goods_arr.1.goods}" type="hidden" />
+						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_goods&id_name=monster_goods_1','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$monster_info.monster_goods_arr.1.goods_name}</button>
+						<input type="text" class="button" size="10" name="monster_goods_1_rate" value="{$monster_info.monster_goods_arr.1.rate}" />
+					</div>				
+					<div class="float-left margin-big-right">
+						<input id="monster_goods_2" name="monster_goods_2" value="{$monster_info.monster_goods_arr.2.goods}" type="hidden" />
+						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_goods&id_name=monster_goods_2','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$monster_info.monster_goods_arr.2.goods_name}</button>
+						<input type="text" class="button" size="10" name="monster_goods_2_rate" value="{$monster_info.monster_goods_arr.2.rate}" />
+					</div>								
+					<div class="float-left margin-big-right">
+						<input id="monster_goods_3" name="monster_goods_3" value="{$monster_info.monster_goods_arr.3.goods}" type="hidden" />
+						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_goods&id_name=monster_goods_3','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$monster_info.monster_goods_arr.3.goods_name}</button>
+						<input type="text" class="button" size="10" name="monster_goods_3_rate" value="{$monster_info.monster_goods_arr.3.rate}" />
+					</div>	
+					<div class="float-left margin-big-right">
+						<input id="monster_goods_4" name="monster_goods_4" value="{$monster_info.monster_goods_arr.4.goods}" type="hidden" />
+						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_goods&id_name=monster_goods_4','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$monster_info.monster_goods_arr.4.goods_name}</button>
+						<input type="text" class="button" size="10" name="monster_goods_4_rate" value="{$monster_info.monster_goods_arr.4.rate}" />
+					</div>		
+					<div class="float-left margin-big-right">
+						<input id="monster_goods_5" name="monster_goods_5" value="{$monster_info.monster_goods_arr.5.goods}" type="hidden" />
+						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_goods&id_name=monster_goods_5','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$monster_info.monster_goods_arr.5.goods_name}</button>
+						<input type="text" class="button" size="10" name="monster_goods_5_rate" value="{$monster_info.monster_goods_arr.5.rate}" />
+					</div>	
+					(暴率格式及范围:1-10000)
+                    <div class="tips"></div>					
+                </div>
+            </div>				
+			
+			
+            <div class="form-group">
+                <div class="label">
+                    <label></label>
+                </div>
+                <div class="field">
+					<input type="hidden" name="monster_id" value="{$monster_info.monster_id}" />
+                    <button class="button bg-main icon-check-square-o" type="submit"> 修改</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+	function change_img(obj){
+		var files = obj.files;
+		if (!files.length || !window.FileReader) return;
+		// Only proceed if the selected file is an image
+		if (/^image/.test( files[0].type)){
+			var reader = new FileReader();
+			reader.readAsDataURL(files[0]);
+			reader.onloadend = function(){
+				$(obj).siblings('img').attr('src',this.result);
+			}
+		}
+	}
+	
+	function chose_type(id){
+		if(id>0){
+			$('#type_chose_2').css('display','block');
+			$('#type_chose_3').css('display','none');
+			$.ajax({
+				type: 'post',
+				url: '__ROOT__/index.php?m=ttfadmin&c=currency&a=type_get',
+				data: {id: id},
+				dataType: 'text',
+				success: function(data){
+					$('#type_chose_2').html(data);
+				}
+			});
+				
+		}else{	
+			$('#type_chose_2').css('display','none');
+			$('#type_chose_3').css('display','none');
+		}
+	}
+	function chose_type_2(id){
+		if(id>0){
+			$('#type_chose_3').css('display','block');
+			$.ajax({
+				type: 'post',
+				url: '__ROOT__/index.php?m=ttfadmin&c=currency&a=type_get',
+				data: {id: id},
+				dataType: 'text',
+				success: function(data){
+					$('#type_chose_3').html(data);
+				}
+			});
+				
+		}else{
+			$('#type_chose_2').css('display','none');
+			$('#type_chose_3').css('display','none');
+
+		}
+	}	
+	function chose_type_3(id){
+		if(id==0){
+			$('#type_chose_3').css('display','none');
+		}
+	}	
+</script>
+
+</body>
+</html>
+
+
+
+
+

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2017-11-20 13:47:32
+Date: 2017-11-21 16:29:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -34,7 +34,7 @@ CREATE TABLE `ttf_admin` (
   `admin_tag` varchar(64) DEFAULT NULL,
   `ip_address` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`admin_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for ttf_admin_log
@@ -47,7 +47,7 @@ CREATE TABLE `ttf_admin_log` (
   `admin_id` smallint(6) DEFAULT NULL,
   `ip_address` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`log_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for ttf_admin_role
@@ -83,7 +83,7 @@ CREATE TABLE `ttf_common_skill` (
   `common_skill_hp_regain` smallint(6) DEFAULT '0',
   `common_skill_mp_regain` smallint(6) DEFAULT '0',
   PRIMARY KEY (`common_skill_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for ttf_goods
@@ -153,10 +153,11 @@ CREATE TABLE `ttf_monster` (
   `monster_dodge` smallint(6) DEFAULT '0',
   `monster_direct` smallint(6) DEFAULT '0',
   `monster_crit` smallint(6) DEFAULT '0',
-  `monster_skill_ids` varchar(255) DEFAULT NULL,
+  `monster_role_skill_id` smallint(6) DEFAULT '0',
+  `monster_common_skill_ids` varchar(255) DEFAULT NULL,
   `monster_goods` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`monster_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for ttf_province
@@ -220,7 +221,7 @@ CREATE TABLE `ttf_role_skill` (
   `role_skill_logo` varchar(128) DEFAULT NULL,
   `role_skill_desc` text,
   `role_skill_time` datetime DEFAULT NULL,
-  `role_skill_attact` smallint(6) DEFAULT '0',
+  `role_skill_attack` smallint(6) DEFAULT '0',
   `role_skill_magic` smallint(6) DEFAULT '0',
   `role_skill_hp` int(6) DEFAULT '0',
   `role_skill_mp` int(6) DEFAULT '0',
@@ -232,7 +233,7 @@ CREATE TABLE `ttf_role_skill` (
   `role_skill_hp_regain` smallint(6) DEFAULT '0',
   `role_skill_mp_regain` smallint(6) DEFAULT '0',
   PRIMARY KEY (`role_skill_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for ttf_type
@@ -245,7 +246,7 @@ CREATE TABLE `ttf_type` (
   `type_logo` varchar(128) DEFAULT NULL,
   `type_desc` text,
   PRIMARY KEY (`type_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for ttf_user

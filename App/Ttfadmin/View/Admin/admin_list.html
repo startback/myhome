@@ -79,12 +79,12 @@
                 dataType: 'text',
                 success: function(data){
                     if(data == 1){
-                        alert('删除成功');
+                        layer.msg('删除成功');
                         location.reload();
                     }else if(data == 2){
-                        alert('无权删除超级管理员');
+                        layer.msg('无权删除超级管理员');
                     }else{
-                        alert('删除失败');
+                        layer.msg('删除失败');
                     }
                 }
             });
@@ -128,17 +128,17 @@
                 dataType: 'text',
                 success: function(data){
                     if(data == 1){
-                        alert('删除成功');
+                        layer.msg('删除成功');
                         location.reload();
                     }else if(data == 2){
-                        alert('无权删除超级管理员');
+                        layer.msg('无权删除超级管理员');
                     }else{
-                        alert('删除失败');
+                        layer.msg('删除失败');
                     }
                 }
             });
         } else {
-            alert("请选择您要删除的内容!");
+            layer.msg("请选择您要删除的内容!");
             return false;
         }
     }

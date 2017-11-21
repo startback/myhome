@@ -167,7 +167,8 @@
 | monster_dodge | smallint | 0 | - | 初始闪避值 |
 | monster_direct | smallint | 0 | - | 初始命中值 |
 | monster_crit | smallint | 0 | - | 初始暴击值 |
-| monster_skill_ids | varchar(255) | - | - | 怪物技能集 |
+| monster_role_skill_id | smallint | 0 | - | 怪物天赋技能 |
+| monster_common_skill_ids | varchar(255) | - | - | 怪物通用技能集 |
 | monster_goods | varchar(255) | - | - | 怪物身上物品及暴率 |
 
 

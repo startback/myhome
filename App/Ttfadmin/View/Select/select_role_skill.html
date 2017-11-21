@@ -9,8 +9,9 @@
 	<div class="padding border-bottom">
 		<form action="" method="get">
 			<input type="hidden" name="m" value="ttfadmin" />
-			<input type="hidden" name="c" value="currency" />
-			<input type="hidden" name="a" value="role_skill" />
+			<input type="hidden" name="c" value="select" />
+			<input type="hidden" name="a" value="select_role_skill" />
+			<input type="hidden" name="id_name" value="{$search_state.id_name}" />
 			<ul class="search" style="padding-left:10px;">
 				<li>
 					名称
@@ -24,11 +25,7 @@
 				</li>
 				<li>
 					<input type="submit" class="button border-main icon-search" value="搜索"/>
-				</li>
-				
-				<li>
-				<a class="button border-main icon-plus-square-o" href="__ROOT__/index.php?m=ttfadmin&c=currency&a=role_skill_add"> 添加天赋技能</a>
-				</li>					
+				</li>				
 			</ul>
 		</form>
 	</div>	
@@ -51,10 +48,29 @@
 			<th>暴击</th>
 			<th>生命回复</th>
 			<th>魔法回复</th>
-			<th width="310">操作</th>
+			<th>操作</th>
 		</tr>
 
-		<if condition="$role_skill_list">
+		<tr>
+			<td>0</td>
+			<td>无</td>
+			<td><img width="40" height="40" src="__PUBLIC__/Ttfadmin/images/no_skill.jpg"/></td>
+			<td>无</td>
+			<td>无</td>
+			<td>0</td>
+			<td>0</td>
+			<td>0</td>
+			<td>0</td>
+			<td>0</td>
+			<td>0</td>
+			<td>0</td>
+			<td>0</td>
+			<td>0</td>
+			<td>0</td>
+			<td>0</td>
+			<td><button onclick="chose_skill(0,'无','{$search_state.id_name}')" class="button">选中</button></td>
+		</tr>		
+		<if condition="$role_skill_list">		
 			<volist name="role_skill_list" id="vo">
 				<tr>
 					<td>{$vo.role_skill_id}</td>
@@ -73,55 +89,26 @@
 					<td>{$vo.role_skill_crit}</td>
 					<td>{$vo.role_skill_hp_regain}</td>
 					<td>{$vo.role_skill_mp_regain}</td>
-					<td>
-						<div class="button-group">
-							<a class="button border-main" href="__ROOT__/index.php?m=ttfadmin&c=currency&a=role_skill_edit&id={$vo.role_skill_id}"><span class="icon-edit"></span> 修改</a>
-							<a class="button border-red" href="javascript:void(0)" onclick="del({$vo.role_skill_id})">
-								<span class="icon-trash-o"></span> 删除
-							</a>
-						</div>
-					</td>
+					<td><button onclick="chose_skill({$vo.role_skill_id},'{$vo.role_skill_name}','{$search_state.id_name}')" class="button">选中</button></td>
 				</tr>
-			</volist>
-			
-			<tr>
-				<td colspan="17">
-					<div class="pagelist">{$page}</div>
-				</td>
-			</tr>				
-						
-			<else/>
-			<tr>
-				<td colspan="17" style="height: 80px;line-height: 80px;font-size: 20px;">
-					没有数据
-				</td>
-			</tr>
+			</volist>				
 		</if>
-
+		<tr>
+			<td colspan="17">
+				<div class="pagelist">{$page}</div>
+			</td>
+		</tr>
+		
 	</table>
 </div>
 
 <script type="text/javascript">
-
-    //单个删除
-    function del(id) {
-        if(confirm("您确定要删除吗?")) {
-            $.ajax({
-                type: 'post',
-                url: '__ROOT__/index.php?m=ttfadmin&c=currency&a=role_skill_del',
-                data: {ids: id},
-                dataType: 'text',
-                success: function(data){
-                    if(data == 1){
-                        layer.msg('删除成功');
-						setTimeout("location.reload()",1000);
-                    }else{
-                        layer.msg('删除失败');
-                    }
-                }
-            });
-        }
-    }
+	//父窗口更改
+	function chose_skill(id,name,id_name){
+		window.opener.$("#"+id_name).val(id);
+		window.opener.$("#"+id_name).siblings('button').html(name);
+		window.close();
+	}
 
 </script>
 </body>
