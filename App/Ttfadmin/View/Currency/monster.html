@@ -101,9 +101,7 @@
 					<td>
 						<div class="button-group">
 							<a class="button border-main" href="__ROOT__/index.php?m=ttfadmin&c=currency&a=monster_edit&id={$vo.monster_id}"><span class="icon-edit"></span> 修改</a>
-							<a class="button border-red" href="javascript:void(0)" onclick="del({$vo.monster_id})">
-								<span class="icon-trash-o"></span> 删除
-							</a>
+							<a class="button border-red" href="__ROOT__/index.php?m=ttfadmin&c=currency&a=monster_del&ids={$vo.monster_id}"><span class="icon-trash-o"></span> 删除</a>
 						</div>
 					</td>
 				</tr>
@@ -127,27 +125,6 @@
 </div>
 
 <script type="text/javascript">
-
-    //单个删除
-    function del(id) {
-        if(confirm("您确定要删除吗?")) {
-            $.ajax({
-                type: 'post',
-                url: '__ROOT__/index.php?m=ttfadmin&c=currency&a=monster_del',
-                data: {ids: id},
-                dataType: 'text',
-                success: function(data){
-                    if(data == 1){
-                        layer.msg('删除成功');
-                        location.reload();
-                    }else{
-                        layer.msg('删除失败');
-                    }
-                }
-            });
-        }
-    }
-
 	function chose_type(id){
 		if(id>0){
 			$('#select_id_2').css('display','inline-block');

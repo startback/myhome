@@ -47,7 +47,7 @@
 | user_id | int | - | - | 用户ID |
 | user_ttbi | int | 0 | - | 塔塔币 |
 | user_gold | int | 0 | - | 金币 |
-| user_vip | tinyint | 0 | - | vip等级 0生铁 1青铜 2白银 3黄金 4塔主 |
+| user_vip | tinyint | 0 | - | vip等级 无-彩虹七色-黑白-混沌 |
 | user_role_id | int | 0 | - | 用户出战角色 |
 
 

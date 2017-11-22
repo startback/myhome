@@ -116,11 +116,13 @@ class CurrencyController extends CommonController {
 	//删除类型
 	public function type_del(){
 		
-        $ids = isset($_POST['ids'])?$_POST['ids']:'';
+        $ids = isset($_REQUEST['ids'])?$_REQUEST['ids']:'';
         if($ids){
             if(D('type')->type_del($ids)){
-                echo 1;
-            }
+                $this->success('删除成功!');
+            }else{
+				$this->error('删除失败');
+			}
         }	
 		
 	}	
@@ -341,11 +343,13 @@ class CurrencyController extends CommonController {
 	
 	public function goods_del(){
 		
-        $ids = isset($_POST['ids'])?$_POST['ids']:'';
+        $ids = isset($_REQUEST['ids'])?$_REQUEST['ids']:'';
         if($ids){
             if(D('goods')->goods_del($ids)){
-                echo 1;
-            }
+                $this->success('删除成功!');
+            }else{
+				$this->error('删除失败');
+			}
         }			
 		
 	}	
@@ -472,11 +476,13 @@ class CurrencyController extends CommonController {
 	
 	public function role_skill_del(){
 		
-        $ids = isset($_POST['ids'])?$_POST['ids']:'';
+        $ids = isset($_REQUEST['ids'])?$_REQUEST['ids']:'';
         if($ids){
             if(D('role_skill')->role_skill_del($ids)){
-                echo 1;
-            }
+                $this->success('删除成功!');
+            }else{
+				$this->error('删除失败');
+			}
         }		
 		
 	}
@@ -603,11 +609,13 @@ class CurrencyController extends CommonController {
 	
 	public function common_skill_del(){
 		
-        $ids = isset($_POST['ids'])?$_POST['ids']:'';
+        $ids = isset($_REQUEST['ids'])?$_REQUEST['ids']:'';
         if($ids){
             if(D('common_skill')->common_skill_del($ids)){
-                echo 1;
-            }
+                $this->success('删除成功!');
+            }else{
+				$this->error('删除失败');
+			}
         }			
 		
 	}		
@@ -884,16 +892,13 @@ class CurrencyController extends CommonController {
 	
 	public function monster_del(){
 		
-        $ids = isset($_POST['ids'])?$_POST['ids']:'';
-        if($ids){
-            if(D('monster')->monster_del($ids)){
-                echo 1;
-            }
-        }			
-		
+        $ids = isset($_REQUEST['ids'])?$_REQUEST['ids']:'';
+        if(D('monster')->monster_del($ids)){
+			$this->success('删除成功!');
+		}else{
+			$this->error('删除失败');
+		}
 	}	
 	
-
-
 
 }

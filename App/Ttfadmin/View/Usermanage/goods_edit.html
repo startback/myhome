@@ -1,0 +1,232 @@
+<include file='Common:top'/>
+
+<body>
+<div class="panel admin-panel">
+    <div class="panel-head" id="add"><strong><span class="icon-key"></span> 修改物品</strong></div>
+    <div class="body-content">
+        <form method="post" class="form-x" action="" enctype="multipart/form-data">
+            <div class="form-group">
+                <div class="label">
+                    <label>名称：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$goods_info.goods_name}" name="goods_name" data-validate="required:请输入物品名"/>
+                    <div class="tips"></div>
+                </div>
+            </div>
+			
+            <div class="form-group">
+                <div class="label">
+                    <label>类别：</label>
+                </div>
+                <div class="field">
+                    <select name="goods_type" class="input w50" onchange="chose_type(this.value)">
+                        <option value="0">请选择</option>					
+                        <foreach name="types" item="vo" key="key" >
+                            <option <?php if($vo['type_id']==$type_ids['one']) echo 'selected';?> value="{$vo.type_id}">{$vo.type_name}</option>
+                        </foreach>
+                    </select>					
+                    <select id="type_chose_2" name="goods_type_2" onchange="chose_type_2(this.value)" class="input w50" style="display:<if condition="$type_ids.two gt 0">block<else/>none</if>;">
+						<if condition="$type_ids.two gt 0">
+							<option value="0">上一级</option>
+							<foreach name="types_two" item="vo" key="key" >
+								<option <?php if($vo['type_id'] == $type_ids['two']) echo 'selected';?> value="{$vo.type_id}">{$vo.type_name}</option>
+							</foreach>						
+						</if>					
+					</select>			
+                    <select id="type_chose_3" name="goods_type_3" onchange="chose_type_3(this.value)" class="input w50" style="display:<if condition="$type_ids.three gt 0">block<else/>none</if>;">
+						<if condition="$type_ids.three gt 0">
+							<option value="0">上一级</option>
+							<foreach name="types_three" item="vo" key="key" >
+								<option <?php if($vo['type_id'] == $type_ids['three']) echo 'selected';?> value="{$vo.type_id}">{$vo.type_name}</option>
+							</foreach>						
+						</if>					
+					</select>			
+					<div class="tips"></div>					
+                </div>
+            </div>			
+
+            <div class="form-group">
+                <div class="label">
+                    <label>图片：</label>
+                </div>
+                <div class="field" id="img">
+                    <div style="width:90px;height: 90px;margin-right: 35px;float: left;position: relative;">
+						<img <if condition="$goods_info['goods_logo']">src="__ROOT__{$goods_info.goods_logo}"<else/>src="__PUBLIC__/Ttfadmin/images/add.png"</if> style="width: 100%;height: 100%;" />
+                        <input type="file" en="no" onchange="change_img(this)" style="width:90px;height: 90px;opacity: 0;position: absolute;top:0;left: 0;" name="image[]">
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>			
+			
+            <div class="form-group">
+                <div class="label">
+                    <label>描述：</label>
+                </div>
+                <div class="field">
+                    <textarea class="input" name="goods_desc" style=" height:90px;">{$goods_info.goods_desc}</textarea>
+                    <div class="tips"></div>
+                </div>
+            </div>
+			
+            <div class="form-group">
+                <div class="label">
+                    <label>物攻：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$goods_info.goods_attack}" name="goods_attack" data-validate="required:请输入物攻值"/>
+                    <div class="tips"></div>
+                </div>
+            </div>			
+            <div class="form-group">
+                <div class="label">
+                    <label>魔攻：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$goods_info.goods_magic}" name="goods_magic" data-validate="required:请输入魔攻值"/>
+                    <div class="tips"></div>
+                </div>
+            </div>	
+            <div class="form-group">
+                <div class="label">
+                    <label>生命：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$goods_info.goods_hp}" name="goods_hp" data-validate="required:请输入生命值"/>
+                    <div class="tips"></div>
+                </div>
+            </div>			
+            <div class="form-group">
+                <div class="label">
+                    <label>魔法：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$goods_info.goods_mp}" name="goods_mp" data-validate="required:请输入魔法值"/>
+                    <div class="tips"></div>
+                </div>
+            </div>			
+            <div class="form-group">
+                <div class="label">
+                    <label>物防：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$goods_info.goods_attack_defense}" name="goods_attack_defense" data-validate="required:请输入物防值"/>
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>魔防：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$goods_info.goods_magic_defense}" name="goods_magic_defense" data-validate="required:请输入魔防值"/>
+                    <div class="tips"></div>
+                </div>
+            </div>			
+            <div class="form-group">
+                <div class="label">
+                    <label>闪避：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$goods_info.goods_dodge}" name="goods_dodge" data-validate="required:请输入闪避值"/>
+                    <div class="tips"></div>
+                </div>
+            </div>			
+            <div class="form-group">
+                <div class="label">
+                    <label>命中：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$goods_info.goods_direct}" name="goods_direct" data-validate="required:请输入命中值"/>
+                    <div class="tips"></div>
+                </div>
+            </div>			
+            <div class="form-group">
+                <div class="label">
+                    <label>暴击：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$goods_info.goods_crit}" name="goods_crit" data-validate="required:请输入暴击值"/>
+                    <div class="tips"></div>
+                </div>
+            </div>			
+			
+            <div class="form-group">
+                <div class="label">
+                    <label></label>
+                </div>
+                <div class="field">
+					<input type="hidden" name="goods_id" value="{$goods_info.goods_id}" />
+                    <button class="button bg-main icon-check-square-o" type="submit"> 修改</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+	function change_img(obj){
+		var files = obj.files;
+		if (!files.length || !window.FileReader) return;
+		// Only proceed if the selected file is an image
+		if (/^image/.test( files[0].type)){
+			var reader = new FileReader();
+			reader.readAsDataURL(files[0]);
+			reader.onloadend = function(){
+				$(obj).siblings('img').attr('src',this.result);
+			}
+		}
+	}
+	
+	function chose_type(id){
+		if(id>0){
+			$('#type_chose_2').css('display','block');
+			$('#type_chose_3').css('display','none');
+			$.ajax({
+				type: 'post',
+				url: '__ROOT__/index.php?m=ttfadmin&c=currency&a=type_get',
+				data: {id: id},
+				dataType: 'text',
+				success: function(data){
+					$('#type_chose_2').html(data);
+				}
+			});
+				
+		}else{	
+			$('#type_chose_2').css('display','none');
+			$('#type_chose_3').css('display','none');
+		}
+	}
+	function chose_type_2(id){
+		if(id>0){
+			$('#type_chose_3').css('display','block');
+			$.ajax({
+				type: 'post',
+				url: '__ROOT__/index.php?m=ttfadmin&c=currency&a=type_get',
+				data: {id: id},
+				dataType: 'text',
+				success: function(data){
+					$('#type_chose_3').html(data);
+				}
+			});
+				
+		}else{
+			$('#type_chose_2').css('display','none');
+			$('#type_chose_3').css('display','none');
+
+		}
+	}	
+	function chose_type_3(id){
+		if(id==0){
+			$('#type_chose_3').css('display','none');
+		}
+	}	
+</script>
+
+</body>
+</html>
+
+
+
+
+
