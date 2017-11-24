@@ -45,156 +45,130 @@ class UsermanageController extends CommonController {
 	}
 	
 	
-	//  待做
-	
-	public function goods_add(){
+	//添加用户
+	public function user_add(){
 		
-        if($_POST){
-			$data['goods_name'] = isset($_POST['goods_name'])?trim($_POST['goods_name']):'';
-			$goods_type = isset($_POST['goods_type'])?intval($_POST['goods_type']):0;
-			$goods_type_2 = isset($_POST['goods_type_2'])?intval($_POST['goods_type_2']):0;
-			$goods_type_3 = isset($_POST['goods_type_3'])?intval($_POST['goods_type_3']):0;
-			if($goods_type_3 > 0){
-				$goods_type = $goods_type_3;
-			}else{
-				if($goods_type_2 > 0){
-					$goods_type = $goods_type_2;	
-				}			
-			}
-			$data['goods_type'] = $goods_type;
-			
+		if($_POST){
+			$data['user_phone'] = isset($_POST['user_phone'])?trim($_POST['user_phone']):'';
+			$data['user_pass'] = isset($_POST['user_pass'])?trim($_POST['user_pass']):'';
+			$data['user_name'] = isset($_POST['user_name'])?trim($_POST['user_name']):'';
+			$data['user_sex'] = isset($_POST['user_sex'])?intval($_POST['user_sex']):0;
+			$data['user_birthday'] = !empty($_POST['user_birthday'])?trim($_POST['user_birthday']):'1970-01-01';
+			$data['user_status'] = isset($_POST['user_status'])?intval($_POST['user_status']):0;
             if($_FILES){
-                $images = com_save_file($_FILES,'/Upload/Ttf/goods/origin');
+                $images = com_save_file($_FILES,'/Upload/Ttf/user/origin');
                 foreach($images as $key=>$val){
-                    $data['goods_logo'] = com_make_thumb($val,'/Upload/Ttf/goods/thumb');
-                    $all_data[] = $data;
+                    $data['user_head'] = com_make_thumb($val,'/Upload/Ttf/user/thumb');
                 }
-            }
-			$data['goods_desc'] = isset($_POST['goods_desc'])?trim($_POST['goods_desc']):'';
-			$data['goods_attack'] = isset($_POST['goods_attack'])?intval($_POST['goods_attack']):0;
-			$data['goods_magic'] = isset($_POST['goods_magic'])?intval($_POST['goods_magic']):0;
-			$data['goods_hp'] = isset($_POST['goods_hp'])?intval($_POST['goods_hp']):0;
-			$data['goods_mp'] = isset($_POST['goods_mp'])?intval($_POST['goods_mp']):0;
-			$data['goods_attack_defense'] = isset($_POST['goods_attack_defense'])?intval($_POST['goods_attack_defense']):0;
-			$data['goods_magic_defense'] = isset($_POST['goods_magic_defense'])?intval($_POST['goods_magic_defense']):0;
-			$data['goods_dodge'] = isset($_POST['goods_dodge'])?intval($_POST['goods_dodge']):0;
-			$data['goods_direct'] = isset($_POST['goods_direct'])?intval($_POST['goods_direct']):0;
-			$data['goods_crit'] = isset($_POST['goods_crit'])?intval($_POST['goods_crit']):0;
-			
-			$data['goods_time'] = date('Y-m-d H:i:s',time());
-			
-            if(D('goods')->goods_add($data)){
-                $this->success('添加成功!',U('currency/goods'));
-            }else{
-                $this->error('添加失败');
-            }
-        }else{
-			$types = D('type')->type_list();
-            $this->assign('types',$types);
-            $this->display();
-        }		
+            }			
 		
+			$data_info['user_ttbi'] = isset($_POST['user_ttbi'])?intval($_POST['user_ttbi']):0;
+			$data_info['user_gold'] = isset($_POST['user_gold'])?intval($_POST['user_gold']):0;
+			$data_info['user_vip'] = isset($_POST['user_vip'])?intval($_POST['user_vip']):0;
+			
+			if(empty($data['user_phone']) || empty($data['user_pass'])){
+				$this->error('手机和密码不能为空');
+				exit;
+			}
+			if($data['user_name']){
+				if(M('user')->where("user_name='".$data['user_name']."'")->find()){
+					$this->error('昵称已存在，请重新填写');
+					exit;
+				}
+			}			
+			//手机是否已存在
+			if(M('user')->where("user_phone='".$data['user_phone']."'")->find()){
+				$this->error('手机号码已存在');
+				exit;
+			}
+			//生成数据，插入数据库
+			$data['user_pass'] = hex2bin(strtolower(md5($data['user_pass'])));
+			if(empty($data['user_name'])) $data['user_name'] = "ttf_".substr($data['user_phone'],0,4)."****".substr($data['user_phone'],7,4);
+			$data['user_reg_time'] = date('Y-m-d H:i:s',time());
+			
+		 	if(D('user')->user_register($data,$data_info)){
+				$this->success('注册成功');
+			}else{
+				$this->error('注册失败');
+			}
+			
+		}else{
+			$user_vip_level = C('USER_VIP_LEVEL');
+			$user_sex = C('USER_SEX');
+			$user_status = C('USER_STATUS');
+			$this->assign('user_sex',$user_sex);			
+			$this->assign('user_status',$user_status);			
+			$this->assign('user_vip_level',$user_vip_level);			
+			$this->display();
+		}
 	}	
 	
-	public function goods_edit(){
+	//修改用户资料
+	public function user_edit(){
 		
         if($_POST){
-            $goods_id = isset($_POST['goods_id']) ? intval($_POST['goods_id']) : 0;
-			if(empty($goods_id)) {
-				$this->error('没有此物品');
+            $user_id = isset($_POST['user_id']) ? intval($_POST['user_id']) : 0;
+			if(empty($user_id)) {
+				$this->error('没有此用户');
 				exit;
 			}
 
-			$data['goods_name'] = isset($_POST['goods_name'])?trim($_POST['goods_name']):'';
-			$goods_type = isset($_POST['goods_type'])?intval($_POST['goods_type']):0;
-			$goods_type_2 = isset($_POST['goods_type_2'])?intval($_POST['goods_type_2']):0;
-			$goods_type_3 = isset($_POST['goods_type_3'])?intval($_POST['goods_type_3']):0;
-			if($goods_type_3 > 0){
-				$goods_type = $goods_type_3;
-			}else{
-				if($goods_type_2 > 0){
-					$goods_type = $goods_type_2;	
-				}			
-			}
-			$data['goods_type'] = $goods_type;
-			
+			$data['user_name'] = isset($_POST['user_name'])?trim($_POST['user_name']):'';
+			$data['user_sex'] = isset($_POST['user_sex'])?intval($_POST['user_sex']):0;
+			$data['user_birthday'] = !empty($_POST['user_birthday'])?trim($_POST['user_birthday']):'1970-01-01';
+			$data['user_status'] = isset($_POST['user_status'])?intval($_POST['user_status']):0;
             if($_FILES){
-                $images = com_save_file($_FILES,'/Upload/Ttf/goods/origin');
+                $images = com_save_file($_FILES,'/Upload/Ttf/user/origin');
                 foreach($images as $key=>$val){
-                    $data['goods_logo'] = com_make_thumb($val,'/Upload/Ttf/goods/thumb');
-                    $all_data[] = $data;
+                    $data['user_head'] = com_make_thumb($val,'/Upload/Ttf/user/thumb');
                 }
-            }
-			$data['goods_desc'] = isset($_POST['goods_desc'])?trim($_POST['goods_desc']):'';
-			$data['goods_attack'] = isset($_POST['goods_attack'])?intval($_POST['goods_attack']):0;
-			$data['goods_magic'] = isset($_POST['goods_magic'])?intval($_POST['goods_magic']):0;
-			$data['goods_hp'] = isset($_POST['goods_hp'])?intval($_POST['goods_hp']):0;
-			$data['goods_mp'] = isset($_POST['goods_mp'])?intval($_POST['goods_mp']):0;
-			$data['goods_attack_defense'] = isset($_POST['goods_attack_defense'])?intval($_POST['goods_attack_defense']):0;
-			$data['goods_magic_defense'] = isset($_POST['goods_magic_defense'])?intval($_POST['goods_magic_defense']):0;
-			$data['goods_dodge'] = isset($_POST['goods_dodge'])?intval($_POST['goods_dodge']):0;
-			$data['goods_direct'] = isset($_POST['goods_direct'])?intval($_POST['goods_direct']):0;
-			$data['goods_crit'] = isset($_POST['goods_crit'])?intval($_POST['goods_crit']):0;
+            }			
+			$data_info['user_vip'] = isset($_POST['user_vip'])?intval($_POST['user_vip']):0;
+			
+			if($data['user_name']){
+				if(M('user')->where("user_name='".$data['user_name']."' and user_id !=".$user_id)->find()){
+					$this->error('昵称已存在，请重新填写');
+					exit;
+				}
+			}			
 		
-            if(D('goods')->goods_edit($data,$goods_id)){
-                $this->success('修改成功!',U('currency/goods'));
+            if(D('user')->user_edit($data,$data_info,$user_id)){
+                $this->success('修改成功!');
             }else{
                 $this->error('修改失败');
             }		
 		
         }else {
-            $goods_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
-			if(empty($goods_id)) {
-				$this->error('没有此物品');
+            $user_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+			if(empty($user_id)) {
+				$this->error('没有此用户');
 				exit;
 			}
-			$goods_info = M('goods')->where('goods_id='.$goods_id)->find();
+			$user = M('user')->where('user_id='.$user_id)->find();
+			$user_info = M('user_info')->where('user_id='.$user_id)->find();
+			$this->assign('user',$user);
+			$this->assign('user_info',$user_info);
 			
-			$type_info = M('type')->where('type_id='.$goods_info['goods_type'])->find();
-			
-			$type_ids['one'] = 0;
-			$type_ids['two'] = 0;
-			$type_ids['three'] = 0;
-			if($type_info){
-				if($type_info['type_pid'] > 0){
-					$two_info = M('type')->where('type_id='.$type_info['type_pid'])->find();
-					if($two_info['type_pid'] > 0){
-						$type_ids['one'] = $two_info['type_pid'];
-						$type_ids['two'] = $two_info['type_id'];
-						$type_ids['three'] = $type_info['type_id'];
-					}else{
-						$type_ids['one'] = $two_info['type_id'];
-						$type_ids['two'] = $type_info['type_id'];
-					}
-				}else{
-					$type_ids['one'] = $type_info['type_id'];
-				}
-				if($type_ids['two'] > 0){
-					$types_two = D('type')->type_list($type_ids['one']);
-					$this->assign('types_two',$types_two);				
-				}
-				if($type_ids['three'] > 0){
-					$types_three = D('type')->type_list($type_ids['two']);
-					$this->assign('types_three',$types_three);				
-				}				
-			}
-			$this->assign('type_ids',$type_ids);
-			
-			$types = D('type')->type_list();		
-			$this->assign('types',$types);
-			$this->assign('goods_info',$goods_info);
+			$user_vip_level = C('USER_VIP_LEVEL');
+			$user_sex = C('USER_SEX');
+			$user_status = C('USER_STATUS');
+			$this->assign('user_sex',$user_sex);			
+			$this->assign('user_status',$user_status);			
+			$this->assign('user_vip_level',$user_vip_level);			
 			$this->display();
         }			
 		
 	}	
 	
-	public function goods_del(){
+	public function user_del(){
 		
-        $ids = isset($_POST['ids'])?$_POST['ids']:'';
+        $ids = isset($_REQUEST['ids'])?$_REQUEST['ids']:'';	
         if($ids){
-            if(D('goods')->goods_del($ids)){
-                echo 1;
-            }
+            if(D('user')->user_del($ids)){
+                $this->success('删除成功');
+            }else{
+				$this->error('删除失败');
+			}
         }			
 		
 	}	

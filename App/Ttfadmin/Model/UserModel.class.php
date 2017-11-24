@@ -3,6 +3,8 @@ namespace Ttfadmin\Model;
 use Think\Model;
 
 class UserModel extends Model {
+
+	var $mo_role_id = 1;  //注册默认角色
     var $per_page = 12;
 
     //获取limit
@@ -61,46 +63,124 @@ class UserModel extends Model {
 			exit;
 		}
 		
-		//删除对应的数据  待做
-		//用户物品  用户角色  用户怪物 用户记录等
+		$res = true;
+		//开始事务
+		M()->startTrans(); 
+		if(M('user')->where('user_id in ('.$ids.')')->delete()){ //删除用户
 		
-		if(M('user')->where('user_id in ('.$ids.')')->delete()){
+			if(M('user_info')->where('user_id in ('.$ids.')')->find() && $res){ //删除用户详情
+				if(!M('user_info')->where('user_id in ('.$ids.')')->delete()){
+					M()->rollback();
+					$res = false;
+				} 
+			}	
+			if(M('user_role')->where('user_id in ('.$ids.')')->select()  && $res){ //删除用户角色
+				if(!M('user_role')->where('user_id in ('.$ids.')')->delete()){
+					M()->rollback();
+					$res = false;
+				}
+			}
+			if(M('user_goods')->where('user_id in ('.$ids.')')->select()  && $res){ //删除用户物品
+				if(!M('user_goods')->where('user_id in ('.$ids.')')->delete()){
+					M()->rollback();
+					$res = false;
+				}
+			}
+			if(M('user_monster')->where('user_id in ('.$ids.')')->select()  && $res){ //删除用户怪物
+				if(!M('user_monster')->where('user_id in ('.$ids.')')->delete()){
+					M()->rollback();
+					$res = false;
+				}
+			}			
+			if(M('role_maze_record')->where('user_id in ('.$ids.')')->select()  && $res){ //删除用户登塔记录
+				if(!M('role_maze_record')->where('user_id in ('.$ids.')')->delete()){
+					M()->rollback();
+					$res = false;
+				}
+			}								
+        }else{
+			$res = false;
+		}		
+		M()->commit(); 
+		
+		if($res){
 			D('admin_log')->admin_log('删除用户，ID为'.$ids);
-            return true;  
-        }else{
-			return false;
+		}else{
+			D('admin_log')->admin_log('删除用户失败，ID为'.$ids);
 		}
-    }	
-
-	//添加用户
-	public function user_add($data){
-		
-		//对应表 user_info的操作
-		
-		$in_id = M('user')->add($data);
-        if($in_id){
-			D('admin_log')->admin_log('添加用户 名称:'.$data['user_name'].'，ID为:'.$in_id);
-            return true;
-        }else{
-            return false;
-        }		
-	}		
+	
+        return $res;  		
+    }		
 	
 	//修改用户
-	public function user_edit($data,$user_id){
+	public function user_edit($data,$data_info,$user_id){
 		
-		//不同的地方 不同的语句
-		
-		if(M('user')->where('user_id='.$user_id)->save($data)){
-			D('admin_log')->admin_log('修改用户 用户名:'.$data['user_name'].'，ID为:'.$user_id);			
-			return true;
+		$res = true;
+
+		$res_one = M('user')->where('user_id='.$user_id)->save($data);
+		$res_two = M('user_info')->where('user_id='.$user_id)->save($data_info);
+		if(empty($res_one) && empty($res_two)){
+			$res = false;
+			D('admin_log')->admin_log('修改用户失败，ID为'.$user_id);
 		}else{
-			return false;
+			D('admin_log')->admin_log('修改用户 ID为:'.$user_id);
 		}
+	
+        return $res; 	
+		
 	}	
 	
 	
-	
+	//注册或添加用户
+	public function user_register($data,$data_info){
+		
+		$res = false;
+		
+		//开始事务
+		M()->startTrans();  
+		if($in_user_id = M('user')->add($data)){
+			//查询默认的角色
+			$need_role = M('role')->where('role_id='.$this->mo_role_id)->find();
+			
+			//生成默认首个角色
+			$role_data['user_id'] = $in_user_id;
+			$role_data['role_id'] = $need_role['role_id'];
+			$role_data['add_time'] = date('Y-m-d H:i:s',time());
+			$role_data['attack'] = $need_role['role_attack'];
+			$role_data['magic'] = $need_role['role_magic'];
+			$role_data['hp'] = $need_role['role_hp'];
+			$role_data['mp'] = $need_role['role_mp'];
+			$role_data['attack_defense'] = $need_role['role_attack_defense'];
+			$role_data['magic_defense'] = $need_role['role_magic_defense'];
+			$role_data['dodge'] = $need_role['role_dodge'];
+			$role_data['direct'] = $need_role['role_direct'];
+			$role_data['crit'] = $need_role['role_crit'];
+			$role_data['skill_ids'] = $need_role['role_skill_id'];
+			
+			if($n_user_role_id = M('user_role')->add($role_data)){					
+				$data_info['user_id'] = $in_user_id;
+				$data_info['user_role_id'] = $n_user_role_id;	
+				
+				if(M('user_info')->add($data_info)){
+					$res = true;
+				}else{
+					M()->rollback();							
+				}													
+			}else{
+				M()->rollback();									
+			}
+		}
+		M()->commit();   
+		//事务结束	
+		
+		if($res){
+			D('admin_log')->admin_log('注册用户 ID为:'.$in_user_id);
+		}else{
+			D('admin_log')->admin_log('注册用户失败');
+		}		
+
+		return $res;
+	}
 	
 	
 	
