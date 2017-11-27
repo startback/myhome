@@ -1,0 +1,111 @@
+<include file='Common:top'/>
+<script type="text/javascript" src="__PUBLIC__/Js/Jedate/jedate.js"></script>
+
+<body>
+
+<div class="panel admin-panel">
+	<div class="panel-head"><strong class="icon-reorder"> 用户列表</strong></div>
+	
+	<div class="padding border-bottom">
+		<form action="" method="get">
+			<input type="hidden" name="m" value="ttfadmin" />
+			<input type="hidden" name="c" value="usermanage" />
+			<input type="hidden" name="a" value="user" />
+			<ul class="search" style="padding-left:10px;">
+				<li>
+					名称
+					<input type="text" id="user_name" class="input" style="width:160px; line-height:17px; display:inline-block" value="{$search_state.user_name}" name="user_name" />
+					&nbsp;&nbsp;
+					手机
+					<input type="text" id="user_phone" class="input" style="width:160px; line-height:17px; display:inline-block" value="{$search_state.user_phone}" name="user_phone" />
+					&nbsp;&nbsp;					
+					注册时间
+					<input type="text" id="start_datebut" autocomplete="off" class="input" style="width:160px; line-height:17px; display:inline-block" value="{$search_state.start_time}" onClick="jeDate({dateCell:'#start_datebut',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})" name="start_time" />
+					--
+					<input type="text" id="end_datebut" autocomplete="off" class="input" style="width:160px; line-height:17px; display:inline-block" value="{$search_state.end_time}" onClick="jeDate({dateCell:'#end_datebut',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})" name="end_time" />
+					&nbsp;&nbsp;
+					VIP级别
+					<select name="user_vip" class="input" onchange="chose_type(this.value)" style="width:135px; line-height:17px;display:inline-block">
+						<option value="-1">请选择</option>
+						<volist name="user_vip_level" id="vo">
+						<option <?php if($key == $search_state['user_vip']) echo 'selected';?> value="{$key}">{$vo}</option>
+						</volist>
+					</select>																																				
+				</li>
+				<li>
+					<input type="submit" class="button border-main icon-search" value="搜索"/>
+				</li>				
+			</ul>
+		</form>
+	</div>	
+	
+	<table class="table table-hover text-center">
+		<tr>
+			<th>用户ID</th>
+			<th>用户名</th>
+			<th>手机</th>
+			<th>头像</th>
+			<th>塔币</th>
+			<th>金币</th>
+			<th>VIP</th>			
+			<th>性别</th>
+			<th>生日</th>
+			<th>注册时间</th>
+			<th>登录时间</th>
+			<th>状态</th>
+			<th width="310">操作</th>
+		</tr>
+
+		<tr>
+			<td>0</td>
+			<td>无</td>
+			<td>无</td>
+			<td><img width="40" height="40" src="__PUBLIC__/Ttfadmin/images/no_skill.jpg"/></td>
+			<td>0</td>
+			<td>0</td>
+			<td>0</td>
+			<td>0</td>
+			<td>0</td>
+			<td>0</td>
+			<td>0</td>
+			<td>0</td>
+			<td><button onclick="chose_user(0,'无','{$search_state.id_name}')" class="button">选中</button></td>
+		</tr>			
+		
+		<if condition="$user_list">
+			<volist name="user_list" id="vo">
+				<tr>
+					<td>{$vo.user_id}</td>
+					<td>{$vo.user_name}</td>
+					<td>{$vo.user_phone}</td>
+					<td><img width="40" height="40" src="__ROOT__{$vo.user_head}"/></td>
+					<td>{$vo.user_ttbi}</td>
+					<td>{$vo.user_gold}</td>
+					<td>{$vo.user_vip_name}</td>
+					<td>{$vo.user_sex_name}</td>
+					<td>{$vo.user_birthday}</td>
+					<td>{$vo.user_reg_time}</td>
+					<td>{$vo.user_login_time}</td>
+					<td>{$vo.user_status_name}</td>
+					<td><button onclick="chose_user({$vo.user_id},'{$vo.user_name}','{$search_state.id_name}')" class="button">选中</button></td>
+				</tr>
+			</volist>		
+			<tr>
+				<td colspan="16">
+					<div class="pagelist">{$page}</div>
+				</td>
+			</tr>				
+		</if>
+
+	</table>
+</div>
+<script>
+	//父窗口更改
+	function chose_user(id,name,id_name){
+		window.opener.$("#"+id_name).val(id);
+		window.opener.$("#"+id_name).siblings('button').html(name);
+		window.close();
+	}
+</script>
+</body>
+</html>

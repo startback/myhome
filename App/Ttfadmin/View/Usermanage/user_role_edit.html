@@ -1,0 +1,160 @@
+<include file='Common:top'/>
+<script type="text/javascript" src="__PUBLIC__/Js/Jedate/jedate.js"></script>
+
+<body>
+<div class="panel admin-panel">
+    <div class="panel-head" id="add"><strong><span class="icon-key"></span> 修改用户角色</strong></div>
+    <div class="body-content">
+        <form method="post" class="form-x" action="">
+
+            <div class="form-group">
+                <div class="label">
+                    <label>角色：</label>
+                </div>
+                <div class="field">
+					<div class="float-left margin-right">
+						<input id="role_id" name="role_id" value="{$user_role.role_id}" type="hidden" />
+						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_role&id_name=role_id','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$user_role.role_name}</button>
+					</div>					
+					<div class="tips"></div> 
+                </div>				
+            </div>			
+			
+            <div class="form-group">
+                <div class="label">
+                    <label>归属用户：</label>
+                </div>
+                <div class="field">
+					<div class="float-left margin-right">
+						<input id="user_id" name="user_id" value="{$user_role.user_id}" type="hidden" />
+						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_user&id_name=user_id','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$user_role.user_name}</button>
+					</div>					
+					<div class="tips"></div> 
+                </div>				
+            </div>				
+			
+            <div class="form-group">
+                <div class="label">
+                    <label>物攻：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$user_role.attack}" name="attack" />
+                    <div class="tips"></div>
+                </div>
+            </div>			
+            <div class="form-group">
+                <div class="label">
+                    <label>魔攻：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$user_role.magic}" name="magic" />
+                    <div class="tips"></div>
+                </div>
+            </div>	
+            <div class="form-group">
+                <div class="label">
+                    <label>生命：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$user_role.hp}" name="hp" />
+                    <div class="tips"></div>
+                </div>
+            </div>				
+            <div class="form-group">
+                <div class="label">
+                    <label>魔法：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$user_role.mp}" name="mp" />
+                    <div class="tips"></div>
+                </div>
+            </div>				
+            <div class="form-group">
+                <div class="label">
+                    <label>物防：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$user_role.attack_defense}" name="attack_defense" />
+                    <div class="tips"></div>
+                </div>
+            </div>		
+            <div class="form-group">
+                <div class="label">
+                    <label>魔防：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$user_role.magic_defense}" name="magic_defense" />
+                    <div class="tips"></div>
+                </div>
+            </div>				
+            <div class="form-group">
+                <div class="label">
+                    <label>闪避：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$user_role.dodge}" name="dodge" />
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>命中：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$user_role.direct}" name="direct" />
+                    <div class="tips"></div>
+                </div>
+            </div>	
+            <div class="form-group">
+                <div class="label">
+                    <label>暴击：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$user_role.crit}" name="crit" />
+                    <div class="tips"></div>
+                </div>
+            </div>		
+            <div class="form-group">
+                <div class="label">
+                    <label>通用技能：</label>
+                </div>
+                <div class="field">
+					<div class="float-left margin-right">
+						<input id="skill_id_1" name="skill_id_1" value="{$user_role.skill_ids_arr.1.skill}" type="hidden" />
+						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_common_skill&id_name=skill_id_1','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$user_role.skill_ids_arr.1.skill_name}</button>
+					</div>		
+					<div class="float-left margin-right">
+						<input id="skill_id_2" name="skill_id_2" value="{$user_role.skill_ids_arr.2.skill}" type="hidden" />
+						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_common_skill&id_name=skill_id_2','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$user_role.skill_ids_arr.2.skill_name}</button>
+					</div>
+					<div class="float-left margin-right">
+						<input id="skill_id_3" name="skill_id_3" value="{$user_role.skill_ids_arr.3.skill}" type="hidden" />
+						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_common_skill&id_name=skill_id_3','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$user_role.skill_ids_arr.3.skill_name}</button>
+					</div>	
+					<div class="float-left margin-right">
+						<input id="skill_id_4" name="skill_id_4" value="{$user_role.skill_ids_arr.4.skill}" type="hidden" />
+						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_common_skill&id_name=skill_id_4','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$user_role.skill_ids_arr.4.skill_name}</button>
+					</div>						
+					<div class="tips"></div> 
+                </div>				
+            </div>				
+			
+            <div class="form-group">
+                <div class="label">
+                    <label></label>
+                </div>
+                <div class="field">
+					<input type="hidden" name="user_role_id" value="{$user_role.user_role_id}" />
+                    <button class="button bg-main icon-check-square-o" type="submit"> 修改</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+
+

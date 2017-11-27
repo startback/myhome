@@ -142,6 +142,223 @@ class CurrencyController extends CommonController {
 	}
 	
 	/********************************************************************************/
+	//角色
+	public function role(){		
+		
+        $role_name = isset($_GET['role_name'])?trim($_GET['role_name']):'';
+        $start_time = isset($_GET['start_time'])?trim($_GET['start_time']):'';
+        $end_time = isset($_GET['end_time'])?trim($_GET['end_time']):'';
+        $search_id = isset($_GET['search_id'])?intval($_GET['search_id']):0;
+        $search_id_2 = isset($_GET['search_id_2'])?intval($_GET['search_id_2']):0;
+        $search_id_3 = isset($_GET['search_id_3'])?intval($_GET['search_id_3']):0;
+		
+		$where = '1=1';
+		if($role_name) $where .= " and ".C('DB_PREFIX')."role.role_name like '%".$role_name."%'";		
+		if($start_time) $where .= " and ".C('DB_PREFIX')."role.role_time >= '".$start_time."'";		
+		if($end_time) $where .= " and ".C('DB_PREFIX')."role.role_time < '".$end_time."'";		
+		if($search_id_3 > 0){
+			$where .= " and ".C('DB_PREFIX')."role.role_type = ".$search_id_3;
+		}else{
+			if($search_id_2 > 0){
+				$ids_2 = trim(D('type')->get_type_ids(D('type')->type_list($search_id_2)),',');
+				if(empty($ids_2)) $ids_2 = -1;
+				$ids_2 .= ",".$search_id_2;
+				$where .= " and ".C('DB_PREFIX')."role.role_type in (".$ids_2.")";
+		
+			}else{
+				if($search_id > 0){
+					$ids_ = trim(D('type')->get_type_ids(D('type')->type_list($search_id)),',');
+					if(empty($ids_)) $ids_ = -1;
+					$ids_ .= ",".$search_id;  					
+					$where .= " and ".C('DB_PREFIX')."role.role_type in (".$ids_.")";
+				}
+			}
+		}
+
+        $search_state['role_name'] = $role_name;
+        $search_state['start_time'] = $start_time;		
+        $search_state['end_time'] = $end_time;		
+        $search_state['search_id'] = $search_id;		
+        $search_state['search_id_2'] = $search_id_2;		
+        $search_state['search_id_3'] = $search_id_3;		
+		
+		$s_types['one'] = D('type')->type_list();
+		if($search_id > 0) $s_types['two'] = D('type')->type_list($search_id);
+		if($search_id_2 > 0) $s_types['three'] = D('type')->type_list($search_id_2);
+        $this->assign('s_types',$s_types);		
+		
+        $page = isset($_GET['p'])?$_GET['p']:1;
+		$search_state['page'] = $page;
+        $limit = D('role')->get_limit($page);
+        $page_info = D('role')->role_page($search_state,$where);
+        $role_list = D('role')->role_list($limit,$where);
+		
+        $this->assign('search_state',$search_state);
+        $this->assign('role_list',$role_list);
+        $this->assign('page',$page_info);
+        $this->display();	
+		
+	}
+	
+	public function role_add(){
+		
+        if($_POST){
+			$data['role_name'] = isset($_POST['role_name'])?trim($_POST['role_name']):'';
+			$role_type = isset($_POST['role_type'])?intval($_POST['role_type']):0;
+			$role_type_2 = isset($_POST['role_type_2'])?intval($_POST['role_type_2']):0;
+			$role_type_3 = isset($_POST['role_type_3'])?intval($_POST['role_type_3']):0;
+			if($role_type_3 > 0){
+				$role_type = $role_type_3;
+			}else{
+				if($role_type_2 > 0){
+					$role_type = $role_type_2;	
+				}			
+			}
+			$data['role_type'] = $role_type;
+			
+            if($_FILES){
+                $images = com_save_file($_FILES,'/Upload/Ttf/role/origin');
+                foreach($images as $key=>$val){
+                    $data['role_logo'] = com_make_thumb($val,'/Upload/Ttf/role/thumb');
+                    $all_data[] = $data;
+                }
+            }
+			$data['role_desc'] = isset($_POST['role_desc'])?trim($_POST['role_desc']):'';
+			$data['role_attack'] = isset($_POST['role_attack'])?intval($_POST['role_attack']):0;
+			$data['role_magic'] = isset($_POST['role_magic'])?intval($_POST['role_magic']):0;
+			$data['role_hp'] = isset($_POST['role_hp'])?intval($_POST['role_hp']):0;
+			$data['role_mp'] = isset($_POST['role_mp'])?intval($_POST['role_mp']):0;
+			$data['role_attack_defense'] = isset($_POST['role_attack_defense'])?intval($_POST['role_attack_defense']):0;
+			$data['role_magic_defense'] = isset($_POST['role_magic_defense'])?intval($_POST['role_magic_defense']):0;
+			$data['role_dodge'] = isset($_POST['role_dodge'])?intval($_POST['role_dodge']):0;
+			$data['role_direct'] = isset($_POST['role_direct'])?intval($_POST['role_direct']):0;
+			$data['role_crit'] = isset($_POST['role_crit'])?intval($_POST['role_crit']):0;
+			$data['role_skill_id'] = isset($_POST['role_skill_id'])?intval($_POST['role_skill_id']):0;
+			
+			$data['role_time'] = date('Y-m-d H:i:s',time());
+			
+            if(D('role')->role_add($data)){
+                $this->success('添加成功!',U('currency/role'));
+            }else{
+                $this->error('添加失败');
+            }
+        }else{
+			$types = D('type')->type_list();
+            $this->assign('types',$types);
+            $this->display();
+        }		
+		
+	}	
+	
+	public function role_edit(){
+		
+        if($_POST){
+            $role_id = isset($_POST['role_id']) ? intval($_POST['role_id']) : 0;
+			if(empty($role_id)) {
+				$this->error('没有此角色');
+				exit;
+			}
+
+			$data['role_name'] = isset($_POST['role_name'])?trim($_POST['role_name']):'';
+			$role_type = isset($_POST['role_type'])?intval($_POST['role_type']):0;
+			$role_type_2 = isset($_POST['role_type_2'])?intval($_POST['role_type_2']):0;
+			$role_type_3 = isset($_POST['role_type_3'])?intval($_POST['role_type_3']):0;
+			if($role_type_3 > 0){
+				$role_type = $role_type_3;
+			}else{
+				if($role_type_2 > 0){
+					$role_type = $role_type_2;	
+				}			
+			}
+			$data['role_type'] = $role_type;
+			
+            if($_FILES){
+                $images = com_save_file($_FILES,'/Upload/Ttf/role/origin');
+                foreach($images as $key=>$val){
+                    $data['role_logo'] = com_make_thumb($val,'/Upload/Ttf/role/thumb');
+                    $all_data[] = $data;
+                }
+            }
+			$data['role_desc'] = isset($_POST['role_desc'])?trim($_POST['role_desc']):'';
+			$data['role_attack'] = isset($_POST['role_attack'])?intval($_POST['role_attack']):0;
+			$data['role_magic'] = isset($_POST['role_magic'])?intval($_POST['role_magic']):0;
+			$data['role_hp'] = isset($_POST['role_hp'])?intval($_POST['role_hp']):0;
+			$data['role_mp'] = isset($_POST['role_mp'])?intval($_POST['role_mp']):0;
+			$data['role_attack_defense'] = isset($_POST['role_attack_defense'])?intval($_POST['role_attack_defense']):0;
+			$data['role_magic_defense'] = isset($_POST['role_magic_defense'])?intval($_POST['role_magic_defense']):0;
+			$data['role_dodge'] = isset($_POST['role_dodge'])?intval($_POST['role_dodge']):0;
+			$data['role_direct'] = isset($_POST['role_direct'])?intval($_POST['role_direct']):0;
+			$data['role_crit'] = isset($_POST['role_crit'])?intval($_POST['role_crit']):0;
+			$data['role_skill_id'] = isset($_POST['role_skill_id'])?intval($_POST['role_skill_id']):0;
+		
+            if(D('role')->role_edit($data,$role_id)){
+                $this->success('修改成功!',U('currency/role'));
+            }else{
+                $this->error('修改失败');
+            }		
+		
+        }else {
+            $role_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+			if(empty($role_id)) {
+				$this->error('没有此角色');
+				exit;
+			}
+			$role_info = M('role')->field(C('DB_PREFIX').'role.*,'.C('DB_PREFIX').'role_skill.role_skill_name')->join('left join '.C('DB_PREFIX').'role_skill ON '.C('DB_PREFIX').'role.role_skill_id = '.C('DB_PREFIX').'role_skill.role_skill_id')->where('role_id='.$role_id)->find();			
+			if($role_info['role_skill_id'] == 0) $role_info['role_skill_name'] = '无';
+			
+			$type_info = M('type')->where('type_id='.$role_info['role_type'])->find();
+			
+			$type_ids['one'] = 0;
+			$type_ids['two'] = 0;
+			$type_ids['three'] = 0;
+			if($type_info){
+				if($type_info['type_pid'] > 0){
+					$two_info = M('type')->where('type_id='.$type_info['type_pid'])->find();
+					if($two_info['type_pid'] > 0){
+						$type_ids['one'] = $two_info['type_pid'];
+						$type_ids['two'] = $two_info['type_id'];
+						$type_ids['three'] = $type_info['type_id'];
+					}else{
+						$type_ids['one'] = $two_info['type_id'];
+						$type_ids['two'] = $type_info['type_id'];
+					}
+				}else{
+					$type_ids['one'] = $type_info['type_id'];
+				}
+				if($type_ids['two'] > 0){
+					$types_two = D('type')->type_list($type_ids['one']);
+					$this->assign('types_two',$types_two);				
+				}
+				if($type_ids['three'] > 0){
+					$types_three = D('type')->type_list($type_ids['two']);
+					$this->assign('types_three',$types_three);				
+				}				
+			}
+			$this->assign('type_ids',$type_ids);
+			
+			$types = D('type')->type_list();		
+			$this->assign('types',$types);
+			$this->assign('role_info',$role_info);
+			$this->display();
+        }			
+		
+	}	
+	
+	public function role_del(){
+		
+        $ids = isset($_REQUEST['ids'])?$_REQUEST['ids']:'';
+        if($ids){
+            if(D('role')->role_del($ids)){
+                $this->success('删除成功!');
+            }else{
+				$this->error('删除失败');
+			}
+        }			
+		
+	}		
+	
+	
+	/********************************************************************************/
 	//物品
 	public function goods(){		
 		

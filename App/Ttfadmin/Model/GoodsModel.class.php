@@ -96,6 +96,7 @@ class GoodsModel extends Model {
 			D('admin_log')->admin_log('修改物品 物品名:'.$data['goods_name'].'，ID为:'.$goods_id);			
 			return true;
 		}else{
+			D('admin_log')->admin_log('修改物品失败 物品名:'.$data['goods_name'].'，ID为:'.$goods_id);
 			return false;
 		}
 	}	

@@ -1,0 +1,102 @@
+<include file='Common:top'/>
+<script type="text/javascript" src="__PUBLIC__/Js/Jedate/jedate.js"></script>
+
+<body>
+
+<div class="panel admin-panel">
+	<div class="panel-head"><strong class="icon-reorder"> 用户角色列表</strong></div>
+	
+	<div class="padding border-bottom">
+		<form action="" method="get">
+			<input type="hidden" name="m" value="ttfadmin" />
+			<input type="hidden" name="c" value="usermanage" />
+			<input type="hidden" name="a" value="user_role" />
+			<ul class="search" style="padding-left:10px;">
+				<li>
+					角色名
+					<input type="text" id="user_role_name" class="input" style="width:160px; line-height:17px; display:inline-block" value="{$search_state.user_role_name}" name="user_role_name" />
+					&nbsp;&nbsp;
+					所属用户
+					<input type="text" id="user_name" class="input" style="width:160px; line-height:17px; display:inline-block" value="{$search_state.user_name}" name="user_name" />
+					&nbsp;&nbsp;					
+					时间
+					<input type="text" id="start_datebut" autocomplete="off" class="input" style="width:160px; line-height:17px; display:inline-block" value="{$search_state.start_time}" onClick="jeDate({dateCell:'#start_datebut',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})" name="start_time" />
+					--
+					<input type="text" id="end_datebut" autocomplete="off" class="input" style="width:160px; line-height:17px; display:inline-block" value="{$search_state.end_time}" onClick="jeDate({dateCell:'#end_datebut',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})" name="end_time" />
+					
+				</li>
+				<li>
+					<input type="submit" class="button border-main icon-search" value="搜索"/>
+				</li>
+				
+				<li>
+				<a class="button border-main icon-plus-square-o" href="__ROOT__/index.php?m=ttfadmin&c=usermanage&a=user_role_add"> 添加用户角色</a>
+				</li>					
+			</ul>
+		</form>
+	</div>	
+	
+	<table class="table table-hover text-center">
+		<tr>
+			<th>角色ID</th>
+			<th>角色名</th>
+			<th>所属用户</th>
+			<th>角色头像</th>
+			<th>加入时间</th>
+			<th>物攻</th>
+			<th>魔攻</th>
+			<th>生命</th>			
+			<th>魔法</th>
+			<th>物防</th>
+			<th>魔防</th>
+			<th>闪避</th>
+			<th>命中</th>
+			<th>暴击</th>
+			<th width="310">操作</th>
+		</tr>
+
+		<if condition="$user_role_list">
+			<volist name="user_role_list" id="vo">
+				<tr>
+					<td>{$vo.user_role_id}</td>
+					<td>{$vo.role_name}</td>
+					<td>{$vo.user_name}</td>
+					<td><img width="40" height="40" src="__ROOT__{$vo.role_logo}"/></td>
+					<td>{$vo.add_time}</td>
+					<td>{$vo.attack}</td>
+					<td>{$vo.magic}</td>
+					<td>{$vo.hp}</td>
+					<td>{$vo.mp}</td>
+					<td>{$vo.attack_defense}</td>
+					<td>{$vo.magic_defense}</td>
+					<td>{$vo.dodge}</td>
+					<td>{$vo.direct}</td>
+					<td>{$vo.crit}</td>
+					<td>
+						<div class="button-group">
+							<a class="button border-main" href="__ROOT__/index.php?m=ttfadmin&c=usermanage&a=user_role_edit&id={$vo.user_role_id}"><span class="icon-edit"></span> 修改</a>
+							<a class="button border-red" href="__ROOT__/index.php?m=ttfadmin&c=usermanage&a=user_role_del&ids={$vo.user_role_id}"><span class="icon-trash-o"></span> 删除
+							</a>
+						</div>
+					</td>
+				</tr>
+			</volist>
+			
+			<tr>
+				<td colspan="15">
+					<div class="pagelist">{$page}</div>
+				</td>
+			</tr>				
+						
+			<else/>
+			<tr>
+				<td colspan="15" style="height: 80px;line-height: 80px;font-size: 20px;">
+					没有数据
+				</td>
+			</tr>
+		</if>
+
+	</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<include file='Common:top'/>
+<script type="text/javascript" src="__PUBLIC__/Js/Jedate/jedate.js"></script>
+
+<body>
+<div class="panel admin-panel">
+    <div class="panel-head" id="add"><strong><span class="icon-key"></span> 修改用户物品</strong></div>
+    <div class="body-content">
+        <form method="post" class="form-x" action="">
+
+            <div class="form-group">
+                <div class="label">
+                    <label>物品：</label>
+                </div>
+                <div class="field">
+					<div class="float-left margin-right">
+						<input id="goods_id" name="goods_id" value="{$user_goods.goods_id}" type="hidden" />
+						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_goods&id_name=goods_id','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$user_goods.goods_name}</button>
+					</div>					
+					<div class="tips"></div> 
+                </div>				
+            </div>			
+			
+            <div class="form-group">
+                <div class="label">
+                    <label>归属用户：</label>
+                </div>
+                <div class="field">
+					<div class="float-left margin-right">
+						<input id="user_id" name="user_id" value="{$user_goods.user_id}" type="hidden" />
+						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_user&id_name=user_id','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$user_goods.user_name}</button>
+					</div>					
+					<div class="tips"></div> 
+                </div>				
+            </div>				
+			
+            <div class="form-group">
+                <div class="label">
+                    <label>物攻：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$user_goods.attack}" name="attack" />
+                    <div class="tips"></div>
+                </div>
+            </div>			
+            <div class="form-group">
+                <div class="label">
+                    <label>魔攻：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$user_goods.magic}" name="magic" />
+                    <div class="tips"></div>
+                </div>
+            </div>	
+            <div class="form-group">
+                <div class="label">
+                    <label>生命：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$user_goods.hp}" name="hp" />
+                    <div class="tips"></div>
+                </div>
+            </div>				
+            <div class="form-group">
+                <div class="label">
+                    <label>魔法：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$user_goods.mp}" name="mp" />
+                    <div class="tips"></div>
+                </div>
+            </div>				
+            <div class="form-group">
+                <div class="label">
+                    <label>物防：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$user_goods.attack_defense}" name="attack_defense" />
+                    <div class="tips"></div>
+                </div>
+            </div>		
+            <div class="form-group">
+                <div class="label">
+                    <label>魔防：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$user_goods.magic_defense}" name="magic_defense" />
+                    <div class="tips"></div>
+                </div>
+            </div>				
+            <div class="form-group">
+                <div class="label">
+                    <label>闪避：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$user_goods.dodge}" name="dodge" />
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>命中：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$user_goods.direct}" name="direct" />
+                    <div class="tips"></div>
+                </div>
+            </div>	
+            <div class="form-group">
+                <div class="label">
+                    <label>暴击：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$user_goods.crit}" name="crit" />
+                    <div class="tips"></div>
+                </div>
+            </div>		
+            <div class="form-group">
+                <div class="label">
+                    <label>通用技能：</label>
+                </div>
+                <div class="field">
+					<div class="float-left margin-right">
+						<input id="skill_id" name="skill_id" value="{$user_goods.skill_id}" type="hidden" />
+						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_common_skill&id_name=skill_id','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$user_goods.skill_name}</button>
+					</div>							
+					<div class="tips"></div> 
+                </div>				
+            </div>				
+			
+            <div class="form-group">
+                <div class="label">
+                    <label></label>
+                </div>
+                <div class="field">
+					<input type="hidden" name="id" value="{$user_goods.id}" />
+                    <button class="button bg-main icon-check-square-o" type="submit"> 修改</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+
+

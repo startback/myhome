@@ -1,0 +1,147 @@
+<include file='Common:top'/>
+<script type="text/javascript" src="__PUBLIC__/Js/Jedate/jedate.js"></script>
+
+<body>
+<div class="panel admin-panel">
+    <div class="panel-head" id="add"><strong><span class="icon-key"></span> 添加用户物品</strong></div>
+    <div class="body-content">
+        <form method="post" class="form-x" action="">
+
+            <div class="form-group">
+                <div class="label">
+                    <label>物品：</label>
+                </div>
+                <div class="field">
+					<div class="float-left margin-right">
+						<input id="goods_id" name="goods_id" value="0" type="hidden" />
+						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_goods&id_name=goods_id','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">无</button>
+					</div>					
+					<div class="tips"></div> 
+                </div>				
+            </div>			
+			
+            <div class="form-group">
+                <div class="label">
+                    <label>归属用户：</label>
+                </div>
+                <div class="field">
+					<div class="float-left margin-right">
+						<input id="user_id" name="user_id" value="0" type="hidden" />
+						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_user&id_name=user_id','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">无</button>
+					</div>					
+					<div class="tips"></div> 
+                </div>				
+            </div>				
+			
+            <div class="form-group">
+                <div class="label">
+                    <label>物攻：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="0" name="attack" />
+                    <div class="tips"></div>
+                </div>
+            </div>			
+            <div class="form-group">
+                <div class="label">
+                    <label>魔攻：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="0" name="magic" />
+                    <div class="tips"></div>
+                </div>
+            </div>	
+            <div class="form-group">
+                <div class="label">
+                    <label>生命：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="0" name="hp" />
+                    <div class="tips"></div>
+                </div>
+            </div>				
+            <div class="form-group">
+                <div class="label">
+                    <label>魔法：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="0" name="mp" />
+                    <div class="tips"></div>
+                </div>
+            </div>				
+            <div class="form-group">
+                <div class="label">
+                    <label>物防：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="0" name="attack_defense" />
+                    <div class="tips"></div>
+                </div>
+            </div>		
+            <div class="form-group">
+                <div class="label">
+                    <label>魔防：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="0" name="magic_defense" />
+                    <div class="tips"></div>
+                </div>
+            </div>				
+            <div class="form-group">
+                <div class="label">
+                    <label>闪避：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="0" name="dodge" />
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>命中：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="0" name="direct" />
+                    <div class="tips"></div>
+                </div>
+            </div>	
+            <div class="form-group">
+                <div class="label">
+                    <label>暴击：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="0" name="crit" />
+                    <div class="tips"></div>
+                </div>
+            </div>		
+            <div class="form-group">
+                <div class="label">
+                    <label>技能：</label>
+                </div>
+                <div class="field">
+					<div class="float-left margin-right">
+						<input id="skill_id" name="skill_id" value="0" type="hidden" />
+						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_common_skill&id_name=skill_id','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">无</button>
+					</div>							
+					<div class="tips"></div> 
+                </div>				
+            </div>				
+			
+            <div class="form-group">
+                <div class="label">
+                    <label></label>
+                </div>
+                <div class="field">
+                    <button class="button bg-main icon-check-square-o" type="submit"> 添加</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+
+
