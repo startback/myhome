@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2017-11-21 16:29:39
+Date: 2017-11-29 15:24:36
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -47,7 +47,7 @@ CREATE TABLE `ttf_admin_log` (
   `admin_id` smallint(6) DEFAULT NULL,
   `ip_address` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`log_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=172 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for ttf_admin_role
@@ -71,19 +71,25 @@ CREATE TABLE `ttf_common_skill` (
   `common_skill_logo` varchar(128) DEFAULT NULL,
   `common_skill_desc` text,
   `common_skill_time` datetime DEFAULT NULL,
-  `common_skill_attack` smallint(6) DEFAULT '0',
-  `common_skill_magic` smallint(6) DEFAULT '0',
-  `common_skill_hp` int(6) DEFAULT '0',
-  `common_skill_mp` int(6) DEFAULT '0',
-  `common_skill_attack_defense` smallint(6) DEFAULT '0',
-  `common_skill_magic_defense` smallint(6) DEFAULT '0',
-  `common_skill_dodge` smallint(6) DEFAULT '0',
-  `common_skill_direct` smallint(6) DEFAULT '0',
-  `common_skill_crit` smallint(6) DEFAULT '0',
-  `common_skill_hp_regain` smallint(6) DEFAULT '0',
-  `common_skill_mp_regain` smallint(6) DEFAULT '0',
+  `common_skill_attack` varchar(255) DEFAULT '0',
+  `common_skill_magic` varchar(255) DEFAULT '0',
+  `common_skill_hp` varchar(255) DEFAULT '0',
+  `common_skill_mp` varchar(255) DEFAULT '0',
+  `common_skill_attack_defense` varchar(255) DEFAULT '0',
+  `common_skill_magic_defense` varchar(255) DEFAULT '0',
+  `common_skill_dodge` varchar(255) DEFAULT '0',
+  `common_skill_direct` varchar(255) DEFAULT '0',
+  `common_skill_crit` varchar(255) DEFAULT '0',
+  `common_skill_hp_regain` varchar(255) DEFAULT '0',
+  `common_skill_mp_regain` varchar(255) DEFAULT '0',
+  `common_skill_gold_hurt` varchar(255) DEFAULT NULL,
+  `common_skill_wood_hurt` varchar(255) DEFAULT NULL,
+  `common_skill_water_hurt` varchar(255) DEFAULT NULL,
+  `common_skill_fire_hurt` varchar(255) DEFAULT NULL,
+  `common_skill_earth_hurt` varchar(255) DEFAULT NULL,
+  `common_skill_keep_num` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`common_skill_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for ttf_goods
@@ -192,7 +198,7 @@ CREATE TABLE `ttf_role` (
   `role_crit` smallint(6) DEFAULT '0',
   `role_skill_id` smallint(6) DEFAULT '0',
   PRIMARY KEY (`role_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for ttf_role_maze_record
@@ -221,17 +227,22 @@ CREATE TABLE `ttf_role_skill` (
   `role_skill_logo` varchar(128) DEFAULT NULL,
   `role_skill_desc` text,
   `role_skill_time` datetime DEFAULT NULL,
-  `role_skill_attack` smallint(6) DEFAULT '0',
-  `role_skill_magic` smallint(6) DEFAULT '0',
-  `role_skill_hp` int(6) DEFAULT '0',
-  `role_skill_mp` int(6) DEFAULT '0',
-  `role_skill_attack_defense` smallint(6) DEFAULT '0',
-  `role_skill_magic_defense` smallint(6) DEFAULT '0',
-  `role_skill_dodge` smallint(6) DEFAULT '0',
-  `role_skill_direct` smallint(6) DEFAULT '0',
-  `role_skill_crit` smallint(6) DEFAULT '0',
-  `role_skill_hp_regain` smallint(6) DEFAULT '0',
-  `role_skill_mp_regain` smallint(6) DEFAULT '0',
+  `role_skill_attack` varchar(255) DEFAULT '0',
+  `role_skill_magic` varchar(255) DEFAULT '0',
+  `role_skill_hp` varchar(255) DEFAULT '0',
+  `role_skill_mp` varchar(255) DEFAULT '0',
+  `role_skill_attack_defense` varchar(255) DEFAULT '0',
+  `role_skill_magic_defense` varchar(255) DEFAULT '0',
+  `role_skill_dodge` varchar(255) DEFAULT '0',
+  `role_skill_direct` varchar(255) DEFAULT '0',
+  `role_skill_crit` varchar(255) DEFAULT '0',
+  `role_skill_hp_regain` varchar(255) DEFAULT '0',
+  `role_skill_mp_regain` varchar(255) DEFAULT '0',
+  `role_skill_gold_hurt` varchar(255) DEFAULT NULL,
+  `role_skill_wood_hurt` varchar(255) DEFAULT NULL,
+  `role_skill_water_hurt` varchar(255) DEFAULT NULL,
+  `role_skill_fire_hurt` varchar(255) DEFAULT NULL,
+  `role_skill_earth_hurt` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`role_skill_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
@@ -266,7 +277,7 @@ CREATE TABLE `ttf_user` (
   `user_weixin_id` varchar(255) DEFAULT NULL,
   `user_status` tinyint(4) DEFAULT '0',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for ttf_user_goods
@@ -288,7 +299,7 @@ CREATE TABLE `ttf_user_goods` (
   `crit` smallint(6) DEFAULT '0',
   `skill_id` smallint(6) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for ttf_user_info
@@ -317,13 +328,13 @@ CREATE TABLE `ttf_user_monster` (
   `hp` int(11) DEFAULT '0',
   `mp` int(11) DEFAULT '0',
   `attack_defense` smallint(6) DEFAULT '0',
-  `magic_defnese` smallint(6) DEFAULT '0',
+  `magic_defense` smallint(6) DEFAULT '0',
   `dodge` smallint(6) DEFAULT '0',
   `direct` smallint(6) DEFAULT '0',
   `crit` smallint(6) DEFAULT '0',
   `skill_ids` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for ttf_user_role
@@ -345,4 +356,4 @@ CREATE TABLE `ttf_user_role` (
   `crit` smallint(6) DEFAULT '0',
   `skill_ids` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`user_role_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;

@@ -102,17 +102,22 @@
 | role_skill_logo | varchar(128) | - | - | 技能LOGO |
 | role_skill_desc | text | - | - | 技能描述 |
 | role_skill_time | datetime | - | - | 技能建立时间 |
-| role_skill_attack | smallint | 0 | - | 物攻 |
-| role_skill_magic | smallint | 0 | - | 魔攻 |
-| role_skill_hp | int | 0 | - | 生命值 |
-| role_skill_mp | int | 0 | - | 魔法值 |
-| role_skill_attack_defense | smallint | 0 | - | 物防 |
-| role_skill_magic_defense | smallint | 0 | - | 魔防 |
-| role_skill_dodge | smallint | 0 | - | 闪避值 |
-| role_skill_direct | smallint | 0 | - | 命中值 |
-| role_skill_crit | smallint | 0 | - | 暴击值 |
-| role_skill_hp_regain | smallint | 0 | - | 生命值恢复 |
-| role_skill_mp_regain | smallint | 0 | - | 魔法值恢复 |
+| role_skill_attack | varchar(255) | - | - | 物攻 |
+| role_skill_magic | varchar(255) | - | - | 魔攻 |
+| role_skill_hp | varchar(255) | - | - | 生命值 |
+| role_skill_mp | varchar(255) | - | - | 魔法值 |
+| role_skill_attack_defense | varchar(255) | - | - | 物防 |
+| role_skill_magic_defense | varchar(255) | - | - | 魔防 |
+| role_skill_dodge | varchar(255) | - | - | 闪避值 |
+| role_skill_direct | varchar(255) | - | - | 命中值 |
+| role_skill_crit | varchar(255) | - | - | 暴击值 |
+| role_skill_hp_regain | varchar(255) | - | - | 生命值恢复 |
+| role_skill_mp_regain | varchar(255) | - | - | 魔法值恢复 |
+| role_skill_gold_hurt | varchar(255) | - | - | 金系伤害增加百分比 |
+| role_skill_wood_hurt | varchar(255) | - | - | 木系伤害增加百分比 |
+| role_skill_water_hurt | varchar(255) | - | - | 水系伤害增加百分比 |
+| role_skill_fire_hurt | varchar(255) | - | - | 火系伤害增加百分比 |
+| role_skill_earth_hurt | varchar(255) | - | - | 土系伤害增加百分比 |
 
 
 <span id="7"/>
@@ -135,17 +140,23 @@
 | common_skill_logo | varchar(128) | - | - | 技能LOGO |
 | common_skill_desc | text | - | - | 技能描述 |
 | common_skill_time | datetime | - | - | 技能建立时间 |
-| common_skill_attack | smallint | 0 | - | 物攻 |
-| common_skill_magic | smallint | 0 | - | 魔攻 |
-| common_skill_hp | int | 0 | - | 生命值 |
-| common_skill_mp | int | 0 | - | 魔法值 |
-| common_skill_attack_defense | smallint | 0 | - | 物防 |
-| common_skill_magic_defense | smallint | 0 | - | 魔防 |
-| common_skill_dodge | smallint | 0 | - | 闪避值 |
-| common_skill_direct | smallint | 0 | - | 命中值 |
-| common_skill_crit | smallint | 0 | - | 暴击值 |
-| common_skill_hp_regain | smallint | 0 | - | 生命值恢复 |
-| common_skill_mp_regain | smallint | 0 | - | 魔法值恢复 |
+| common_skill_attack | varchar(255) | - | - | 物攻 |
+| common_skill_magic | varchar(255) | - | - | 魔攻 |
+| common_skill_hp | varchar(255) | - | - | 生命值 |
+| common_skill_mp | varchar(255) | - | - | 魔法值 |
+| common_skill_attack_defense | varchar(255) | - | - | 物防 |
+| common_skill_magic_defense | varchar(255) | - | - | 魔防 |
+| common_skill_dodge | varchar(255) | - | - | 闪避值 |
+| common_skill_direct | varchar(255) | - | - | 命中值 |
+| common_skill_crit | varchar(255) | - | - | 暴击值 |
+| common_skill_hp_regain | varchar(255) | - | - | 生命值恢复 |
+| common_skill_mp_regain | varchar(255) | - | - | 魔法值恢复 |
+| common_skill_gold_hurt | varchar(255) | - | - | 金系伤害增加百分比 |
+| common_skill_wood_hurt | varchar(255) | - | - | 木系伤害增加百分比 |
+| common_skill_water_hurt | varchar(255) | - | - | 水系伤害增加百分比 |
+| common_skill_fire_hurt | varchar(255) | - | - | 火系伤害增加百分比 |
+| common_skill_earth_hurt | varchar(255) | - | - | 土系伤害增加百分比 |
+| common_skill_keep_num | varchar(255) | - | - | 持续回合数 |
 
 
 <span id="9"/>

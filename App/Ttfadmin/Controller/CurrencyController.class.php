@@ -615,17 +615,118 @@ class CurrencyController extends CommonController {
                 }
             }
 			$data['role_skill_desc'] = isset($_POST['role_skill_desc'])?trim($_POST['role_skill_desc']):'';
-			$data['role_skill_attack'] = isset($_POST['role_skill_attack'])?intval($_POST['role_skill_attack']):0;
-			$data['role_skill_magic'] = isset($_POST['role_skill_magic'])?intval($_POST['role_skill_magic']):0;
-			$data['role_skill_hp'] = isset($_POST['role_skill_hp'])?intval($_POST['role_skill_hp']):0;
-			$data['role_skill_mp'] = isset($_POST['role_skill_mp'])?intval($_POST['role_skill_mp']):0;
-			$data['role_skill_attack_defense'] = isset($_POST['role_skill_attack_defense'])?intval($_POST['role_skill_attack_defense']):0;
-			$data['role_skill_magic_defense'] = isset($_POST['role_skill_magic_defense'])?intval($_POST['role_skill_magic_defense']):0;
-			$data['role_skill_dodge'] = isset($_POST['role_skill_dodge'])?intval($_POST['role_skill_dodge']):0;
-			$data['role_skill_direct'] = isset($_POST['role_skill_direct'])?intval($_POST['role_skill_direct']):0;
-			$data['role_skill_crit'] = isset($_POST['role_skill_crit'])?intval($_POST['role_skill_crit']):0;
-			$data['role_skill_hp_regain'] = isset($_POST['role_skill_hp_regain'])?intval($_POST['role_skill_hp_regain']):0;
-			$data['role_skill_mp_regain'] = isset($_POST['role_skill_mp_regain'])?intval($_POST['role_skill_mp_regain']):0;
+			
+			$role_skill_attack[1] = isset($_POST['role_skill_attack_1'])?intval($_POST['role_skill_attack_1']):0;
+			$role_skill_attack[2] = isset($_POST['role_skill_attack_2'])?intval($_POST['role_skill_attack_2']):0;
+			$role_skill_attack[3] = isset($_POST['role_skill_attack_3'])?intval($_POST['role_skill_attack_3']):0;
+			$role_skill_attack[4] = isset($_POST['role_skill_attack_4'])?intval($_POST['role_skill_attack_4']):0;
+			$role_skill_attack[5] = isset($_POST['role_skill_attack_5'])?intval($_POST['role_skill_attack_5']):0;
+			$data['role_skill_attack'] = json_encode($role_skill_attack);
+			
+			$role_skill_magic[1] = isset($_POST['role_skill_magic_1'])?intval($_POST['role_skill_magic_1']):0;
+			$role_skill_magic[2] = isset($_POST['role_skill_magic_2'])?intval($_POST['role_skill_magic_2']):0;
+			$role_skill_magic[3] = isset($_POST['role_skill_magic_3'])?intval($_POST['role_skill_magic_3']):0;
+			$role_skill_magic[4] = isset($_POST['role_skill_magic_4'])?intval($_POST['role_skill_magic_4']):0;
+			$role_skill_magic[5] = isset($_POST['role_skill_magic_5'])?intval($_POST['role_skill_magic_5']):0;
+			$data['role_skill_magic'] = json_encode($role_skill_magic);
+			
+			$role_skill_hp[1] = isset($_POST['role_skill_hp_1'])?intval($_POST['role_skill_hp_1']):0;
+			$role_skill_hp[2] = isset($_POST['role_skill_hp_2'])?intval($_POST['role_skill_hp_2']):0;
+			$role_skill_hp[3] = isset($_POST['role_skill_hp_3'])?intval($_POST['role_skill_hp_3']):0;
+			$role_skill_hp[4] = isset($_POST['role_skill_hp_4'])?intval($_POST['role_skill_hp_4']):0;
+			$role_skill_hp[5] = isset($_POST['role_skill_hp_5'])?intval($_POST['role_skill_hp_5']):0;
+			$data['role_skill_hp'] = json_encode($role_skill_hp);
+			
+			$role_skill_mp[1] = isset($_POST['role_skill_mp_1'])?intval($_POST['role_skill_mp_1']):0;
+			$role_skill_mp[2] = isset($_POST['role_skill_mp_2'])?intval($_POST['role_skill_mp_2']):0;
+			$role_skill_mp[3] = isset($_POST['role_skill_mp_3'])?intval($_POST['role_skill_mp_3']):0;
+			$role_skill_mp[4] = isset($_POST['role_skill_mp_4'])?intval($_POST['role_skill_mp_4']):0;
+			$role_skill_mp[5] = isset($_POST['role_skill_mp_5'])?intval($_POST['role_skill_mp_5']):0;
+			$data['role_skill_mp'] = json_encode($role_skill_mp);
+			
+			$role_skill_attack_defense[1] = isset($_POST['role_skill_attack_defense_1'])?intval($_POST['role_skill_attack_defense_1']):0;
+			$role_skill_attack_defense[2] = isset($_POST['role_skill_attack_defense_2'])?intval($_POST['role_skill_attack_defense_2']):0;
+			$role_skill_attack_defense[3] = isset($_POST['role_skill_attack_defense_3'])?intval($_POST['role_skill_attack_defense_3']):0;
+			$role_skill_attack_defense[4] = isset($_POST['role_skill_attack_defense_4'])?intval($_POST['role_skill_attack_defense_4']):0;
+			$role_skill_attack_defense[5] = isset($_POST['role_skill_attack_defense_5'])?intval($_POST['role_skill_attack_defense_5']):0;
+			$data['role_skill_attack_defense'] = json_encode($role_skill_attack_defense);
+			
+			$role_skill_magic_defense[1] = isset($_POST['role_skill_magic_defense_1'])?intval($_POST['role_skill_magic_defense_1']):0;
+			$role_skill_magic_defense[2] = isset($_POST['role_skill_magic_defense_2'])?intval($_POST['role_skill_magic_defense_2']):0;
+			$role_skill_magic_defense[3] = isset($_POST['role_skill_magic_defense_3'])?intval($_POST['role_skill_magic_defense_3']):0;
+			$role_skill_magic_defense[4] = isset($_POST['role_skill_magic_defense_4'])?intval($_POST['role_skill_magic_defense_4']):0;
+			$role_skill_magic_defense[5] = isset($_POST['role_skill_magic_defense_5'])?intval($_POST['role_skill_magic_defense_5']):0;
+			$data['role_skill_magic_defense'] = json_encode($role_skill_magic_defense);
+			
+			$role_skill_dodge[1] = isset($_POST['role_skill_dodge_1'])?intval($_POST['role_skill_dodge_1']):0;
+			$role_skill_dodge[2] = isset($_POST['role_skill_dodge_2'])?intval($_POST['role_skill_dodge_2']):0;
+			$role_skill_dodge[3] = isset($_POST['role_skill_dodge_3'])?intval($_POST['role_skill_dodge_3']):0;
+			$role_skill_dodge[4] = isset($_POST['role_skill_dodge_4'])?intval($_POST['role_skill_dodge_4']):0;
+			$role_skill_dodge[5] = isset($_POST['role_skill_dodge_5'])?intval($_POST['role_skill_dodge_5']):0;
+			$data['role_skill_dodge'] = json_encode($role_skill_dodge);
+			
+			$role_skill_direct[1] = isset($_POST['role_skill_direct_1'])?intval($_POST['role_skill_direct_1']):0;
+			$role_skill_direct[2] = isset($_POST['role_skill_direct_2'])?intval($_POST['role_skill_direct_2']):0;
+			$role_skill_direct[3] = isset($_POST['role_skill_direct_3'])?intval($_POST['role_skill_direct_3']):0;
+			$role_skill_direct[4] = isset($_POST['role_skill_direct_4'])?intval($_POST['role_skill_direct_4']):0;
+			$role_skill_direct[5] = isset($_POST['role_skill_direct_5'])?intval($_POST['role_skill_direct_5']):0;
+			$data['role_skill_direct'] = json_encode($role_skill_direct);
+			
+			$role_skill_crit[1] = isset($_POST['role_skill_crit_1'])?intval($_POST['role_skill_crit_1']):0;
+			$role_skill_crit[2] = isset($_POST['role_skill_crit_2'])?intval($_POST['role_skill_crit_2']):0;
+			$role_skill_crit[3] = isset($_POST['role_skill_crit_3'])?intval($_POST['role_skill_crit_3']):0;
+			$role_skill_crit[4] = isset($_POST['role_skill_crit_4'])?intval($_POST['role_skill_crit_4']):0;
+			$role_skill_crit[5] = isset($_POST['role_skill_crit_5'])?intval($_POST['role_skill_crit_5']):0;
+			$data['role_skill_crit'] = json_encode($role_skill_crit);
+			
+			$role_skill_hp_regain[1] = isset($_POST['role_skill_hp_regain_1'])?intval($_POST['role_skill_hp_regain_1']):0;
+			$role_skill_hp_regain[2] = isset($_POST['role_skill_hp_regain_2'])?intval($_POST['role_skill_hp_regain_2']):0;
+			$role_skill_hp_regain[3] = isset($_POST['role_skill_hp_regain_3'])?intval($_POST['role_skill_hp_regain_3']):0;
+			$role_skill_hp_regain[4] = isset($_POST['role_skill_hp_regain_4'])?intval($_POST['role_skill_hp_regain_4']):0;
+			$role_skill_hp_regain[5] = isset($_POST['role_skill_hp_regain_5'])?intval($_POST['role_skill_hp_regain_5']):0;
+			$data['role_skill_hp_regain'] = json_encode($role_skill_hp_regain);
+			
+			$role_skill_mp_regain[1] = isset($_POST['role_skill_mp_regain_1'])?intval($_POST['role_skill_mp_regain_1']):0;
+			$role_skill_mp_regain[2] = isset($_POST['role_skill_mp_regain_2'])?intval($_POST['role_skill_mp_regain_2']):0;
+			$role_skill_mp_regain[3] = isset($_POST['role_skill_mp_regain_3'])?intval($_POST['role_skill_mp_regain_3']):0;
+			$role_skill_mp_regain[4] = isset($_POST['role_skill_mp_regain_4'])?intval($_POST['role_skill_mp_regain_4']):0;
+			$role_skill_mp_regain[5] = isset($_POST['role_skill_mp_regain_5'])?intval($_POST['role_skill_mp_regain_5']):0;
+			$data['role_skill_mp_regain'] = json_encode($role_skill_mp_regain);
+			
+			$role_skill_gold_hurt[1] = isset($_POST['role_skill_gold_hurt_1'])?intval($_POST['role_skill_gold_hurt_1']):0;
+			$role_skill_gold_hurt[2] = isset($_POST['role_skill_gold_hurt_2'])?intval($_POST['role_skill_gold_hurt_2']):0;
+			$role_skill_gold_hurt[3] = isset($_POST['role_skill_gold_hurt_3'])?intval($_POST['role_skill_gold_hurt_3']):0;
+			$role_skill_gold_hurt[4] = isset($_POST['role_skill_gold_hurt_4'])?intval($_POST['role_skill_gold_hurt_4']):0;
+			$role_skill_gold_hurt[5] = isset($_POST['role_skill_gold_hurt_5'])?intval($_POST['role_skill_gold_hurt_5']):0;
+			$data['role_skill_gold_hurt'] = json_encode($role_skill_gold_hurt);	
+
+			$role_skill_wood_hurt[1] = isset($_POST['role_skill_wood_hurt_1'])?intval($_POST['role_skill_wood_hurt_1']):0;
+			$role_skill_wood_hurt[2] = isset($_POST['role_skill_wood_hurt_2'])?intval($_POST['role_skill_wood_hurt_2']):0;
+			$role_skill_wood_hurt[3] = isset($_POST['role_skill_wood_hurt_3'])?intval($_POST['role_skill_wood_hurt_3']):0;
+			$role_skill_wood_hurt[4] = isset($_POST['role_skill_wood_hurt_4'])?intval($_POST['role_skill_wood_hurt_4']):0;
+			$role_skill_wood_hurt[5] = isset($_POST['role_skill_wood_hurt_5'])?intval($_POST['role_skill_wood_hurt_5']):0;
+			$data['role_skill_wood_hurt'] = json_encode($role_skill_wood_hurt);		
+
+			$role_skill_water_hurt[1] = isset($_POST['role_skill_water_hurt_1'])?intval($_POST['role_skill_water_hurt_1']):0;
+			$role_skill_water_hurt[2] = isset($_POST['role_skill_water_hurt_2'])?intval($_POST['role_skill_water_hurt_2']):0;
+			$role_skill_water_hurt[3] = isset($_POST['role_skill_water_hurt_3'])?intval($_POST['role_skill_water_hurt_3']):0;
+			$role_skill_water_hurt[4] = isset($_POST['role_skill_water_hurt_4'])?intval($_POST['role_skill_water_hurt_4']):0;
+			$role_skill_water_hurt[5] = isset($_POST['role_skill_water_hurt_5'])?intval($_POST['role_skill_water_hurt_5']):0;
+			$data['role_skill_water_hurt'] = json_encode($role_skill_water_hurt);
+
+			$role_skill_fire_hurt[1] = isset($_POST['role_skill_fire_hurt_1'])?intval($_POST['role_skill_fire_hurt_1']):0;
+			$role_skill_fire_hurt[2] = isset($_POST['role_skill_fire_hurt_2'])?intval($_POST['role_skill_fire_hurt_2']):0;
+			$role_skill_fire_hurt[3] = isset($_POST['role_skill_fire_hurt_3'])?intval($_POST['role_skill_fire_hurt_3']):0;
+			$role_skill_fire_hurt[4] = isset($_POST['role_skill_fire_hurt_4'])?intval($_POST['role_skill_fire_hurt_4']):0;
+			$role_skill_fire_hurt[5] = isset($_POST['role_skill_fire_hurt_5'])?intval($_POST['role_skill_fire_hurt_5']):0;
+			$data['role_skill_fire_hurt'] = json_encode($role_skill_fire_hurt);
+
+			$role_skill_earth_hurt[1] = isset($_POST['role_skill_earth_hurt_1'])?intval($_POST['role_skill_earth_hurt_1']):0;
+			$role_skill_earth_hurt[2] = isset($_POST['role_skill_earth_hurt_2'])?intval($_POST['role_skill_earth_hurt_2']):0;
+			$role_skill_earth_hurt[3] = isset($_POST['role_skill_earth_hurt_3'])?intval($_POST['role_skill_earth_hurt_3']):0;
+			$role_skill_earth_hurt[4] = isset($_POST['role_skill_earth_hurt_4'])?intval($_POST['role_skill_earth_hurt_4']):0;
+			$role_skill_earth_hurt[5] = isset($_POST['role_skill_earth_hurt_5'])?intval($_POST['role_skill_earth_hurt_5']):0;
+			$data['role_skill_earth_hurt'] = json_encode($role_skill_earth_hurt);			
 			
 			$data['role_skill_time'] = date('Y-m-d H:i:s',time());
 			
@@ -659,17 +760,118 @@ class CurrencyController extends CommonController {
                 }
             }
 			$data['role_skill_desc'] = isset($_POST['role_skill_desc'])?trim($_POST['role_skill_desc']):'';
-			$data['role_skill_attack'] = isset($_POST['role_skill_attack'])?intval($_POST['role_skill_attack']):0;
-			$data['role_skill_magic'] = isset($_POST['role_skill_magic'])?intval($_POST['role_skill_magic']):0;
-			$data['role_skill_hp'] = isset($_POST['role_skill_hp'])?intval($_POST['role_skill_hp']):0;
-			$data['role_skill_mp'] = isset($_POST['role_skill_mp'])?intval($_POST['role_skill_mp']):0;
-			$data['role_skill_attack_defense'] = isset($_POST['role_skill_attack_defense'])?intval($_POST['role_skill_attack_defense']):0;
-			$data['role_skill_magic_defense'] = isset($_POST['role_skill_magic_defense'])?intval($_POST['role_skill_magic_defense']):0;
-			$data['role_skill_dodge'] = isset($_POST['role_skill_dodge'])?intval($_POST['role_skill_dodge']):0;
-			$data['role_skill_direct'] = isset($_POST['role_skill_direct'])?intval($_POST['role_skill_direct']):0;
-			$data['role_skill_crit'] = isset($_POST['role_skill_crit'])?intval($_POST['role_skill_crit']):0;
-			$data['role_skill_hp_regain'] = isset($_POST['role_skill_hp_regain'])?intval($_POST['role_skill_hp_regain']):0;
-			$data['role_skill_mp_regain'] = isset($_POST['role_skill_mp_regain'])?intval($_POST['role_skill_mp_regain']):0;
+			
+			$role_skill_attack[1] = isset($_POST['role_skill_attack_1'])?intval($_POST['role_skill_attack_1']):0;
+			$role_skill_attack[2] = isset($_POST['role_skill_attack_2'])?intval($_POST['role_skill_attack_2']):0;
+			$role_skill_attack[3] = isset($_POST['role_skill_attack_3'])?intval($_POST['role_skill_attack_3']):0;
+			$role_skill_attack[4] = isset($_POST['role_skill_attack_4'])?intval($_POST['role_skill_attack_4']):0;
+			$role_skill_attack[5] = isset($_POST['role_skill_attack_5'])?intval($_POST['role_skill_attack_5']):0;
+			$data['role_skill_attack'] = json_encode($role_skill_attack);
+			
+			$role_skill_magic[1] = isset($_POST['role_skill_magic_1'])?intval($_POST['role_skill_magic_1']):0;
+			$role_skill_magic[2] = isset($_POST['role_skill_magic_2'])?intval($_POST['role_skill_magic_2']):0;
+			$role_skill_magic[3] = isset($_POST['role_skill_magic_3'])?intval($_POST['role_skill_magic_3']):0;
+			$role_skill_magic[4] = isset($_POST['role_skill_magic_4'])?intval($_POST['role_skill_magic_4']):0;
+			$role_skill_magic[5] = isset($_POST['role_skill_magic_5'])?intval($_POST['role_skill_magic_5']):0;
+			$data['role_skill_magic'] = json_encode($role_skill_magic);
+			
+			$role_skill_hp[1] = isset($_POST['role_skill_hp_1'])?intval($_POST['role_skill_hp_1']):0;
+			$role_skill_hp[2] = isset($_POST['role_skill_hp_2'])?intval($_POST['role_skill_hp_2']):0;
+			$role_skill_hp[3] = isset($_POST['role_skill_hp_3'])?intval($_POST['role_skill_hp_3']):0;
+			$role_skill_hp[4] = isset($_POST['role_skill_hp_4'])?intval($_POST['role_skill_hp_4']):0;
+			$role_skill_hp[5] = isset($_POST['role_skill_hp_5'])?intval($_POST['role_skill_hp_5']):0;
+			$data['role_skill_hp'] = json_encode($role_skill_hp);
+			
+			$role_skill_mp[1] = isset($_POST['role_skill_mp_1'])?intval($_POST['role_skill_mp_1']):0;
+			$role_skill_mp[2] = isset($_POST['role_skill_mp_2'])?intval($_POST['role_skill_mp_2']):0;
+			$role_skill_mp[3] = isset($_POST['role_skill_mp_3'])?intval($_POST['role_skill_mp_3']):0;
+			$role_skill_mp[4] = isset($_POST['role_skill_mp_4'])?intval($_POST['role_skill_mp_4']):0;
+			$role_skill_mp[5] = isset($_POST['role_skill_mp_5'])?intval($_POST['role_skill_mp_5']):0;
+			$data['role_skill_mp'] = json_encode($role_skill_mp);
+			
+			$role_skill_attack_defense[1] = isset($_POST['role_skill_attack_defense_1'])?intval($_POST['role_skill_attack_defense_1']):0;
+			$role_skill_attack_defense[2] = isset($_POST['role_skill_attack_defense_2'])?intval($_POST['role_skill_attack_defense_2']):0;
+			$role_skill_attack_defense[3] = isset($_POST['role_skill_attack_defense_3'])?intval($_POST['role_skill_attack_defense_3']):0;
+			$role_skill_attack_defense[4] = isset($_POST['role_skill_attack_defense_4'])?intval($_POST['role_skill_attack_defense_4']):0;
+			$role_skill_attack_defense[5] = isset($_POST['role_skill_attack_defense_5'])?intval($_POST['role_skill_attack_defense_5']):0;
+			$data['role_skill_attack_defense'] = json_encode($role_skill_attack_defense);
+			
+			$role_skill_magic_defense[1] = isset($_POST['role_skill_magic_defense_1'])?intval($_POST['role_skill_magic_defense_1']):0;
+			$role_skill_magic_defense[2] = isset($_POST['role_skill_magic_defense_2'])?intval($_POST['role_skill_magic_defense_2']):0;
+			$role_skill_magic_defense[3] = isset($_POST['role_skill_magic_defense_3'])?intval($_POST['role_skill_magic_defense_3']):0;
+			$role_skill_magic_defense[4] = isset($_POST['role_skill_magic_defense_4'])?intval($_POST['role_skill_magic_defense_4']):0;
+			$role_skill_magic_defense[5] = isset($_POST['role_skill_magic_defense_5'])?intval($_POST['role_skill_magic_defense_5']):0;
+			$data['role_skill_magic_defense'] = json_encode($role_skill_magic_defense);
+			
+			$role_skill_dodge[1] = isset($_POST['role_skill_dodge_1'])?intval($_POST['role_skill_dodge_1']):0;
+			$role_skill_dodge[2] = isset($_POST['role_skill_dodge_2'])?intval($_POST['role_skill_dodge_2']):0;
+			$role_skill_dodge[3] = isset($_POST['role_skill_dodge_3'])?intval($_POST['role_skill_dodge_3']):0;
+			$role_skill_dodge[4] = isset($_POST['role_skill_dodge_4'])?intval($_POST['role_skill_dodge_4']):0;
+			$role_skill_dodge[5] = isset($_POST['role_skill_dodge_5'])?intval($_POST['role_skill_dodge_5']):0;
+			$data['role_skill_dodge'] = json_encode($role_skill_dodge);
+			
+			$role_skill_direct[1] = isset($_POST['role_skill_direct_1'])?intval($_POST['role_skill_direct_1']):0;
+			$role_skill_direct[2] = isset($_POST['role_skill_direct_2'])?intval($_POST['role_skill_direct_2']):0;
+			$role_skill_direct[3] = isset($_POST['role_skill_direct_3'])?intval($_POST['role_skill_direct_3']):0;
+			$role_skill_direct[4] = isset($_POST['role_skill_direct_4'])?intval($_POST['role_skill_direct_4']):0;
+			$role_skill_direct[5] = isset($_POST['role_skill_direct_5'])?intval($_POST['role_skill_direct_5']):0;
+			$data['role_skill_direct'] = json_encode($role_skill_direct);
+			
+			$role_skill_crit[1] = isset($_POST['role_skill_crit_1'])?intval($_POST['role_skill_crit_1']):0;
+			$role_skill_crit[2] = isset($_POST['role_skill_crit_2'])?intval($_POST['role_skill_crit_2']):0;
+			$role_skill_crit[3] = isset($_POST['role_skill_crit_3'])?intval($_POST['role_skill_crit_3']):0;
+			$role_skill_crit[4] = isset($_POST['role_skill_crit_4'])?intval($_POST['role_skill_crit_4']):0;
+			$role_skill_crit[5] = isset($_POST['role_skill_crit_5'])?intval($_POST['role_skill_crit_5']):0;
+			$data['role_skill_crit'] = json_encode($role_skill_crit);
+			
+			$role_skill_hp_regain[1] = isset($_POST['role_skill_hp_regain_1'])?intval($_POST['role_skill_hp_regain_1']):0;
+			$role_skill_hp_regain[2] = isset($_POST['role_skill_hp_regain_2'])?intval($_POST['role_skill_hp_regain_2']):0;
+			$role_skill_hp_regain[3] = isset($_POST['role_skill_hp_regain_3'])?intval($_POST['role_skill_hp_regain_3']):0;
+			$role_skill_hp_regain[4] = isset($_POST['role_skill_hp_regain_4'])?intval($_POST['role_skill_hp_regain_4']):0;
+			$role_skill_hp_regain[5] = isset($_POST['role_skill_hp_regain_5'])?intval($_POST['role_skill_hp_regain_5']):0;
+			$data['role_skill_hp_regain'] = json_encode($role_skill_hp_regain);
+			
+			$role_skill_mp_regain[1] = isset($_POST['role_skill_mp_regain_1'])?intval($_POST['role_skill_mp_regain_1']):0;
+			$role_skill_mp_regain[2] = isset($_POST['role_skill_mp_regain_2'])?intval($_POST['role_skill_mp_regain_2']):0;
+			$role_skill_mp_regain[3] = isset($_POST['role_skill_mp_regain_3'])?intval($_POST['role_skill_mp_regain_3']):0;
+			$role_skill_mp_regain[4] = isset($_POST['role_skill_mp_regain_4'])?intval($_POST['role_skill_mp_regain_4']):0;
+			$role_skill_mp_regain[5] = isset($_POST['role_skill_mp_regain_5'])?intval($_POST['role_skill_mp_regain_5']):0;
+			$data['role_skill_mp_regain'] = json_encode($role_skill_mp_regain);
+			
+			$role_skill_gold_hurt[1] = isset($_POST['role_skill_gold_hurt_1'])?intval($_POST['role_skill_gold_hurt_1']):0;
+			$role_skill_gold_hurt[2] = isset($_POST['role_skill_gold_hurt_2'])?intval($_POST['role_skill_gold_hurt_2']):0;
+			$role_skill_gold_hurt[3] = isset($_POST['role_skill_gold_hurt_3'])?intval($_POST['role_skill_gold_hurt_3']):0;
+			$role_skill_gold_hurt[4] = isset($_POST['role_skill_gold_hurt_4'])?intval($_POST['role_skill_gold_hurt_4']):0;
+			$role_skill_gold_hurt[5] = isset($_POST['role_skill_gold_hurt_5'])?intval($_POST['role_skill_gold_hurt_5']):0;
+			$data['role_skill_gold_hurt'] = json_encode($role_skill_gold_hurt);	
+
+			$role_skill_wood_hurt[1] = isset($_POST['role_skill_wood_hurt_1'])?intval($_POST['role_skill_wood_hurt_1']):0;
+			$role_skill_wood_hurt[2] = isset($_POST['role_skill_wood_hurt_2'])?intval($_POST['role_skill_wood_hurt_2']):0;
+			$role_skill_wood_hurt[3] = isset($_POST['role_skill_wood_hurt_3'])?intval($_POST['role_skill_wood_hurt_3']):0;
+			$role_skill_wood_hurt[4] = isset($_POST['role_skill_wood_hurt_4'])?intval($_POST['role_skill_wood_hurt_4']):0;
+			$role_skill_wood_hurt[5] = isset($_POST['role_skill_wood_hurt_5'])?intval($_POST['role_skill_wood_hurt_5']):0;
+			$data['role_skill_wood_hurt'] = json_encode($role_skill_wood_hurt);		
+
+			$role_skill_water_hurt[1] = isset($_POST['role_skill_water_hurt_1'])?intval($_POST['role_skill_water_hurt_1']):0;
+			$role_skill_water_hurt[2] = isset($_POST['role_skill_water_hurt_2'])?intval($_POST['role_skill_water_hurt_2']):0;
+			$role_skill_water_hurt[3] = isset($_POST['role_skill_water_hurt_3'])?intval($_POST['role_skill_water_hurt_3']):0;
+			$role_skill_water_hurt[4] = isset($_POST['role_skill_water_hurt_4'])?intval($_POST['role_skill_water_hurt_4']):0;
+			$role_skill_water_hurt[5] = isset($_POST['role_skill_water_hurt_5'])?intval($_POST['role_skill_water_hurt_5']):0;
+			$data['role_skill_water_hurt'] = json_encode($role_skill_water_hurt);
+
+			$role_skill_fire_hurt[1] = isset($_POST['role_skill_fire_hurt_1'])?intval($_POST['role_skill_fire_hurt_1']):0;
+			$role_skill_fire_hurt[2] = isset($_POST['role_skill_fire_hurt_2'])?intval($_POST['role_skill_fire_hurt_2']):0;
+			$role_skill_fire_hurt[3] = isset($_POST['role_skill_fire_hurt_3'])?intval($_POST['role_skill_fire_hurt_3']):0;
+			$role_skill_fire_hurt[4] = isset($_POST['role_skill_fire_hurt_4'])?intval($_POST['role_skill_fire_hurt_4']):0;
+			$role_skill_fire_hurt[5] = isset($_POST['role_skill_fire_hurt_5'])?intval($_POST['role_skill_fire_hurt_5']):0;
+			$data['role_skill_fire_hurt'] = json_encode($role_skill_fire_hurt);
+
+			$role_skill_earth_hurt[1] = isset($_POST['role_skill_earth_hurt_1'])?intval($_POST['role_skill_earth_hurt_1']):0;
+			$role_skill_earth_hurt[2] = isset($_POST['role_skill_earth_hurt_2'])?intval($_POST['role_skill_earth_hurt_2']):0;
+			$role_skill_earth_hurt[3] = isset($_POST['role_skill_earth_hurt_3'])?intval($_POST['role_skill_earth_hurt_3']):0;
+			$role_skill_earth_hurt[4] = isset($_POST['role_skill_earth_hurt_4'])?intval($_POST['role_skill_earth_hurt_4']):0;
+			$role_skill_earth_hurt[5] = isset($_POST['role_skill_earth_hurt_5'])?intval($_POST['role_skill_earth_hurt_5']):0;
+			$data['role_skill_earth_hurt'] = json_encode($role_skill_earth_hurt);			
 		
             if(D('role_skill')->role_skill_edit($data,$role_skill_id)){
                 $this->success('修改成功!',U('currency/role_skill'));
@@ -684,7 +886,24 @@ class CurrencyController extends CommonController {
 				exit;
 			}
 			$role_skill_info = M('role_skill')->where('role_skill_id='.$role_skill_id)->find();
-
+			
+			$role_skill_info['role_skill_attack_arr'] = json_decode($role_skill_info['role_skill_attack'],true);
+			$role_skill_info['role_skill_magic_arr'] = json_decode($role_skill_info['role_skill_magic'],true);
+			$role_skill_info['role_skill_hp_arr'] = json_decode($role_skill_info['role_skill_hp'],true);
+			$role_skill_info['role_skill_mp_arr'] = json_decode($role_skill_info['role_skill_mp'],true);
+			$role_skill_info['role_skill_attack_defense_arr'] = json_decode($role_skill_info['role_skill_attack_defense'],true);
+			$role_skill_info['role_skill_magic_defense_arr'] = json_decode($role_skill_info['role_skill_magic_defense'],true);
+			$role_skill_info['role_skill_dodge_arr'] = json_decode($role_skill_info['role_skill_dodge'],true);
+			$role_skill_info['role_skill_direct_arr'] = json_decode($role_skill_info['role_skill_direct'],true);
+			$role_skill_info['role_skill_crit_arr'] = json_decode($role_skill_info['role_skill_crit'],true);
+			$role_skill_info['role_skill_hp_regain_arr'] = json_decode($role_skill_info['role_skill_hp_regain'],true);
+			$role_skill_info['role_skill_mp_regain_arr'] = json_decode($role_skill_info['role_skill_mp_regain'],true);
+			$role_skill_info['role_skill_gold_hurt_arr'] = json_decode($role_skill_info['role_skill_gold_hurt'],true);
+			$role_skill_info['role_skill_wood_hurt_arr'] = json_decode($role_skill_info['role_skill_wood_hurt'],true);
+			$role_skill_info['role_skill_water_hurt_arr'] = json_decode($role_skill_info['role_skill_water_hurt'],true);
+			$role_skill_info['role_skill_fire_hurt_arr'] = json_decode($role_skill_info['role_skill_fire_hurt'],true);
+			$role_skill_info['role_skill_earth_hurt_arr'] = json_decode($role_skill_info['role_skill_earth_hurt'],true);
+			
 			$this->assign('role_skill_info',$role_skill_info);
 			$this->display();
         }			
@@ -748,17 +967,125 @@ class CurrencyController extends CommonController {
                 }
             }
 			$data['common_skill_desc'] = isset($_POST['common_skill_desc'])?trim($_POST['common_skill_desc']):'';
-			$data['common_skill_attack'] = isset($_POST['common_skill_attack'])?intval($_POST['common_skill_attack']):0;
-			$data['common_skill_magic'] = isset($_POST['common_skill_magic'])?intval($_POST['common_skill_magic']):0;
-			$data['common_skill_hp'] = isset($_POST['common_skill_hp'])?intval($_POST['common_skill_hp']):0;
-			$data['common_skill_mp'] = isset($_POST['common_skill_mp'])?intval($_POST['common_skill_mp']):0;
-			$data['common_skill_attack_defense'] = isset($_POST['common_skill_attack_defense'])?intval($_POST['common_skill_attack_defense']):0;
-			$data['common_skill_magic_defense'] = isset($_POST['common_skill_magic_defense'])?intval($_POST['common_skill_magic_defense']):0;
-			$data['common_skill_dodge'] = isset($_POST['common_skill_dodge'])?intval($_POST['common_skill_dodge']):0;
-			$data['common_skill_direct'] = isset($_POST['common_skill_direct'])?intval($_POST['common_skill_direct']):0;
-			$data['common_skill_crit'] = isset($_POST['common_skill_crit'])?intval($_POST['common_skill_crit']):0;
-			$data['common_skill_hp_regain'] = isset($_POST['common_skill_hp_regain'])?intval($_POST['common_skill_hp_regain']):0;
-			$data['common_skill_mp_regain'] = isset($_POST['common_skill_mp_regain'])?intval($_POST['common_skill_mp_regain']):0;
+
+			$common_skill_attack[1] = isset($_POST['common_skill_attack_1'])?intval($_POST['common_skill_attack_1']):0;
+			$common_skill_attack[2] = isset($_POST['common_skill_attack_2'])?intval($_POST['common_skill_attack_2']):0;
+			$common_skill_attack[3] = isset($_POST['common_skill_attack_3'])?intval($_POST['common_skill_attack_3']):0;
+			$common_skill_attack[4] = isset($_POST['common_skill_attack_4'])?intval($_POST['common_skill_attack_4']):0;
+			$common_skill_attack[5] = isset($_POST['common_skill_attack_5'])?intval($_POST['common_skill_attack_5']):0;
+			$data['common_skill_attack'] = json_encode($common_skill_attack);
+			
+			$common_skill_magic[1] = isset($_POST['common_skill_magic_1'])?intval($_POST['common_skill_magic_1']):0;
+			$common_skill_magic[2] = isset($_POST['common_skill_magic_2'])?intval($_POST['common_skill_magic_2']):0;
+			$common_skill_magic[3] = isset($_POST['common_skill_magic_3'])?intval($_POST['common_skill_magic_3']):0;
+			$common_skill_magic[4] = isset($_POST['common_skill_magic_4'])?intval($_POST['common_skill_magic_4']):0;
+			$common_skill_magic[5] = isset($_POST['common_skill_magic_5'])?intval($_POST['common_skill_magic_5']):0;
+			$data['common_skill_magic'] = json_encode($common_skill_magic);
+			
+			$common_skill_hp[1] = isset($_POST['common_skill_hp_1'])?intval($_POST['common_skill_hp_1']):0;
+			$common_skill_hp[2] = isset($_POST['common_skill_hp_2'])?intval($_POST['common_skill_hp_2']):0;
+			$common_skill_hp[3] = isset($_POST['common_skill_hp_3'])?intval($_POST['common_skill_hp_3']):0;
+			$common_skill_hp[4] = isset($_POST['common_skill_hp_4'])?intval($_POST['common_skill_hp_4']):0;
+			$common_skill_hp[5] = isset($_POST['common_skill_hp_5'])?intval($_POST['common_skill_hp_5']):0;
+			$data['common_skill_hp'] = json_encode($common_skill_hp);
+			
+			$common_skill_mp[1] = isset($_POST['common_skill_mp_1'])?intval($_POST['common_skill_mp_1']):0;
+			$common_skill_mp[2] = isset($_POST['common_skill_mp_2'])?intval($_POST['common_skill_mp_2']):0;
+			$common_skill_mp[3] = isset($_POST['common_skill_mp_3'])?intval($_POST['common_skill_mp_3']):0;
+			$common_skill_mp[4] = isset($_POST['common_skill_mp_4'])?intval($_POST['common_skill_mp_4']):0;
+			$common_skill_mp[5] = isset($_POST['common_skill_mp_5'])?intval($_POST['common_skill_mp_5']):0;
+			$data['common_skill_mp'] = json_encode($common_skill_mp);
+			
+			$common_skill_attack_defense[1] = isset($_POST['common_skill_attack_defense_1'])?intval($_POST['common_skill_attack_defense_1']):0;
+			$common_skill_attack_defense[2] = isset($_POST['common_skill_attack_defense_2'])?intval($_POST['common_skill_attack_defense_2']):0;
+			$common_skill_attack_defense[3] = isset($_POST['common_skill_attack_defense_3'])?intval($_POST['common_skill_attack_defense_3']):0;
+			$common_skill_attack_defense[4] = isset($_POST['common_skill_attack_defense_4'])?intval($_POST['common_skill_attack_defense_4']):0;
+			$common_skill_attack_defense[5] = isset($_POST['common_skill_attack_defense_5'])?intval($_POST['common_skill_attack_defense_5']):0;
+			$data['common_skill_attack_defense'] = json_encode($common_skill_attack_defense);
+			
+			$common_skill_magic_defense[1] = isset($_POST['common_skill_magic_defense_1'])?intval($_POST['common_skill_magic_defense_1']):0;
+			$common_skill_magic_defense[2] = isset($_POST['common_skill_magic_defense_2'])?intval($_POST['common_skill_magic_defense_2']):0;
+			$common_skill_magic_defense[3] = isset($_POST['common_skill_magic_defense_3'])?intval($_POST['common_skill_magic_defense_3']):0;
+			$common_skill_magic_defense[4] = isset($_POST['common_skill_magic_defense_4'])?intval($_POST['common_skill_magic_defense_4']):0;
+			$common_skill_magic_defense[5] = isset($_POST['common_skill_magic_defense_5'])?intval($_POST['common_skill_magic_defense_5']):0;
+			$data['common_skill_magic_defense'] = json_encode($common_skill_magic_defense);
+			
+			$common_skill_dodge[1] = isset($_POST['common_skill_dodge_1'])?intval($_POST['common_skill_dodge_1']):0;
+			$common_skill_dodge[2] = isset($_POST['common_skill_dodge_2'])?intval($_POST['common_skill_dodge_2']):0;
+			$common_skill_dodge[3] = isset($_POST['common_skill_dodge_3'])?intval($_POST['common_skill_dodge_3']):0;
+			$common_skill_dodge[4] = isset($_POST['common_skill_dodge_4'])?intval($_POST['common_skill_dodge_4']):0;
+			$common_skill_dodge[5] = isset($_POST['common_skill_dodge_5'])?intval($_POST['common_skill_dodge_5']):0;
+			$data['common_skill_dodge'] = json_encode($common_skill_dodge);
+			
+			$common_skill_direct[1] = isset($_POST['common_skill_direct_1'])?intval($_POST['common_skill_direct_1']):0;
+			$common_skill_direct[2] = isset($_POST['common_skill_direct_2'])?intval($_POST['common_skill_direct_2']):0;
+			$common_skill_direct[3] = isset($_POST['common_skill_direct_3'])?intval($_POST['common_skill_direct_3']):0;
+			$common_skill_direct[4] = isset($_POST['common_skill_direct_4'])?intval($_POST['common_skill_direct_4']):0;
+			$common_skill_direct[5] = isset($_POST['common_skill_direct_5'])?intval($_POST['common_skill_direct_5']):0;
+			$data['common_skill_direct'] = json_encode($common_skill_direct);
+			
+			$common_skill_crit[1] = isset($_POST['common_skill_crit_1'])?intval($_POST['common_skill_crit_1']):0;
+			$common_skill_crit[2] = isset($_POST['common_skill_crit_2'])?intval($_POST['common_skill_crit_2']):0;
+			$common_skill_crit[3] = isset($_POST['common_skill_crit_3'])?intval($_POST['common_skill_crit_3']):0;
+			$common_skill_crit[4] = isset($_POST['common_skill_crit_4'])?intval($_POST['common_skill_crit_4']):0;
+			$common_skill_crit[5] = isset($_POST['common_skill_crit_5'])?intval($_POST['common_skill_crit_5']):0;
+			$data['common_skill_crit'] = json_encode($common_skill_crit);
+			
+			$common_skill_hp_regain[1] = isset($_POST['common_skill_hp_regain_1'])?intval($_POST['common_skill_hp_regain_1']):0;
+			$common_skill_hp_regain[2] = isset($_POST['common_skill_hp_regain_2'])?intval($_POST['common_skill_hp_regain_2']):0;
+			$common_skill_hp_regain[3] = isset($_POST['common_skill_hp_regain_3'])?intval($_POST['common_skill_hp_regain_3']):0;
+			$common_skill_hp_regain[4] = isset($_POST['common_skill_hp_regain_4'])?intval($_POST['common_skill_hp_regain_4']):0;
+			$common_skill_hp_regain[5] = isset($_POST['common_skill_hp_regain_5'])?intval($_POST['common_skill_hp_regain_5']):0;
+			$data['common_skill_hp_regain'] = json_encode($common_skill_hp_regain);
+			
+			$common_skill_mp_regain[1] = isset($_POST['common_skill_mp_regain_1'])?intval($_POST['common_skill_mp_regain_1']):0;
+			$common_skill_mp_regain[2] = isset($_POST['common_skill_mp_regain_2'])?intval($_POST['common_skill_mp_regain_2']):0;
+			$common_skill_mp_regain[3] = isset($_POST['common_skill_mp_regain_3'])?intval($_POST['common_skill_mp_regain_3']):0;
+			$common_skill_mp_regain[4] = isset($_POST['common_skill_mp_regain_4'])?intval($_POST['common_skill_mp_regain_4']):0;
+			$common_skill_mp_regain[5] = isset($_POST['common_skill_mp_regain_5'])?intval($_POST['common_skill_mp_regain_5']):0;
+			$data['common_skill_mp_regain'] = json_encode($common_skill_mp_regain);
+			
+			$common_skill_gold_hurt[1] = isset($_POST['common_skill_gold_hurt_1'])?intval($_POST['common_skill_gold_hurt_1']):0;
+			$common_skill_gold_hurt[2] = isset($_POST['common_skill_gold_hurt_2'])?intval($_POST['common_skill_gold_hurt_2']):0;
+			$common_skill_gold_hurt[3] = isset($_POST['common_skill_gold_hurt_3'])?intval($_POST['common_skill_gold_hurt_3']):0;
+			$common_skill_gold_hurt[4] = isset($_POST['common_skill_gold_hurt_4'])?intval($_POST['common_skill_gold_hurt_4']):0;
+			$common_skill_gold_hurt[5] = isset($_POST['common_skill_gold_hurt_5'])?intval($_POST['common_skill_gold_hurt_5']):0;
+			$data['common_skill_gold_hurt'] = json_encode($common_skill_gold_hurt);	
+
+			$common_skill_wood_hurt[1] = isset($_POST['common_skill_wood_hurt_1'])?intval($_POST['common_skill_wood_hurt_1']):0;
+			$common_skill_wood_hurt[2] = isset($_POST['common_skill_wood_hurt_2'])?intval($_POST['common_skill_wood_hurt_2']):0;
+			$common_skill_wood_hurt[3] = isset($_POST['common_skill_wood_hurt_3'])?intval($_POST['common_skill_wood_hurt_3']):0;
+			$common_skill_wood_hurt[4] = isset($_POST['common_skill_wood_hurt_4'])?intval($_POST['common_skill_wood_hurt_4']):0;
+			$common_skill_wood_hurt[5] = isset($_POST['common_skill_wood_hurt_5'])?intval($_POST['common_skill_wood_hurt_5']):0;
+			$data['common_skill_wood_hurt'] = json_encode($common_skill_wood_hurt);		
+
+			$common_skill_water_hurt[1] = isset($_POST['common_skill_water_hurt_1'])?intval($_POST['common_skill_water_hurt_1']):0;
+			$common_skill_water_hurt[2] = isset($_POST['common_skill_water_hurt_2'])?intval($_POST['common_skill_water_hurt_2']):0;
+			$common_skill_water_hurt[3] = isset($_POST['common_skill_water_hurt_3'])?intval($_POST['common_skill_water_hurt_3']):0;
+			$common_skill_water_hurt[4] = isset($_POST['common_skill_water_hurt_4'])?intval($_POST['common_skill_water_hurt_4']):0;
+			$common_skill_water_hurt[5] = isset($_POST['common_skill_water_hurt_5'])?intval($_POST['common_skill_water_hurt_5']):0;
+			$data['common_skill_water_hurt'] = json_encode($common_skill_water_hurt);
+
+			$common_skill_fire_hurt[1] = isset($_POST['common_skill_fire_hurt_1'])?intval($_POST['common_skill_fire_hurt_1']):0;
+			$common_skill_fire_hurt[2] = isset($_POST['common_skill_fire_hurt_2'])?intval($_POST['common_skill_fire_hurt_2']):0;
+			$common_skill_fire_hurt[3] = isset($_POST['common_skill_fire_hurt_3'])?intval($_POST['common_skill_fire_hurt_3']):0;
+			$common_skill_fire_hurt[4] = isset($_POST['common_skill_fire_hurt_4'])?intval($_POST['common_skill_fire_hurt_4']):0;
+			$common_skill_fire_hurt[5] = isset($_POST['common_skill_fire_hurt_5'])?intval($_POST['common_skill_fire_hurt_5']):0;
+			$data['common_skill_fire_hurt'] = json_encode($common_skill_fire_hurt);
+
+			$common_skill_earth_hurt[1] = isset($_POST['common_skill_earth_hurt_1'])?intval($_POST['common_skill_earth_hurt_1']):0;
+			$common_skill_earth_hurt[2] = isset($_POST['common_skill_earth_hurt_2'])?intval($_POST['common_skill_earth_hurt_2']):0;
+			$common_skill_earth_hurt[3] = isset($_POST['common_skill_earth_hurt_3'])?intval($_POST['common_skill_earth_hurt_3']):0;
+			$common_skill_earth_hurt[4] = isset($_POST['common_skill_earth_hurt_4'])?intval($_POST['common_skill_earth_hurt_4']):0;
+			$common_skill_earth_hurt[5] = isset($_POST['common_skill_earth_hurt_5'])?intval($_POST['common_skill_earth_hurt_5']):0;
+			$data['common_skill_earth_hurt'] = json_encode($common_skill_earth_hurt);	
+
+			$common_skill_keep_num[1] = isset($_POST['common_skill_keep_num_1'])?intval($_POST['common_skill_keep_num_1']):0;
+			$common_skill_keep_num[2] = isset($_POST['common_skill_keep_num_2'])?intval($_POST['common_skill_keep_num_2']):0;
+			$common_skill_keep_num[3] = isset($_POST['common_skill_keep_num_3'])?intval($_POST['common_skill_keep_num_3']):0;
+			$common_skill_keep_num[4] = isset($_POST['common_skill_keep_num_4'])?intval($_POST['common_skill_keep_num_4']):0;
+			$common_skill_keep_num[5] = isset($_POST['common_skill_keep_num_5'])?intval($_POST['common_skill_keep_num_5']):0;
+			$data['common_skill_keep_num'] = json_encode($common_skill_keep_num);		
 			
 			$data['common_skill_time'] = date('Y-m-d H:i:s',time());
 			
@@ -792,17 +1119,125 @@ class CurrencyController extends CommonController {
                 }
             }
 			$data['common_skill_desc'] = isset($_POST['common_skill_desc'])?trim($_POST['common_skill_desc']):'';
-			$data['common_skill_attack'] = isset($_POST['common_skill_attack'])?intval($_POST['common_skill_attack']):0;
-			$data['common_skill_magic'] = isset($_POST['common_skill_magic'])?intval($_POST['common_skill_magic']):0;
-			$data['common_skill_hp'] = isset($_POST['common_skill_hp'])?intval($_POST['common_skill_hp']):0;
-			$data['common_skill_mp'] = isset($_POST['common_skill_mp'])?intval($_POST['common_skill_mp']):0;
-			$data['common_skill_attack_defense'] = isset($_POST['common_skill_attack_defense'])?intval($_POST['common_skill_attack_defense']):0;
-			$data['common_skill_magic_defense'] = isset($_POST['common_skill_magic_defense'])?intval($_POST['common_skill_magic_defense']):0;
-			$data['common_skill_dodge'] = isset($_POST['common_skill_dodge'])?intval($_POST['common_skill_dodge']):0;
-			$data['common_skill_direct'] = isset($_POST['common_skill_direct'])?intval($_POST['common_skill_direct']):0;
-			$data['common_skill_crit'] = isset($_POST['common_skill_crit'])?intval($_POST['common_skill_crit']):0;
-			$data['common_skill_hp_regain'] = isset($_POST['common_skill_hp_regain'])?intval($_POST['common_skill_hp_regain']):0;
-			$data['common_skill_mp_regain'] = isset($_POST['common_skill_mp_regain'])?intval($_POST['common_skill_mp_regain']):0;
+
+			$common_skill_attack[1] = isset($_POST['common_skill_attack_1'])?intval($_POST['common_skill_attack_1']):0;
+			$common_skill_attack[2] = isset($_POST['common_skill_attack_2'])?intval($_POST['common_skill_attack_2']):0;
+			$common_skill_attack[3] = isset($_POST['common_skill_attack_3'])?intval($_POST['common_skill_attack_3']):0;
+			$common_skill_attack[4] = isset($_POST['common_skill_attack_4'])?intval($_POST['common_skill_attack_4']):0;
+			$common_skill_attack[5] = isset($_POST['common_skill_attack_5'])?intval($_POST['common_skill_attack_5']):0;
+			$data['common_skill_attack'] = json_encode($common_skill_attack);
+			
+			$common_skill_magic[1] = isset($_POST['common_skill_magic_1'])?intval($_POST['common_skill_magic_1']):0;
+			$common_skill_magic[2] = isset($_POST['common_skill_magic_2'])?intval($_POST['common_skill_magic_2']):0;
+			$common_skill_magic[3] = isset($_POST['common_skill_magic_3'])?intval($_POST['common_skill_magic_3']):0;
+			$common_skill_magic[4] = isset($_POST['common_skill_magic_4'])?intval($_POST['common_skill_magic_4']):0;
+			$common_skill_magic[5] = isset($_POST['common_skill_magic_5'])?intval($_POST['common_skill_magic_5']):0;
+			$data['common_skill_magic'] = json_encode($common_skill_magic);
+			
+			$common_skill_hp[1] = isset($_POST['common_skill_hp_1'])?intval($_POST['common_skill_hp_1']):0;
+			$common_skill_hp[2] = isset($_POST['common_skill_hp_2'])?intval($_POST['common_skill_hp_2']):0;
+			$common_skill_hp[3] = isset($_POST['common_skill_hp_3'])?intval($_POST['common_skill_hp_3']):0;
+			$common_skill_hp[4] = isset($_POST['common_skill_hp_4'])?intval($_POST['common_skill_hp_4']):0;
+			$common_skill_hp[5] = isset($_POST['common_skill_hp_5'])?intval($_POST['common_skill_hp_5']):0;
+			$data['common_skill_hp'] = json_encode($common_skill_hp);
+			
+			$common_skill_mp[1] = isset($_POST['common_skill_mp_1'])?intval($_POST['common_skill_mp_1']):0;
+			$common_skill_mp[2] = isset($_POST['common_skill_mp_2'])?intval($_POST['common_skill_mp_2']):0;
+			$common_skill_mp[3] = isset($_POST['common_skill_mp_3'])?intval($_POST['common_skill_mp_3']):0;
+			$common_skill_mp[4] = isset($_POST['common_skill_mp_4'])?intval($_POST['common_skill_mp_4']):0;
+			$common_skill_mp[5] = isset($_POST['common_skill_mp_5'])?intval($_POST['common_skill_mp_5']):0;
+			$data['common_skill_mp'] = json_encode($common_skill_mp);
+			
+			$common_skill_attack_defense[1] = isset($_POST['common_skill_attack_defense_1'])?intval($_POST['common_skill_attack_defense_1']):0;
+			$common_skill_attack_defense[2] = isset($_POST['common_skill_attack_defense_2'])?intval($_POST['common_skill_attack_defense_2']):0;
+			$common_skill_attack_defense[3] = isset($_POST['common_skill_attack_defense_3'])?intval($_POST['common_skill_attack_defense_3']):0;
+			$common_skill_attack_defense[4] = isset($_POST['common_skill_attack_defense_4'])?intval($_POST['common_skill_attack_defense_4']):0;
+			$common_skill_attack_defense[5] = isset($_POST['common_skill_attack_defense_5'])?intval($_POST['common_skill_attack_defense_5']):0;
+			$data['common_skill_attack_defense'] = json_encode($common_skill_attack_defense);
+			
+			$common_skill_magic_defense[1] = isset($_POST['common_skill_magic_defense_1'])?intval($_POST['common_skill_magic_defense_1']):0;
+			$common_skill_magic_defense[2] = isset($_POST['common_skill_magic_defense_2'])?intval($_POST['common_skill_magic_defense_2']):0;
+			$common_skill_magic_defense[3] = isset($_POST['common_skill_magic_defense_3'])?intval($_POST['common_skill_magic_defense_3']):0;
+			$common_skill_magic_defense[4] = isset($_POST['common_skill_magic_defense_4'])?intval($_POST['common_skill_magic_defense_4']):0;
+			$common_skill_magic_defense[5] = isset($_POST['common_skill_magic_defense_5'])?intval($_POST['common_skill_magic_defense_5']):0;
+			$data['common_skill_magic_defense'] = json_encode($common_skill_magic_defense);
+			
+			$common_skill_dodge[1] = isset($_POST['common_skill_dodge_1'])?intval($_POST['common_skill_dodge_1']):0;
+			$common_skill_dodge[2] = isset($_POST['common_skill_dodge_2'])?intval($_POST['common_skill_dodge_2']):0;
+			$common_skill_dodge[3] = isset($_POST['common_skill_dodge_3'])?intval($_POST['common_skill_dodge_3']):0;
+			$common_skill_dodge[4] = isset($_POST['common_skill_dodge_4'])?intval($_POST['common_skill_dodge_4']):0;
+			$common_skill_dodge[5] = isset($_POST['common_skill_dodge_5'])?intval($_POST['common_skill_dodge_5']):0;
+			$data['common_skill_dodge'] = json_encode($common_skill_dodge);
+			
+			$common_skill_direct[1] = isset($_POST['common_skill_direct_1'])?intval($_POST['common_skill_direct_1']):0;
+			$common_skill_direct[2] = isset($_POST['common_skill_direct_2'])?intval($_POST['common_skill_direct_2']):0;
+			$common_skill_direct[3] = isset($_POST['common_skill_direct_3'])?intval($_POST['common_skill_direct_3']):0;
+			$common_skill_direct[4] = isset($_POST['common_skill_direct_4'])?intval($_POST['common_skill_direct_4']):0;
+			$common_skill_direct[5] = isset($_POST['common_skill_direct_5'])?intval($_POST['common_skill_direct_5']):0;
+			$data['common_skill_direct'] = json_encode($common_skill_direct);
+			
+			$common_skill_crit[1] = isset($_POST['common_skill_crit_1'])?intval($_POST['common_skill_crit_1']):0;
+			$common_skill_crit[2] = isset($_POST['common_skill_crit_2'])?intval($_POST['common_skill_crit_2']):0;
+			$common_skill_crit[3] = isset($_POST['common_skill_crit_3'])?intval($_POST['common_skill_crit_3']):0;
+			$common_skill_crit[4] = isset($_POST['common_skill_crit_4'])?intval($_POST['common_skill_crit_4']):0;
+			$common_skill_crit[5] = isset($_POST['common_skill_crit_5'])?intval($_POST['common_skill_crit_5']):0;
+			$data['common_skill_crit'] = json_encode($common_skill_crit);
+			
+			$common_skill_hp_regain[1] = isset($_POST['common_skill_hp_regain_1'])?intval($_POST['common_skill_hp_regain_1']):0;
+			$common_skill_hp_regain[2] = isset($_POST['common_skill_hp_regain_2'])?intval($_POST['common_skill_hp_regain_2']):0;
+			$common_skill_hp_regain[3] = isset($_POST['common_skill_hp_regain_3'])?intval($_POST['common_skill_hp_regain_3']):0;
+			$common_skill_hp_regain[4] = isset($_POST['common_skill_hp_regain_4'])?intval($_POST['common_skill_hp_regain_4']):0;
+			$common_skill_hp_regain[5] = isset($_POST['common_skill_hp_regain_5'])?intval($_POST['common_skill_hp_regain_5']):0;
+			$data['common_skill_hp_regain'] = json_encode($common_skill_hp_regain);
+			
+			$common_skill_mp_regain[1] = isset($_POST['common_skill_mp_regain_1'])?intval($_POST['common_skill_mp_regain_1']):0;
+			$common_skill_mp_regain[2] = isset($_POST['common_skill_mp_regain_2'])?intval($_POST['common_skill_mp_regain_2']):0;
+			$common_skill_mp_regain[3] = isset($_POST['common_skill_mp_regain_3'])?intval($_POST['common_skill_mp_regain_3']):0;
+			$common_skill_mp_regain[4] = isset($_POST['common_skill_mp_regain_4'])?intval($_POST['common_skill_mp_regain_4']):0;
+			$common_skill_mp_regain[5] = isset($_POST['common_skill_mp_regain_5'])?intval($_POST['common_skill_mp_regain_5']):0;
+			$data['common_skill_mp_regain'] = json_encode($common_skill_mp_regain);
+			
+			$common_skill_gold_hurt[1] = isset($_POST['common_skill_gold_hurt_1'])?intval($_POST['common_skill_gold_hurt_1']):0;
+			$common_skill_gold_hurt[2] = isset($_POST['common_skill_gold_hurt_2'])?intval($_POST['common_skill_gold_hurt_2']):0;
+			$common_skill_gold_hurt[3] = isset($_POST['common_skill_gold_hurt_3'])?intval($_POST['common_skill_gold_hurt_3']):0;
+			$common_skill_gold_hurt[4] = isset($_POST['common_skill_gold_hurt_4'])?intval($_POST['common_skill_gold_hurt_4']):0;
+			$common_skill_gold_hurt[5] = isset($_POST['common_skill_gold_hurt_5'])?intval($_POST['common_skill_gold_hurt_5']):0;
+			$data['common_skill_gold_hurt'] = json_encode($common_skill_gold_hurt);	
+
+			$common_skill_wood_hurt[1] = isset($_POST['common_skill_wood_hurt_1'])?intval($_POST['common_skill_wood_hurt_1']):0;
+			$common_skill_wood_hurt[2] = isset($_POST['common_skill_wood_hurt_2'])?intval($_POST['common_skill_wood_hurt_2']):0;
+			$common_skill_wood_hurt[3] = isset($_POST['common_skill_wood_hurt_3'])?intval($_POST['common_skill_wood_hurt_3']):0;
+			$common_skill_wood_hurt[4] = isset($_POST['common_skill_wood_hurt_4'])?intval($_POST['common_skill_wood_hurt_4']):0;
+			$common_skill_wood_hurt[5] = isset($_POST['common_skill_wood_hurt_5'])?intval($_POST['common_skill_wood_hurt_5']):0;
+			$data['common_skill_wood_hurt'] = json_encode($common_skill_wood_hurt);		
+
+			$common_skill_water_hurt[1] = isset($_POST['common_skill_water_hurt_1'])?intval($_POST['common_skill_water_hurt_1']):0;
+			$common_skill_water_hurt[2] = isset($_POST['common_skill_water_hurt_2'])?intval($_POST['common_skill_water_hurt_2']):0;
+			$common_skill_water_hurt[3] = isset($_POST['common_skill_water_hurt_3'])?intval($_POST['common_skill_water_hurt_3']):0;
+			$common_skill_water_hurt[4] = isset($_POST['common_skill_water_hurt_4'])?intval($_POST['common_skill_water_hurt_4']):0;
+			$common_skill_water_hurt[5] = isset($_POST['common_skill_water_hurt_5'])?intval($_POST['common_skill_water_hurt_5']):0;
+			$data['common_skill_water_hurt'] = json_encode($common_skill_water_hurt);
+
+			$common_skill_fire_hurt[1] = isset($_POST['common_skill_fire_hurt_1'])?intval($_POST['common_skill_fire_hurt_1']):0;
+			$common_skill_fire_hurt[2] = isset($_POST['common_skill_fire_hurt_2'])?intval($_POST['common_skill_fire_hurt_2']):0;
+			$common_skill_fire_hurt[3] = isset($_POST['common_skill_fire_hurt_3'])?intval($_POST['common_skill_fire_hurt_3']):0;
+			$common_skill_fire_hurt[4] = isset($_POST['common_skill_fire_hurt_4'])?intval($_POST['common_skill_fire_hurt_4']):0;
+			$common_skill_fire_hurt[5] = isset($_POST['common_skill_fire_hurt_5'])?intval($_POST['common_skill_fire_hurt_5']):0;
+			$data['common_skill_fire_hurt'] = json_encode($common_skill_fire_hurt);
+
+			$common_skill_earth_hurt[1] = isset($_POST['common_skill_earth_hurt_1'])?intval($_POST['common_skill_earth_hurt_1']):0;
+			$common_skill_earth_hurt[2] = isset($_POST['common_skill_earth_hurt_2'])?intval($_POST['common_skill_earth_hurt_2']):0;
+			$common_skill_earth_hurt[3] = isset($_POST['common_skill_earth_hurt_3'])?intval($_POST['common_skill_earth_hurt_3']):0;
+			$common_skill_earth_hurt[4] = isset($_POST['common_skill_earth_hurt_4'])?intval($_POST['common_skill_earth_hurt_4']):0;
+			$common_skill_earth_hurt[5] = isset($_POST['common_skill_earth_hurt_5'])?intval($_POST['common_skill_earth_hurt_5']):0;
+			$data['common_skill_earth_hurt'] = json_encode($common_skill_earth_hurt);	
+
+			$common_skill_keep_num[1] = isset($_POST['common_skill_keep_num_1'])?intval($_POST['common_skill_keep_num_1']):0;
+			$common_skill_keep_num[2] = isset($_POST['common_skill_keep_num_2'])?intval($_POST['common_skill_keep_num_2']):0;
+			$common_skill_keep_num[3] = isset($_POST['common_skill_keep_num_3'])?intval($_POST['common_skill_keep_num_3']):0;
+			$common_skill_keep_num[4] = isset($_POST['common_skill_keep_num_4'])?intval($_POST['common_skill_keep_num_4']):0;
+			$common_skill_keep_num[5] = isset($_POST['common_skill_keep_num_5'])?intval($_POST['common_skill_keep_num_5']):0;
+			$data['common_skill_keep_num'] = json_encode($common_skill_keep_num);			
 		
             if(D('common_skill')->common_skill_edit($data,$common_skill_id)){
                 $this->success('修改成功!',U('currency/common_skill'));
@@ -817,6 +1252,24 @@ class CurrencyController extends CommonController {
 				exit;
 			}
 			$common_skill_info = M('common_skill')->where('common_skill_id='.$common_skill_id)->find();
+			
+			$common_skill_info['common_skill_attack_arr'] = json_decode($common_skill_info['common_skill_attack'],true);
+			$common_skill_info['common_skill_magic_arr'] = json_decode($common_skill_info['common_skill_magic'],true);
+			$common_skill_info['common_skill_hp_arr'] = json_decode($common_skill_info['common_skill_hp'],true);
+			$common_skill_info['common_skill_mp_arr'] = json_decode($common_skill_info['common_skill_mp'],true);
+			$common_skill_info['common_skill_attack_defense_arr'] = json_decode($common_skill_info['common_skill_attack_defense'],true);
+			$common_skill_info['common_skill_magic_defense_arr'] = json_decode($common_skill_info['common_skill_magic_defense'],true);
+			$common_skill_info['common_skill_dodge_arr'] = json_decode($common_skill_info['common_skill_dodge'],true);
+			$common_skill_info['common_skill_direct_arr'] = json_decode($common_skill_info['common_skill_direct'],true);
+			$common_skill_info['common_skill_crit_arr'] = json_decode($common_skill_info['common_skill_crit'],true);
+			$common_skill_info['common_skill_hp_regain_arr'] = json_decode($common_skill_info['common_skill_hp_regain'],true);
+			$common_skill_info['common_skill_mp_regain_arr'] = json_decode($common_skill_info['common_skill_mp_regain'],true);
+			$common_skill_info['common_skill_gold_hurt_arr'] = json_decode($common_skill_info['common_skill_gold_hurt'],true);
+			$common_skill_info['common_skill_wood_hurt_arr'] = json_decode($common_skill_info['common_skill_wood_hurt'],true);
+			$common_skill_info['common_skill_water_hurt_arr'] = json_decode($common_skill_info['common_skill_water_hurt'],true);
+			$common_skill_info['common_skill_fire_hurt_arr'] = json_decode($common_skill_info['common_skill_fire_hurt'],true);
+			$common_skill_info['common_skill_earth_hurt_arr'] = json_decode($common_skill_info['common_skill_earth_hurt'],true);			
+			$common_skill_info['common_skill_keep_num_arr'] = json_decode($common_skill_info['common_skill_keep_num'],true);			
 
 			$this->assign('common_skill_info',$common_skill_info);
 			$this->display();
