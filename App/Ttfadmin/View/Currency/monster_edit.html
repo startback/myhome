@@ -45,7 +45,15 @@
 					<div class="tips"></div>					
                 </div>
             </div>			
-
+            <div class="form-group">
+                <div class="label">
+                    <label>等级：</label>
+                </div>
+                <div class="field">
+                    <input type="number" class="input w50" value="{$monster_info.monster_level}" name="monster_level" />
+                    <div class="tips"></div>
+                </div>
+            </div>	
             <div class="form-group">
                 <div class="label">
                     <label>图片：</label>
@@ -158,8 +166,13 @@
                 <div class="field">
 					<div class="float-left margin-right">
 						<input id="monster_role_skill_id" name="monster_role_skill_id" value="{$monster_info.monster_role_skill_id}" type="hidden" />
-						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_role_skill&id_name=monster_role_skill_id','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$monster_info.monster_role_skill_name}</button>
-					</div>					
+						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_role_skill&id_name=monster_role_skill_id','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$monster_info.monster_role_skill_id_arr.name}</button>
+					</div>				
+                    <select name="monster_role_skill_level" class="input" style="width:90px;" >				
+                        <foreach name="role_skill_levels" item="vo" key="key" >
+                            <option <?php if($monster_info['monster_role_skill_id_arr']['level'] == $key) echo 'selected';?> value="{$key}">{$vo}</option>
+                        </foreach>
+                    </select>						
 					<div class="tips"></div> 
                 </div>				
             </div>	
@@ -168,21 +181,41 @@
                     <label>通用技能：</label>
                 </div>
                 <div class="field">
-					<div class="float-left margin-right">
+					<div class="float-left margin-big-right">
 						<input id="monster_common_skill_id_1" name="monster_common_skill_id_1" value="{$monster_info.monster_common_skill_ids_arr.1.skill}" type="hidden" />
-						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_common_skill&id_name=monster_common_skill_id_1','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$monster_info.monster_common_skill_ids_arr.1.skill_name}</button>
+						<button class="button float-left margin-right" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_common_skill&id_name=monster_common_skill_id_1','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$monster_info.monster_common_skill_ids_arr.1.skill_name}</button>
+						<select name="monster_common_skill_level_1" class="input" style="width:90px;" >				
+							<foreach name="common_skill_levels" item="vo" key="key" >
+								<option <?php if($monster_info['monster_common_skill_ids_arr'][1]['level'] == $key) echo 'selected';?> value="{$key}">{$vo}</option>
+							</foreach>
+						</select>							
 					</div>		
-					<div class="float-left margin-right">
+					<div class="float-left margin-big-right">
 						<input id="monster_common_skill_id_2" name="monster_common_skill_id_2" value="{$monster_info.monster_common_skill_ids_arr.2.skill}" type="hidden" />
-						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_common_skill&id_name=monster_common_skill_id_2','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$monster_info.monster_common_skill_ids_arr.2.skill_name}</button>
+						<button class="button float-left margin-right" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_common_skill&id_name=monster_common_skill_id_2','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$monster_info.monster_common_skill_ids_arr.2.skill_name}</button>
+						<select name="monster_common_skill_level_2" class="input" style="width:90px;" >				
+							<foreach name="common_skill_levels" item="vo" key="key" >
+								<option <?php if($monster_info['monster_common_skill_ids_arr'][2]['level'] == $key) echo 'selected';?> value="{$key}">{$vo}</option>
+							</foreach>
+						</select>							
 					</div>
-					<div class="float-left margin-right">
+					<div class="float-left margin-big-right">
 						<input id="monster_common_skill_id_3" name="monster_common_skill_id_3" value="{$monster_info.monster_common_skill_ids_arr.3.skill}" type="hidden" />
-						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_common_skill&id_name=monster_common_skill_id_3','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$monster_info.monster_common_skill_ids_arr.3.skill_name}</button>
+						<button class="button float-left margin-right" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_common_skill&id_name=monster_common_skill_id_3','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$monster_info.monster_common_skill_ids_arr.3.skill_name}</button>
+						<select name="monster_common_skill_level_3" class="input" style="width:90px;" >				
+							<foreach name="common_skill_levels" item="vo" key="key" >
+								<option <?php if($monster_info['monster_common_skill_ids_arr'][3]['level'] == $key) echo 'selected';?> value="{$key}">{$vo}</option>
+							</foreach>
+						</select>							
 					</div>	
-					<div class="float-left margin-right">
+					<div class="float-left margin-big-right">
 						<input id="monster_common_skill_id_4" name="monster_common_skill_id_4" value="{$monster_info.monster_common_skill_ids_arr.4.skill}" type="hidden" />
-						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_common_skill&id_name=monster_common_skill_id_4','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$monster_info.monster_common_skill_ids_arr.4.skill_name}</button>
+						<button class="button float-left margin-right" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_common_skill&id_name=monster_common_skill_id_4','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$monster_info.monster_common_skill_ids_arr.4.skill_name}</button>
+						<select name="monster_common_skill_level_4" class="input" style="width:90px;" >				
+							<foreach name="common_skill_levels" item="vo" key="key" >
+								<option <?php if($monster_info['monster_common_skill_ids_arr'][4]['level'] == $key) echo 'selected';?> value="{$key}">{$vo}</option>
+							</foreach>
+						</select>							
 					</div>						
 					<div class="tips"></div> 
                 </div>				
@@ -195,28 +228,28 @@
                 <div class="field">
 					<div class="float-left margin-big-right">
 						<input id="monster_goods_1" name="monster_goods_1" value="{$monster_info.monster_goods_arr.1.goods}" type="hidden" />
-						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_goods&id_name=monster_goods_1','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$monster_info.monster_goods_arr.1.goods_name}</button>
-						<input type="text" class="button" size="10" name="monster_goods_1_rate" value="{$monster_info.monster_goods_arr.1.rate}" />
+						<button class="button float-left margin-right" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_goods&id_name=monster_goods_1','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$monster_info.monster_goods_arr.1.goods_name}</button>
+						<input type="text" class="input" style="width:120px;" name="monster_goods_1_rate" value="{$monster_info.monster_goods_arr.1.rate}" />
 					</div>				
 					<div class="float-left margin-big-right">
 						<input id="monster_goods_2" name="monster_goods_2" value="{$monster_info.monster_goods_arr.2.goods}" type="hidden" />
-						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_goods&id_name=monster_goods_2','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$monster_info.monster_goods_arr.2.goods_name}</button>
-						<input type="text" class="button" size="10" name="monster_goods_2_rate" value="{$monster_info.monster_goods_arr.2.rate}" />
+						<button class="button float-left margin-right" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_goods&id_name=monster_goods_2','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$monster_info.monster_goods_arr.2.goods_name}</button>
+						<input type="text" class="input" style="width:120px;" name="monster_goods_2_rate" value="{$monster_info.monster_goods_arr.2.rate}" />
 					</div>								
 					<div class="float-left margin-big-right">
 						<input id="monster_goods_3" name="monster_goods_3" value="{$monster_info.monster_goods_arr.3.goods}" type="hidden" />
-						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_goods&id_name=monster_goods_3','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$monster_info.monster_goods_arr.3.goods_name}</button>
-						<input type="text" class="button" size="10" name="monster_goods_3_rate" value="{$monster_info.monster_goods_arr.3.rate}" />
+						<button class="button float-left margin-right" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_goods&id_name=monster_goods_3','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$monster_info.monster_goods_arr.3.goods_name}</button>
+						<input type="text" class="input" style="width:120px;" name="monster_goods_3_rate" value="{$monster_info.monster_goods_arr.3.rate}" />
 					</div>	
 					<div class="float-left margin-big-right">
 						<input id="monster_goods_4" name="monster_goods_4" value="{$monster_info.monster_goods_arr.4.goods}" type="hidden" />
-						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_goods&id_name=monster_goods_4','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$monster_info.monster_goods_arr.4.goods_name}</button>
-						<input type="text" class="button" size="10" name="monster_goods_4_rate" value="{$monster_info.monster_goods_arr.4.rate}" />
+						<button class="button float-left margin-right" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_goods&id_name=monster_goods_4','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$monster_info.monster_goods_arr.4.goods_name}</button>
+						<input type="text" class="input" style="width:120px;" name="monster_goods_4_rate" value="{$monster_info.monster_goods_arr.4.rate}" />
 					</div>		
 					<div class="float-left margin-big-right">
 						<input id="monster_goods_5" name="monster_goods_5" value="{$monster_info.monster_goods_arr.5.goods}" type="hidden" />
-						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_goods&id_name=monster_goods_5','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$monster_info.monster_goods_arr.5.goods_name}</button>
-						<input type="text" class="button" size="10" name="monster_goods_5_rate" value="{$monster_info.monster_goods_arr.5.rate}" />
+						<button class="button float-left margin-right" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_goods&id_name=monster_goods_5','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$monster_info.monster_goods_arr.5.goods_name}</button>
+						<input type="text" class="input" style="width:120px;" name="monster_goods_5_rate" value="{$monster_info.monster_goods_arr.5.rate}" />
 					</div>	
 					(暴率格式及范围:1-10000)
                     <div class="tips"></div>					

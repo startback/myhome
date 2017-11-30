@@ -37,17 +37,6 @@
 			<th>logo</th>
 			<th>描述</th>
 			<th>时间</th>
-			<th>物攻</th>
-			<th>魔攻</th>
-			<th>生命</th>
-			<th>魔法</th>
-			<th>物防</th>
-			<th>魔防</th>
-			<th>闪避</th>
-			<th>命中</th>
-			<th>暴击</th>
-			<th>生命回复</th>
-			<th>魔法回复</th>
 			<th width="310">操作</th>
 		</tr>
 
@@ -57,17 +46,6 @@
 			<td><img width="40" height="40" src="__PUBLIC__/Ttfadmin/images/no_skill.jpg"/></td>
 			<td>无</td>
 			<td>无</td>
-			<td>0</td>
-			<td>0</td>
-			<td>0</td>
-			<td>0</td>
-			<td>0</td>
-			<td>0</td>
-			<td>0</td>
-			<td>0</td>
-			<td>0</td>
-			<td>0</td>
-			<td>0</td>
 			<td><button onclick="chose_skill(0,'无','{$search_state.id_name}')" class="button">选中</button></td>
 		</tr>		
 		
@@ -79,24 +57,13 @@
 					<td><img width="40" height="40" src="__ROOT__{$vo.common_skill_logo}"/></td>
 					<td>{$vo.common_skill_desc}</td>
 					<td>{$vo.common_skill_time}</td>
-					<td>{$vo.common_skill_attack}</td>
-					<td>{$vo.common_skill_magic}</td>
-					<td>{$vo.common_skill_hp}</td>
-					<td>{$vo.common_skill_mp}</td>
-					<td>{$vo.common_skill_attack_defense}</td>
-					<td>{$vo.common_skill_magic_defense}</td>
-					<td>{$vo.common_skill_dodge}</td>
-					<td>{$vo.common_skill_direct}</td>
-					<td>{$vo.common_skill_crit}</td>
-					<td>{$vo.common_skill_hp_regain}</td>
-					<td>{$vo.common_skill_mp_regain}</td>
 					<td><button onclick="chose_skill({$vo.common_skill_id},'{$vo.common_skill_name}','{$search_state.id_name}')" class="button">选中</button></td>
 				</tr>
 			</volist>	
 		</if>
 
 		<tr>
-			<td colspan="17">
+			<td colspan="6">
 				<div class="pagelist">{$page}</div>
 			</td>
 		</tr>			

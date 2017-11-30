@@ -67,16 +67,8 @@
 			<th>类型</th>
 			<th>logo</th>
 			<th>描述</th>
+			<th>天赋技能</th>
 			<th>时间</th>
-			<th>物攻</th>
-			<th>魔攻</th>
-			<th>生命</th>
-			<th>魔法</th>
-			<th>物防</th>
-			<th>魔防</th>
-			<th>闪避</th>
-			<th>命中</th>
-			<th>暴击</th>
 			<th width="310">操作</th>
 		</tr>
 
@@ -88,16 +80,8 @@
 					<td>{$vo.type_name}</td>
 					<td><img width="40" height="40" src="__ROOT__{$vo.role_logo}"/></td>
 					<td>{$vo.role_desc}</td>
+					<td>{$vo.role_skill_name}</td>
 					<td>{$vo.role_time}</td>
-					<td>{$vo.role_attack}</td>
-					<td>{$vo.role_magic}</td>
-					<td>{$vo.role_hp}</td>
-					<td>{$vo.role_mp}</td>
-					<td>{$vo.role_attack_defense}</td>
-					<td>{$vo.role_magic_defense}</td>
-					<td>{$vo.role_dodge}</td>
-					<td>{$vo.role_direct}</td>
-					<td>{$vo.role_crit}</td>
 					<td>
 						<div class="button-group">
 							<a class="button border-main" href="__ROOT__/index.php?m=ttfadmin&c=currency&a=role_edit&id={$vo.role_id}"><span class="icon-edit"></span> 修改</a>
@@ -108,14 +92,14 @@
 			</volist>
 			
 			<tr>
-				<td colspan="16">
+				<td colspan="8">
 					<div class="pagelist">{$page}</div>
 				</td>
 			</tr>				
 						
 			<else/>
 			<tr>
-				<td colspan="16" style="height: 80px;line-height: 80px;font-size: 20px;">
+				<td colspan="8" style="height: 80px;line-height: 80px;font-size: 20px;">
 					没有数据
 				</td>
 			</tr>
@@ -165,7 +149,6 @@
 			$('#select_id_3').val(0);			
 			$('#select_id_2').css('display','none');
 			$('#select_id_3').css('display','none');
-		
 		}
 	}	
 	function chose_type_3(id){

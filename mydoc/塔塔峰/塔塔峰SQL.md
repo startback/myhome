@@ -81,16 +81,17 @@
 | role_logo | varchar(128) | - | - | 角色LOGO |
 | role_desc | text | - | - | 角色描述 |
 | role_time | datetime | - | - | 角色建立时间 |
-| role_attack | smallint | 0 | - | 初始物攻 |
-| role_magic | smallint | 0 | - | 初始魔攻 |
-| role_hp | int | 0 | - | 初始生命值 |
-| role_mp | int | 0 | - | 初始魔法值 |
-| role_attack_defense | smallint | 0 | - | 初始物防 |
-| role_magic_defense | smallint | 0 | - | 初始魔防 |
-| role_dodge | smallint | 0 | - | 初始闪避值 |
-| role_direct | smallint | 0 | - | 初始命中值 |
-| role_crit | smallint | 0 | - | 初始暴击值 |
 | role_skill_id | smallint | 0 | - | 天赋技能 |
+| role_attack | varchar(255) | - | - | 初始物攻 |
+| role_magic | varchar(255) | - | - | 初始魔攻 |
+| role_hp | varchar(255) | - | - | 初始生命值 |
+| role_mp | varchar(255) | - | - | 初始魔法值 |
+| role_attack_defense | varchar(255) | - | - | 初始物防 |
+| role_magic_defense | varchar(255) | - | - | 初始魔防 |
+| role_dodge | varchar(255) | - | - | 初始闪避值 |
+| role_direct | varchar(255) | - | - | 初始命中值 |
+| role_crit | varchar(255) | - | - | 初始暴击值 |
+
 
 
 <span id="6"/>
@@ -165,6 +166,7 @@
 |-------|------|------|-----|------|
 | monster_id | smallint | - | key auto | 怪物ID |
 | monster_type | smallint | - | - | 怪物归属类别 |
+| monster_level | smallint | 0 | - | 怪物等级 |
 | monster_name | varchar(36) | - | - | 怪物名 |
 | monster_logo | varchar(128) | - | - | 怪物LOGO |
 | monster_desc | text | - | - | 怪物描述 |
@@ -178,8 +180,8 @@
 | monster_dodge | smallint | 0 | - | 初始闪避值 |
 | monster_direct | smallint | 0 | - | 初始命中值 |
 | monster_crit | smallint | 0 | - | 初始暴击值 |
-| monster_role_skill_id | smallint | 0 | - | 怪物天赋技能 |
-| monster_common_skill_ids | varchar(255) | - | - | 怪物通用技能集 |
+| monster_role_skill_id | varchar(255) | 0 | - | 怪物天赋技能及等级 |
+| monster_common_skill_ids | varchar(255) | - | - | 怪物通用技能及等级集 |
 | monster_goods | varchar(255) | - | - | 怪物身上物品及暴率 |
 
 

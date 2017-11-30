@@ -68,15 +68,6 @@
 			<th>logo</th>
 			<th>描述</th>
 			<th>时间</th>
-			<th>物攻</th>
-			<th>魔攻</th>
-			<th>生命</th>
-			<th>魔法</th>
-			<th>物防</th>
-			<th>魔防</th>
-			<th>闪避</th>
-			<th>命中</th>
-			<th>暴击</th>
 			<th width="310">操作</th>
 		</tr>
 
@@ -89,15 +80,6 @@
 					<td><img width="40" height="40" src="__ROOT__{$vo.goods_logo}"/></td>
 					<td>{$vo.goods_desc}</td>
 					<td>{$vo.goods_time}</td>
-					<td>{$vo.goods_attack}</td>
-					<td>{$vo.goods_magic}</td>
-					<td>{$vo.goods_hp}</td>
-					<td>{$vo.goods_mp}</td>
-					<td>{$vo.goods_attack_defense}</td>
-					<td>{$vo.goods_magic_defense}</td>
-					<td>{$vo.goods_dodge}</td>
-					<td>{$vo.goods_direct}</td>
-					<td>{$vo.goods_crit}</td>
 					<td>
 						<div class="button-group">
 							<a class="button border-main" href="__ROOT__/index.php?m=ttfadmin&c=currency&a=goods_edit&id={$vo.goods_id}"><span class="icon-edit"></span> 修改</a>
@@ -108,14 +90,14 @@
 			</volist>
 			
 			<tr>
-				<td colspan="16">
+				<td colspan="7">
 					<div class="pagelist">{$page}</div>
 				</td>
 			</tr>				
 						
 			<else/>
 			<tr>
-				<td colspan="16" style="height: 80px;line-height: 80px;font-size: 20px;">
+				<td colspan="7" style="height: 80px;line-height: 80px;font-size: 20px;">
 					没有数据
 				</td>
 			</tr>

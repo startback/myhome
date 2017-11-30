@@ -13,8 +13,7 @@ class RoleModel extends Model {
 
     //获取角色列表
     public function role_list($limit,$where){
-        return M('role')->field(C('DB_PREFIX').'role.*,'.C('DB_PREFIX').'type.type_name')->join('left join '.C('DB_PREFIX').'type ON '.C('DB_PREFIX').'role.role_type = '.C('DB_PREFIX').'type.type_id')->where($where)->limit($limit)->order('role_id desc')->select();		
-		
+        return M('role')->field(C('DB_PREFIX').'role.*,'.C('DB_PREFIX').'type.type_name,'.C('DB_PREFIX').'role_skill.role_skill_name')->join('left join '.C('DB_PREFIX').'type ON '.C('DB_PREFIX').'role.role_type = '.C('DB_PREFIX').'type.type_id')->join('left join '.C('DB_PREFIX').'role_skill ON '.C('DB_PREFIX').'role.role_skill_id = '.C('DB_PREFIX').'role_skill.role_skill_id')->where($where)->limit($limit)->order('role_id desc')->select();			
     }
 
     //获得页数
