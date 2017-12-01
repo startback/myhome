@@ -215,6 +215,8 @@ class UsermanageController extends CommonController {
 		if($_POST){
 			$data['role_id'] = isset($_POST['role_id'])?intval($_POST['role_id']):0;
 			$data['user_id'] = isset($_POST['user_id'])?intval($_POST['user_id']):0;
+			$data['experience'] = isset($_POST['experience'])?intval($_POST['experience']):0;
+			$data['level'] = isset($_POST['level'])?intval($_POST['level']):0;
 			$data['attack'] = isset($_POST['attack'])?intval($_POST['attack']):0;
 			$data['magic'] = isset($_POST['magic'])?intval($_POST['magic']):0;
 			$data['hp'] = isset($_POST['hp'])?intval($_POST['hp']):0;
@@ -224,10 +226,16 @@ class UsermanageController extends CommonController {
 			$data['dodge'] = isset($_POST['dodge'])?intval($_POST['dodge']):0;
 			$data['direct'] = isset($_POST['direct'])?intval($_POST['direct']):0;
 			$data['crit'] = isset($_POST['crit'])?intval($_POST['crit']):0;			
+			$data['role_skill_id'] = isset($_POST['role_skill_id'])?intval($_POST['role_skill_id']):0;			
+			$data['role_skill_level'] = isset($_POST['role_skill_level'])?intval($_POST['role_skill_level']):0;			
 			$skill_id_data[1]['skill'] = isset($_POST['skill_id_1'])?intval($_POST['skill_id_1']):0;
 			$skill_id_data[2]['skill'] = isset($_POST['skill_id_2'])?intval($_POST['skill_id_2']):0;
 			$skill_id_data[3]['skill'] = isset($_POST['skill_id_3'])?intval($_POST['skill_id_3']):0;
 			$skill_id_data[4]['skill'] = isset($_POST['skill_id_4'])?intval($_POST['skill_id_4']):0;
+			$skill_id_data[1]['level'] = isset($_POST['skill_id_1_level'])?intval($_POST['skill_id_1_level']):0;
+			$skill_id_data[2]['level'] = isset($_POST['skill_id_2_level'])?intval($_POST['skill_id_2_level']):0;
+			$skill_id_data[3]['level'] = isset($_POST['skill_id_3_level'])?intval($_POST['skill_id_3_level']):0;
+			$skill_id_data[4]['level'] = isset($_POST['skill_id_4_level'])?intval($_POST['skill_id_4_level']):0;
 			$data['skill_ids'] = json_encode($skill_id_data);		
 			$data['add_time'] = date('Y-m-d H:i:s',time());
 			
@@ -243,6 +251,10 @@ class UsermanageController extends CommonController {
             }
 			
 		}else{			
+			$role_skill_levels = C('ROLE_SKILL_LEVEL');
+			$common_skill_levels = C('COMMON_SKILL_LEVEL');
+			$this->assign('role_skill_levels',$role_skill_levels);
+			$this->assign('common_skill_levels',$common_skill_levels);			
 			$this->display();
 		}
 	}	
@@ -255,6 +267,8 @@ class UsermanageController extends CommonController {
 
 			$data['role_id'] = isset($_POST['role_id'])?intval($_POST['role_id']):0;
 			$data['user_id'] = isset($_POST['user_id'])?intval($_POST['user_id']):0;
+			$data['experience'] = isset($_POST['experience'])?intval($_POST['experience']):0;
+			$data['level'] = isset($_POST['level'])?intval($_POST['level']):0;			
 			$data['attack'] = isset($_POST['attack'])?intval($_POST['attack']):0;
 			$data['magic'] = isset($_POST['magic'])?intval($_POST['magic']):0;
 			$data['hp'] = isset($_POST['hp'])?intval($_POST['hp']):0;
@@ -263,11 +277,17 @@ class UsermanageController extends CommonController {
 			$data['magic_defense'] = isset($_POST['magic_defense'])?intval($_POST['magic_defense']):0;
 			$data['dodge'] = isset($_POST['dodge'])?intval($_POST['dodge']):0;
 			$data['direct'] = isset($_POST['direct'])?intval($_POST['direct']):0;
-			$data['crit'] = isset($_POST['crit'])?intval($_POST['crit']):0;			
+			$data['crit'] = isset($_POST['crit'])?intval($_POST['crit']):0;		
+			$data['role_skill_id'] = isset($_POST['role_skill_id'])?intval($_POST['role_skill_id']):0;			
+			$data['role_skill_level'] = isset($_POST['role_skill_level'])?intval($_POST['role_skill_level']):0;				
 			$skill_id_data[1]['skill'] = isset($_POST['skill_id_1'])?intval($_POST['skill_id_1']):0;
 			$skill_id_data[2]['skill'] = isset($_POST['skill_id_2'])?intval($_POST['skill_id_2']):0;
 			$skill_id_data[3]['skill'] = isset($_POST['skill_id_3'])?intval($_POST['skill_id_3']):0;
 			$skill_id_data[4]['skill'] = isset($_POST['skill_id_4'])?intval($_POST['skill_id_4']):0;
+			$skill_id_data[1]['level'] = isset($_POST['skill_id_1_level'])?intval($_POST['skill_id_1_level']):0;
+			$skill_id_data[2]['level'] = isset($_POST['skill_id_2_level'])?intval($_POST['skill_id_2_level']):0;
+			$skill_id_data[3]['level'] = isset($_POST['skill_id_3_level'])?intval($_POST['skill_id_3_level']):0;
+			$skill_id_data[4]['level'] = isset($_POST['skill_id_4_level'])?intval($_POST['skill_id_4_level']):0;			
 			$data['skill_ids'] = json_encode($skill_id_data);
 			
 			if($data['role_id'] == 0 || $data['user_id'] == 0){
@@ -287,7 +307,7 @@ class UsermanageController extends CommonController {
 				$this->error('没有此用户角色');
 				exit;
 			}
-			$user_role = M('user_role')->field(C('DB_PREFIX').'user_role.*,'.C('DB_PREFIX').'user.user_name,'.C('DB_PREFIX').'role.role_name')->join('left join '.C('DB_PREFIX').'user ON '.C('DB_PREFIX').'user_role.user_id = '.C('DB_PREFIX').'user.user_id')->join('left join '.C('DB_PREFIX').'role ON '.C('DB_PREFIX').'user_role.role_id = '.C('DB_PREFIX').'role.role_id')->where('user_role_id='.$user_role_id)->find();
+			$user_role = M('user_role')->field(C('DB_PREFIX').'user_role.*,'.C('DB_PREFIX').'user.user_name,'.C('DB_PREFIX').'role.role_name,'.C('DB_PREFIX').'role_skill.role_skill_name')->join('left join '.C('DB_PREFIX').'user ON '.C('DB_PREFIX').'user_role.user_id = '.C('DB_PREFIX').'user.user_id')->join('left join '.C('DB_PREFIX').'role ON '.C('DB_PREFIX').'user_role.role_id = '.C('DB_PREFIX').'role.role_id')->join('left join '.C('DB_PREFIX').'role_skill ON '.C('DB_PREFIX').'user_role.role_skill_id = '.C('DB_PREFIX').'role_skill.role_skill_id')->where('user_role_id='.$user_role_id)->find();
 			$user_role['skill_ids_arr'] = json_decode($user_role['skill_ids'],true);
 			foreach($user_role['skill_ids_arr'] as $key=>$value){
 				if($value['skill'] > 0){
@@ -296,7 +316,10 @@ class UsermanageController extends CommonController {
 					$user_role['skill_ids_arr'][$key]['skill_name'] = '无';
 				}
 			}			
-			
+			$role_skill_levels = C('ROLE_SKILL_LEVEL');
+			$common_skill_levels = C('COMMON_SKILL_LEVEL');
+			$this->assign('role_skill_levels',$role_skill_levels);
+			$this->assign('common_skill_levels',$common_skill_levels);			
 			$this->assign('user_role',$user_role);
 			$this->display();
         }			
@@ -367,6 +390,7 @@ class UsermanageController extends CommonController {
 			$data['dodge'] = isset($_POST['dodge'])?intval($_POST['dodge']):0;
 			$data['direct'] = isset($_POST['direct'])?intval($_POST['direct']):0;
 			$data['crit'] = isset($_POST['crit'])?intval($_POST['crit']):0;			
+			$data['add_experience'] = isset($_POST['add_experience'])?intval($_POST['add_experience']):0;			
 			$data['skill_id'] = isset($_POST['skill_id'])?intval($_POST['skill_id']):0;			
 			$data['add_time'] = date('Y-m-d H:i:s',time());
 			
@@ -402,7 +426,8 @@ class UsermanageController extends CommonController {
 			$data['magic_defense'] = isset($_POST['magic_defense'])?intval($_POST['magic_defense']):0;
 			$data['dodge'] = isset($_POST['dodge'])?intval($_POST['dodge']):0;
 			$data['direct'] = isset($_POST['direct'])?intval($_POST['direct']):0;
-			$data['crit'] = isset($_POST['crit'])?intval($_POST['crit']):0;			
+			$data['crit'] = isset($_POST['crit'])?intval($_POST['crit']):0;		
+			$data['add_experience'] = isset($_POST['add_experience'])?intval($_POST['add_experience']):0;			
 			$data['skill_id'] = isset($_POST['skill_id'])?intval($_POST['skill_id']):0;	
 			
 			if($data['goods_id'] == 0 || $data['user_id'] == 0){
@@ -491,6 +516,8 @@ class UsermanageController extends CommonController {
 		if($_POST){
 			$data['monster_id'] = isset($_POST['monster_id'])?intval($_POST['monster_id']):0;
 			$data['user_id'] = isset($_POST['user_id'])?intval($_POST['user_id']):0;
+			$data['monster_level'] = isset($_POST['monster_level'])?intval($_POST['monster_level']):0;
+			$data['monster_experience'] = isset($_POST['monster_experience'])?intval($_POST['monster_experience']):0;
 			$data['attack'] = isset($_POST['attack'])?intval($_POST['attack']):0;
 			$data['magic'] = isset($_POST['magic'])?intval($_POST['magic']):0;
 			$data['hp'] = isset($_POST['hp'])?intval($_POST['hp']):0;
@@ -527,6 +554,8 @@ class UsermanageController extends CommonController {
 
 			$data['monster_id'] = isset($_POST['monster_id'])?intval($_POST['monster_id']):0;
 			$data['user_id'] = isset($_POST['user_id'])?intval($_POST['user_id']):0;
+			$data['monster_level'] = isset($_POST['monster_level'])?intval($_POST['monster_level']):0;
+			$data['monster_experience'] = isset($_POST['monster_experience'])?intval($_POST['monster_experience']):0;			
 			$data['attack'] = isset($_POST['attack'])?intval($_POST['attack']):0;
 			$data['magic'] = isset($_POST['magic'])?intval($_POST['magic']):0;
 			$data['hp'] = isset($_POST['hp'])?intval($_POST['hp']):0;

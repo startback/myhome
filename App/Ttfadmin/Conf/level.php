@@ -61,7 +61,11 @@ return array(
                 array('title'=>'monster','name' => '怪兽列表'),
                 array('title'=>'monster_add', 'name' => '怪兽添加'),
                 array('title'=>'monster_edit','name' => '怪兽修改'),
-                array('title'=>'monster_del', 'name' => '怪兽删除'),				
+                array('title'=>'monster_del', 'name' => '怪兽删除'),		
+                array('title'=>'level_exp','name' => '等级经验表'),
+                array('title'=>'level_exp_add', 'name' => '等级经验添加'),
+                array('title'=>'level_exp_edit','name' => '等级经验修改'),
+                array('title'=>'level_exp_del', 'name' => '等级经验删除'),				
             )
         ),		
 		
@@ -127,6 +131,7 @@ return array(
 				"role_skill" => array("天赋技能","index.php?m=ttfadmin&c=currency&a=role_skill"),
 				"common_skill" => array("通用技能","index.php?m=ttfadmin&c=currency&a=common_skill"),
 				"monster" => array("怪物列表","index.php?m=ttfadmin&c=currency&a=monster"),
+				"level_exp" => array("等级经验表","index.php?m=ttfadmin&c=currency&a=level_exp"),
 			),
 		),		
 		

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2017-11-29 15:24:36
+Date: 2017-12-01 15:23:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -47,7 +47,7 @@ CREATE TABLE `ttf_admin_log` (
   `admin_id` smallint(6) DEFAULT NULL,
   `ip_address` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`log_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=172 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=199 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for ttf_admin_role
@@ -115,6 +115,17 @@ CREATE TABLE `ttf_goods` (
 ) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Table structure for ttf_level_experience
+-- ----------------------------
+DROP TABLE IF EXISTS `ttf_level_experience`;
+CREATE TABLE `ttf_level_experience` (
+  `level` smallint(6) NOT NULL,
+  `experience` int(11) DEFAULT NULL,
+  `add_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`level`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
 -- Table structure for ttf_maze
 -- ----------------------------
 DROP TABLE IF EXISTS `ttf_maze`;
@@ -146,6 +157,7 @@ DROP TABLE IF EXISTS `ttf_monster`;
 CREATE TABLE `ttf_monster` (
   `monster_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `monster_type` smallint(6) DEFAULT '0',
+  `monster_level` smallint(6) DEFAULT NULL,
   `monster_name` varchar(36) DEFAULT NULL,
   `monster_logo` varchar(128) DEFAULT NULL,
   `monster_desc` text,
@@ -159,11 +171,12 @@ CREATE TABLE `ttf_monster` (
   `monster_dodge` smallint(6) DEFAULT '0',
   `monster_direct` smallint(6) DEFAULT '0',
   `monster_crit` smallint(6) DEFAULT '0',
-  `monster_role_skill_id` smallint(6) DEFAULT '0',
+  `monster_role_skill_id` varchar(255) DEFAULT '0',
   `monster_common_skill_ids` varchar(255) DEFAULT NULL,
   `monster_goods` varchar(255) DEFAULT NULL,
+  `monster_kill_experience` int(11) DEFAULT NULL,
   PRIMARY KEY (`monster_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for ttf_province
@@ -187,15 +200,15 @@ CREATE TABLE `ttf_role` (
   `role_logo` varchar(128) DEFAULT NULL,
   `role_desc` text,
   `role_time` datetime DEFAULT NULL,
-  `role_attack` smallint(6) DEFAULT '0',
-  `role_magic` smallint(6) DEFAULT '0',
-  `role_hp` int(6) DEFAULT '0',
-  `role_mp` int(6) DEFAULT '0',
-  `role_attack_defense` smallint(6) DEFAULT '0',
-  `role_magic_defense` smallint(6) DEFAULT '0',
-  `role_dodge` smallint(6) DEFAULT '0',
-  `role_direct` smallint(6) DEFAULT '0',
-  `role_crit` smallint(6) DEFAULT '0',
+  `role_attack` varchar(255) DEFAULT '0',
+  `role_magic` varchar(255) DEFAULT '0',
+  `role_hp` varchar(255) DEFAULT '0',
+  `role_mp` varchar(255) DEFAULT '0',
+  `role_attack_defense` varchar(255) DEFAULT '0',
+  `role_magic_defense` varchar(255) DEFAULT '0',
+  `role_dodge` varchar(255) DEFAULT '0',
+  `role_direct` varchar(255) DEFAULT '0',
+  `role_crit` varchar(255) DEFAULT '0',
   `role_skill_id` smallint(6) DEFAULT '0',
   PRIMARY KEY (`role_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
@@ -293,10 +306,11 @@ CREATE TABLE `ttf_user_goods` (
   `hp` int(11) DEFAULT '0',
   `mp` int(11) DEFAULT '0',
   `attack_defense` smallint(6) DEFAULT '0',
-  `magic_defnese` smallint(6) DEFAULT '0',
+  `magic_defense` smallint(6) DEFAULT '0',
   `dodge` smallint(6) DEFAULT '0',
   `direct` smallint(6) DEFAULT '0',
   `crit` smallint(6) DEFAULT '0',
+  `add_experience` int(11) DEFAULT NULL,
   `skill_id` smallint(6) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
@@ -322,6 +336,8 @@ CREATE TABLE `ttf_user_monster` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT '0',
   `monster_id` smallint(6) DEFAULT '0',
+  `monster_level` smallint(6) DEFAULT NULL,
+  `monster_experience` int(11) DEFAULT NULL,
   `add_time` datetime DEFAULT NULL,
   `attack` smallint(6) DEFAULT '0',
   `magic` smallint(6) DEFAULT '0',
@@ -344,6 +360,8 @@ CREATE TABLE `ttf_user_role` (
   `user_role_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT '0',
   `role_id` smallint(6) DEFAULT '0',
+  `level` smallint(6) DEFAULT '1',
+  `experience` int(11) DEFAULT NULL,
   `add_time` datetime DEFAULT NULL,
   `attack` smallint(6) DEFAULT '0',
   `magic` smallint(6) DEFAULT '0',
@@ -354,6 +372,8 @@ CREATE TABLE `ttf_user_role` (
   `dodge` smallint(6) DEFAULT '0',
   `direct` smallint(6) DEFAULT '0',
   `crit` smallint(6) DEFAULT '0',
+  `role_skill_id` smallint(6) DEFAULT NULL,
+  `role_skill_level` smallint(6) DEFAULT NULL,
   `skill_ids` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`user_role_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;

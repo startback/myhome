@@ -32,13 +32,30 @@
 					<div class="tips"></div> 
                 </div>				
             </div>				
-			
+            <div class="form-group">
+                <div class="label">
+                    <label>等级：</label>
+                </div>
+                <div class="field">
+                    <input type="number" class="input w50" value="{$user_role.level}" name="level" />
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>经验：</label>
+                </div>
+                <div class="field">
+                    <input type="number" class="input w50" value="{$user_role.experience}" name="experience" />
+                    <div class="tips"></div>
+                </div>
+            </div>				
             <div class="form-group">
                 <div class="label">
                     <label>物攻：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input w50" value="{$user_role.attack}" name="attack" />
+                    <input type="number" class="input w50" value="{$user_role.attack}" name="attack" />
                     <div class="tips"></div>
                 </div>
             </div>			
@@ -47,7 +64,7 @@
                     <label>魔攻：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input w50" value="{$user_role.magic}" name="magic" />
+                    <input type="number" class="input w50" value="{$user_role.magic}" name="magic" />
                     <div class="tips"></div>
                 </div>
             </div>	
@@ -56,7 +73,7 @@
                     <label>生命：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input w50" value="{$user_role.hp}" name="hp" />
+                    <input type="number" class="input w50" value="{$user_role.hp}" name="hp" />
                     <div class="tips"></div>
                 </div>
             </div>				
@@ -65,7 +82,7 @@
                     <label>魔法：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input w50" value="{$user_role.mp}" name="mp" />
+                    <input type="number" class="input w50" value="{$user_role.mp}" name="mp" />
                     <div class="tips"></div>
                 </div>
             </div>				
@@ -74,7 +91,7 @@
                     <label>物防：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input w50" value="{$user_role.attack_defense}" name="attack_defense" />
+                    <input type="number" class="input w50" value="{$user_role.attack_defense}" name="attack_defense" />
                     <div class="tips"></div>
                 </div>
             </div>		
@@ -83,7 +100,7 @@
                     <label>魔防：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input w50" value="{$user_role.magic_defense}" name="magic_defense" />
+                    <input type="number" class="input w50" value="{$user_role.magic_defense}" name="magic_defense" />
                     <div class="tips"></div>
                 </div>
             </div>				
@@ -92,7 +109,7 @@
                     <label>闪避：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input w50" value="{$user_role.dodge}" name="dodge" />
+                    <input type="number" class="input w50" value="{$user_role.dodge}" name="dodge" />
                     <div class="tips"></div>
                 </div>
             </div>
@@ -101,7 +118,7 @@
                     <label>命中：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input w50" value="{$user_role.direct}" name="direct" />
+                    <input type="number" class="input w50" value="{$user_role.direct}" name="direct" />
                     <div class="tips"></div>
                 </div>
             </div>	
@@ -110,30 +127,67 @@
                     <label>暴击：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input w50" value="{$user_role.crit}" name="crit" />
+                    <input type="number" class="input w50" value="{$user_role.crit}" name="crit" />
                     <div class="tips"></div>
                 </div>
             </div>		
             <div class="form-group">
                 <div class="label">
-                    <label>通用技能：</label>
+                    <label>天赋技能：</label>
                 </div>
                 <div class="field">
 					<div class="float-left margin-right">
+						<input id="role_skill_id" name="role_skill_id" value="{$user_role.role_skill_id}" type="hidden" />
+						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_role_skill&id_name=role_skill_id','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$user_role.role_skill_name}</button>
+					</div>				
+                    <select name="role_skill_level" class="input" style="width:90px;" >				
+                        <foreach name="role_skill_levels" item="vo" key="key" >
+                            <option <option <?php if($user_role['role_skill_level'] == $key) echo 'selected';?> value="{$key}">{$vo}</option>
+                        </foreach>
+                    </select>					
+					<div class="tips"></div> 
+                </div>				
+            </div>				
+            <div class="form-group">
+                <div class="label">
+                    <label>通用技能：</label>
+                </div>
+                <div class="field">
+					<div class="float-left margin-big-right">
 						<input id="skill_id_1" name="skill_id_1" value="{$user_role.skill_ids_arr.1.skill}" type="hidden" />
-						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_common_skill&id_name=skill_id_1','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$user_role.skill_ids_arr.1.skill_name}</button>
+						<button class="button float-left margin-right" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_common_skill&id_name=skill_id_1','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$user_role.skill_ids_arr.1.skill_name}</button>
+						<select name="skill_id_1_level" class="input" style="width:90px;" >				
+							<foreach name="common_skill_levels" item="vo" key="key" >
+								<option <?php if($user_role['skill_ids_arr'][1]['level'] == $key) echo 'selected';?> value="{$key}">{$vo}</option>
+							</foreach>
+						</select>						
 					</div>		
-					<div class="float-left margin-right">
+					<div class="float-left margin-big-right">
 						<input id="skill_id_2" name="skill_id_2" value="{$user_role.skill_ids_arr.2.skill}" type="hidden" />
-						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_common_skill&id_name=skill_id_2','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$user_role.skill_ids_arr.2.skill_name}</button>
+						<button class="button float-left margin-right" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_common_skill&id_name=skill_id_2','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$user_role.skill_ids_arr.2.skill_name}</button>
+						<select name="skill_id_2_level" class="input" style="width:90px;" >				
+							<foreach name="common_skill_levels" item="vo" key="key" >
+								<option <?php if($user_role['skill_ids_arr'][2]['level'] == $key) echo 'selected';?> value="{$key}">{$vo}</option>
+							</foreach>
+						</select>						
 					</div>
-					<div class="float-left margin-right">
+					<div class="float-left margin-big-right">
 						<input id="skill_id_3" name="skill_id_3" value="{$user_role.skill_ids_arr.3.skill}" type="hidden" />
-						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_common_skill&id_name=skill_id_3','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$user_role.skill_ids_arr.3.skill_name}</button>
+						<button class="button float-left margin-right" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_common_skill&id_name=skill_id_3','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$user_role.skill_ids_arr.3.skill_name}</button>
+						<select name="skill_id_3_level" class="input" style="width:90px;" >				
+							<foreach name="common_skill_levels" item="vo" key="key" >
+								<option <?php if($user_role['skill_ids_arr'][3]['level'] == $key) echo 'selected';?> value="{$key}">{$vo}</option>
+							</foreach>
+						</select>						
 					</div>	
-					<div class="float-left margin-right">
+					<div class="float-left margin-big-right">
 						<input id="skill_id_4" name="skill_id_4" value="{$user_role.skill_ids_arr.4.skill}" type="hidden" />
-						<button class="button" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_common_skill&id_name=skill_id_4','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$user_role.skill_ids_arr.4.skill_name}</button>
+						<button class="button float-left margin-right" onclick="window.open('index.php?m=ttfadmin&c=select&a=select_common_skill&id_name=skill_id_4','_blank','width=1500,height=900,menubar=no,toolbar=no,status=no,scrollbars=yes');" type="button">{$user_role.skill_ids_arr.4.skill_name}</button>
+						<select name="skill_id_4_level" class="input" style="width:90px;" >				
+							<foreach name="common_skill_levels" item="vo" key="key" >
+								<option <?php if($user_role['skill_ids_arr'][4]['level'] == $key) echo 'selected';?> value="{$key}">{$vo}</option>
+							</foreach>
+						</select>						
 					</div>						
 					<div class="tips"></div> 
                 </div>				

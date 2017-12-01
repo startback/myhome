@@ -1524,6 +1524,7 @@ class CurrencyController extends CommonController {
 			$data['monster_goods'] = json_encode($goods_data);			
 			
 			$data['monster_level'] = isset($_POST['monster_level'])?intval($_POST['monster_level']):0;
+			$data['monster_kill_experience'] = isset($_POST['monster_kill_experience'])?intval($_POST['monster_kill_experience']):0;
 			$data['monster_desc'] = isset($_POST['monster_desc'])?trim($_POST['monster_desc']):'';
 			$data['monster_attack'] = isset($_POST['monster_attack'])?intval($_POST['monster_attack']):0;
 			$data['monster_magic'] = isset($_POST['monster_magic'])?intval($_POST['monster_magic']):0;
@@ -1613,6 +1614,7 @@ class CurrencyController extends CommonController {
 			$data['monster_goods'] = json_encode($goods_data);			
 			
 			$data['monster_level'] = isset($_POST['monster_level'])?intval($_POST['monster_level']):0;
+			$data['monster_kill_experience'] = isset($_POST['monster_kill_experience'])?intval($_POST['monster_kill_experience']):0;
 			$data['monster_desc'] = isset($_POST['monster_desc'])?trim($_POST['monster_desc']):'';
 			$data['monster_attack'] = isset($_POST['monster_attack'])?intval($_POST['monster_attack']):0;
 			$data['monster_magic'] = isset($_POST['monster_magic'])?intval($_POST['monster_magic']):0;
@@ -1711,6 +1713,72 @@ class CurrencyController extends CommonController {
 			$this->error('删除失败');
 		}
 	}	
+	
+	/********************************************************************************/
+	//等级经验
+	public function level_exp(){
+		
+		$level_list = M('level_experience')->order('level asc')->select();
+		$this->assign('level_list',$level_list);
+		$this->display();
+		
+	}
+	
+	
+	public function level_exp_add(){
+		
+        if($_POST){
+			$data['level'] = isset($_POST['level'])?intval($_POST['level']):0;
+			$data['experience'] = isset($_POST['experience'])?intval($_POST['experience']):0;
+			$data['add_time'] = date('Y-m-d H:i:s',time());
+			
+            if(D('level_experience')->level_exp_add($data)){
+                $this->success('添加成功!',U('currency/level_exp'));
+            }else{
+                $this->error('添加失败');
+            }
+        }else{
+            $this->display();
+        }
+		
+	}	
+	
+	public function level_exp_edit(){
+		
+        if($_POST){
+			$level = isset($_POST['level'])?intval($_POST['level']):0;
+			$data['experience'] = isset($_POST['experience'])?intval($_POST['experience']):0;
+			
+            if(D('level_experience')->level_exp_edit($data,$level)){
+                $this->success('修改成功!',U('currency/level_exp'));
+            }else{
+                $this->error('修改失败');
+            }
+        }else{
+			$level = isset($_GET['id']) ? intval($_GET['id']) : 0;
+			if(empty($level)) {
+				$this->error('没有此等级');
+				exit;
+			}			
+			
+			$level_info = M('level_experience')->where('level='.$level)->find();
+			$this->assign('level_info',$level_info);
+            $this->display();
+        }
+		
+	}	
+	
+	public function level_exp_del(){
+		
+        $ids = isset($_REQUEST['ids'])?$_REQUEST['ids']:'';
+        if(D('level_experience')->level_exp_del($ids)){
+			$this->success('删除成功!');
+		}else{
+			$this->error('删除失败');
+		}
+		
+	}	
+	
 	
 
 }

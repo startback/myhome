@@ -16,6 +16,7 @@
 * 13、 [ttf_user_goods(用户物品)](#13)
 * 14、 [ttf_maze_monster_goods(迷宫怪物及物品设置)](#14)
 * 15、 [ttf_role_maze_record(人物迷宫记录)](#15)
+* 16、 [ttf_level_experience(等级经验)](#16)
 * a、 [ttf_admin(后台管理员)](#a)
 * b、 [ttf_admin_log(后台管理员操作记录)](#b)
 * c、 [ttf_admin_role(后台管理员角色)](#c)
@@ -183,6 +184,7 @@
 | monster_role_skill_id | varchar(255) | 0 | - | 怪物天赋技能及等级 |
 | monster_common_skill_ids | varchar(255) | - | - | 怪物通用技能及等级集 |
 | monster_goods | varchar(255) | - | - | 怪物身上物品及暴率 |
+| monster_kill_experience | int | - | - | 怪物击杀经验 |
 
 
 <span id="10"/>
@@ -213,6 +215,8 @@
 | user_role_id | int | - | key auto | 自增ID |
 | user_id | int | 0 | - | 用户ID |
 | role_id | smallint | 0 | - | 角色ID |
+| level | smallint | 0 | - | 等级 |
+| experience | int | 0 | - | 经验 |
 | add_time | datetime | - | - | 创建时间 |
 | attack | smallint | 0 | - | 物攻 |
 | magic | smallint | 0 | - | 魔攻 |
@@ -223,6 +227,8 @@
 | dodge | smallint | 0 | - | 闪避值 |
 | direct | smallint | 0 | - | 命中值 |
 | crit | smallint | 0 | - | 暴击值 |
+| role_skill_id | smallint | 0 | - | 天赋技能 |
+| role_skill_level | smallint | 0 | - | 天赋技能等级 |
 | skill_ids | varchar(255) | - | - | 技能集 |
 
 
@@ -233,6 +239,8 @@
 | id | int | - | key auto | 自增ID |
 | user_id | int | 0 | - | 用户ID |
 | monster_id | smallint | 0 | - | 怪物ID |
+| monster_level | smallint | 0 | - | 怪物等级 |
+| monster_experience | int | 0 | - | 怪物经验 |
 | add_time | datetime | - | - | 创建时间 |
 | attack | smallint | 0 | - | 物攻 |
 | magic | smallint | 0 | - | 魔攻 |
@@ -263,6 +271,7 @@
 | dodge | smallint | 0 | - | 闪避值 |
 | direct | smallint | 0 | - | 命中值 |
 | crit | smallint | 0 | - | 暴击值 |
+| add_experience | int | 0 | - | 增加经验 |
 | skill_id | smallint | 0 | - | 技能 |
 
 
@@ -289,6 +298,15 @@
 | begin_time | datetime | - | - | 迷宫开始时间 |
 | maze_now_is_over | tinyint | 0 | - | 是否已结束 0未 1是 |
 | max_height_floor | smallint | 1 | - | 最高层 |
+
+
+<span id="16"/>
+##### 16、 ttf_level_experience(等级经验)
+| 字段名 | 类型 | 默认 | 主键 | 备注 |
+|-------|------|------|-----|------|
+| level | smallint | - | key | 等级 |
+| experience | int | - | - | 经验 |
+| add_time | datetime | - | - | 添加时间 |
 
 
 <span id="a"/>
