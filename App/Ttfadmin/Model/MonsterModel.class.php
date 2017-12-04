@@ -3,8 +3,12 @@ namespace Ttfadmin\Model;
 use Think\Model;
 
 class MonsterModel extends Model {
-    var $per_page = 12;
+    var $per_page;
 
+	public function __construct(){
+		$this->per_page = C('PAGE_MONSTER');
+	}	
+	
     //获取limit
     public function get_limit($page){
         $start_num = ($page - 1) * $this->per_page;

@@ -4,9 +4,14 @@ use Think\Model;
 
 class UserModel extends Model {
 
-	var $mo_role_id = 1;  //注册默认角色
-    var $per_page = 12;
+	var $mo_role_id;  //注册默认角色
+    var $per_page;
 
+	public function __construct(){
+		$this->per_page = C('PAGE_USER');
+		$this->mo_role_id = C('SYS_MO_ROLE_ID');
+	}	
+	
     //获取limit
     public function get_limit($page){
         $start_num = ($page - 1) * $this->per_page;

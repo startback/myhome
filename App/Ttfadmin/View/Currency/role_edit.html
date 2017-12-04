@@ -74,7 +74,7 @@
                     <label></label>
                 </div>
                 <div class="field" style="color:red;">
-                    等级上限60 划分 1-10 11-20 21-30 31-40 41-50 51-60
+                    最左为角色初始值 等级上限60 依次划分 1-10 11-20 21-30 31-40 41-50 51-60 升级属性配置
                     <div class="tips"></div>
                 </div>
             </div>			
@@ -84,12 +84,13 @@
                     <label>物攻：</label>
                 </div>
                 <div class="field">
-					<input type="text" class="input" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_attack_arr.1}" name="role_attack_1" />
-					<input type="text" class="input" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_attack_arr.2}" name="role_attack_2" />
-					<input type="text" class="input" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_attack_arr.3}" name="role_attack_3" />
-					<input type="text" class="input" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_attack_arr.4}" name="role_attack_4" />
-					<input type="text" class="input" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_attack_arr.5}" name="role_attack_5" />
-					<input type="text" class="input" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_attack_arr.6}" name="role_attack_6" />
+					<input type="number" class="input" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_attack_arr.0}" name="role_attack_0" />
+					<input type="number" class="input" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_attack_arr.1}" name="role_attack_1" />
+					<input type="number" class="input" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_attack_arr.2}" name="role_attack_2" />
+					<input type="number" class="input" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_attack_arr.3}" name="role_attack_3" />
+					<input type="number" class="input" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_attack_arr.4}" name="role_attack_4" />
+					<input type="number" class="input" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_attack_arr.5}" name="role_attack_5" />
+					<input type="number" class="input" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_attack_arr.6}" name="role_attack_6" />
                     <div class="tips"></div>
                 </div>
             </div>			
@@ -98,12 +99,13 @@
                     <label>魔攻：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_magic_arr.1}" name="role_magic_1" />
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_magic_arr.2}" name="role_magic_2" />
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_magic_arr.3}" name="role_magic_3" />
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_magic_arr.4}" name="role_magic_4" />
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_magic_arr.5}" name="role_magic_5" />
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_magic_arr.6}" name="role_magic_6" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_magic_arr.0}" name="role_magic_0" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_magic_arr.1}" name="role_magic_1" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_magic_arr.2}" name="role_magic_2" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_magic_arr.3}" name="role_magic_3" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_magic_arr.4}" name="role_magic_4" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_magic_arr.5}" name="role_magic_5" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_magic_arr.6}" name="role_magic_6" />
                     <div class="tips"></div>
                 </div>
             </div>	
@@ -112,12 +114,13 @@
                     <label>生命：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input w50" value="{$role_info.role_hp_arr.1}" style="width:90px;float:left;margin-right:10px;" name="role_hp_1" />
-                    <input type="text" class="input w50" value="{$role_info.role_hp_arr.2}" style="width:90px;float:left;margin-right:10px;" name="role_hp_2" />
-                    <input type="text" class="input w50" value="{$role_info.role_hp_arr.3}" style="width:90px;float:left;margin-right:10px;" name="role_hp_3" />
-                    <input type="text" class="input w50" value="{$role_info.role_hp_arr.4}" style="width:90px;float:left;margin-right:10px;" name="role_hp_4" />
-                    <input type="text" class="input w50" value="{$role_info.role_hp_arr.5}" style="width:90px;float:left;margin-right:10px;" name="role_hp_5" />
-                    <input type="text" class="input w50" value="{$role_info.role_hp_arr.6}" style="width:90px;float:left;margin-right:10px;" name="role_hp_6" />
+                    <input type="number" class="input w50" value="{$role_info.role_hp_arr.0}" style="width:90px;float:left;margin-right:10px;" name="role_hp_0" />
+                    <input type="number" class="input w50" value="{$role_info.role_hp_arr.1}" style="width:90px;float:left;margin-right:10px;" name="role_hp_1" />
+                    <input type="number" class="input w50" value="{$role_info.role_hp_arr.2}" style="width:90px;float:left;margin-right:10px;" name="role_hp_2" />
+                    <input type="number" class="input w50" value="{$role_info.role_hp_arr.3}" style="width:90px;float:left;margin-right:10px;" name="role_hp_3" />
+                    <input type="number" class="input w50" value="{$role_info.role_hp_arr.4}" style="width:90px;float:left;margin-right:10px;" name="role_hp_4" />
+                    <input type="number" class="input w50" value="{$role_info.role_hp_arr.5}" style="width:90px;float:left;margin-right:10px;" name="role_hp_5" />
+                    <input type="number" class="input w50" value="{$role_info.role_hp_arr.6}" style="width:90px;float:left;margin-right:10px;" name="role_hp_6" />
                     <div class="tips"></div>
                 </div>
             </div>			
@@ -126,12 +129,13 @@
                     <label>魔法：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_mp_arr.1}" name="role_mp_1" />
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_mp_arr.2}" name="role_mp_2" />
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_mp_arr.3}" name="role_mp_3" />
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_mp_arr.4}" name="role_mp_4" />
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_mp_arr.5}" name="role_mp_5" />
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_mp_arr.6}" name="role_mp_6" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_mp_arr.0}" name="role_mp_0" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_mp_arr.1}" name="role_mp_1" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_mp_arr.2}" name="role_mp_2" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_mp_arr.3}" name="role_mp_3" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_mp_arr.4}" name="role_mp_4" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_mp_arr.5}" name="role_mp_5" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_mp_arr.6}" name="role_mp_6" />
                     <div class="tips"></div>
                 </div>
             </div>			
@@ -140,12 +144,13 @@
                     <label>物防：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input w50" value="{$role_info.role_attack_defense_arr.1}" style="width:90px;float:left;margin-right:10px;" name="role_attack_defense_1" />
-                    <input type="text" class="input w50" value="{$role_info.role_attack_defense_arr.2}" style="width:90px;float:left;margin-right:10px;" name="role_attack_defense_2" />
-                    <input type="text" class="input w50" value="{$role_info.role_attack_defense_arr.3}" style="width:90px;float:left;margin-right:10px;" name="role_attack_defense_3" />
-                    <input type="text" class="input w50" value="{$role_info.role_attack_defense_arr.4}" style="width:90px;float:left;margin-right:10px;" name="role_attack_defense_4" />
-                    <input type="text" class="input w50" value="{$role_info.role_attack_defense_arr.5}" style="width:90px;float:left;margin-right:10px;" name="role_attack_defense_5" />
-                    <input type="text" class="input w50" value="{$role_info.role_attack_defense_arr.6}" style="width:90px;float:left;margin-right:10px;" name="role_attack_defense_6" />
+                    <input type="number" class="input w50" value="{$role_info.role_attack_defense_arr.0}" style="width:90px;float:left;margin-right:10px;" name="role_attack_defense_0" />
+                    <input type="number" class="input w50" value="{$role_info.role_attack_defense_arr.1}" style="width:90px;float:left;margin-right:10px;" name="role_attack_defense_1" />
+                    <input type="number" class="input w50" value="{$role_info.role_attack_defense_arr.2}" style="width:90px;float:left;margin-right:10px;" name="role_attack_defense_2" />
+                    <input type="number" class="input w50" value="{$role_info.role_attack_defense_arr.3}" style="width:90px;float:left;margin-right:10px;" name="role_attack_defense_3" />
+                    <input type="number" class="input w50" value="{$role_info.role_attack_defense_arr.4}" style="width:90px;float:left;margin-right:10px;" name="role_attack_defense_4" />
+                    <input type="number" class="input w50" value="{$role_info.role_attack_defense_arr.5}" style="width:90px;float:left;margin-right:10px;" name="role_attack_defense_5" />
+                    <input type="number" class="input w50" value="{$role_info.role_attack_defense_arr.6}" style="width:90px;float:left;margin-right:10px;" name="role_attack_defense_6" />
                     <div class="tips"></div>
                 </div>
             </div>
@@ -154,12 +159,13 @@
                     <label>魔防：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_magic_defense_arr.1}" name="role_magic_defense_1" />
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_magic_defense_arr.2}" name="role_magic_defense_2" />
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_magic_defense_arr.3}" name="role_magic_defense_3" />
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_magic_defense_arr.4}" name="role_magic_defense_4" />
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_magic_defense_arr.5}" name="role_magic_defense_5" />
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_magic_defense_arr.6}" name="role_magic_defense_6" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_magic_defense_arr.0}" name="role_magic_defense_0" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_magic_defense_arr.1}" name="role_magic_defense_1" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_magic_defense_arr.2}" name="role_magic_defense_2" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_magic_defense_arr.3}" name="role_magic_defense_3" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_magic_defense_arr.4}" name="role_magic_defense_4" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_magic_defense_arr.5}" name="role_magic_defense_5" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_magic_defense_arr.6}" name="role_magic_defense_6" />
                     <div class="tips"></div>
                 </div>
             </div>			
@@ -168,12 +174,13 @@
                     <label>闪避：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_dodge_arr.1}" name="role_dodge_1" />
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_dodge_arr.2}" name="role_dodge_2" />
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_dodge_arr.3}" name="role_dodge_3" />
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_dodge_arr.4}" name="role_dodge_4" />
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_dodge_arr.5}" name="role_dodge_5" />
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_dodge_arr.6}" name="role_dodge_6" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_dodge_arr.0}" name="role_dodge_0" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_dodge_arr.1}" name="role_dodge_1" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_dodge_arr.2}" name="role_dodge_2" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_dodge_arr.3}" name="role_dodge_3" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_dodge_arr.4}" name="role_dodge_4" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_dodge_arr.5}" name="role_dodge_5" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_dodge_arr.6}" name="role_dodge_6" />
                     <div class="tips"></div>
                 </div>
             </div>			
@@ -182,12 +189,13 @@
                     <label>命中：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_direct_arr.1}" name="role_direct_1" />
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_direct_arr.2}" name="role_direct_2" />
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_direct_arr.3}" name="role_direct_3" />
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_direct_arr.4}" name="role_direct_4" />
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_direct_arr.5}" name="role_direct_5" />
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_direct_arr.6}" name="role_direct_6" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_direct_arr.0}" name="role_direct_0" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_direct_arr.1}" name="role_direct_1" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_direct_arr.2}" name="role_direct_2" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_direct_arr.3}" name="role_direct_3" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_direct_arr.4}" name="role_direct_4" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_direct_arr.5}" name="role_direct_5" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_direct_arr.6}" name="role_direct_6" />
                     <div class="tips"></div>
                 </div>
             </div>			
@@ -196,12 +204,13 @@
                     <label>暴击：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_crit_arr.1}" name="role_crit_1" />
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_crit_arr.2}" name="role_crit_2" />
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_crit_arr.3}" name="role_crit_3" />
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_crit_arr.4}" name="role_crit_4" />
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_crit_arr.5}" name="role_crit_5" />
-                    <input type="text" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_crit_arr.6}" name="role_crit_6" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_crit_arr.0}" name="role_crit_0" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_crit_arr.1}" name="role_crit_1" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_crit_arr.2}" name="role_crit_2" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_crit_arr.3}" name="role_crit_3" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_crit_arr.4}" name="role_crit_4" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_crit_arr.5}" name="role_crit_5" />
+                    <input type="number" class="input w50" style="width:90px;float:left;margin-right:10px;" value="{$role_info.role_crit_arr.6}" name="role_crit_6" />
                     <div class="tips"></div>
                 </div>
             </div>	

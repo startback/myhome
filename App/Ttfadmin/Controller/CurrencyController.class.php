@@ -225,6 +225,7 @@ class CurrencyController extends CommonController {
             }
 			$data['role_desc'] = isset($_POST['role_desc'])?trim($_POST['role_desc']):'';
 				
+			$role_attack[0] = isset($_POST['role_attack_0'])?intval($_POST['role_attack_0']):0;
 			$role_attack[1] = isset($_POST['role_attack_1'])?intval($_POST['role_attack_1']):0;
 			$role_attack[2] = isset($_POST['role_attack_2'])?intval($_POST['role_attack_2']):0;
 			$role_attack[3] = isset($_POST['role_attack_3'])?intval($_POST['role_attack_3']):0;
@@ -232,6 +233,7 @@ class CurrencyController extends CommonController {
 			$role_attack[5] = isset($_POST['role_attack_5'])?intval($_POST['role_attack_5']):0;
 			$role_attack[6] = isset($_POST['role_attack_6'])?intval($_POST['role_attack_6']):0;
 			$data['role_attack'] = json_encode($role_attack);
+			$role_magic[0] = isset($_POST['role_magic_0'])?intval($_POST['role_magic_0']):0;
 			$role_magic[1] = isset($_POST['role_magic_1'])?intval($_POST['role_magic_1']):0;
 			$role_magic[2] = isset($_POST['role_magic_2'])?intval($_POST['role_magic_2']):0;
 			$role_magic[3] = isset($_POST['role_magic_3'])?intval($_POST['role_magic_3']):0;
@@ -239,6 +241,7 @@ class CurrencyController extends CommonController {
 			$role_magic[5] = isset($_POST['role_magic_5'])?intval($_POST['role_magic_5']):0;
 			$role_magic[6] = isset($_POST['role_magic_6'])?intval($_POST['role_magic_6']):0;
 			$data['role_magic'] = json_encode($role_magic);
+			$role_hp[0] = isset($_POST['role_hp_0'])?intval($_POST['role_hp_0']):0;
 			$role_hp[1] = isset($_POST['role_hp_1'])?intval($_POST['role_hp_1']):0;
 			$role_hp[2] = isset($_POST['role_hp_2'])?intval($_POST['role_hp_2']):0;
 			$role_hp[3] = isset($_POST['role_hp_3'])?intval($_POST['role_hp_3']):0;
@@ -246,6 +249,7 @@ class CurrencyController extends CommonController {
 			$role_hp[5] = isset($_POST['role_hp_5'])?intval($_POST['role_hp_5']):0;
 			$role_hp[6] = isset($_POST['role_hp_6'])?intval($_POST['role_hp_6']):0;
 			$data['role_hp'] = json_encode($role_hp);
+			$role_mp[0] = isset($_POST['role_mp_0'])?intval($_POST['role_mp_0']):0;
 			$role_mp[1] = isset($_POST['role_mp_1'])?intval($_POST['role_mp_1']):0;
 			$role_mp[2] = isset($_POST['role_mp_2'])?intval($_POST['role_mp_2']):0;
 			$role_mp[3] = isset($_POST['role_mp_3'])?intval($_POST['role_mp_3']):0;
@@ -253,6 +257,7 @@ class CurrencyController extends CommonController {
 			$role_mp[5] = isset($_POST['role_mp_5'])?intval($_POST['role_mp_5']):0;
 			$role_mp[6] = isset($_POST['role_mp_6'])?intval($_POST['role_mp_6']):0;
 			$data['role_mp'] = json_encode($role_mp);
+			$role_attack_defense[0] = isset($_POST['role_attack_defense_0'])?intval($_POST['role_attack_defense_0']):0;
 			$role_attack_defense[1] = isset($_POST['role_attack_defense_1'])?intval($_POST['role_attack_defense_1']):0;
 			$role_attack_defense[2] = isset($_POST['role_attack_defense_2'])?intval($_POST['role_attack_defense_2']):0;
 			$role_attack_defense[3] = isset($_POST['role_attack_defense_3'])?intval($_POST['role_attack_defense_3']):0;
@@ -260,6 +265,7 @@ class CurrencyController extends CommonController {
 			$role_attack_defense[5] = isset($_POST['role_attack_defense_5'])?intval($_POST['role_attack_defense_5']):0;
 			$role_attack_defense[6] = isset($_POST['role_attack_defense_6'])?intval($_POST['role_attack_defense_6']):0;
 			$data['role_attack_defense'] = json_encode($role_attack_defense);
+			$role_magic_defense[0] = isset($_POST['role_magic_defense_0'])?intval($_POST['role_magic_defense_0']):0;
 			$role_magic_defense[1] = isset($_POST['role_magic_defense_1'])?intval($_POST['role_magic_defense_1']):0;
 			$role_magic_defense[2] = isset($_POST['role_magic_defense_2'])?intval($_POST['role_magic_defense_2']):0;
 			$role_magic_defense[3] = isset($_POST['role_magic_defense_3'])?intval($_POST['role_magic_defense_3']):0;
@@ -267,6 +273,7 @@ class CurrencyController extends CommonController {
 			$role_magic_defense[5] = isset($_POST['role_magic_defense_5'])?intval($_POST['role_magic_defense_5']):0;
 			$role_magic_defense[6] = isset($_POST['role_magic_defense_6'])?intval($_POST['role_magic_defense_6']):0;
 			$data['role_magic_defense'] = json_encode($role_magic_defense);
+			$role_dodge[0] = isset($_POST['role_dodge_0'])?intval($_POST['role_dodge_0']):0;
 			$role_dodge[1] = isset($_POST['role_dodge_1'])?intval($_POST['role_dodge_1']):0;
 			$role_dodge[2] = isset($_POST['role_dodge_2'])?intval($_POST['role_dodge_2']):0;
 			$role_dodge[3] = isset($_POST['role_dodge_3'])?intval($_POST['role_dodge_3']):0;
@@ -274,6 +281,7 @@ class CurrencyController extends CommonController {
 			$role_dodge[5] = isset($_POST['role_dodge_5'])?intval($_POST['role_dodge_5']):0;
 			$role_dodge[6] = isset($_POST['role_dodge_6'])?intval($_POST['role_dodge_6']):0;
 			$data['role_dodge'] = json_encode($role_dodge);
+			$role_direct[0] = isset($_POST['role_direct_0'])?intval($_POST['role_direct_0']):0;
 			$role_direct[1] = isset($_POST['role_direct_1'])?intval($_POST['role_direct_1']):0;
 			$role_direct[2] = isset($_POST['role_direct_2'])?intval($_POST['role_direct_2']):0;
 			$role_direct[3] = isset($_POST['role_direct_3'])?intval($_POST['role_direct_3']):0;
@@ -281,6 +289,7 @@ class CurrencyController extends CommonController {
 			$role_direct[5] = isset($_POST['role_direct_5'])?intval($_POST['role_direct_5']):0;
 			$role_direct[6] = isset($_POST['role_direct_6'])?intval($_POST['role_direct_6']):0;
 			$data['role_direct'] = json_encode($role_direct);
+			$role_crit[0] = isset($_POST['role_crit_0'])?intval($_POST['role_crit_0']):0;
 			$role_crit[1] = isset($_POST['role_crit_1'])?intval($_POST['role_crit_1']):0;
 			$role_crit[2] = isset($_POST['role_crit_2'])?intval($_POST['role_crit_2']):0;
 			$role_crit[3] = isset($_POST['role_crit_3'])?intval($_POST['role_crit_3']):0;
@@ -336,6 +345,7 @@ class CurrencyController extends CommonController {
             }
 			$data['role_desc'] = isset($_POST['role_desc'])?trim($_POST['role_desc']):'';
 			
+			$role_attack[0] = isset($_POST['role_attack_0'])?intval($_POST['role_attack_0']):0;
 			$role_attack[1] = isset($_POST['role_attack_1'])?intval($_POST['role_attack_1']):0;
 			$role_attack[2] = isset($_POST['role_attack_2'])?intval($_POST['role_attack_2']):0;
 			$role_attack[3] = isset($_POST['role_attack_3'])?intval($_POST['role_attack_3']):0;
@@ -343,6 +353,7 @@ class CurrencyController extends CommonController {
 			$role_attack[5] = isset($_POST['role_attack_5'])?intval($_POST['role_attack_5']):0;
 			$role_attack[6] = isset($_POST['role_attack_6'])?intval($_POST['role_attack_6']):0;
 			$data['role_attack'] = json_encode($role_attack);
+			$role_magic[0] = isset($_POST['role_magic_0'])?intval($_POST['role_magic_0']):0;
 			$role_magic[1] = isset($_POST['role_magic_1'])?intval($_POST['role_magic_1']):0;
 			$role_magic[2] = isset($_POST['role_magic_2'])?intval($_POST['role_magic_2']):0;
 			$role_magic[3] = isset($_POST['role_magic_3'])?intval($_POST['role_magic_3']):0;
@@ -350,6 +361,7 @@ class CurrencyController extends CommonController {
 			$role_magic[5] = isset($_POST['role_magic_5'])?intval($_POST['role_magic_5']):0;
 			$role_magic[6] = isset($_POST['role_magic_6'])?intval($_POST['role_magic_6']):0;
 			$data['role_magic'] = json_encode($role_magic);
+			$role_hp[0] = isset($_POST['role_hp_0'])?intval($_POST['role_hp_0']):0;
 			$role_hp[1] = isset($_POST['role_hp_1'])?intval($_POST['role_hp_1']):0;
 			$role_hp[2] = isset($_POST['role_hp_2'])?intval($_POST['role_hp_2']):0;
 			$role_hp[3] = isset($_POST['role_hp_3'])?intval($_POST['role_hp_3']):0;
@@ -357,6 +369,7 @@ class CurrencyController extends CommonController {
 			$role_hp[5] = isset($_POST['role_hp_5'])?intval($_POST['role_hp_5']):0;
 			$role_hp[6] = isset($_POST['role_hp_6'])?intval($_POST['role_hp_6']):0;
 			$data['role_hp'] = json_encode($role_hp);
+			$role_mp[0] = isset($_POST['role_mp_0'])?intval($_POST['role_mp_0']):0;
 			$role_mp[1] = isset($_POST['role_mp_1'])?intval($_POST['role_mp_1']):0;
 			$role_mp[2] = isset($_POST['role_mp_2'])?intval($_POST['role_mp_2']):0;
 			$role_mp[3] = isset($_POST['role_mp_3'])?intval($_POST['role_mp_3']):0;
@@ -364,6 +377,7 @@ class CurrencyController extends CommonController {
 			$role_mp[5] = isset($_POST['role_mp_5'])?intval($_POST['role_mp_5']):0;
 			$role_mp[6] = isset($_POST['role_mp_6'])?intval($_POST['role_mp_6']):0;
 			$data['role_mp'] = json_encode($role_mp);
+			$role_attack_defense[0] = isset($_POST['role_attack_defense_0'])?intval($_POST['role_attack_defense_0']):0;
 			$role_attack_defense[1] = isset($_POST['role_attack_defense_1'])?intval($_POST['role_attack_defense_1']):0;
 			$role_attack_defense[2] = isset($_POST['role_attack_defense_2'])?intval($_POST['role_attack_defense_2']):0;
 			$role_attack_defense[3] = isset($_POST['role_attack_defense_3'])?intval($_POST['role_attack_defense_3']):0;
@@ -371,6 +385,7 @@ class CurrencyController extends CommonController {
 			$role_attack_defense[5] = isset($_POST['role_attack_defense_5'])?intval($_POST['role_attack_defense_5']):0;
 			$role_attack_defense[6] = isset($_POST['role_attack_defense_6'])?intval($_POST['role_attack_defense_6']):0;
 			$data['role_attack_defense'] = json_encode($role_attack_defense);
+			$role_magic_defense[0] = isset($_POST['role_magic_defense_0'])?intval($_POST['role_magic_defense_0']):0;
 			$role_magic_defense[1] = isset($_POST['role_magic_defense_1'])?intval($_POST['role_magic_defense_1']):0;
 			$role_magic_defense[2] = isset($_POST['role_magic_defense_2'])?intval($_POST['role_magic_defense_2']):0;
 			$role_magic_defense[3] = isset($_POST['role_magic_defense_3'])?intval($_POST['role_magic_defense_3']):0;
@@ -378,6 +393,7 @@ class CurrencyController extends CommonController {
 			$role_magic_defense[5] = isset($_POST['role_magic_defense_5'])?intval($_POST['role_magic_defense_5']):0;
 			$role_magic_defense[6] = isset($_POST['role_magic_defense_6'])?intval($_POST['role_magic_defense_6']):0;
 			$data['role_magic_defense'] = json_encode($role_magic_defense);
+			$role_dodge[0] = isset($_POST['role_dodge_0'])?intval($_POST['role_dodge_0']):0;
 			$role_dodge[1] = isset($_POST['role_dodge_1'])?intval($_POST['role_dodge_1']):0;
 			$role_dodge[2] = isset($_POST['role_dodge_2'])?intval($_POST['role_dodge_2']):0;
 			$role_dodge[3] = isset($_POST['role_dodge_3'])?intval($_POST['role_dodge_3']):0;
@@ -385,6 +401,7 @@ class CurrencyController extends CommonController {
 			$role_dodge[5] = isset($_POST['role_dodge_5'])?intval($_POST['role_dodge_5']):0;
 			$role_dodge[6] = isset($_POST['role_dodge_6'])?intval($_POST['role_dodge_6']):0;
 			$data['role_dodge'] = json_encode($role_dodge);
+			$role_direct[0] = isset($_POST['role_direct_0'])?intval($_POST['role_direct_0']):0;
 			$role_direct[1] = isset($_POST['role_direct_1'])?intval($_POST['role_direct_1']):0;
 			$role_direct[2] = isset($_POST['role_direct_2'])?intval($_POST['role_direct_2']):0;
 			$role_direct[3] = isset($_POST['role_direct_3'])?intval($_POST['role_direct_3']):0;
@@ -392,6 +409,7 @@ class CurrencyController extends CommonController {
 			$role_direct[5] = isset($_POST['role_direct_5'])?intval($_POST['role_direct_5']):0;
 			$role_direct[6] = isset($_POST['role_direct_6'])?intval($_POST['role_direct_6']):0;
 			$data['role_direct'] = json_encode($role_direct);
+			$role_crit[0] = isset($_POST['role_crit_0'])?intval($_POST['role_crit_0']):0;
 			$role_crit[1] = isset($_POST['role_crit_1'])?intval($_POST['role_crit_1']):0;
 			$role_crit[2] = isset($_POST['role_crit_2'])?intval($_POST['role_crit_2']):0;
 			$role_crit[3] = isset($_POST['role_crit_3'])?intval($_POST['role_crit_3']):0;

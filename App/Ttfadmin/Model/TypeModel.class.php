@@ -3,7 +3,6 @@ namespace Ttfadmin\Model;
 use Think\Model;
 
 class TypeModel extends Model {
-    var $per_page = 10;
 
 	//搜索某级别的类型及其子类型 默认顶级 
 	public function type_list($num=0){

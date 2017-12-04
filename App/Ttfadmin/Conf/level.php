@@ -93,6 +93,21 @@ return array(
         ),			
 		
         array(
+            'title'  => 'maze',
+            'name'   => '迷宫管理',
+            'child'  => array(					
+                array('title'=>'maze', 'name' => '迷宫列表'),
+                array('title'=>'maze_add',  'name' => '迷宫添加'),
+                array('title'=>'maze_edit', 'name' => '迷宫修改'),
+                array('title'=>'maze_del',  'name' => '迷宫删除'),				
+                array('title'=>'maze_record',  'name' => '迷宫记录'),				
+                array('title'=>'maze_record_info',  'name' => '迷宫记录详情'),				
+                array('title'=>'maze_record_log',  'name' => '迷宫记录日志'),				
+                array('title'=>'maze_record_log_info',  'name' => '迷宫记录日志详情'),				
+            )
+        ),			
+		
+        array(
             'title'  => 'admin',
             'name'   => '权限管理',
             'child'  => array(
@@ -145,6 +160,16 @@ return array(
 				"user_monster" => array("用户怪物","index.php?m=ttfadmin&c=usermanage&a=user_monster"),
 			),
 		),			
+		
+		"maze" => array(
+			"name" =>  "迷宫管理",
+			"l_icon" =>  "icon-flag",
+			"data" =>  array(
+				"maze" => array("迷宫列表","index.php?m=ttfadmin&c=maze&a=maze"),
+				"maze_record" => array("迷宫记录","index.php?m=ttfadmin&c=maze&a=maze_record"),
+				"maze_record_log" => array("迷宫记录日志","index.php?m=ttfadmin&c=maze&a=maze_record_log"),
+			),
+		),		
 		
 		"admin" => array(
 			"name" =>  "权限管理",

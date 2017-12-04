@@ -1,0 +1,136 @@
+<include file='Common:top'/>
+<script type="text/javascript" src="__PUBLIC__/Js/Jedate/jedate.js"></script>
+
+<body>
+<div class="panel admin-panel">
+    <div class="panel-head" id="add"><strong><span class="icon-key"></span> 修改用户</strong></div>
+    <div class="body-content">
+        <form method="post" class="form-x" action="" enctype="multipart/form-data">
+            <div class="form-group">
+			
+                <div class="label">
+                    <label>手机：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$user.user_phone}" disabled />
+                    <div class="tips"></div>
+                </div>
+            </div>		
+            <div class="form-group">
+                <div class="label">
+                    <label>昵称：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$user.user_name}" name="user_name" />
+                    <div class="tips"></div>
+                </div>
+            </div>			
+            <div class="form-group">
+                <div class="label">
+                    <label>性别：</label>
+                </div>
+                <div class="field">
+                    <select name="user_sex" class="input w50">				
+                        <foreach name="user_sex" item="vo">
+                            <option <?php if($key==$user['user_sex']) echo 'selected';?> value="{$key}">{$vo}</option>
+                        </foreach>
+                    </select>										
+                </div>
+            </div>			
+            <div class="form-group">
+                <div class="label">
+                    <label>生日：</label>
+                </div>
+                <div class="field">
+					<input type="text" id="start_datebut" autocomplete="off" class="input" style="width:160px; line-height:17px; display:inline-block" value="{$user.user_birthday}" onClick="jeDate({dateCell:'#start_datebut',isTime:true,format:'YYYY-MM-DD'})" name="user_birthday" />										
+                </div>
+            </div>				
+            <div class="form-group">
+                <div class="label">
+                    <label>状态：</label>
+                </div>
+                <div class="field">
+                    <select name="user_status" class="input w50">				
+                        <foreach name="user_status" item="vo">
+                            <option <?php if($key==$user['user_status']) echo 'selected';?> value="{$key}">{$vo}</option>
+                        </foreach>
+                    </select>										
+                </div>
+            </div>				
+            <div class="form-group">
+                <div class="label">
+                    <label>头像：</label>
+                </div>
+                <div class="field" id="img">
+                    <div style="width:90px;height: 90px;margin-right: 35px;float: left;position: relative;">
+                        <img <if condition="$user['user_head']">src="__ROOT__{$user.user_head}"<else/>src="__PUBLIC__/Ttfadmin/images/add.png"</if> style="width: 100%;height: 100%;" />
+                        <input type="file" en="no" onchange="change_img(this)" style="width:90px;height: 90px;opacity: 0;position: absolute;top:0;left: 0;" name="image[]">
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>			
+            <div class="form-group">
+                <div class="label">
+                    <label>塔币：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$user_info.user_ttbi}" disabled />
+                    <div class="tips"></div>
+                </div>
+            </div>			
+            <div class="form-group">
+                <div class="label">
+                    <label>金币：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$user_info.user_gold}" disabled />
+                    <div class="tips"></div>
+                </div>
+            </div>	
+            <div class="form-group">
+                <div class="label">
+                    <label>VIP：</label>
+                </div>
+                <div class="field">
+                    <select name="user_vip" class="input w50">				
+                        <foreach name="user_vip_level" item="vo">
+                            <option <?php if($key==$user_info['user_vip']) echo 'selected';?> value="{$key}">{$vo}</option>
+                        </foreach>
+                    </select>										
+                </div>
+            </div>			
+            <div class="form-group">
+                <div class="label">
+                    <label></label>
+                </div>
+                <div class="field">
+					<input type="hidden" name="user_id" value="{$user.user_id}" />
+                    <button class="button bg-main icon-check-square-o" type="submit"> 修改</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+	function change_img(obj){
+		var files = obj.files;
+		if (!files.length || !window.FileReader) return;
+		// Only proceed if the selected file is an image
+		if (/^image/.test( files[0].type)){
+			var reader = new FileReader();
+			reader.readAsDataURL(files[0]);
+			reader.onloadend = function(){
+				$(obj).siblings('img').attr('src',this.result);
+			}
+		}
+	}
+</script>
+
+</body>
+</html>
+
+
+
+
+

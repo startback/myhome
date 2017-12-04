@@ -5,6 +5,10 @@ use Think\Model;
 class CommonSkillModel extends Model {
     var $per_page = 12;
 
+	public function __construct(){
+		$this->per_page = C('PAGE_COMMON_SKILL');
+	}	
+	
     //获取limit
     public function get_limit($page){
         $start_num = ($page - 1) * $this->per_page;

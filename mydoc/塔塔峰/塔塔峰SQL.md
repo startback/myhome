@@ -16,7 +16,8 @@
 * 13、 [ttf_user_goods(用户物品)](#13)
 * 14、 [ttf_maze_monster_goods(迷宫怪物及物品设置)](#14)
 * 15、 [ttf_role_maze_record(人物迷宫记录)](#15)
-* 16、 [ttf_level_experience(等级经验)](#16)
+* 16、 [ttf_role_maze_record_log(人物迷宫记录日志)](#16)
+* 17、 [ttf_level_experience(等级经验)](#17)
 * a、 [ttf_admin(后台管理员)](#a)
 * b、 [ttf_admin_log(后台管理员操作记录)](#b)
 * c、 [ttf_admin_role(后台管理员角色)](#c)
@@ -280,7 +281,8 @@
 | 字段名 | 类型 | 默认 | 主键 | 备注 |
 |-------|------|------|-----|------|
 | id | int | - | key auto | 自增ID |
-| maze_id | int | - | - | 迷宫ID |
+| maze_id | smallint | - | - | 迷宫ID |
+| floor | small | - | - | 层次 |
 | monster_ids | varchar(255) | - | - | 怪物ID集 |
 | goods_ids | varchar(255) | - | - | 物品ID集 |
 
@@ -292,6 +294,8 @@
 | id | int | - | key auto | 自增ID |
 | user_id | int | 0 | - | 用户ID |
 | maze_id | smallint | 0 | - | 迷宫ID |
+| user_role_id | int | 0 | - | 主战角色 |
+| user_orther_role_ids | varchar(32) | - | - | 其它出战角色 |
 | maze_now_floor | smallint | 1 | - | 当前迷宫层 |
 | maze_now_monster_ids | varchar(255) | - | - | 当前迷怪物 |
 | maze_now_goods_ids | varchar(255) | - | - | 当前迷宫物品 |
@@ -301,7 +305,25 @@
 
 
 <span id="16"/>
-##### 16、 ttf_level_experience(等级经验)
+##### 16、 ttf_role_maze_record_log(人物迷宫记录日志)
+| 字段名 | 类型 | 默认 | 主键 | 备注 |
+|-------|------|------|-----|------|
+| log_id | int | - | key auto | 自增ID |
+| user_id | int | 0 | - | 用户ID |
+| maze_id | smallint | 0 | - | 迷宫ID |
+| user_role_id | int | 0 | - | 主战角色 |
+| user_orther_role_ids | varchar(32) | - | - | 其它出战角色 |
+| floor | smallint | 1 | - | 迷宫层次 |
+| maze_monster_ids | varchar(255) | - | - | 迷怪物 |
+| kill_monster_ids | varchar(255) | - | - | 迷宫杀掉的怪物 |
+| maze_goods_ids | varchar(255) | - | - | 迷宫物品 |
+| get_goods_ids | varchar(255) | - | - | 迷宫获取到的物品 |
+| roles_get_experience | varchar(255) | - | - | 角色得到的经验 |
+| log_time | datetime | - | - | 日志时间 |
+
+
+<span id="17"/>
+##### 17、 ttf_level_experience(等级经验)
 | 字段名 | 类型 | 默认 | 主键 | 备注 |
 |-------|------|------|-----|------|
 | level | smallint | - | key | 等级 |

@@ -3,7 +3,11 @@ namespace Ttfadmin\Model;
 use Think\Model;
 
 class AdminModel extends Model {
-    var $per_page = 10;
+    var $per_page;
+	
+	public function __construct(){
+		$this->per_page = C('PAGE_ADMIN');
+	}	
 
 	//登录
 	public function login($name,$pass,$ip_add=''){
@@ -146,7 +150,8 @@ class AdminModel extends Model {
 
         $purl = __ROOT__.'/index.php?m=ttfadmin&c=admin&a=admin_list&p=';
 
-        $page_info = '<a href="'.$purl.'1">首页</a>';
+		$page_info .= '<span class="current">共'.$total_num.'记录--'.$total_page.'页</span>';
+        $page_info .= '<a href="'.$purl.'1">首页</a>';
         $page_info .= '<a href="'.$purl.$pre_page.'">上一页</a>';
         $page_info .= '<span class="current">'.$cur_page.'</span>';
         $page_info .= '<a href="'.$purl.$next_page.'">下一页</a>';

@@ -4,8 +4,12 @@ use Think\Model;
 
 class AdminLogModel extends Model {
 
-    var $per_page = 10;
+    var $per_page;
 
+	public function __construct(){
+		$this->per_page = C('PAGE_ADMIN_LOG');
+	}
+	
     //获取limit
     public function get_limit($page){
         $start_num = ($page - 1) * $this->per_page;
