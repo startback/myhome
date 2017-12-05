@@ -44,42 +44,62 @@ class MazeModel extends Model {
         return $page_info;
     }	
 	
+	//添加迷宫
+	public function maze_add($data){
+		$in_id = M('maze')->add($data);
+        if($in_id){
+			D('admin_log')->admin_log('添加迷宫 名称:'.$data['maze_name'].'，ID为:'.$in_id);
+            return true;
+        }else{
+            return false;
+        }
+	}
+	
+	
     //删除迷宫
     public function maze_del($ids){
 		if(empty($ids)){
 			return false;
 			exit;
 		}
-/* 		
+		
 		$res = true;
+		//开始事务
+		M()->startTrans(); 
+		if(M('maze')->where('maze_id in ('.$ids.')')->delete()){ //删除迷宫
+			if(M('maze_monster_goods')->where('maze_id in ('.$ids.')')->find()){  //删除迷宫配置
+				if(M('maze_monster_goods')->where('maze_id in ('.$ids.')')->delete()){
+							
+				}else{
+					M()->rollback();
+					$res = false;
+				} 
+			}
+		}else{
+			$res = false;
+		}			
+		M()->commit(); 
+		//事务结束		
 
-		if(M('maze')->where('maze_id in ('.$ids.')')->delete()){ 
-		
-		}
-		
 		if($res){
 			D('admin_log')->admin_log('删除迷宫，ID为'.$ids);
 		}else{
 			D('admin_log')->admin_log('删除迷宫失败，ID为'.$ids);
-		}
-	 */
+		}		
+		
         return $res;  		
     }		
 	
 	//修改迷宫
-	public function maze_edit($data,$data_info,$maze_id){
-/* 		$res = true;
+	public function maze_edit($data,$maze_id){
 
-		$res_one = M('user')->where('user_id='.$user_id)->save($data);
-		$res_two = M('user_info')->where('user_id='.$user_id)->save($data_info);
-		if(empty($res_one) && empty($res_two)){
-			$res = false;
-			D('admin_log')->admin_log('修改用户失败，ID为'.$user_id);
+		if(M('maze')->where('maze_id='.$maze_id)->save($data)){
+			D('admin_log')->admin_log('修改迷宫，ID为'.$maze_id);
+			return true;
 		}else{
-			D('admin_log')->admin_log('修改用户 ID为:'.$user_id);
+			D('admin_log')->admin_log('修改迷宫失败 ID为:'.$maze_id);
+			return false;
 		}
-	
-        return $res;  */	
 		
 	}
 		

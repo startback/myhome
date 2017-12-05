@@ -1,0 +1,47 @@
+<include file='Common:top'/>
+
+<body>
+
+<div class="panel admin-panel">
+	<div class="panel-head"><strong class="icon-th"> {$maze.maze_name}</strong></div>
+	
+	<div class="padding border-bottom">
+		<a class="button border-main icon-plus-square-o" href="__ROOT__/index.php?m=ttfadmin&c=maze&a=maze_monster_goods_add&id={$maze.maze_id}"> 添加配置</a>
+	</div>	
+	
+	<table class="table table-hover text-center">
+		<tr>
+			<th>层次</th>
+			<th>怪物</th>
+			<th>物品</th>
+			<th width="310">操作</th>
+		</tr>
+
+		<if condition="$maze_info">
+			<volist name="maze_info" id="vo">
+				<tr>
+					<td>{$vo.floor}</td>
+					<td>{$vo.monsters}</td>
+					<td>{$vo.goods}</td>
+					<td>
+						<div class="button-group">
+							<a class="button border-main" href="__ROOT__/index.php?m=ttfadmin&c=maze&a=maze_monster_goods_edit&id={$vo.id}"><span class="icon-edit"></span> 修改</a>
+							<a class="button border-red" href="__ROOT__/index.php?m=ttfadmin&c=maze&a=maze_monster_goods_del&ids={$vo.id}"><span class="icon-trash-o"></span> 删除
+							</a>
+						</div>
+					</td>
+				</tr>
+			</volist>			
+						
+			<else/>
+			<tr>
+				<td colspan="4" style="height: 80px;line-height: 80px;font-size: 20px;">
+					没有数据
+				</td>
+			</tr>
+		</if>
+
+	</table>
+</div>
+</body>
+</html>
