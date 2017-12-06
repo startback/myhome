@@ -87,7 +87,7 @@ class UsermanageController extends CommonController {
 			$data['user_reg_time'] = date('Y-m-d H:i:s',time());
 			
 		 	if(D('user')->user_register($data,$data_info)){
-				$this->success('注册成功');
+				$this->success('注册成功',U('usermanage/user'));
 			}else{
 				$this->error('注册失败');
 			}
@@ -133,7 +133,7 @@ class UsermanageController extends CommonController {
 			}			
 		
             if(D('user')->user_edit($data,$data_info,$user_id)){
-                $this->success('修改成功!');
+                $this->success('修改成功!',U('usermanage/user'));
             }else{
                 $this->error('修改失败');
             }		

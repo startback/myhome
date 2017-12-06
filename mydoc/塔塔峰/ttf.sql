@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2017-12-04 14:49:01
+Date: 2017-12-06 15:44:13
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -47,7 +47,7 @@ CREATE TABLE `ttf_admin_log` (
   `admin_id` smallint(6) DEFAULT NULL,
   `ip_address` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`log_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=219 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=242 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for ttf_admin_role
@@ -136,7 +136,7 @@ CREATE TABLE `ttf_maze` (
   `maze_desc` text,
   `maze_time` datetime DEFAULT NULL,
   PRIMARY KEY (`maze_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for ttf_maze_monster_goods
@@ -149,6 +149,45 @@ CREATE TABLE `ttf_maze_monster_goods` (
   `monster_ids` varchar(255) DEFAULT NULL,
   `goods_ids` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for ttf_maze_record
+-- ----------------------------
+DROP TABLE IF EXISTS `ttf_maze_record`;
+CREATE TABLE `ttf_maze_record` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT '0',
+  `maze_id` smallint(6) DEFAULT '0',
+  `user_role_id` int(11) DEFAULT NULL,
+  `user_orther_role_ids` varchar(32) DEFAULT NULL,
+  `maze_now_floor` smallint(6) DEFAULT '1',
+  `maze_now_monster_ids` varchar(255) DEFAULT NULL,
+  `maze_now_goods_ids` varchar(255) DEFAULT NULL,
+  `begin_time` datetime DEFAULT NULL,
+  `maze_now_is_over` tinyint(4) DEFAULT '0',
+  `max_height_floor` smallint(6) DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for ttf_maze_record_log
+-- ----------------------------
+DROP TABLE IF EXISTS `ttf_maze_record_log`;
+CREATE TABLE `ttf_maze_record_log` (
+  `log_id` int(255) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `maze_id` smallint(6) DEFAULT NULL,
+  `user_role_id` int(11) DEFAULT NULL,
+  `user_other_role_ids` varchar(32) DEFAULT NULL,
+  `floor` smallint(6) DEFAULT NULL,
+  `maze_monster_ids` varchar(255) DEFAULT NULL,
+  `kill_monster_ids` varchar(255) DEFAULT NULL,
+  `maze_goods_ids` varchar(255) DEFAULT NULL,
+  `get_goods_ids` varchar(255) DEFAULT NULL,
+  `roles_get_expericnce` varchar(255) DEFAULT NULL,
+  `log_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`log_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -213,45 +252,6 @@ CREATE TABLE `ttf_role` (
   `role_skill_id` smallint(6) DEFAULT '0',
   PRIMARY KEY (`role_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for ttf_role_maze_record
--- ----------------------------
-DROP TABLE IF EXISTS `ttf_role_maze_record`;
-CREATE TABLE `ttf_role_maze_record` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) DEFAULT '0',
-  `maze_id` smallint(6) DEFAULT '0',
-  `user_role_id` int(11) DEFAULT NULL,
-  `user_orther_role_ids` varchar(32) DEFAULT NULL,
-  `maze_now_floor` smallint(6) DEFAULT '1',
-  `maze_now_monster_ids` varchar(255) DEFAULT NULL,
-  `maze_now_goods_ids` varchar(255) DEFAULT NULL,
-  `begin_time` datetime DEFAULT NULL,
-  `maze_now_is_over` tinyint(4) DEFAULT '0',
-  `max_height_floor` smallint(6) DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for ttf_role_maze_record_log
--- ----------------------------
-DROP TABLE IF EXISTS `ttf_role_maze_record_log`;
-CREATE TABLE `ttf_role_maze_record_log` (
-  `log_id` int(255) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) DEFAULT NULL,
-  `maze_id` smallint(6) DEFAULT NULL,
-  `user_role_id` int(11) DEFAULT NULL,
-  `user_other_role_ids` varchar(32) DEFAULT NULL,
-  `floor` smallint(6) DEFAULT NULL,
-  `maze_monster_ids` varchar(255) DEFAULT NULL,
-  `kill_monster_ids` varchar(255) DEFAULT NULL,
-  `maze_goods_ids` varchar(255) DEFAULT NULL,
-  `get_goods_ids` varchar(255) DEFAULT NULL,
-  `roles_get_expericnce` varchar(255) DEFAULT NULL,
-  `log_time` datetime DEFAULT NULL,
-  PRIMARY KEY (`log_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for ttf_role_skill

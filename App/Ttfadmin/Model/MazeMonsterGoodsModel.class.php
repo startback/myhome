@@ -16,52 +16,36 @@ class MazeMonsterGoodsModel extends Model {
         }
 	}
 	
-/* 	
-    //删除迷宫
-    public function maze_del($ids){
+
+    //删除迷宫怪物物品配置
+    public function maze_monster_goods_del($ids){
 		if(empty($ids)){
 			return false;
 			exit;
 		}
 		
-		$res = true;
-		//开始事务
-		M()->startTrans(); 
-		if(M('maze')->where('maze_id in ('.$ids.')')->delete()){ //删除迷宫
-			if(M('maze_monster_goods')->where('maze_id in ('.$ids.')')->find()){  //删除迷宫配置
-				if(M('maze_monster_goods')->where('maze_id in ('.$ids.')')->delete()){
-							
-				}else{
-					M()->rollback();
-					$res = false;
-				} 
-			}
-		}else{
-			$res = false;
-		}			
-		M()->commit(); 
-		//事务结束		
-
-		if($res){
-			D('admin_log')->admin_log('删除迷宫，ID为'.$ids);
-		}else{
-			D('admin_log')->admin_log('删除迷宫失败，ID为'.$ids);
-		}		
-		
-        return $res;  		
-    }		
-	
-	//修改迷宫
-	public function maze_edit($data,$maze_id){
-
-		if(M('maze')->where('maze_id='.$maze_id)->save($data)){
-			D('admin_log')->admin_log('修改迷宫，ID为'.$maze_id);
+		if(M('maze_monster_goods')->where('id in ('.$ids.')')->delete()){ //删除迷宫配置
+			D('admin_log')->admin_log('删除迷宫配置');
 			return true;
 		}else{
-			D('admin_log')->admin_log('修改迷宫失败 ID为:'.$maze_id);
+			D('admin_log')->admin_log('删除迷宫配置失败');
+			return false;
+		}	
+		
+    }		
+
+	 
+	//修改迷宫怪物物品配置
+	public function maze_monster_goods_edit($data,$id){
+
+		if(M('maze_monster_goods')->where('id='.$id)->save($data)){
+			D('admin_log')->admin_log('修改迷宫配置，迷宫ID为'.$data['maze_id'].' 配置ID为：'.$id);
+			return true;
+		}else{
+			D('admin_log')->admin_log('修改迷宫配置，迷宫ID为'.$data['maze_id']);
 			return false;
 		}
 		
-	} */
+	}
 		
 }

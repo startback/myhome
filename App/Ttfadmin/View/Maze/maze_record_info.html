@@ -1,0 +1,110 @@
+<include file='Common:top'/>
+
+<body>
+<div class="panel admin-panel">
+    <div class="panel-head" id="add"><strong><span class="icon-key"></span> 迷宫记录详情</strong></div>
+    <div class="body-content">
+        <form method="post" class="form-x" action="">
+		
+            <div class="form-group">
+                <div class="label">
+                    <label>用户：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$info.user_name}" disabled />
+                </div>
+            </div>			
+            <div class="form-group">
+                <div class="label">
+                    <label>迷宫：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$info.maze_name}" disabled />
+                </div>
+            </div>				
+            <div class="form-group">
+                <div class="label">
+                    <label>当前层次：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$info.maze_now_floor}" disabled />
+                </div>
+            </div>			
+            <div class="form-group">
+                <div class="label">
+                    <label>出战角色：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$info.user_role_id_name}" disabled />
+                </div>
+            </div>		
+            <div class="form-group">
+                <div class="label">
+                    <label>其它角色：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$info.user_orther_role_name}" disabled />
+                </div>
+            </div>						
+            <div class="form-group">
+                <div class="label">
+                    <label>此层怪物：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input" value="{$info.monsters_name}" disabled />
+                </div>
+            </div>			
+            <div class="form-group">
+                <div class="label">
+                    <label>此层物品：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input" value="{$info.goods_name}" disabled />
+                </div>
+            </div>		
+            <div class="form-group">
+                <div class="label">
+                    <label>进入时间：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$info.begin_time}" disabled />
+                </div>
+            </div>		
+            <div class="form-group">
+                <div class="label">
+                    <label>是否完成：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$user_complete_status[$info['maze_now_is_over']]}" disabled />
+                </div>
+            </div>	
+            <div class="form-group">
+                <div class="label">
+                    <label>最高到达层次：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$info.max_height_floor}" disabled />
+                </div>
+            </div>			
+			
+            <div class="form-group">
+                <div class="label">
+                    <label></label>
+                </div>
+                <div class="field">
+                    <button onclick="window.history.go(-1)" class="button bg-main icon-check-square-o" type="button"> 返回</button>
+                </div>
+            </div>			
+			
+        </form>
+    </div>
+</div>
+
+
+</body>
+</html>
+
+
+
+
+

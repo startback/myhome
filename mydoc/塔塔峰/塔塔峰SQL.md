@@ -15,8 +15,8 @@
 * 12、 [ttf_user_monster(用户怪物)](#12)
 * 13、 [ttf_user_goods(用户物品)](#13)
 * 14、 [ttf_maze_monster_goods(迷宫怪物及物品设置)](#14)
-* 15、 [ttf_role_maze_record(人物迷宫记录)](#15)
-* 16、 [ttf_role_maze_record_log(人物迷宫记录日志)](#16)
+* 15、 [ttf_maze_record(迷宫记录)](#15)
+* 16、 [ttf_maze_record_log(迷宫记录日志)](#16)
 * 17、 [ttf_level_experience(等级经验)](#17)
 * a、 [ttf_admin(后台管理员)](#a)
 * b、 [ttf_admin_log(后台管理员操作记录)](#b)
@@ -288,7 +288,7 @@
 
 
 <span id="15"/>
-##### 15、 ttf_role_maze_record(人物迷宫记录)
+##### 15、 ttf_maze_record(迷宫记录)
 | 字段名 | 类型 | 默认 | 主键 | 备注 |
 |-------|------|------|-----|------|
 | id | int | - | key auto | 自增ID |
@@ -305,7 +305,7 @@
 
 
 <span id="16"/>
-##### 16、 ttf_role_maze_record_log(人物迷宫记录日志)
+##### 16、 ttf_maze_record_log(迷宫记录日志)
 | 字段名 | 类型 | 默认 | 主键 | 备注 |
 |-------|------|------|-----|------|
 | log_id | int | - | key auto | 自增ID |

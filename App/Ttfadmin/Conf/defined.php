@@ -17,7 +17,15 @@ return array(
 	'PAGE_USER_MONSTER'   =>     10,        //用户怪物
 	'PAGE_USER_ROLE'      =>     10,        //用户角色
 	'PAGE_MAZE'           =>     10,        //迷宫
+	'PAGE_MAZE_RECORD'    =>     10,        //迷宫记录
 
+    //完成状态
+    'USER_COMPLETE_STATUS'      =>   array(
+        0  =>  '未完成',
+        1  =>  '已完成',
+        2  =>  '进行中',
+    ),	
+	
     //会员VIP等级
     'USER_VIP_LEVEL'      =>   array(
         0  =>  '无',

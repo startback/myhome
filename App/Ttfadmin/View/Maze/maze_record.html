@@ -4,17 +4,20 @@
 <body>
 
 <div class="panel admin-panel">
-	<div class="panel-head"><strong class="icon-reorder"> 迷宫列表</strong></div>
+	<div class="panel-head"><strong class="icon-reorder"> 迷宫记录</strong></div>
 	
 	<div class="padding border-bottom">
 		<form action="" method="get">
 			<input type="hidden" name="m" value="ttfadmin" />
 			<input type="hidden" name="c" value="maze" />
-			<input type="hidden" name="a" value="maze" />
+			<input type="hidden" name="a" value="maze_record" />
 			<ul class="search" style="padding-left:10px;">
 				<li>
-					名称
+					迷宫名
 					<input type="text" id="maze_name" class="input" style="width:160px; line-height:17px; display:inline-block" value="{$search_state.maze_name}" name="maze_name" />
+					&nbsp;&nbsp;	
+					用户名
+					<input type="text" id="user_name" class="input" style="width:160px; line-height:17px; display:inline-block" value="{$search_state.user_name}" name="user_name" />
 					&nbsp;&nbsp;					
 					时间
 					<input type="text" id="start_datebut" autocomplete="off" class="input" style="width:160px; line-height:17px; display:inline-block" value="{$search_state.start_time}" onClick="jeDate({dateCell:'#start_datebut',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})" name="start_time" />
@@ -23,10 +26,6 @@
 				</li>
 				<li>
 					<input type="submit" class="button border-main icon-search" value="搜索"/>
-				</li>
-				
-				<li>
-				<a class="button border-main icon-plus-square-o" href="__ROOT__/index.php?m=ttfadmin&c=maze&a=maze_add"> 添加迷宫</a>
 				</li>					
 			</ul>
 		</form>
@@ -34,42 +33,41 @@
 	
 	<table class="table table-hover text-center">
 		<tr>
-			<th>迷宫ID</th>
-			<th>迷宫名</th>
-			<th>LOGO</th>
-			<th>描述</th>
-			<th>时间</th>
+			<th>用户</th>
+			<th>迷宫</th>
+			<th>现在层</th>
+			<th>是否完成</th>
+			<th>最高层</th>
+			<th>最近进入时间</th>
 			<th width="310">操作</th>
 		</tr>
 
-		<if condition="$maze_list">
-			<volist name="maze_list" id="vo">
+		<if condition="$record_list">
+			<volist name="record_list" id="vo">
 				<tr>
-					<td>{$vo.maze_id}</td>
+					<td>{$vo.user_name}</td>
 					<td>{$vo.maze_name}</td>
-					<td><img width="40" height="40" src="__ROOT__{$vo.maze_logo}"/></td>
-					<td>{$vo.maze_desc}</td>
-					<td>{$vo.maze_time}</td>
+					<td>{$vo.maze_now_floor}</td>
+					<td>{$user_complete_status[$vo['maze_now_is_over']]}</td>
+					<td>{$vo.max_height_floor}</td>
+					<td>{$vo.begin_time}</td>
 					<td>
 						<div class="button-group">
-							<a class="button border-green" href="__ROOT__/index.php?m=ttfadmin&c=maze&a=maze_monster_goods&id={$vo.maze_id}"><span class="icon-list-alt"></span> 配置</a>
-							<a class="button border-main" href="__ROOT__/index.php?m=ttfadmin&c=maze&a=maze_edit&id={$vo.maze_id}"><span class="icon-edit"></span> 修改</a>
-							<a class="button border-red" href="__ROOT__/index.php?m=ttfadmin&c=maze&a=maze_del&ids={$vo.maze_id}"><span class="icon-trash-o"></span> 删除
-							</a>
+							<a class="button border-main" href="__ROOT__/index.php?m=ttfadmin&c=maze&a=maze_record_info&id={$vo.id}"><span class="icon-list-alt"></span> 详情</a>
 						</div>
 					</td>
 				</tr>
 			</volist>
 			
 			<tr>
-				<td colspan="6">
+				<td colspan="7">
 					<div class="pagelist">{$page}</div>
 				</td>
 			</tr>				
 						
 			<else/>
 			<tr>
-				<td colspan="6" style="height: 80px;line-height: 80px;font-size: 20px;">
+				<td colspan="7" style="height: 80px;line-height: 80px;font-size: 20px;">
 					没有数据
 				</td>
 			</tr>
