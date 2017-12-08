@@ -65,7 +65,7 @@ class MazeRecordModel extends Model {
 				foreach($m_names as $val){
 					$m_name_arr[$val['monster_id']] = $val;
 				}
-				$m_ids_arr = explode(','.$info['maze_now_monster_ids']);
+				$m_ids_arr = explode(',',$info['maze_now_monster_ids']);
 				foreach($m_ids_arr as $val){
 					if($info['monsters_name']){
 						$info['monsters_name'] .= "|".$m_name_arr[$val]['monster_name'];
@@ -81,7 +81,7 @@ class MazeRecordModel extends Model {
 				foreach($g_names as $val){
 					$g_name_arr[$val['goods_id']] = $val;
 				}
-				$g_ids_arr = explode(','.$info['maze_now_goods_ids']);
+				$g_ids_arr = explode(',',$info['maze_now_goods_ids']);
 				foreach($g_ids_arr as $val){
 					if($info['goods_name']){
 						$info['goods_name'] .= "|".$g_name_arr[$val]['goods_name'];
@@ -90,24 +90,17 @@ class MazeRecordModel extends Model {
 					}					
 				}
 			}			
-			
-			$user_role_ids = $info['user_role_id'];
-			if($info['user_orther_role_ids']) $user_role_ids .= ",".$info['user_orther_role_ids'];
-			$role_names_arr = array();
-			$role_names = M('role')->field('role_id,role_name')->where('role_id in ('.$user_role_ids.')')->select();
-			foreach($role_names as $value){
-				$role_names_arr[$value['role_id']] = $value;
-			}
-			$info['user_role_id_name'] = $role_names_arr[$info['user_role_id']]['role_name'];
-			$info['user_orther_role_name'] = '';
-			if($info['user_orther_role_ids']){
-				$o_ids = explode(',',$info['user_orther_role_ids']);
+
+			$info['user_role_id_name'] = D('user_role')->get_role_name($info['user_role_id']);
+			$info['user_other_role_name'] = '';
+			if($info['user_other_role_ids']){
+				$o_ids = explode(',',$info['user_other_role_ids']);
 				foreach($o_ids as $val){
 					if($val > 0){
-						if($info['user_orther_role_name']){
-							$info['user_orther_role_name'] .= "|".$role_names_arr[$val]['role_name'];
+						if($info['user_other_role_name']){
+							$info['user_other_role_name'] .= "|".D('user_role')->get_role_name($val);
 						}else{
-							$info['user_orther_role_name'] = $role_names_arr[$val]['role_name'];
+							$info['user_other_role_name'] = D('user_role')->get_role_name($val);
 						}
 					}					
 				}	

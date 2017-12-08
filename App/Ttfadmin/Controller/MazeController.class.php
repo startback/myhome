@@ -407,7 +407,52 @@ class MazeController extends CommonController {
 	}	
 	
 	
+	/********************************************************************************/
+	//迷宫记录日志
+	public function maze_record_log(){		
+		
+        $user_name = isset($_GET['user_name'])?trim($_GET['user_name']):'';
+        $maze_name = isset($_GET['maze_name'])?trim($_GET['maze_name']):'';
+        $start_time = isset($_GET['start_time'])?trim($_GET['start_time']):'';
+        $end_time = isset($_GET['end_time'])?trim($_GET['end_time']):'';
+		
+		$where = '1=1';
+		if($user_name) $where .= " and ".C('DB_PREFIX')."user.user_name like '%".$user_name."%'";		
+		if($maze_name) $where .= " and ".C('DB_PREFIX')."maze.maze_name like '%".$maze_name."%'";		
+		if($start_time) $where .= " and ".C('DB_PREFIX')."maze_record_log.log_time >= '".$start_time."'";		
+		if($end_time) $where .= " and ".C('DB_PREFIX')."maze_record_log.log_time < '".$end_time."'";	
+		
+        $search_state['user_name'] = $user_name;
+        $search_state['maze_name'] = $maze_name;
+        $search_state['start_time'] = $start_time;		
+        $search_state['end_time'] = $end_time;						
+		
+        $page = isset($_GET['p'])?$_GET['p']:1;
+		$search_state['page'] = $page;
+        $limit = D('maze_record_log')->get_limit($page);
+        $page_info = D('maze_record_log')->maze_record_log_page($search_state,$where);
+        $record_log_list = D('maze_record_log')->maze_record_log_list($limit,$where);
+		
+        $this->assign('search_state',$search_state);
+        $this->assign('record_log_list',$record_log_list );
+        $this->assign('page',$page_info);		
+        $this->display();	
+		
+	}	
 	
+	//迷宫记录日志详情
+	public function maze_record_log_info(){	
+	
+		$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+		if(empty($id)) {
+			$this->error('没有此记录日志');
+			exit;
+		}	
+		$info = D('maze_record_log')->info($id);
+		$this->assign('info',$info);
+		$this->display();
+		
+	}		
 	
 	
 	

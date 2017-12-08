@@ -295,7 +295,7 @@
 | user_id | int | 0 | - | 用户ID |
 | maze_id | smallint | 0 | - | 迷宫ID |
 | user_role_id | int | 0 | - | 主战角色 |
-| user_orther_role_ids | varchar(32) | - | - | 其它出战角色 |
+| user_other_role_ids | varchar(32) | - | - | 其它出战角色 |
 | maze_now_floor | smallint | 1 | - | 当前迷宫层 |
 | maze_now_monster_ids | varchar(255) | - | - | 当前迷怪物 |
 | maze_now_goods_ids | varchar(255) | - | - | 当前迷宫物品 |
@@ -312,7 +312,7 @@
 | user_id | int | 0 | - | 用户ID |
 | maze_id | smallint | 0 | - | 迷宫ID |
 | user_role_id | int | 0 | - | 主战角色 |
-| user_orther_role_ids | varchar(32) | - | - | 其它出战角色 |
+| user_other_role_ids | varchar(32) | - | - | 其它出战角色 |
 | floor | smallint | 1 | - | 迷宫层次 |
 | maze_monster_ids | varchar(255) | - | - | 迷怪物 |
 | kill_monster_ids | varchar(255) | - | - | 迷宫杀掉的怪物 |

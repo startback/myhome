@@ -1,0 +1,75 @@
+<include file='Common:top'/>
+<script type="text/javascript" src="__PUBLIC__/Js/Jedate/jedate.js"></script>
+
+<body>
+
+<div class="panel admin-panel">
+	<div class="panel-head"><strong class="icon-reorder"> 迷宫记录日志</strong></div>
+	
+	<div class="padding border-bottom">
+		<form action="" method="get">
+			<input type="hidden" name="m" value="ttfadmin" />
+			<input type="hidden" name="c" value="maze" />
+			<input type="hidden" name="a" value="maze_record_log" />
+			<ul class="search" style="padding-left:10px;">
+				<li>
+					迷宫名
+					<input type="text" id="maze_name" class="input" style="width:160px; line-height:17px; display:inline-block" value="{$search_state.maze_name}" name="maze_name" />
+					&nbsp;&nbsp;	
+					用户名
+					<input type="text" id="user_name" class="input" style="width:160px; line-height:17px; display:inline-block" value="{$search_state.user_name}" name="user_name" />
+					&nbsp;&nbsp;					
+					时间
+					<input type="text" id="start_datebut" autocomplete="off" class="input" style="width:160px; line-height:17px; display:inline-block" value="{$search_state.start_time}" onClick="jeDate({dateCell:'#start_datebut',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})" name="start_time" />
+					--
+					<input type="text" id="end_datebut" autocomplete="off" class="input" style="width:160px; line-height:17px; display:inline-block" value="{$search_state.end_time}" onClick="jeDate({dateCell:'#end_datebut',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})" name="end_time" />						
+				</li>
+				<li>
+					<input type="submit" class="button border-main icon-search" value="搜索"/>
+				</li>					
+			</ul>
+		</form>
+	</div>	
+	
+	<table class="table table-hover text-center">
+		<tr>
+			<th>用户</th>
+			<th>迷宫</th>
+			<th>层次</th>
+			<th>时间</th>
+			<th width="310">操作</th>
+		</tr>
+
+		<if condition="$record_log_list">
+			<volist name="record_log_list" id="vo">
+				<tr>
+					<td>{$vo.user_name}</td>
+					<td>{$vo.maze_name}</td>
+					<td>{$vo.floor}</td>
+					<td>{$vo.log_time}</td>
+					<td>
+						<div class="button-group">
+							<a class="button border-main" href="__ROOT__/index.php?m=ttfadmin&c=maze&a=maze_record_log_info&id={$vo.log_id}"><span class="icon-list-alt"></span> 详情</a>
+						</div>
+					</td>
+				</tr>
+			</volist>
+			
+			<tr>
+				<td colspan="7">
+					<div class="pagelist">{$page}</div>
+				</td>
+			</tr>				
+						
+			<else/>
+			<tr>
+				<td colspan="7" style="height: 80px;line-height: 80px;font-size: 20px;">
+					没有数据
+				</td>
+			</tr>
+		</if>
+
+	</table>
+</div>
+</body>
+</html>

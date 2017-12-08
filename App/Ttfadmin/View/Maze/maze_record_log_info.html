@@ -2,7 +2,7 @@
 
 <body>
 <div class="panel admin-panel">
-    <div class="panel-head" id="add"><strong><span class="icon-key"></span> 迷宫记录详情</strong></div>
+    <div class="panel-head" id="add"><strong><span class="icon-key"></span> 迷宫记录日志详情</strong></div>
     <div class="body-content">
         <form method="post" class="form-x" action="">
 		
@@ -24,10 +24,10 @@
             </div>				
             <div class="form-group">
                 <div class="label">
-                    <label>当前层次：</label>
+                    <label>层次：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input w50" value="{$info.maze_now_floor}" disabled />
+                    <input type="text" class="input w50" value="{$info.floor}" disabled />
                 </div>
             </div>			
             <div class="form-group">
@@ -56,6 +56,14 @@
             </div>			
             <div class="form-group">
                 <div class="label">
+                    <label>击杀怪物：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input" value="{$info.kill_monsters_name}" disabled />
+                </div>
+            </div>				
+            <div class="form-group">
+                <div class="label">
                     <label>此层物品：</label>
                 </div>
                 <div class="field">
@@ -64,28 +72,29 @@
             </div>		
             <div class="form-group">
                 <div class="label">
-                    <label>进入时间：</label>
+                    <label>获得物品：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input w50" value="{$info.begin_time}" disabled />
+                    <input type="text" class="input" value="{$info.get_goods_name}" disabled />
                 </div>
             </div>		
             <div class="form-group">
                 <div class="label">
-                    <label>是否完成：</label>
+                    <label>角色获得经验：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input w50" value="{$user_complete_status[$info['maze_now_is_over']]}" disabled />
+                    <input type="text" class="input" value="{$info.roles_get_exp}" disabled />
                 </div>
-            </div>	
+            </div>				
             <div class="form-group">
                 <div class="label">
-                    <label>最高到达层次：</label>
+                    <label>记录时间：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input w50" value="{$info.max_height_floor}" disabled />
+                    <input type="text" class="input w50" value="{$info.log_time}" disabled />
                 </div>
-            </div>			
+            </div>		
+		
 			
             <div class="form-group">
                 <div class="label">

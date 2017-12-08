@@ -5,19 +5,20 @@ return array(
 	'SYS_MO_ROLE_ID'      =>     1,    
 
 	//各页面显示页数配置
-	'PAGE_ADMIN'          =>     10,        //管理员
-	'PAGE_ADMIN_LOG'      =>     10,        //管理员日志
-	'PAGE_COMMON_SKILL'   =>     10,        //通用技能
-	'PAGE_GOODS'          =>     10,        //物品
-	'PAGE_MONSTER'        =>     10,        //怪物
-	'PAGE_ROLE'           =>     10,        //角色
-	'PAGE_ROLE_SKILL'     =>     10,        //角色天赋技能
-	'PAGE_USER_GOODS'     =>     10,        //用户物品
-	'PAGE_USER'           =>     10,        //用户
-	'PAGE_USER_MONSTER'   =>     10,        //用户怪物
-	'PAGE_USER_ROLE'      =>     10,        //用户角色
-	'PAGE_MAZE'           =>     10,        //迷宫
-	'PAGE_MAZE_RECORD'    =>     10,        //迷宫记录
+	'PAGE_ADMIN'              =>     10,        //管理员
+	'PAGE_ADMIN_LOG'          =>     10,        //管理员日志
+	'PAGE_COMMON_SKILL'       =>     10,        //通用技能
+	'PAGE_GOODS'              =>     10,        //物品
+	'PAGE_MONSTER'            =>     10,        //怪物
+	'PAGE_ROLE'               =>     10,        //角色
+	'PAGE_ROLE_SKILL'         =>     10,        //角色天赋技能
+	'PAGE_USER_GOODS'         =>     10,        //用户物品
+	'PAGE_USER'               =>     10,        //用户
+	'PAGE_USER_MONSTER'       =>     10,        //用户怪物
+	'PAGE_USER_ROLE'      	  =>     10,        //用户角色
+	'PAGE_MAZE'            	  =>     10,        //迷宫
+	'PAGE_MAZE_RECORD'        =>     10,        //迷宫记录
+	'PAGE_MAZE_RECORD_LOG'    =>     10,        //迷宫记录日志
 
     //完成状态
     'USER_COMPLETE_STATUS'      =>   array(

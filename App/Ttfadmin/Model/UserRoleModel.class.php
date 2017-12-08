@@ -83,7 +83,20 @@ class UserRoleModel extends Model {
 		}	
 	}	
 	
+	//根据用户角色ID返回该角色名
+	public function get_role_name($user_role_id){
+		$role_name = '';
+		if($user_role_id > 0){
+			$user_role = M('user_role')->field('role_id,user_id')->where('user_role_id='.$user_role_id)->find();
+			$role = M('role')->field('role_id,role_name')->where('role_id='.$user_role['role_id'])->find();
+			if($role['role_name']) $role_name = $role['role_name'];
+		}
+		return $role_name;
+	}
 
 	
+		
+		
+		
 		
 }

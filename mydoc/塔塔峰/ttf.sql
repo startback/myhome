@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2017-12-06 15:44:13
+Date: 2017-12-08 15:13:59
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -47,7 +47,7 @@ CREATE TABLE `ttf_admin_log` (
   `admin_id` smallint(6) DEFAULT NULL,
   `ip_address` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`log_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=242 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=243 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for ttf_admin_role
@@ -160,7 +160,7 @@ CREATE TABLE `ttf_maze_record` (
   `user_id` int(11) DEFAULT '0',
   `maze_id` smallint(6) DEFAULT '0',
   `user_role_id` int(11) DEFAULT NULL,
-  `user_orther_role_ids` varchar(32) DEFAULT NULL,
+  `user_other_role_ids` varchar(32) DEFAULT NULL,
   `maze_now_floor` smallint(6) DEFAULT '1',
   `maze_now_monster_ids` varchar(255) DEFAULT NULL,
   `maze_now_goods_ids` varchar(255) DEFAULT NULL,
@@ -168,7 +168,7 @@ CREATE TABLE `ttf_maze_record` (
   `maze_now_is_over` tinyint(4) DEFAULT '0',
   `max_height_floor` smallint(6) DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for ttf_maze_record_log
@@ -185,10 +185,10 @@ CREATE TABLE `ttf_maze_record_log` (
   `kill_monster_ids` varchar(255) DEFAULT NULL,
   `maze_goods_ids` varchar(255) DEFAULT NULL,
   `get_goods_ids` varchar(255) DEFAULT NULL,
-  `roles_get_expericnce` varchar(255) DEFAULT NULL,
+  `roles_get_experience` varchar(255) DEFAULT NULL,
   `log_time` datetime DEFAULT NULL,
   PRIMARY KEY (`log_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for ttf_monster
