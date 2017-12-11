@@ -119,8 +119,8 @@ class UserModel extends Model {
 					$res = false;
 				}
 			}			
-			if(M('role_maze_record')->where('user_id in ('.$ids.')')->select()  && $res){ //删除用户登塔记录
-				if(!M('role_maze_record')->where('user_id in ('.$ids.')')->delete()){
+			if(M('maze_record')->where('user_id in ('.$ids.')')->select()  && $res){ //删除用户登塔记录
+				if(!M('maze_record')->where('user_id in ('.$ids.')')->delete()){
 					M()->rollback();
 					$res = false;
 				}

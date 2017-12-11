@@ -2,7 +2,7 @@
 return array(
 
 	//注册默认角色
-	'SYS_MO_ROLE_ID'      =>     1,    
+	'SYS_MO_ROLE_ID'      =>     2,    
 
 	//各页面显示页数配置
 	'PAGE_ADMIN'              =>     10,        //管理员
