@@ -1,5 +1,6 @@
 # conf
-App/Common/Conf/config.php
-Upload/
-App/Runtime/
+/App/Common/Conf/config.php
+/Upload/
+/App/Runtime/
+/ueditor/
 .idea/
