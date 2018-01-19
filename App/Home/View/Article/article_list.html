@@ -23,9 +23,9 @@
         <if condition="$article_list">
             <volist name="article_list" id="vo">
                 <div class="article_tit">
-                    <div class="article_tit_pic"><a href="#"><img <if condition="$vo['article_img']">src="__ROOT__{$vo.article_img}"<else /> src="__PUBLIC__/Home/images/01.jpg"</if> /></a></div>
+                    <div class="article_tit_pic"><a href="__ROOT__/index.php?m=home&c=article&a=article_detail&article_id={$vo.article_id}&type={$cur_type.type_id}"><img <if condition="$vo['article_img']">src="__ROOT__{$vo.article_img}"<else /> src="__PUBLIC__/Home/images/img_default.jpg"</if> /></a></div>
                     <div class="article_tit_txt">
-                        <h4><a href="#">{$vo.article_title}</a></h4>
+                        <h4><a href="__ROOT__/index.php?m=home&c=article&a=article_detail&article_id={$vo.article_id}&type={$cur_type.type_id}">{$vo.article_title}</a></h4>
                         <p><a href="javascript:voide(0)" class="writer">{$vo.admin_account}</a><a href="#" class="Clas">{$types[$vo['type_id']]['type_name']}</a><a
                                 href="javascript:voide(0)" class="time">{$vo.article_time}</a><a href="javascript:voide(0)"
                                                                                                  class="opine">评论（{$vo.comment_num}）</a><a
