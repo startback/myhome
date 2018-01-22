@@ -69,11 +69,15 @@ class AlbumController extends CommonController {
     //删除相册分类
     public function del_type(){
         $ids = isset($_POST['ids'])?$_POST['ids']:'';
+		$data['status'] = 0;
+		$data['info'] = '删除失败';			
         if($ids){
             if(M('album_type')->where('type_id in ('.$ids.')')->delete()){
-                echo 1;
+                $data['status'] = 1;
+                $data['info'] = '删除成功';
             }
         }
+		echo json_encode($data,JSON_UNESCAPED_UNICODE);
     }
 
 
@@ -224,11 +228,15 @@ class AlbumController extends CommonController {
     //删除相片
     public function album_del(){
         $ids = isset($_POST['ids'])?$_POST['ids']:'';
+		$data['status'] = 0;
+		$data['info'] = '删除失败';			
         if($ids){
             if(M('album')->where('album_id in ('.$ids.')')->delete()){
-                echo 1;
+                $data['status'] = 1;
+                $data['info'] = '删除成功';
             }
         }
+		echo json_encode($data,JSON_UNESCAPED_UNICODE);
     }
 
 

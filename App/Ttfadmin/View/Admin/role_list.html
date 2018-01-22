@@ -57,12 +57,11 @@
                 data: {ids: id},
                 dataType: 'text',
                 success: function(data){
-                    if(data == 1){
-                        layer.msg('删除成功');
-						setTimeout("location.reload()",1000);
-                    }else{
-                        layer.msg('删除失败');
-                    }
+					var obj = eval('(' + data + ')');
+					alert(obj.info);
+					if(obj.status == 1){
+						location.reload();
+					}
                 }
             });
         }

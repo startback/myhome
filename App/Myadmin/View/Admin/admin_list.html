@@ -78,14 +78,11 @@
                 data: {ids: id},
                 dataType: 'text',
                 success: function(data){
-                    if(data == 1){
-                        alert('删除成功');
-                        location.reload();
-                    }else if(data == 2){
-                        alert('无权删除超级管理员');
-                    }else{
-                        alert('删除失败');
-                    }
+					var obj = eval('(' + data + ')');
+					alert(obj.info);
+					if(obj.status == 1){
+						location.reload();
+					}
                 }
             });
         }
@@ -127,14 +124,11 @@
                 data: {ids: ids},
                 dataType: 'text',
                 success: function(data){
-                    if(data == 1){
-                        alert('删除成功');
-                        location.reload();
-                    }else if(data == 2){
-                        alert('无权删除超级管理员');
-                    }else{
-                        alert('删除失败');
-                    }
+					var obj = eval('(' + data + ')');
+					alert(obj.info);
+					if(obj.status == 1){
+						location.reload();
+					}
                 }
             });
         } else {

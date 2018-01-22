@@ -88,11 +88,15 @@ class AdminController extends CommonController {
     //删除角色
     public function role_del(){
         $ids = isset($_POST['ids'])?$_POST['ids']:'';
+		$data['status'] = 0;
+		$data['info'] = '删除失败';			
         if($ids){
             if(M('role')->where('role_id in ('.$ids.')')->delete()){
-                echo 1;
+                $data['status'] = 1;
+                $data['info'] = '删除成功';
             }
         }
+		echo json_encode($data,JSON_UNESCAPED_UNICODE);
     }
 
 
@@ -203,22 +207,26 @@ class AdminController extends CommonController {
     //删除管理员
     public function admin_del(){
         $ids = isset($_POST['ids'])?$_POST['ids']:'';
+		$data['status'] = 0;
+		$data['info'] = '删除失败';			
         if($ids){
             if($ids == 1){
-                echo 2;
-                exit;
-            }
-
-            $check_ids = explode(',',$ids);
-            if(in_array(1,$check_ids)){
-                echo 2;
-                exit;
-            }
-
-            if(M('admin')->where('admin_id in ('.$ids.')')->delete()){
-                echo 1;
-            }
+				$data['status'] = 2;
+				$data['info'] = '无权删除admin管理员';
+            }else{
+				$check_ids = explode(',',$ids);
+				if(in_array(1,$check_ids)){
+					$data['status'] = 2;
+					$data['info'] = '无权删除admin管理员';
+				}else{
+					if(M('admin')->where('admin_id in ('.$ids.')')->delete()){
+						$data['status'] = 1;
+						$data['info'] = '删除成功';
+					}
+				}
+			}
         }
+		echo json_encode($data,JSON_UNESCAPED_UNICODE);
     }
 
 	
